@@ -47,7 +47,7 @@ class NodeFinder
      */
     public function findInstanceOf($nodes, string $class): array
     {
-        return $this->find($nodes, fn ($node) => $node instanceof $class);
+        return $this->find($nodes, fn ($node): bool => $node instanceof $class);
     }
 
     /**
@@ -88,6 +88,6 @@ class NodeFinder
      */
     public function findFirstInstanceOf($nodes, string $class): ?Node
     {
-        return $this->findFirst($nodes, fn ($node) => $node instanceof $class);
+        return $this->findFirst($nodes, fn ($node): bool => $node instanceof $class);
     }
 }

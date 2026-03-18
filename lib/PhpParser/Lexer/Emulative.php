@@ -73,7 +73,7 @@ class Emulative extends Lexer
 
     public function tokenize(string $code, ?ErrorHandler $errorHandler = null): array
     {
-        $emulators = array_filter($this->emulators, fn (\PhpParser\Lexer\TokenEmulator\TokenEmulator $emulator) => $emulator->isEmulationNeeded($code));
+        $emulators = array_filter($this->emulators, fn (\PhpParser\Lexer\TokenEmulator\TokenEmulator $emulator): bool => $emulator->isEmulationNeeded($code));
 
         if (empty($emulators)) {
             // Nothing to emulate, yay
@@ -125,7 +125,7 @@ class Emulative extends Lexer
     {
         // Patches may be contributed by different emulators.
         // Make sure they are sorted by increasing patch position.
-        usort($this->patches, fn (array $p1, array $p2) => $p1[0] <=> $p2[0]);
+        usort($this->patches, fn (array $p1, array $p2): int => $p1[0] <=> $p2[0]);
     }
 
     /**
