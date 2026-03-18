@@ -1,16 +1,21 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Builder;
 
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt;
 
-class TraitUseTest extends \PHPUnit\Framework\TestCase {
-    protected function createTraitUseBuilder(...$traits) {
+class TraitUseTest extends \PHPUnit\Framework\TestCase
+{
+    protected function createTraitUseBuilder(...$traits)
+    {
         return new TraitUse(...$traits);
     }
 
-    public function testAnd(): void {
+    public function testAnd(): void
+    {
         $node = $this->createTraitUseBuilder('SomeTrait')
             ->and('AnotherTrait')
             ->getNode()
@@ -19,13 +24,14 @@ class TraitUseTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals(
             new Stmt\TraitUse([
                 new Name('SomeTrait'),
-                new Name('AnotherTrait')
+                new Name('AnotherTrait'),
             ]),
             $node
         );
     }
 
-    public function testWith(): void {
+    public function testWith(): void
+    {
         $node = $this->createTraitUseBuilder('SomeTrait')
             ->with(new Stmt\TraitUseAdaptation\Alias(null, 'foo', null, 'bar'))
             ->with((new TraitUseAdaptation(null, 'test'))->as('baz'))
@@ -35,13 +41,14 @@ class TraitUseTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals(
             new Stmt\TraitUse([new Name('SomeTrait')], [
                 new Stmt\TraitUseAdaptation\Alias(null, 'foo', null, 'bar'),
-                new Stmt\TraitUseAdaptation\Alias(null, 'test', null, 'baz')
+                new Stmt\TraitUseAdaptation\Alias(null, 'test', null, 'baz'),
             ]),
             $node
         );
     }
 
-    public function testInvalidAdaptationNode(): void {
+    public function testInvalidAdaptationNode(): void
+    {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Adaptation must have type TraitUseAdaptation');
         $this->createTraitUseBuilder('Test')

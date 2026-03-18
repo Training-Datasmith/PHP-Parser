@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\NodeVisitor;
 
@@ -9,8 +11,10 @@ use PhpParser\NodeFinder;
 use PhpParser\NodeTraverser;
 use PhpParser\ParserFactory;
 
-final class NodeConnectingVisitorTest extends \PHPUnit\Framework\TestCase {
-    public function testConnectsNodeToItsParentNodeAndItsSiblingNodes(): void {
+final class NodeConnectingVisitorTest extends \PHPUnit\Framework\TestCase
+{
+    public function testConnectsNodeToItsParentNodeAndItsSiblingNodes(): void
+    {
         $ast = (new ParserFactory())->createForNewestSupportedVersion()->parse(
             '<?php if (true) {} else {}'
         );
@@ -31,7 +35,8 @@ final class NodeConnectingVisitorTest extends \PHPUnit\Framework\TestCase {
         $this->assertSame(Else_::class, get_class($node->getAttribute('next')));
     }
 
-    public function testWeakReferences(): void {
+    public function testWeakReferences(): void
+    {
         $ast = (new ParserFactory())->createForNewestSupportedVersion()->parse(
             '<?php if (true) {} else {}'
         );

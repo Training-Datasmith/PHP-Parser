@@ -1,19 +1,24 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
 require __DIR__ . '/../../lib/PhpParser/compatibility_tokens.php';
 
-class LexerTest extends \PHPUnit\Framework\TestCase {
+class LexerTest extends \PHPUnit\Framework\TestCase
+{
     /* To allow overwriting in parent class */
-    protected function getLexer() {
+    protected function getLexer()
+    {
         return new Lexer();
     }
 
     /**
      * @dataProvider provideTestError
      */
-    public function testError($code, $messages): void {
+    public function testError($code, $messages): void
+    {
         if (defined('HHVM_VERSION')) {
             $this->markTestSkipped('HHVM does not throw warnings from token_get_all()');
         }
@@ -29,33 +34,36 @@ class LexerTest extends \PHPUnit\Framework\TestCase {
         }
     }
 
-    public static function provideTestError() {
+    public static function provideTestError()
+    {
         return [
-            ["<?php /*", ["Unterminated comment from 1:7 to 1:9"]],
-            ["<?php /*\n", ["Unterminated comment from 1:7 to 2:1"]],
+            ['<?php /*', ['Unterminated comment from 1:7 to 1:9']],
+            ["<?php /*\n", ['Unterminated comment from 1:7 to 2:1']],
             ["<?php \1", ["Unexpected character \"\1\" (ASCII 1) from 1:7 to 1:7"]],
-            ["<?php \0", ["Unexpected null byte from 1:7 to 1:7"]],
+            ["<?php \0", ['Unexpected null byte from 1:7 to 1:7']],
             // Error with potentially emulated token
-            ["<?php ?? \0", ["Unexpected null byte from 1:10 to 1:10"]],
+            ["<?php ?? \0", ['Unexpected null byte from 1:10 to 1:10']],
             ["<?php\n\0\1 foo /* bar", [
-                "Unexpected null byte from 2:1 to 2:1",
+                'Unexpected null byte from 2:1 to 2:1',
                 "Unexpected character \"\1\" (ASCII 1) from 2:2 to 2:2",
-                "Unterminated comment from 2:8 to 2:14"
+                'Unterminated comment from 2:8 to 2:14',
             ]],
         ];
     }
 
-    public function testDefaultErrorHandler(): void {
+    public function testDefaultErrorHandler(): void
+    {
         $this->expectException(Error::class);
         $this->expectExceptionMessage('Unterminated comment on line 1');
         $lexer = $this->getLexer();
-        $lexer->tokenize("<?php readonly /*");
+        $lexer->tokenize('<?php readonly /*');
     }
 
     /**
      * @dataProvider provideTestLex
      */
-    public function testLex($code, $expectedTokens): void {
+    public function testLex($code, $expectedTokens): void
+    {
         $lexer = $this->getLexer();
         $tokens = $lexer->tokenize($code);
         foreach ($tokens as $token) {
@@ -70,7 +78,8 @@ class LexerTest extends \PHPUnit\Framework\TestCase {
         }
     }
 
-    public static function provideTestLex() {
+    public static function provideTestLex()
+    {
         return [
             // tests PHP 8 T_NAME_* emulation
             [
@@ -81,7 +90,7 @@ class LexerTest extends \PHPUnit\Framework\TestCase {
                     [\T_NAME_RELATIVE, 'namespace\Foo\Bar'],
                     [\T_NAME_QUALIFIED, 'Foo\Bar'],
                     [\T_NS_SEPARATOR, '\\'],
-                ]
+                ],
             ],
             // tests PHP 8 T_NAME_* emulation with reserved keywords
             [
@@ -92,12 +101,13 @@ class LexerTest extends \PHPUnit\Framework\TestCase {
                     [\T_NAME_RELATIVE, 'namespace\fn\use'],
                     [\T_NAME_QUALIFIED, 'fn\use'],
                     [\T_NS_SEPARATOR, '\\'],
-                ]
+                ],
             ],
         ];
     }
 
-    public function testGetTokens(): void {
+    public function testGetTokens(): void
+    {
         $code = '<?php "a";' . "\n" . '// foo' . "\n" . '// bar' . "\n\n" . '"b";';
         $expectedTokens = [
             new Token(T_OPEN_TAG, '<?php ', 1, 0),

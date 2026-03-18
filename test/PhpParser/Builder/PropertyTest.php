@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Builder;
 
@@ -17,12 +19,15 @@ use PhpParser\Node\Scalar;
 use PhpParser\Node\Scalar\Int_;
 use PhpParser\Node\Stmt;
 
-class PropertyTest extends \PHPUnit\Framework\TestCase {
-    public function createPropertyBuilder($name) {
+class PropertyTest extends \PHPUnit\Framework\TestCase
+{
+    public function createPropertyBuilder($name)
+    {
         return new Property($name);
     }
 
-    public function testModifiers(): void {
+    public function testModifiers(): void
+    {
         $node = $this->createPropertyBuilder('test')
             ->makePrivate()
             ->makeStatic()
@@ -81,30 +86,35 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
             ->getNode();
         $this->assertEquals(
             new Stmt\Property(Modifiers::FINAL, [new PropertyItem('test')]),
-            $node);
+            $node
+        );
 
         $node = $this->createPropertyBuilder('test')
             ->makePrivateSet()
             ->getNode();
         $this->assertEquals(
             new Stmt\Property(Modifiers::PRIVATE_SET, [new PropertyItem('test')]),
-            $node);
+            $node
+        );
 
         $node = $this->createPropertyBuilder('test')
             ->makeProtectedSet()
             ->getNode();
         $this->assertEquals(
             new Stmt\Property(Modifiers::PROTECTED_SET, [new PropertyItem('test')]),
-            $node);
+            $node
+        );
     }
 
-    public function testAbstractWithoutHook() {
+    public function testAbstractWithoutHook()
+    {
         $this->expectException(Error::class);
         $this->expectExceptionMessage('Only hooked properties may be declared abstract');
         $this->createPropertyBuilder('test')->makeAbstract()->getNode();
     }
 
-    public function testDocComment(): void {
+    public function testDocComment(): void
+    {
         $node = $this->createPropertyBuilder('test')
             ->setDocComment('/** Test */')
             ->getNode();
@@ -112,10 +122,10 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals(new Stmt\Property(
             Modifiers::PUBLIC,
             [
-                new \PhpParser\Node\PropertyItem('test')
+                new \PhpParser\Node\PropertyItem('test'),
             ],
             [
-                'comments' => [new Comment\Doc('/** Test */')]
+                'comments' => [new Comment\Doc('/** Test */')],
             ]
         ), $node);
     }
@@ -123,7 +133,8 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
     /**
      * @dataProvider provideTestDefaultValues
      */
-    public function testDefaultValues($value, $expectedValueNode): void {
+    public function testDefaultValues($value, $expectedValueNode): void
+    {
         $node = $this->createPropertyBuilder('test')
             ->setDefault($value)
             ->getNode()
@@ -132,7 +143,8 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals($expectedValueNode, $node->props[0]->default);
     }
 
-    public function testAddAttribute(): void {
+    public function testAddAttribute(): void
+    {
         $attribute = new Attribute(
             new Name('Attr'),
             [new Arg(new Int_(1), false, false, [], new Identifier('name'))]
@@ -148,7 +160,7 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
             new Stmt\Property(
                 Modifiers::PUBLIC,
                 [
-                    new \PhpParser\Node\PropertyItem('test')
+                    new \PhpParser\Node\PropertyItem('test'),
                 ],
                 [],
                 null,
@@ -158,7 +170,8 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testAddHook(): void {
+    public function testAddHook(): void
+    {
         $get = new PropertyHook('get', null);
         $set = new PropertyHook('set', null);
         $node = $this->createPropertyBuilder('test')
@@ -170,36 +183,41 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
             new Stmt\Property(
                 Modifiers::ABSTRACT,
                 [new PropertyItem('test')],
-                [], null, [],
-                [$get, $set]),
-            $node);
+                [],
+                null,
+                [],
+                [$get, $set]
+            ),
+            $node
+        );
     }
 
-    public static function provideTestDefaultValues() {
+    public static function provideTestDefaultValues()
+    {
         return [
             [
                 null,
-                new Expr\ConstFetch(new Name('null'))
+                new Expr\ConstFetch(new Name('null')),
             ],
             [
                 true,
-                new Expr\ConstFetch(new Name('true'))
+                new Expr\ConstFetch(new Name('true')),
             ],
             [
                 false,
-                new Expr\ConstFetch(new Name('false'))
+                new Expr\ConstFetch(new Name('false')),
             ],
             [
                 31415,
-                new Scalar\Int_(31415)
+                new Scalar\Int_(31415),
             ],
             [
                 3.1415,
-                new Scalar\Float_(3.1415)
+                new Scalar\Float_(3.1415),
             ],
             [
                 'Hallo World',
-                new Scalar\String_('Hallo World')
+                new Scalar\String_('Hallo World'),
             ],
             [
                 [1, 2, 3],
@@ -207,7 +225,7 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
                     new \PhpParser\Node\ArrayItem(new Scalar\Int_(1)),
                     new \PhpParser\Node\ArrayItem(new Scalar\Int_(2)),
                     new \PhpParser\Node\ArrayItem(new Scalar\Int_(3)),
-                ])
+                ]),
             ],
             [
                 ['foo' => 'bar', 'bar' => 'foo'],
@@ -220,12 +238,12 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
                         new Scalar\String_('foo'),
                         new Scalar\String_('bar')
                     ),
-                ])
+                ]),
             ],
             [
                 new Scalar\MagicConst\Dir(),
-                new Scalar\MagicConst\Dir()
-            ]
+                new Scalar\MagicConst\Dir(),
+            ],
         ];
     }
 }

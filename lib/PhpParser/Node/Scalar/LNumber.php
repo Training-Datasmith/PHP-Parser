@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Node\Scalar;
 
@@ -10,6 +12,7 @@ if (false) {
      *
      * @deprecated use \PhpParser\Node\Scalar\Int_ instead.
      */
-    class LNumber extends Int_ {
+    class LNumber extends Int_
+    {
     }
 }

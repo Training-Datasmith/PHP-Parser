@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Builder;
 
@@ -15,13 +17,16 @@ use PhpParser\Node\Scalar;
 use PhpParser\Node\Scalar\Int_;
 use PhpParser\Node\Stmt;
 
-class ClassConstTest extends \PHPUnit\Framework\TestCase {
-    public function createClassConstBuilder($name, $value) {
+class ClassConstTest extends \PHPUnit\Framework\TestCase
+{
+    public function createClassConstBuilder($name, $value)
+    {
         return new ClassConst($name, $value);
     }
 
-    public function testModifiers(): void {
-        $node = $this->createClassConstBuilder("TEST", 1)
+    public function testModifiers(): void
+    {
+        $node = $this->createClassConstBuilder('TEST', 1)
             ->makePrivate()
             ->getNode()
         ;
@@ -29,14 +34,14 @@ class ClassConstTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals(
             new Stmt\ClassConst(
                 [
-                    new Const_("TEST", new Int_(1))
+                    new Const_('TEST', new Int_(1)),
                 ],
                 Modifiers::PRIVATE
             ),
             $node
         );
 
-        $node = $this->createClassConstBuilder("TEST", 1)
+        $node = $this->createClassConstBuilder('TEST', 1)
             ->makeProtected()
             ->getNode()
         ;
@@ -44,14 +49,14 @@ class ClassConstTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals(
             new Stmt\ClassConst(
                 [
-                    new Const_("TEST", new Int_(1))
+                    new Const_('TEST', new Int_(1)),
                 ],
                 Modifiers::PROTECTED
             ),
             $node
         );
 
-        $node = $this->createClassConstBuilder("TEST", 1)
+        $node = $this->createClassConstBuilder('TEST', 1)
             ->makePublic()
             ->getNode()
         ;
@@ -59,14 +64,14 @@ class ClassConstTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals(
             new Stmt\ClassConst(
                 [
-                    new Const_("TEST", new Int_(1))
+                    new Const_('TEST', new Int_(1)),
                 ],
                 Modifiers::PUBLIC
             ),
             $node
         );
 
-        $node = $this->createClassConstBuilder("TEST", 1)
+        $node = $this->createClassConstBuilder('TEST', 1)
             ->makeFinal()
             ->getNode()
         ;
@@ -74,7 +79,7 @@ class ClassConstTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals(
             new Stmt\ClassConst(
                 [
-                    new Const_("TEST", new Int_(1))
+                    new Const_('TEST', new Int_(1)),
                 ],
                 Modifiers::FINAL
             ),
@@ -82,7 +87,8 @@ class ClassConstTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testDocComment(): void {
+    public function testDocComment(): void
+    {
         $node = $this->createClassConstBuilder('TEST', 1)
             ->setDocComment('/** Test */')
             ->makePublic()
@@ -91,34 +97,36 @@ class ClassConstTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals(
             new Stmt\ClassConst(
                 [
-                    new Const_("TEST", new Int_(1))
+                    new Const_('TEST', new Int_(1)),
                 ],
                 Modifiers::PUBLIC,
                 [
-                    'comments' => [new Comment\Doc('/** Test */')]
+                    'comments' => [new Comment\Doc('/** Test */')],
                 ]
             ),
             $node
         );
     }
 
-    public function testAddConst(): void {
+    public function testAddConst(): void
+    {
         $node = $this->createClassConstBuilder('FIRST_TEST', 1)
-            ->addConst("SECOND_TEST", 2)
+            ->addConst('SECOND_TEST', 2)
             ->getNode();
 
         $this->assertEquals(
             new Stmt\ClassConst(
                 [
-                    new Const_("FIRST_TEST", new Int_(1)),
-                    new Const_("SECOND_TEST", new Int_(2))
+                    new Const_('FIRST_TEST', new Int_(1)),
+                    new Const_('SECOND_TEST', new Int_(2)),
                 ]
             ),
             $node
         );
     }
 
-    public function testAddAttribute(): void {
+    public function testAddAttribute(): void
+    {
         $attribute = new Attribute(
             new Name('Attr'),
             [new Arg(new Int_(1), false, false, [], new Identifier('name'))]
@@ -132,7 +140,7 @@ class ClassConstTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals(
             new Stmt\ClassConst(
                 [
-                    new Const_("ATTR_GROUP", new Int_(1))
+                    new Const_('ATTR_GROUP', new Int_(1)),
                 ],
                 0,
                 [],
@@ -142,14 +150,19 @@ class ClassConstTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testType(): void {
+    public function testType(): void
+    {
         $node = $this->createClassConstBuilder('TYPE', 1)
             ->setType('int')
             ->getNode();
         $this->assertEquals(
             new Stmt\ClassConst(
                 [new Const_('TYPE', new Int_(1))],
-                0, [], [], new Identifier('int')),
+                0,
+                [],
+                [],
+                new Identifier('int')
+            ),
             $node
         );
     }
@@ -157,7 +170,8 @@ class ClassConstTest extends \PHPUnit\Framework\TestCase {
     /**
      * @dataProvider provideTestDefaultValues
      */
-    public function testValues($value, $expectedValueNode): void {
+    public function testValues($value, $expectedValueNode): void
+    {
         $node = $this->createClassConstBuilder('TEST', $value)
             ->getNode()
         ;
@@ -165,31 +179,32 @@ class ClassConstTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals($expectedValueNode, $node->consts[0]->value);
     }
 
-    public static function provideTestDefaultValues() {
+    public static function provideTestDefaultValues()
+    {
         return [
             [
                 null,
-                new Expr\ConstFetch(new Name('null'))
+                new Expr\ConstFetch(new Name('null')),
             ],
             [
                 true,
-                new Expr\ConstFetch(new Name('true'))
+                new Expr\ConstFetch(new Name('true')),
             ],
             [
                 false,
-                new Expr\ConstFetch(new Name('false'))
+                new Expr\ConstFetch(new Name('false')),
             ],
             [
                 31415,
-                new Scalar\Int_(31415)
+                new Scalar\Int_(31415),
             ],
             [
                 3.1415,
-                new Scalar\Float_(3.1415)
+                new Scalar\Float_(3.1415),
             ],
             [
                 'Hallo World',
-                new Scalar\String_('Hallo World')
+                new Scalar\String_('Hallo World'),
             ],
             [
                 [1, 2, 3],
@@ -197,7 +212,7 @@ class ClassConstTest extends \PHPUnit\Framework\TestCase {
                     new \PhpParser\Node\ArrayItem(new Scalar\Int_(1)),
                     new \PhpParser\Node\ArrayItem(new Scalar\Int_(2)),
                     new \PhpParser\Node\ArrayItem(new Scalar\Int_(3)),
-                ])
+                ]),
             ],
             [
                 ['foo' => 'bar', 'bar' => 'foo'],
@@ -210,12 +225,12 @@ class ClassConstTest extends \PHPUnit\Framework\TestCase {
                         new Scalar\String_('foo'),
                         new Scalar\String_('bar')
                     ),
-                ])
+                ]),
             ],
             [
                 new Scalar\MagicConst\Dir(),
-                new Scalar\MagicConst\Dir()
-            ]
+                new Scalar\MagicConst\Dir(),
+            ],
         ];
     }
 }

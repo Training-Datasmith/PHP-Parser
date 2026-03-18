@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Node\Expr;
 
@@ -8,11 +10,13 @@ use PhpParser\Node\Name;
 use PhpParser\Node\Scalar\Int_;
 use PhpParser\Node\VariadicPlaceholder;
 
-class CallableLikeTest extends \PHPUnit\Framework\TestCase {
+class CallableLikeTest extends \PHPUnit\Framework\TestCase
+{
     /**
      * @dataProvider provideTestIsFirstClassCallable
      */
-    public function testIsFirstClassCallable(CallLike $node, bool $isFirstClassCallable): void {
+    public function testIsFirstClassCallable(CallLike $node, bool $isFirstClassCallable): void
+    {
         $this->assertSame($isFirstClassCallable, $node->isFirstClassCallable());
         if (!$isFirstClassCallable) {
             $this->assertSame($node->getRawArgs(), $node->getArgs());
@@ -22,11 +26,13 @@ class CallableLikeTest extends \PHPUnit\Framework\TestCase {
     /**
      * @dataProvider provideTestGetArg
      */
-    public function testGetArg(CallLike $node, ?Arg $expected): void {
+    public function testGetArg(CallLike $node, ?Arg $expected): void
+    {
         $this->assertSame($expected, $node->getArg('bar', 1));
     }
 
-    public static function provideTestIsFirstClassCallable() {
+    public static function provideTestIsFirstClassCallable()
+    {
         $normalArgs = [new Arg(new Int_(1))];
         $callableArgs = [new VariadicPlaceholder()];
         return [
@@ -44,7 +50,8 @@ class CallableLikeTest extends \PHPUnit\Framework\TestCase {
         ];
     }
 
-    public static function provideTestGetArg() {
+    public static function provideTestGetArg()
+    {
         $foo = new Arg(new Int_(1));
         $namedFoo = new Arg(new Int_(1), false, false, [], new Identifier('foo'));
         $bar = new Arg(new Int_(2));

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Node\Expr;
 
@@ -10,6 +12,7 @@ if (false) {
      *
      * @deprecated use \PhpParser\Node\ClosureUse instead.
      */
-    class ClosureUse extends \PhpParser\Node\ClosureUse {
+    class ClosureUse extends \PhpParser\Node\ClosureUse
+    {
     }
 }

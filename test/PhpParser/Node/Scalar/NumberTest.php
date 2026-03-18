@@ -1,12 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Node\Scalar;
 
 use PhpParser\Node\Stmt\Echo_;
 use PhpParser\ParserFactory;
 
-class NumberTest extends \PHPUnit\Framework\TestCase {
-    public function testRawValue(): void {
+class NumberTest extends \PHPUnit\Framework\TestCase
+{
+    public function testRawValue(): void
+    {
         $parser = (new ParserFactory())->createForNewestSupportedVersion();
         $nodes = $parser->parse('<?php echo 1_234;');
 

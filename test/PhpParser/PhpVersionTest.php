@@ -1,9 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
-class PhpVersionTest extends \PHPUnit\Framework\TestCase {
-    public function testConstruction(): void {
+class PhpVersionTest extends \PHPUnit\Framework\TestCase
+{
+    public function testConstruction(): void
+    {
         $version = PhpVersion::fromComponents(8, 2);
         $this->assertSame(80200, $version->id);
 
@@ -17,13 +21,15 @@ class PhpVersionTest extends \PHPUnit\Framework\TestCase {
         $this->assertSame(80200, $version->id);
     }
 
-    public function testInvalidVersion(): void {
+    public function testInvalidVersion(): void
+    {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Invalid PHP version "8"');
         PhpVersion::fromString('8');
     }
 
-    public function testEquals(): void {
+    public function testEquals(): void
+    {
         $php74 = PhpVersion::fromComponents(7, 4);
         $php81 = PhpVersion::fromComponents(8, 1);
         $php82 = PhpVersion::fromComponents(8, 2);

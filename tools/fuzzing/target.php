@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /** @var PhpFuzzer\Fuzzer $fuzzer */
 
@@ -16,7 +18,7 @@ if (class_exists(PhpParser\Parser\Php7::class)) {
 
 $autoload = __DIR__ . '/../../vendor/autoload.php';
 if (!file_exists($autoload)) {
-    echo "Cannot find PHP-Parser installation in " . __DIR__ . "/PHP-Parser\n";
+    echo 'Cannot find PHP-Parser installation in ' . __DIR__ . "/PHP-Parser\n";
     exit(1);
 }
 
@@ -26,7 +28,7 @@ $lexer = new PhpParser\Lexer();
 $parser = new PhpParser\Parser\Php7($lexer);
 $prettyPrinter = new PhpParser\PrettyPrinter\Standard();
 $nodeDumper = new PhpParser\NodeDumper();
-$visitor = new class extends PhpParser\NodeVisitorAbstract {
+$visitor = new class () extends PhpParser\NodeVisitorAbstract {
     private const CAST_NAMES = [
         'int', 'integer',
         'double', 'float', 'real',
@@ -36,19 +38,21 @@ $visitor = new class extends PhpParser\NodeVisitorAbstract {
         'unset',
     ];
 
-
     private $tokens;
     public $hasProblematicConstruct;
 
-    public function setTokens(array $tokens): void {
+    public function setTokens(array $tokens): void
+    {
         $this->tokens = $tokens;
     }
 
-    public function beforeTraverse(array $nodes): void {
+    public function beforeTraverse(array $nodes): void
+    {
         $this->hasProblematicConstruct = false;
     }
 
-    public function leaveNode(PhpParser\Node $node) {
+    public function leaveNode(PhpParser\Node $node)
+    {
         // We don't precisely preserve nop statements.
         if ($node instanceof Stmt\Nop) {
             return NodeVisitor::REMOVE_NODE;
@@ -68,7 +72,8 @@ $visitor = new class extends PhpParser\NodeVisitorAbstract {
                 // PHP_INT_MIN == -PHP_INT_MAX - 1
                 return new Expr\BinaryOp\Minus(
                     new Expr\UnaryMinus(new Scalar\Int_(\PHP_INT_MAX)),
-                    new Scalar\Int_(1));
+                    new Scalar\Int_(1)
+                );
             }
             return new Expr\UnaryMinus(new Scalar\Int_(-$node->value));
         }
@@ -108,7 +113,7 @@ $visitor = new class extends PhpParser\NodeVisitorAbstract {
 $traverser = new PhpParser\NodeTraverser();
 $traverser->addVisitor($visitor);
 
-$fuzzer->setTarget(function(string $input) use($lexer, $parser, $prettyPrinter, $nodeDumper, $visitor, $traverser) {
+$fuzzer->setTarget(function (string $input) use ($lexer, $parser, $prettyPrinter, $nodeDumper, $visitor, $traverser) {
     $stmts = $parser->parse($input);
     $printed = $prettyPrinter->prettyPrintFile($stmts);
 
@@ -121,14 +126,14 @@ $fuzzer->setTarget(function(string $input) use($lexer, $parser, $prettyPrinter, 
     try {
         $printedStmts = $parser->parse($printed);
     } catch (PhpParser\Error $e) {
-        throw new Error("Failed to parse pretty printer output");
+        throw new Error('Failed to parse pretty printer output');
     }
 
     $visitor->setTokens($parser->getTokens());
     $printedStmts = $traverser->traverse($printedStmts);
     $same = $nodeDumper->dump($stmts) == $nodeDumper->dump($printedStmts);
     if (!$same && !preg_match('/<\?php<\?php/i', $input)) {
-        throw new Error("Result after pretty printing differs");
+        throw new Error('Result after pretty printing differs');
     }
 });
 

@@ -1,10 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-function canonicalize($str) {
+function canonicalize($str)
+{
     // normalize EOL style
     $str = str_replace("\r\n", "\n", $str);
 
@@ -19,7 +22,8 @@ function canonicalize($str) {
     return implode("\n", $lines);
 }
 
-function filesInDir($directory, $fileExtension) {
+function filesInDir($directory, $fileExtension)
+{
     $directory = realpath($directory);
     $it = new \RecursiveDirectoryIterator($directory);
     $it = new \RecursiveIteratorIterator($it, \RecursiveIteratorIterator::LEAVES_ONLY);

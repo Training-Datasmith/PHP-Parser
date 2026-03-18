@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
@@ -12,7 +14,8 @@ use PhpParser\Node\Stmt\GroupUse;
 use PhpParser\Node\Stmt\Use_;
 use PhpParser\Node\UseItem;
 
-class NodeDumper {
+class NodeDumper
+{
     private bool $dumpComments;
     private bool $dumpPositions;
     private bool $dumpOtherAttributes;
@@ -41,7 +44,8 @@ class NodeDumper {
      *
      * @param array $options Options (see description)
      */
-    public function __construct(array $options = []) {
+    public function __construct(array $options = [])
+    {
         $this->dumpComments = !empty($options['dumpComments']);
         $this->dumpPositions = !empty($options['dumpPositions']);
         $this->dumpOtherAttributes = !empty($options['dumpOtherAttributes']);
@@ -57,7 +61,8 @@ class NodeDumper {
      *
      * @return string Dumped value
      */
-    public function dump($node, ?string $code = null): string {
+    public function dump($node, ?string $code = null): string
+    {
         $this->code = $code;
         $this->res = '';
         $this->nl = "\n";
@@ -66,9 +71,10 @@ class NodeDumper {
     }
 
     /** @param mixed $node */
-    protected function dumpRecursive($node, bool $indent = true): void {
+    protected function dumpRecursive($node, bool $indent = true): void
+    {
         if ($indent) {
-            $this->nl .= "    ";
+            $this->nl .= '    ';
         }
         if ($node instanceof Node) {
             $this->res .= $node->getType();
@@ -162,7 +168,8 @@ class NodeDumper {
         }
     }
 
-    protected function dumpFlags(int $flags): string {
+    protected function dumpFlags(int $flags): string
+    {
         $strs = [];
         if ($flags & Modifiers::PUBLIC) {
             $strs[] = 'PUBLIC';
@@ -202,14 +209,16 @@ class NodeDumper {
     }
 
     /** @param array<int, string> $map */
-    private function dumpEnum(int $value, array $map): string {
+    private function dumpEnum(int $value, array $map): string
+    {
         if (!isset($map[$value])) {
             return (string) $value;
         }
         return $map[$value] . ' (' . $value . ')';
     }
 
-    private function dumpIncludeType(int $type): string {
+    private function dumpIncludeType(int $type): string
+    {
         return $this->dumpEnum($type, [
             Include_::TYPE_INCLUDE      => 'TYPE_INCLUDE',
             Include_::TYPE_INCLUDE_ONCE => 'TYPE_INCLUDE_ONCE',
@@ -218,7 +227,8 @@ class NodeDumper {
         ]);
     }
 
-    private function dumpUseType(int $type): string {
+    private function dumpUseType(int $type): string
+    {
         return $this->dumpEnum($type, [
             Use_::TYPE_UNKNOWN  => 'TYPE_UNKNOWN',
             Use_::TYPE_NORMAL   => 'TYPE_NORMAL',
@@ -227,7 +237,8 @@ class NodeDumper {
         ]);
     }
 
-    private function dumpIntKind(int $kind): string {
+    private function dumpIntKind(int $kind): string
+    {
         return $this->dumpEnum($kind, [
             Int_::KIND_BIN => 'KIND_BIN',
             Int_::KIND_OCT => 'KIND_OCT',
@@ -236,7 +247,8 @@ class NodeDumper {
         ]);
     }
 
-    private function dumpStringKind(int $kind): string {
+    private function dumpStringKind(int $kind): string
+    {
         return $this->dumpEnum($kind, [
             String_::KIND_SINGLE_QUOTED => 'KIND_SINGLE_QUOTED',
             String_::KIND_DOUBLE_QUOTED => 'KIND_DOUBLE_QUOTED',
@@ -245,14 +257,16 @@ class NodeDumper {
         ]);
     }
 
-    private function dumpArrayKind(int $kind): string {
+    private function dumpArrayKind(int $kind): string
+    {
         return $this->dumpEnum($kind, [
             Array_::KIND_LONG => 'KIND_LONG',
             Array_::KIND_SHORT => 'KIND_SHORT',
         ]);
     }
 
-    private function dumpListKind(int $kind): string {
+    private function dumpListKind(int $kind): string
+    {
         return $this->dumpEnum($kind, [
             List_::KIND_LIST => 'KIND_LIST',
             List_::KIND_ARRAY => 'KIND_ARRAY',
@@ -266,7 +280,8 @@ class NodeDumper {
      *
      * @return string|null Dump of position, or null if position information not available
      */
-    protected function dumpPosition(Node $node): ?string {
+    protected function dumpPosition(Node $node): ?string
+    {
         if (!$node->hasAttribute('startLine') || !$node->hasAttribute('endLine')) {
             return null;
         }
@@ -283,7 +298,8 @@ class NodeDumper {
     }
 
     // Copied from Error class
-    private function toColumn(string $code, int $pos): int {
+    private function toColumn(string $code, int $pos): int
+    {
         if ($pos > strlen($code)) {
             throw new \RuntimeException('Invalid position information');
         }

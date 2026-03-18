@@ -1,20 +1,26 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
 use PhpParser\Node\Expr;
 
-class NodeFinderTest extends \PHPUnit\Framework\TestCase {
-    private function getStmtsAndVars() {
+class NodeFinderTest extends \PHPUnit\Framework\TestCase
+{
+    private function getStmtsAndVars()
+    {
         $assign = new Expr\Assign(new Expr\Variable('a'), new Expr\BinaryOp\Concat(
-            new Expr\Variable('b'), new Expr\Variable('c')
+            new Expr\Variable('b'),
+            new Expr\Variable('c')
         ));
         $stmts = [new Node\Stmt\Expression($assign)];
         $vars = [$assign->var, $assign->expr->left, $assign->expr->right];
         return [$stmts, $vars];
     }
 
-    public function testFind(): void {
+    public function testFind(): void
+    {
         $finder = new NodeFinder();
         list($stmts, $vars) = $this->getStmtsAndVars();
         $varFilter = function (Node $node) {
@@ -29,7 +35,8 @@ class NodeFinderTest extends \PHPUnit\Framework\TestCase {
         $this->assertSame([], $finder->find($stmts, $noneFilter));
     }
 
-    public function testFindInstanceOf(): void {
+    public function testFindInstanceOf(): void
+    {
         $finder = new NodeFinder();
         list($stmts, $vars) = $this->getStmtsAndVars();
         $this->assertSame($vars, $finder->findInstanceOf($stmts, Expr\Variable::class));
@@ -37,7 +44,8 @@ class NodeFinderTest extends \PHPUnit\Framework\TestCase {
         $this->assertSame([], $finder->findInstanceOf($stmts, Expr\BinaryOp\Mul::class));
     }
 
-    public function testFindFirst(): void {
+    public function testFindFirst(): void
+    {
         $finder = new NodeFinder();
         list($stmts, $vars) = $this->getStmtsAndVars();
         $varFilter = function (Node $node) {
@@ -52,7 +60,8 @@ class NodeFinderTest extends \PHPUnit\Framework\TestCase {
         $this->assertNull($finder->findFirst($stmts, $noneFilter));
     }
 
-    public function testFindFirstInstanceOf(): void {
+    public function testFindFirstInstanceOf(): void
+    {
         $finder = new NodeFinder();
         list($stmts, $vars) = $this->getStmtsAndVars();
         $this->assertSame($vars[0], $finder->findFirstInstanceOf($stmts, Expr\Variable::class));

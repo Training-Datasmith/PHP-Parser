@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Builder;
 
@@ -12,30 +14,34 @@ use PhpParser\Node\Scalar;
 use PhpParser\Node\Scalar\Int_;
 use PhpParser\Node\Stmt;
 
-class EnumCaseTest extends \PHPUnit\Framework\TestCase {
-    public function createEnumCaseBuilder($name) {
+class EnumCaseTest extends \PHPUnit\Framework\TestCase
+{
+    public function createEnumCaseBuilder($name)
+    {
         return new EnumCase($name);
     }
 
-    public function testDocComment(): void {
+    public function testDocComment(): void
+    {
         $node = $this->createEnumCaseBuilder('TEST')
             ->setDocComment('/** Test */')
             ->getNode();
 
         $this->assertEquals(
             new Stmt\EnumCase(
-                "TEST",
+                'TEST',
                 null,
                 [],
                 [
-                    'comments' => [new Comment\Doc('/** Test */')]
+                    'comments' => [new Comment\Doc('/** Test */')],
                 ]
             ),
             $node
         );
     }
 
-    public function testAddAttribute(): void {
+    public function testAddAttribute(): void
+    {
         $attribute = new Attribute(
             new Name('Attr'),
             [new Arg(new Int_(1), false, false, [], new Identifier('name'))]
@@ -48,7 +54,7 @@ class EnumCaseTest extends \PHPUnit\Framework\TestCase {
 
         $this->assertEquals(
             new Stmt\EnumCase(
-                "ATTR_GROUP",
+                'ATTR_GROUP',
                 null,
                 [$attributeGroup]
             ),
@@ -59,7 +65,8 @@ class EnumCaseTest extends \PHPUnit\Framework\TestCase {
     /**
      * @dataProvider provideTestDefaultValues
      */
-    public function testValues($value, $expectedValueNode): void {
+    public function testValues($value, $expectedValueNode): void
+    {
         $node = $this->createEnumCaseBuilder('TEST')
             ->setValue($value)
             ->getNode()
@@ -68,15 +75,16 @@ class EnumCaseTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals($expectedValueNode, $node->expr);
     }
 
-    public static function provideTestDefaultValues() {
+    public static function provideTestDefaultValues()
+    {
         return [
             [
                 31415,
-                new Scalar\Int_(31415)
+                new Scalar\Int_(31415),
             ],
             [
                 'Hallo World',
-                new Scalar\String_('Hallo World')
+                new Scalar\String_('Hallo World'),
             ],
         ];
     }

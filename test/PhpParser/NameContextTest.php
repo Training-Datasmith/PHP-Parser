@@ -1,15 +1,19 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Use_;
 
-class NameContextTest extends \PHPUnit\Framework\TestCase {
+class NameContextTest extends \PHPUnit\Framework\TestCase
+{
     /**
      * @dataProvider provideTestGetPossibleNames
      */
-    public function testGetPossibleNames($type, $name, $expectedPossibleNames): void {
+    public function testGetPossibleNames($type, $name, $expectedPossibleNames): void
+    {
         $nameContext = new NameContext(new ErrorHandler\Throwing());
         $nameContext->startNamespace(new Name('NS'));
         $nameContext->addAlias(new Name('Foo'), 'Foo', Use_::TYPE_NORMAL);
@@ -32,7 +36,8 @@ class NameContextTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public static function provideTestGetPossibleNames() {
+    public static function provideTestGetPossibleNames()
+    {
         return [
             [Use_::TYPE_NORMAL, 'Test', ['\Test']],
             [Use_::TYPE_NORMAL, 'Test\Namespaced', ['\Test\Namespaced']],

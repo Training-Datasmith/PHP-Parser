@@ -1,25 +1,28 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Lexer;
 
 use PhpParser\ErrorHandler;
-use PhpParser\Lexer;
 use PhpParser\LexerTest;
-use PhpParser\Parser\Php7;
 use PhpParser\PhpVersion;
 use PhpParser\Token;
 
 require __DIR__ . '/../../../lib/PhpParser/compatibility_tokens.php';
 
-class EmulativeTest extends LexerTest {
-    protected function getLexer() {
+class EmulativeTest extends LexerTest
+{
+    protected function getLexer()
+    {
         return new Emulative();
     }
 
     /**
      * @dataProvider provideTestReplaceKeywords
      */
-    public function testReplaceKeywords(string $keyword, int $expectedToken): void {
+    public function testReplaceKeywords(string $keyword, int $expectedToken): void
+    {
         $lexer = $this->getLexer();
         $code = '<?php ' . $keyword;
         $this->assertEquals([
@@ -32,7 +35,8 @@ class EmulativeTest extends LexerTest {
     /**
      * @dataProvider provideTestReplaceKeywords
      */
-    public function testReplaceKeywordsUppercase(string $keyword, int $expectedToken): void {
+    public function testReplaceKeywordsUppercase(string $keyword, int $expectedToken): void
+    {
         $lexer = $this->getLexer();
         $code = '<?php ' . strtoupper($keyword);
 
@@ -46,7 +50,8 @@ class EmulativeTest extends LexerTest {
     /**
      * @dataProvider provideTestReplaceKeywords
      */
-    public function testNoReplaceKeywordsAfterObjectOperator(string $keyword): void {
+    public function testNoReplaceKeywordsAfterObjectOperator(string $keyword): void
+    {
         $lexer = $this->getLexer();
         $code = '<?php ->' . $keyword;
 
@@ -61,7 +66,8 @@ class EmulativeTest extends LexerTest {
     /**
      * @dataProvider provideTestReplaceKeywords
      */
-    public function testNoReplaceKeywordsAfterObjectOperatorWithSpaces(string $keyword): void {
+    public function testNoReplaceKeywordsAfterObjectOperatorWithSpaces(string $keyword): void
+    {
         $lexer = $this->getLexer();
         $code = '<?php ->    ' . $keyword;
 
@@ -77,7 +83,8 @@ class EmulativeTest extends LexerTest {
     /**
      * @dataProvider provideTestReplaceKeywords
      */
-    public function testNoReplaceKeywordsAfterNullsafeObjectOperator(string $keyword): void {
+    public function testNoReplaceKeywordsAfterNullsafeObjectOperator(string $keyword): void
+    {
         $lexer = $this->getLexer();
         $code = '<?php ?->' . $keyword;
 
@@ -89,7 +96,8 @@ class EmulativeTest extends LexerTest {
         ], $lexer->tokenize($code));
     }
 
-    public static function provideTestReplaceKeywords() {
+    public static function provideTestReplaceKeywords()
+    {
         return [
             // PHP 8.4
             ['__PROPERTY__', \T_PROPERTY_C],
@@ -118,7 +126,8 @@ class EmulativeTest extends LexerTest {
         ];
     }
 
-    private function assertSameTokens(array $expectedTokens, array $tokens): void {
+    private function assertSameTokens(array $expectedTokens, array $tokens): void
+    {
         $reducedTokens = [];
         foreach ($tokens as $token) {
             if ($token->id === 0 || $token->isIgnorable()) {
@@ -132,7 +141,8 @@ class EmulativeTest extends LexerTest {
     /**
      * @dataProvider provideTestLexNewFeatures
      */
-    public function testLexNewFeatures(string $code, array $expectedTokens): void {
+    public function testLexNewFeatures(string $code, array $expectedTokens): void
+    {
         $lexer = $this->getLexer();
         $this->assertSameTokens($expectedTokens, $lexer->tokenize('<?php ' . $code));
     }
@@ -140,7 +150,8 @@ class EmulativeTest extends LexerTest {
     /**
      * @dataProvider provideTestLexNewFeatures
      */
-    public function testLeaveStuffAloneInStrings(string $code): void {
+    public function testLeaveStuffAloneInStrings(string $code): void
+    {
         $stringifiedToken = '"' . addcslashes($code, '"\\') . '"';
 
         $lexer = $this->getLexer();
@@ -156,7 +167,8 @@ class EmulativeTest extends LexerTest {
     /**
      * @dataProvider provideTestLexNewFeatures
      */
-    public function testErrorAfterEmulation($code): void {
+    public function testErrorAfterEmulation($code): void
+    {
         $errorHandler = new ErrorHandler\Collecting();
         $lexer = $this->getLexer();
         $lexer->tokenize('<?php ' . $code . "\0", $errorHandler);
@@ -176,7 +188,8 @@ class EmulativeTest extends LexerTest {
         $this->assertSame($expLine, $attrs['endLine']);
     }
 
-    public static function provideTestLexNewFeatures() {
+    public static function provideTestLexNewFeatures()
+    {
         return [
             ['yield from', [
                 [\T_YIELD_FROM, 'yield from'],
@@ -223,38 +236,38 @@ class EmulativeTest extends LexerTest {
             // PHP 7.3: Flexible heredoc/nowdoc
             ["<<<LABEL\nLABEL,", [
                 [\T_START_HEREDOC, "<<<LABEL\n"],
-                [\T_END_HEREDOC, "LABEL"],
+                [\T_END_HEREDOC, 'LABEL'],
                 [ord(','), ','],
             ]],
             ["<<<LABEL\n    LABEL,", [
                 [\T_START_HEREDOC, "<<<LABEL\n"],
-                [\T_END_HEREDOC, "    LABEL"],
+                [\T_END_HEREDOC, '    LABEL'],
                 [ord(','), ','],
             ]],
             ["<<<LABEL\n    Foo\n  LABEL;", [
                 [\T_START_HEREDOC, "<<<LABEL\n"],
                 [\T_ENCAPSED_AND_WHITESPACE, "    Foo\n"],
-                [\T_END_HEREDOC, "  LABEL"],
+                [\T_END_HEREDOC, '  LABEL'],
                 [ord(';'), ';'],
             ]],
             ["<<<A\n A,<<<A\n A,", [
                 [\T_START_HEREDOC, "<<<A\n"],
-                [\T_END_HEREDOC, " A"],
+                [\T_END_HEREDOC, ' A'],
                 [ord(','), ','],
                 [\T_START_HEREDOC, "<<<A\n"],
-                [\T_END_HEREDOC, " A"],
+                [\T_END_HEREDOC, ' A'],
                 [ord(','), ','],
             ]],
             ["<<<LABEL\nLABELNOPE\nLABEL\n", [
                 [\T_START_HEREDOC, "<<<LABEL\n"],
                 [\T_ENCAPSED_AND_WHITESPACE, "LABELNOPE\n"],
-                [\T_END_HEREDOC, "LABEL"],
+                [\T_END_HEREDOC, 'LABEL'],
             ]],
             // Interpretation changed
             ["<<<LABEL\n    LABEL\nLABEL\n", [
                 [\T_START_HEREDOC, "<<<LABEL\n"],
-                [\T_END_HEREDOC, "    LABEL"],
-                [\T_STRING, "LABEL"],
+                [\T_END_HEREDOC, '    LABEL'],
+                [\T_STRING, 'LABEL'],
             ]],
 
             // PHP 7.4: Null coalesce equal
@@ -279,19 +292,19 @@ class EmulativeTest extends LexerTest {
                 [\T_DNUMBER, '1_000.0'],
             ]],
             ['1_0.0', [
-                [\T_DNUMBER, '1_0.0']
+                [\T_DNUMBER, '1_0.0'],
             ]],
             ['1_000_000_000.0', [
-                [\T_DNUMBER, '1_000_000_000.0']
+                [\T_DNUMBER, '1_000_000_000.0'],
             ]],
             ['0e1_0', [
-                [\T_DNUMBER, '0e1_0']
+                [\T_DNUMBER, '0e1_0'],
             ]],
             ['1_0e+10', [
-                [\T_DNUMBER, '1_0e+10']
+                [\T_DNUMBER, '1_0e+10'],
             ]],
             ['1_0e-10', [
-                [\T_DNUMBER, '1_0e-10']
+                [\T_DNUMBER, '1_0e-10'],
             ]],
             ['0b1011010101001010_110101010010_10101101010101_0101101011001_110111100', [
                 [\T_DNUMBER, '0b1011010101001010_110101010010_10101101010101_0101101011001_110111100'],
@@ -324,7 +337,7 @@ class EmulativeTest extends LexerTest {
             // Test interaction of two patch-based emulators
             ["<<<LABEL\n    LABEL, #[Attr]", [
                 [\T_START_HEREDOC, "<<<LABEL\n"],
-                [\T_END_HEREDOC, "    LABEL"],
+                [\T_END_HEREDOC, '    LABEL'],
                 [ord(','), ','],
                 [\T_ATTRIBUTE, '#['],
                 [\T_STRING, 'Attr'],
@@ -335,7 +348,7 @@ class EmulativeTest extends LexerTest {
                 [\T_STRING, 'Attr'],
                 [ord(']'), ']'],
                 [\T_START_HEREDOC, "<<<LABEL\n"],
-                [\T_END_HEREDOC, "    LABEL"],
+                [\T_END_HEREDOC, '    LABEL'],
                 [ord(','), ','],
             ]],
             // Enums use a contextual keyword
@@ -396,13 +409,13 @@ class EmulativeTest extends LexerTest {
 
             // PHP 8.4: Asymmetric visibility modifiers
             ['private(set)', [
-                [\T_PRIVATE_SET, 'private(set)']
+                [\T_PRIVATE_SET, 'private(set)'],
             ]],
             ['PROTECTED(SET)', [
-                [\T_PROTECTED_SET, 'PROTECTED(SET)']
+                [\T_PROTECTED_SET, 'PROTECTED(SET)'],
             ]],
             ['Public(Set)', [
-                [\T_PUBLIC_SET, 'Public(Set)']
+                [\T_PUBLIC_SET, 'Public(Set)'],
             ]],
             ['public (set)', [
                 [\T_PUBLIC, 'public'],
@@ -427,7 +440,7 @@ class EmulativeTest extends LexerTest {
 
             // PHP 8.5: Pipe operator
             ['|>', [
-                [\T_PIPE, '|>']
+                [\T_PIPE, '|>'],
             ]],
 
             // PHP 8.5: Void cast
@@ -451,12 +464,14 @@ class EmulativeTest extends LexerTest {
     /**
      * @dataProvider provideTestTargetVersion
      */
-    public function testTargetVersion(string $phpVersion, string $code, array $expectedTokens): void {
+    public function testTargetVersion(string $phpVersion, string $code, array $expectedTokens): void
+    {
         $lexer = new Emulative(PhpVersion::fromString($phpVersion));
         $this->assertSameTokens($expectedTokens, $lexer->tokenize('<?php ' . $code));
     }
 
-    public static function provideTestTargetVersion() {
+    public static function provideTestTargetVersion()
+    {
         return [
             ['8.0', 'match', [[\T_MATCH, 'match']]],
             ['7.4', 'match', [[\T_STRING, 'match']]],
@@ -490,10 +505,10 @@ class EmulativeTest extends LexerTest {
                 [\T_PUBLIC, 'public'],
                 [\ord('('), '('],
                 [\T_STRING, 'set'],
-                [\ord(')'), ')']
+                [\ord(')'), ')'],
             ]],
             ['8.5', '|>', [
-                [\T_PIPE, '|>']
+                [\T_PIPE, '|>'],
             ]],
             ['8.4', '|>', [
                 [\ord('|'), '|'],

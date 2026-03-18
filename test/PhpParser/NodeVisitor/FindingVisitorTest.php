@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\NodeVisitor;
 
@@ -6,8 +8,10 @@ use PhpParser\Node;
 use PhpParser\Node\Expr;
 use PhpParser\NodeTraverser;
 
-class FindingVisitorTest extends \PHPUnit\Framework\TestCase {
-    public function testFindVariables(): void {
+class FindingVisitorTest extends \PHPUnit\Framework\TestCase
+{
+    public function testFindVariables(): void
+    {
         $traverser = new NodeTraverser();
         $visitor = new FindingVisitor(function (Node $node) {
             return $node instanceof Node\Expr\Variable;
@@ -15,7 +19,8 @@ class FindingVisitorTest extends \PHPUnit\Framework\TestCase {
         $traverser->addVisitor($visitor);
 
         $assign = new Expr\Assign(new Expr\Variable('a'), new Expr\BinaryOp\Concat(
-            new Expr\Variable('b'), new Expr\Variable('c')
+            new Expr\Variable('b'),
+            new Expr\Variable('c')
         ));
         $stmts = [new Node\Stmt\Expression($assign)];
 
@@ -27,7 +32,8 @@ class FindingVisitorTest extends \PHPUnit\Framework\TestCase {
         ], $visitor->getFoundNodes());
     }
 
-    public function testFindAll(): void {
+    public function testFindAll(): void
+    {
         $traverser = new NodeTraverser();
         $visitor = new FindingVisitor(function (Node $node) {
             return true; // All nodes
@@ -35,7 +41,8 @@ class FindingVisitorTest extends \PHPUnit\Framework\TestCase {
         $traverser->addVisitor($visitor);
 
         $assign = new Expr\Assign(new Expr\Variable('a'), new Expr\BinaryOp\Concat(
-            new Expr\Variable('b'), new Expr\Variable('c')
+            new Expr\Variable('b'),
+            new Expr\Variable('c')
         ));
         $stmts = [new Node\Stmt\Expression($assign)];
 

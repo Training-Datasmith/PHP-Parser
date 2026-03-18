@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
@@ -8,8 +10,10 @@ use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Else_;
 use PhpParser\Node\Stmt\If_;
 
-class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
-    public function testNonModifying(): void {
+class NodeTraverserTest extends \PHPUnit\Framework\TestCase
+{
+    public function testNonModifying(): void
+    {
         $str1Node = new String_('Foo');
         $str2Node = new String_('Bar');
         $echoNode = new Node\Stmt\Echo_([$str1Node, $str2Node]);
@@ -32,7 +36,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         ], $visitor->trace);
     }
 
-    public function testModifying(): void {
+    public function testModifying(): void
+    {
         $str1Node  = new String_('Foo');
         $str2Node  = new String_('Bar');
         $printNode = new Expr\Print_($str1Node);
@@ -75,7 +80,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         ], $visitor3->trace);
     }
 
-    public function testRemoveFromLeave(): void {
+    public function testRemoveFromLeave(): void
+    {
         $str1Node = new String_('Foo');
         $str2Node = new String_('Bar');
 
@@ -99,7 +105,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         ], $visitor2->trace);
     }
 
-    public function testRemoveFromEnter(): void {
+    public function testRemoveFromEnter(): void
+    {
         $str1Node = new String_('Foo');
         $str2Node = new String_('Bar');
 
@@ -122,7 +129,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         ], $visitor2->trace);
     }
 
-    public function testReturnArrayFromEnter(): void {
+    public function testReturnArrayFromEnter(): void
+    {
         $str1Node = new String_('Str1');
         $str2Node = new String_('Str2');
         $str3Node = new String_('Str3');
@@ -147,7 +155,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         ], $visitor2->trace);
     }
 
-    public function testMerge(): void {
+    public function testMerge(): void
+    {
         $strStart  = new String_('Start');
         $strMiddle = new String_('End');
         $strEnd    = new String_('Middle');
@@ -167,7 +176,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testInvalidDeepArray(): void {
+    public function testInvalidDeepArray(): void
+    {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Invalid node structure: Contains nested arrays');
         $strNode = new String_('Foo');
@@ -177,7 +187,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals($stmts, $traverser->traverse($stmts));
     }
 
-    public function testDontTraverseChildren(): void {
+    public function testDontTraverseChildren(): void
+    {
         $strNode = new String_('str');
         $printNode = new Expr\Print_($strNode);
         $varNode = new Expr\Variable('foo');
@@ -212,7 +223,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals($expectedTrace, $visitor2->trace);
     }
 
-    public function testDontTraverseCurrentAndChildren(): void {
+    public function testDontTraverseCurrentAndChildren(): void
+    {
         // print 'str'; -($foo * $foo);
         $strNode = new String_('str');
         $printNode = new Expr\Print_($strNode);
@@ -254,7 +266,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         ], $visitor2->trace);
     }
 
-    public function testStopTraversal(): void {
+    public function testStopTraversal(): void
+    {
         $varNode1 = new Expr\Variable('a');
         $varNode2 = new Expr\Variable('b');
         $varNode3 = new Expr\Variable('c');
@@ -343,7 +356,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         ], $visitor->trace);
     }
 
-    public function testReplaceWithNull(): void {
+    public function testReplaceWithNull(): void
+    {
         $one = new Int_(1);
         $else1 = new Else_();
         $else2 = new Else_();
@@ -381,7 +395,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         ], $visitor2->trace);
     }
 
-    public function testRemovingVisitor(): void {
+    public function testRemovingVisitor(): void
+    {
         $visitor1 = new class () extends NodeVisitorAbstract {};
         $visitor2 = new class () extends NodeVisitorAbstract {};
         $visitor3 = new class () extends NodeVisitorAbstract {};
@@ -404,7 +419,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         $this->assertSame($postExpected, $getVisitors());
     }
 
-    public function testNoCloneNodes(): void {
+    public function testNoCloneNodes(): void
+    {
         $stmts = [new Node\Stmt\Echo_([new String_('Foo'), new String_('Bar')])];
 
         $traverser = new NodeTraverser();
@@ -415,7 +431,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
     /**
      * @dataProvider provideTestInvalidReturn
      */
-    public function testInvalidReturn($stmts, $visitor, $message): void {
+    public function testInvalidReturn($stmts, $visitor, $message): void
+    {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage($message);
 
@@ -424,7 +441,8 @@ class NodeTraverserTest extends \PHPUnit\Framework\TestCase {
         $traverser->traverse($stmts);
     }
 
-    public static function provideTestInvalidReturn() {
+    public static function provideTestInvalidReturn()
+    {
         $num = new Node\Scalar\Int_(42);
         $expr = new Node\Stmt\Expression($num);
         $stmts = [$expr];

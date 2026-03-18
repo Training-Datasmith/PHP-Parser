@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 require __DIR__ . '/phpyLang.php';
 
@@ -57,22 +59,25 @@ foreach ($parserToDefines as $name => $defines) {
 /// Utility helper functions ///
 ////////////////////////////////
 
-function ensureDirExists($dir) {
+function ensureDirExists($dir)
+{
     if (!is_dir($dir)) {
         mkdir($dir, 0777, true);
     }
 }
 
-function execCmd($cmd) {
+function execCmd($cmd)
+{
     $output = trim(shell_exec("$cmd 2>&1") ?? '');
-    if ($output !== "") {
-        echo "> " . $cmd . "\n";
+    if ($output !== '') {
+        echo '> ' . $cmd . "\n";
         echo $output;
     }
     return $output;
 }
 
-function replaceIfBlocks(string $code, array $defines): string {
+function replaceIfBlocks(string $code, array $defines): string
+{
     return preg_replace_callback('/\n#if\s+(\w+)\n(.*?)\n#endif/s', function ($matches) use ($defines) {
         $value = $defines[$matches[1]] ?? false;
         return $value ? $matches[2] : '';

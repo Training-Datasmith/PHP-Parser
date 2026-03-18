@@ -1,15 +1,19 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
 use PhpParser\Node\Expr;
 use PhpParser\Node\Stmt;
 
-class CodeParsingTest extends CodeTestAbstract {
+class CodeParsingTest extends CodeTestAbstract
+{
     /**
      * @dataProvider provideTestParse
      */
-    public function testParse($name, $code, $expected, $modeLine): void {
+    public function testParse($name, $code, $expected, $modeLine): void
+    {
         $modes = $this->parseModeLine($modeLine);
         $parser = $this->createParser($modes['version'] ?? null);
         list($stmts, $output) = $this->getParseOutput($parser, $code, $modes);
@@ -18,7 +22,8 @@ class CodeParsingTest extends CodeTestAbstract {
         $this->checkAttributes($stmts);
     }
 
-    public function createParser(?string $version): Parser {
+    public function createParser(?string $version): Parser
+    {
         $factory = new ParserFactory();
         $version = $version === null
             ? PhpVersion::getNewestSupported() : PhpVersion::fromString($version);
@@ -26,7 +31,8 @@ class CodeParsingTest extends CodeTestAbstract {
     }
 
     // Must be public for updateTests.php
-    public function getParseOutput(Parser $parser, $code, array $modes) {
+    public function getParseOutput(Parser $parser, $code, array $modes)
+    {
         $dumpPositions = isset($modes['positions']);
         $dumpOtherAttributes = isset($modes['attributes']);
 
@@ -50,11 +56,13 @@ class CodeParsingTest extends CodeTestAbstract {
         return [$stmts, canonicalize($output)];
     }
 
-    public static function provideTestParse() {
+    public static function provideTestParse()
+    {
         return self::getTests(__DIR__ . '/../code/parser', 'test');
     }
 
-    private function formatErrorMessage(Error $e, $code) {
+    private function formatErrorMessage(Error $e, $code)
+    {
         if ($e->hasColumnInfo()) {
             return $e->getMessageWithColumnInfo($code);
         }
@@ -62,13 +70,15 @@ class CodeParsingTest extends CodeTestAbstract {
         return $e->getMessage();
     }
 
-    private function checkAttributes($stmts): void {
+    private function checkAttributes($stmts): void
+    {
         if ($stmts === null) {
             return;
         }
 
         $traverser = new NodeTraverser(new class () extends NodeVisitorAbstract {
-            public function enterNode(Node $node): void {
+            public function enterNode(Node $node): void
+            {
                 $startLine = $node->getStartLine();
                 $endLine = $node->getEndLine();
                 $startFilePos = $node->getStartFilePos();

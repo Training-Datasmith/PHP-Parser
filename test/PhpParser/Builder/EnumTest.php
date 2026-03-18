@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Builder;
 
@@ -12,12 +14,15 @@ use PhpParser\Node\Name;
 use PhpParser\Node\Scalar\Int_;
 use PhpParser\Node\Stmt;
 
-class EnumTest extends \PHPUnit\Framework\TestCase {
-    protected function createEnumBuilder($class) {
+class EnumTest extends \PHPUnit\Framework\TestCase
+{
+    protected function createEnumBuilder($class)
+    {
         return new Enum_($class);
     }
 
-    public function testImplements(): void {
+    public function testImplements(): void
+    {
         $node = $this->createEnumBuilder('SomeEnum')
             ->implement('Namespaced\SomeInterface', new Name('OtherInterface'))
             ->getNode()
@@ -34,7 +39,8 @@ class EnumTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testSetScalarType(): void {
+    public function testSetScalarType(): void
+    {
         $node = $this->createEnumBuilder('Test')
             ->setScalarType('int')
             ->getNode()
@@ -48,13 +54,14 @@ class EnumTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testStatementOrder(): void {
+    public function testStatementOrder(): void
+    {
         $method = new Stmt\ClassMethod('testMethod');
         $enumCase = new Stmt\EnumCase(
             'TEST_ENUM_CASE'
         );
         $const = new Stmt\ClassConst([
-            new Node\Const_('TEST_CONST', new Node\Scalar\String_('ABC'))
+            new Node\Const_('TEST_CONST', new Node\Scalar\String_('ABC')),
         ]);
         $use = new Stmt\TraitUse([new Name('SomeTrait')]);
 
@@ -67,13 +74,14 @@ class EnumTest extends \PHPUnit\Framework\TestCase {
 
         $this->assertEquals(
             new Stmt\Enum_('Test', [
-                'stmts' => [$use, $enumCase, $const, $method]
+                'stmts' => [$use, $enumCase, $const, $method],
             ]),
             $node
         );
     }
 
-    public function testDocComment(): void {
+    public function testDocComment(): void
+    {
         $docComment = <<<'DOC'
 /**
  * Test
@@ -86,8 +94,8 @@ DOC;
         $this->assertEquals(
             new Stmt\Enum_('Test', [], [
                 'comments' => [
-                    new Comment\Doc($docComment)
-                ]
+                    new Comment\Doc($docComment),
+                ],
             ]),
             $enum
         );
@@ -99,14 +107,15 @@ DOC;
         $this->assertEquals(
             new Stmt\Enum_('Test', [], [
                 'comments' => [
-                    new Comment\Doc($docComment)
-                ]
+                    new Comment\Doc($docComment),
+                ],
             ]),
             $enum
         );
     }
 
-    public function testAddAttribute(): void {
+    public function testAddAttribute(): void
+    {
         $attribute = new Attribute(
             new Name('Attr'),
             [new Arg(new Int_(1), false, false, [], new Identifier('name'))]
@@ -121,13 +130,14 @@ DOC;
             new Stmt\Enum_('ATTR_GROUP', [
                 'attrGroups' => [
                     $attributeGroup,
-                ]
+                ],
             ], []),
             $enum
         );
     }
 
-    public function testInvalidStmtError(): void {
+    public function testInvalidStmtError(): void
+    {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Unexpected node of type "PropertyItem"');
         $this->createEnumBuilder('Test')
@@ -135,21 +145,24 @@ DOC;
         ;
     }
 
-    public function testInvalidDocComment(): void {
+    public function testInvalidDocComment(): void
+    {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Doc comment must be a string or an instance of PhpParser\Comment\Doc');
         $this->createEnumBuilder('Test')
             ->setDocComment(new Comment('Test'));
     }
 
-    public function testEmptyName(): void {
+    public function testEmptyName(): void
+    {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Name cannot be empty');
         $this->createEnumBuilder('Test')
             ->implement('');
     }
 
-    public function testInvalidName(): void {
+    public function testInvalidName(): void
+    {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Name must be a string or an instance of Node\Name');
         $this->createEnumBuilder('Test')

@@ -1,16 +1,21 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Node\Scalar;
 
-class MagicConstTest extends \PHPUnit\Framework\TestCase {
+class MagicConstTest extends \PHPUnit\Framework\TestCase
+{
     /**
      * @dataProvider provideTestGetName
      */
-    public function testGetName(MagicConst $magicConst, $name): void {
+    public function testGetName(MagicConst $magicConst, $name): void
+    {
         $this->assertSame($name, $magicConst->getName());
     }
 
-    public static function provideTestGetName() {
+    public static function provideTestGetName()
+    {
         return [
             [new MagicConst\Class_(), '__CLASS__'],
             [new MagicConst\Dir(), '__DIR__'],

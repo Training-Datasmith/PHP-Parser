@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\NodeVisitor;
 
@@ -6,8 +8,10 @@ use PhpParser\Node;
 use PhpParser\Node\Expr;
 use PhpParser\NodeTraverser;
 
-class FirstFindingVisitorTest extends \PHPUnit\Framework\TestCase {
-    public function testFindFirstVariable(): void {
+class FirstFindingVisitorTest extends \PHPUnit\Framework\TestCase
+{
+    public function testFindFirstVariable(): void
+    {
         $traverser = new NodeTraverser();
         $visitor = new FirstFindingVisitor(function (Node $node) {
             return $node instanceof Node\Expr\Variable;
@@ -21,7 +25,8 @@ class FirstFindingVisitorTest extends \PHPUnit\Framework\TestCase {
         $this->assertSame($assign->var, $visitor->getFoundNode());
     }
 
-    public function testFindNone(): void {
+    public function testFindNone(): void
+    {
         $traverser = new NodeTraverser();
         $visitor = new FirstFindingVisitor(function (Node $node) {
             return $node instanceof Node\Expr\BinaryOp;

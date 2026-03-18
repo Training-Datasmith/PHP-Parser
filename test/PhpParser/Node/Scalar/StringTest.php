@@ -1,12 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Node\Scalar;
 
 use PhpParser\Node\Stmt\Echo_;
 use PhpParser\ParserFactory;
 
-class StringTest extends \PHPUnit\Framework\TestCase {
-    public function testRawValue(): void {
+class StringTest extends \PHPUnit\Framework\TestCase
+{
+    public function testRawValue(): void
+    {
         $parser = (new ParserFactory())->createForNewestSupportedVersion();
         $nodes = $parser->parse('<?php echo "sequence \x41";');
 
@@ -25,7 +29,8 @@ class StringTest extends \PHPUnit\Framework\TestCase {
     /**
      * @dataProvider provideTestParseEscapeSequences
      */
-    public function testParseEscapeSequences($expected, $string, $quote): void {
+    public function testParseEscapeSequences($expected, $string, $quote): void
+    {
         $this->assertSame(
             $expected,
             String_::parseEscapeSequences($string, $quote)
@@ -35,14 +40,16 @@ class StringTest extends \PHPUnit\Framework\TestCase {
     /**
      * @dataProvider provideTestParse
      */
-    public function testCreate($expected, $string): void {
+    public function testCreate($expected, $string): void
+    {
         $this->assertSame(
             $expected,
             String_::parse($string)
         );
     }
 
-    public static function provideTestParseEscapeSequences() {
+    public static function provideTestParseEscapeSequences()
+    {
         return [
             ['"',              '\\"',              '"'],
             ['\\"',            '\\"',              '`'],
@@ -57,7 +64,8 @@ class StringTest extends \PHPUnit\Framework\TestCase {
         ];
     }
 
-    public static function provideTestParse() {
+    public static function provideTestParse()
+    {
         $tests = [
             ['A', '\'A\''],
             ['A', 'b\'A\''],

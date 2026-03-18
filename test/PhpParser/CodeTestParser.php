@@ -1,9 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
-class CodeTestParser {
-    public function parseTest($code, $chunksPerTest) {
+class CodeTestParser
+{
+    public function parseTest($code, $chunksPerTest)
+    {
         $code = canonicalize($code);
 
         // evaluate @@{expr}@@ expressions
@@ -33,7 +37,8 @@ class CodeTestParser {
         return [$name, $tests];
     }
 
-    public function reconstructTest($name, array $tests) {
+    public function reconstructTest($name, array $tests)
+    {
         $result = $name;
         foreach ($tests as list($mode, $parts)) {
             $lastPart = array_pop($parts);
@@ -50,7 +55,8 @@ class CodeTestParser {
         return $result . "\n";
     }
 
-    private function extractMode(string $expected): array {
+    private function extractMode(string $expected): array
+    {
         $firstNewLine = strpos($expected, "\n");
         if (false === $firstNewLine) {
             $firstNewLine = strlen($expected);

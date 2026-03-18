@@ -1,27 +1,33 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
-class NodeDumperTest extends \PHPUnit\Framework\TestCase {
-    private function canonicalize($string) {
+class NodeDumperTest extends \PHPUnit\Framework\TestCase
+{
+    private function canonicalize($string)
+    {
         return str_replace("\r\n", "\n", $string);
     }
 
     /**
      * @dataProvider provideTestDump
      */
-    public function testDump($node, $dump): void {
+    public function testDump($node, $dump): void
+    {
         $dumper = new NodeDumper();
 
         $this->assertSame($this->canonicalize($dump), $this->canonicalize($dumper->dump($node)));
     }
 
-    public static function provideTestDump() {
+    public static function provideTestDump()
+    {
         return [
             [
                 [],
 'array(
-)'
+)',
             ],
             [
                 ['Foo', 'Bar', 'Key' => 'FooBar'],
@@ -29,17 +35,17 @@ class NodeDumperTest extends \PHPUnit\Framework\TestCase {
     0: Foo
     1: Bar
     Key: FooBar
-)'
+)',
             ],
             [
                 new Node\Name(['Hallo', 'World']),
 'Name(
     name: Hallo\World
-)'
+)',
             ],
             [
                 new Node\Expr\Array_([
-                    new Node\ArrayItem(new Node\Scalar\String_('Foo'))
+                    new Node\ArrayItem(new Node\Scalar\String_('Foo')),
                 ]),
 'Expr_Array(
     items: array(
@@ -52,12 +58,13 @@ class NodeDumperTest extends \PHPUnit\Framework\TestCase {
             unpack: false
         )
     )
-)'
+)',
             ],
         ];
     }
 
-    public function testDumpWithPositions(): void {
+    public function testDumpWithPositions(): void
+    {
         $parser = (new ParserFactory())->createForHostVersion();
         $dumper = new NodeDumper(['dumpPositions' => true]);
 
@@ -90,7 +97,8 @@ OUT;
         $this->assertSame($this->canonicalize($expected), $this->canonicalize($dump));
     }
 
-    public function testError(): void {
+    public function testError(): void
+    {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Can only dump nodes and arrays.');
         $dumper = new NodeDumper();

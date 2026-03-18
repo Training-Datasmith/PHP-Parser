@@ -1,22 +1,28 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Lexer\TokenEmulator;
 
 use PhpParser\PhpVersion;
 use PhpParser\Token;
 
-final class AsymmetricVisibilityTokenEmulator extends TokenEmulator {
-    public function getPhpVersion(): PhpVersion {
+final class AsymmetricVisibilityTokenEmulator extends TokenEmulator
+{
+    public function getPhpVersion(): PhpVersion
+    {
         return PhpVersion::fromComponents(8, 4);
     }
-    public function isEmulationNeeded(string $code): bool {
+    public function isEmulationNeeded(string $code): bool
+    {
         $code = strtolower($code);
         return strpos($code, 'public(set)') !== false ||
             strpos($code, 'protected(set)') !== false ||
             strpos($code, 'private(set)') !== false;
     }
 
-    public function emulate(string $code, array $tokens): array {
+    public function emulate(string $code, array $tokens): array
+    {
         $map = [
             \T_PUBLIC => \T_PUBLIC_SET,
             \T_PROTECTED => \T_PROTECTED_SET,
@@ -31,8 +37,11 @@ final class AsymmetricVisibilityTokenEmulator extends TokenEmulator {
             ) {
                 array_splice($tokens, $i, 4, [
                     new Token(
-                        $map[$token->id], $token->text . '(' . $tokens[$i + 2]->text . ')',
-                        $token->line, $token->pos),
+                        $map[$token->id],
+                        $token->text . '(' . $tokens[$i + 2]->text . ')',
+                        $token->line,
+                        $token->pos
+                    ),
                 ]);
                 $c -= 3;
             }
@@ -41,7 +50,8 @@ final class AsymmetricVisibilityTokenEmulator extends TokenEmulator {
         return $tokens;
     }
 
-    public function reverseEmulate(string $code, array $tokens): array {
+    public function reverseEmulate(string $code, array $tokens): array
+    {
         $reverseMap = [
             \T_PUBLIC_SET => \T_PUBLIC,
             \T_PROTECTED_SET => \T_PROTECTED,
@@ -69,7 +79,8 @@ final class AsymmetricVisibilityTokenEmulator extends TokenEmulator {
     }
 
     /** @param Token[] $tokens */
-    protected function isKeywordContext(array $tokens, int $pos): bool {
+    protected function isKeywordContext(array $tokens, int $pos): bool
+    {
         $prevToken = $this->getPreviousNonSpaceToken($tokens, $pos);
         if ($prevToken === null) {
             return false;
@@ -79,7 +90,8 @@ final class AsymmetricVisibilityTokenEmulator extends TokenEmulator {
     }
 
     /** @param Token[] $tokens */
-    private function getPreviousNonSpaceToken(array $tokens, int $start): ?Token {
+    private function getPreviousNonSpaceToken(array $tokens, int $start): ?Token
+    {
         for ($i = $start - 1; $i >= 0; --$i) {
             if ($tokens[$i]->id === T_WHITESPACE) {
                 continue;

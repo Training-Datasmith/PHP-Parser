@@ -1,12 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Node;
 
 use PhpParser\Modifiers;
 use PhpParser\Node\Expr\Variable;
 
-class ParamTest extends \PHPUnit\Framework\TestCase {
-    public function testNoModifiers(): void {
+class ParamTest extends \PHPUnit\Framework\TestCase
+{
+    public function testNoModifiers(): void
+    {
         $node = new Param(new Variable('foo'));
 
         $this->assertFalse($node->isPromoted());
@@ -22,14 +26,16 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
     /**
      * @dataProvider provideModifiers
      */
-    public function testModifiers(string $modifier): void {
+    public function testModifiers(string $modifier): void
+    {
         $node = new Param(new Variable('foo'));
         $node->flags = constant(Modifiers::class . '::' . strtoupper($modifier));
         $this->assertTrue($node->isPromoted());
         $this->assertTrue($node->{'is' . $modifier}());
     }
 
-    public static function provideModifiers() {
+    public static function provideModifiers()
+    {
         return [
             ['public'],
             ['protected'],
@@ -39,7 +45,8 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
         ];
     }
 
-    public function testSetVisibility() {
+    public function testSetVisibility()
+    {
         $node = new Param(new Variable('foo'));
         $node->flags = Modifiers::PRIVATE_SET;
         $this->assertTrue($node->isPrivateSet());
@@ -52,7 +59,8 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
         $this->assertTrue($node->isPublic());
     }
 
-    public function testPromotedPropertyWithoutVisibilityModifier(): void {
+    public function testPromotedPropertyWithoutVisibilityModifier(): void
+    {
         $node = new Param(new Variable('foo'));
         $get = new PropertyHook('get', null);
         $node->hooks[] = $get;
@@ -61,7 +69,8 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
         $this->assertTrue($node->isPublic());
     }
 
-    public function testNonPromotedPropertyIsNotPublic(): void {
+    public function testNonPromotedPropertyIsNotPublic(): void
+    {
         $node = new Param(new Variable('foo'));
         $this->assertFalse($node->isPublic());
     }

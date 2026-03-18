@@ -1,11 +1,22 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
-class CommentTest extends \PHPUnit\Framework\TestCase {
-    public function testGetters(): void {
-        $comment = new Comment('/* Some comment */',
-            1, 10, 2, 1, 27, 2);
+class CommentTest extends \PHPUnit\Framework\TestCase
+{
+    public function testGetters(): void
+    {
+        $comment = new Comment(
+            '/* Some comment */',
+            1,
+            10,
+            2,
+            1,
+            27,
+            2
+        );
 
         $this->assertSame('/* Some comment */', $comment->getText());
         $this->assertSame('/* Some comment */', (string) $comment);
@@ -20,38 +31,40 @@ class CommentTest extends \PHPUnit\Framework\TestCase {
     /**
      * @dataProvider provideTestReformatting
      */
-    public function testReformatting($commentText, $reformattedText): void {
+    public function testReformatting($commentText, $reformattedText): void
+    {
         $comment = new Comment($commentText);
         $this->assertSame($reformattedText, $comment->getReformattedText());
     }
 
-    public static function provideTestReformatting() {
+    public static function provideTestReformatting()
+    {
         return [
             ['// Some text', '// Some text'],
             ['/* Some text */', '/* Some text */'],
             [
                 "/**\n     * Some text.\n     * Some more text.\n     */",
-                "/**\n * Some text.\n * Some more text.\n */"
+                "/**\n * Some text.\n * Some more text.\n */",
             ],
             [
                 "/**\r\n     * Some text.\r\n     * Some more text.\r\n     */",
-                "/**\n * Some text.\n * Some more text.\n */"
+                "/**\n * Some text.\n * Some more text.\n */",
             ],
             [
                 "/*\n        Some text.\n        Some more text.\n    */",
-                "/*\n    Some text.\n    Some more text.\n*/"
+                "/*\n    Some text.\n    Some more text.\n*/",
             ],
             [
                 "/*\r\n        Some text.\r\n        Some more text.\r\n    */",
-                "/*\n    Some text.\n    Some more text.\n*/"
+                "/*\n    Some text.\n    Some more text.\n*/",
             ],
             [
                 "/* Some text.\n       More text.\n       Even more text. */",
-                "/* Some text.\n   More text.\n   Even more text. */"
+                "/* Some text.\n   More text.\n   Even more text. */",
             ],
             [
                 "/* Some text.\r\n       More text.\r\n       Even more text. */",
-                "/* Some text.\n   More text.\n   Even more text. */"
+                "/* Some text.\n   More text.\n   Even more text. */",
             ],
             [
                 "/* Some text.\n       More text.\n         Indented text. */",

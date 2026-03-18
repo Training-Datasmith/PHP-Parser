@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 error_reporting(E_ALL);
 ini_set('short_open_tag', false);
 
@@ -7,7 +9,8 @@ if ('cli' !== php_sapi_name()) {
     die('This script is designed for running on the command line.');
 }
 
-function showHelp($error) {
+function showHelp($error)
+{
     die($error . "\n\n" .
 <<<OUTPUT
 This script has to be called with the following signature:
@@ -32,8 +35,8 @@ $allowedOptions = [
     '--php-version' => true,
 ];
 
-$options = array();
-$arguments = array();
+$options = [];
+$arguments = [];
 
 // remove script name from argv
 array_shift($argv);
@@ -65,7 +68,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 switch ($testType) {
     case 'Symfony':
-        $fileFilter = function($path) {
+        $fileFilter = function ($path) {
             if (!preg_match('~\.php$~', $path)) {
                 return false;
             }
@@ -83,15 +86,15 @@ switch ($testType) {
 
             return true;
         };
-        $codeExtractor = function($file, $code) {
+        $codeExtractor = function ($file, $code) {
             return $code;
         };
         break;
     case 'PHP':
-        $fileFilter = function($path) {
+        $fileFilter = function ($path) {
             return preg_match('~\.phpt$~', $path);
         };
-        $codeExtractor = function($file, $code) {
+        $codeExtractor = function ($file, $code) {
             if (preg_match('~(?:
 # skeleton files
   ext.gmp.tests.001
@@ -142,11 +145,11 @@ switch ($testType) {
 }
 
 $parser = (new PhpParser\ParserFactory())->createForVersion(PhpParser\PhpVersion::fromString($phpVersion));
-$prettyPrinter = new PhpParser\PrettyPrinter\Standard;
-$nodeDumper = new PhpParser\NodeDumper;
+$prettyPrinter = new PhpParser\PrettyPrinter\Standard();
+$nodeDumper = new PhpParser\NodeDumper();
 
-$cloningTraverser = new PhpParser\NodeTraverser;
-$cloningTraverser->addVisitor(new PhpParser\NodeVisitor\CloningVisitor);
+$cloningTraverser = new PhpParser\NodeTraverser();
+$cloningTraverser->addVisitor(new PhpParser\NodeVisitor\CloningVisitor());
 
 $parseFail = $fpppFail = $ppFail = $compareFail = $count = 0;
 
@@ -155,9 +158,9 @@ $fpppTime = $ppTime = $reparseTime = $compareTime = 0;
 $totalStartTime = microtime(true);
 
 foreach (new RecursiveIteratorIterator(
-             new RecursiveDirectoryIterator($dir),
-             RecursiveIteratorIterator::LEAVES_ONLY)
-         as $file) {
+    new RecursiveDirectoryIterator($dir),
+    RecursiveIteratorIterator::LEAVES_ONLY
+) as $file) {
     if (!$fileFilter($file)) {
         continue;
     }
@@ -261,17 +264,17 @@ if (0 === $parseFail && 0 === $ppFail && 0 === $compareFail) {
 }
 
 echo "\n",
-     'Tested files:         ', $count,        "\n",
-     "\n",
-     'Reading files took:   ', $readTime,    "\n",
-     'Parsing took:         ', $parseTime,   "\n",
-     'Cloning took:         ', $cloneTime,   "\n",
-     'FPPP took:            ', $fpppTime,    "\n",
-     'Pretty printing took: ', $ppTime,      "\n",
-     'Reparsing took:       ', $reparseTime, "\n",
-     'Comparing took:       ', $compareTime, "\n",
-     "\n",
-     'Total time:           ', microtime(true) - $totalStartTime, "\n",
-     'Maximum memory usage: ', memory_get_peak_usage(true), "\n";
+'Tested files:         ', $count,        "\n",
+"\n",
+'Reading files took:   ', $readTime,    "\n",
+'Parsing took:         ', $parseTime,   "\n",
+'Cloning took:         ', $cloneTime,   "\n",
+'FPPP took:            ', $fpppTime,    "\n",
+'Pretty printing took: ', $ppTime,      "\n",
+'Reparsing took:       ', $reparseTime, "\n",
+'Comparing took:       ', $compareTime, "\n",
+"\n",
+'Total time:           ', microtime(true) - $totalStartTime, "\n",
+'Maximum memory usage: ', memory_get_peak_usage(true), "\n";
 
 exit($exit);

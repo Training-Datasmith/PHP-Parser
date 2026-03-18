@@ -1,9 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
-abstract class CodeTestAbstract extends \PHPUnit\Framework\TestCase {
-    protected static function getTests($directory, $fileExtension, $chunksPerTest = 2) {
+abstract class CodeTestAbstract extends \PHPUnit\Framework\TestCase
+{
+    protected static function getTests($directory, $fileExtension, $chunksPerTest = 2)
+    {
         $parser = new CodeTestParser();
         $allTests = [];
         foreach (filesInDir($directory, $fileExtension) as $fileName => $fileContents) {
@@ -23,7 +27,8 @@ abstract class CodeTestAbstract extends \PHPUnit\Framework\TestCase {
         return $allTests;
     }
 
-    public function parseModeLine(?string $modeLine): array {
+    public function parseModeLine(?string $modeLine): array
+    {
         if ($modeLine === null) {
             return [];
         }

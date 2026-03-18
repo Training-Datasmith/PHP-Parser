@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\NodeVisitor;
 
@@ -7,8 +9,10 @@ use PhpParser\NodeFinder;
 use PhpParser\NodeTraverser;
 use PhpParser\ParserFactory;
 
-final class ParentConnectingVisitorTest extends \PHPUnit\Framework\TestCase {
-    public function testConnectsChildNodeToParentNode(): void {
+final class ParentConnectingVisitorTest extends \PHPUnit\Framework\TestCase
+{
+    public function testConnectsChildNodeToParentNode(): void
+    {
         $ast = (new ParserFactory())->createForNewestSupportedVersion()->parse(
             '<?php class C { public function m() {} }'
         );
@@ -24,7 +28,8 @@ final class ParentConnectingVisitorTest extends \PHPUnit\Framework\TestCase {
         $this->assertSame('C', $node->getAttribute('parent')->name->toString());
     }
 
-    public function testWeakReferences(): void {
+    public function testWeakReferences(): void
+    {
         $ast = (new ParserFactory())->createForNewestSupportedVersion()->parse(
             '<?php class C { public function m() {} }'
         );

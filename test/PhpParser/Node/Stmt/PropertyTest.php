@@ -1,14 +1,18 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Node\Stmt;
 
 use PhpParser\Modifiers;
 
-class PropertyTest extends \PHPUnit\Framework\TestCase {
+class PropertyTest extends \PHPUnit\Framework\TestCase
+{
     /**
      * @dataProvider provideModifiers
      */
-    public function testModifiers($modifier): void {
+    public function testModifiers($modifier): void
+    {
         $node = new Property(
             constant(Modifiers::class . '::' . strtoupper($modifier)),
             [] // invalid
@@ -17,7 +21,8 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
         $this->assertTrue($node->{'is' . $modifier}());
     }
 
-    public function testNoModifiers(): void {
+    public function testNoModifiers(): void
+    {
         $node = new Property(0, []);
 
         $this->assertTrue($node->isPublic());
@@ -30,7 +35,8 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
         $this->assertFalse($node->isPrivateSet());
     }
 
-    public function testStaticImplicitlyPublic(): void {
+    public function testStaticImplicitlyPublic(): void
+    {
         $node = new Property(Modifiers::STATIC, []);
         $this->assertTrue($node->isPublic());
         $this->assertFalse($node->isProtected());
@@ -39,7 +45,8 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
         $this->assertFalse($node->isReadonly());
     }
 
-    public static function provideModifiers() {
+    public static function provideModifiers()
+    {
         return [
             ['public'],
             ['protected'],
@@ -49,7 +56,8 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
         ];
     }
 
-    public function testSetVisibility() {
+    public function testSetVisibility()
+    {
         $node = new Property(Modifiers::PRIVATE_SET, []);
         $this->assertTrue($node->isPrivateSet());
         $node = new Property(Modifiers::PROTECTED_SET, []);
@@ -58,12 +66,14 @@ class PropertyTest extends \PHPUnit\Framework\TestCase {
         $this->assertTrue($node->isPublicSet());
     }
 
-    public function testIsFinal() {
+    public function testIsFinal()
+    {
         $node = new Property(Modifiers::FINAL, []);
         $this->assertTrue($node->isFinal());
     }
 
-    public function testIsAbstract() {
+    public function testIsAbstract()
+    {
         $node = new Property(Modifiers::ABSTRACT, []);
         $this->assertTrue($node->isAbstract());
     }

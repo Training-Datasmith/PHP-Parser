@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser\Builder;
 
@@ -13,15 +15,18 @@ use PhpParser\Node\Name;
 use PhpParser\Node\Scalar;
 use PhpParser\Node\Scalar\Int_;
 
-class ParamTest extends \PHPUnit\Framework\TestCase {
-    public function createParamBuilder($name) {
+class ParamTest extends \PHPUnit\Framework\TestCase
+{
+    public function createParamBuilder($name)
+    {
         return new Param($name);
     }
 
     /**
      * @dataProvider provideTestDefaultValues
      */
-    public function testDefaultValues($value, $expectedValueNode): void {
+    public function testDefaultValues($value, $expectedValueNode): void
+    {
         $node = $this->createParamBuilder('test')
             ->setDefault($value)
             ->getNode()
@@ -30,31 +35,32 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals($expectedValueNode, $node->default);
     }
 
-    public static function provideTestDefaultValues() {
+    public static function provideTestDefaultValues()
+    {
         return [
             [
                 null,
-                new Expr\ConstFetch(new Node\Name('null'))
+                new Expr\ConstFetch(new Node\Name('null')),
             ],
             [
                 true,
-                new Expr\ConstFetch(new Node\Name('true'))
+                new Expr\ConstFetch(new Node\Name('true')),
             ],
             [
                 false,
-                new Expr\ConstFetch(new Node\Name('false'))
+                new Expr\ConstFetch(new Node\Name('false')),
             ],
             [
                 31415,
-                new Scalar\Int_(31415)
+                new Scalar\Int_(31415),
             ],
             [
                 3.1415,
-                new Scalar\Float_(3.1415)
+                new Scalar\Float_(3.1415),
             ],
             [
                 'Hallo World',
-                new Scalar\String_('Hallo World')
+                new Scalar\String_('Hallo World'),
             ],
             [
                 [1, 2, 3],
@@ -62,7 +68,7 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
                     new Node\ArrayItem(new Scalar\Int_(1)),
                     new Node\ArrayItem(new Scalar\Int_(2)),
                     new Node\ArrayItem(new Scalar\Int_(3)),
-                ])
+                ]),
             ],
             [
                 ['foo' => 'bar', 'bar' => 'foo'],
@@ -75,12 +81,12 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
                         new Scalar\String_('foo'),
                         new Scalar\String_('bar')
                     ),
-                ])
+                ]),
             ],
             [
                 new Scalar\MagicConst\Dir(),
-                new Scalar\MagicConst\Dir()
-            ]
+                new Scalar\MagicConst\Dir(),
+            ],
         ];
     }
 
@@ -89,7 +95,8 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
      * @dataProvider provideTestNullableTypes
      * @dataProvider provideTestUnionTypes
      */
-    public function testTypes($typeHint, $expectedType): void {
+    public function testTypes($typeHint, $expectedType): void
+    {
         $node = $this->createParamBuilder('test')
             ->setType($typeHint)
             ->getNode()
@@ -107,7 +114,8 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals($expectedType, $type);
     }
 
-    public static function provideTestTypes() {
+    public static function provideTestTypes()
+    {
         return [
             ['array', new Node\Identifier('array')],
             ['callable', new Node\Identifier('callable')],
@@ -127,22 +135,24 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
         ];
     }
 
-    public static function provideTestNullableTypes() {
+    public static function provideTestNullableTypes()
+    {
         return [
             ['?array', new Node\NullableType(new Node\Identifier('array'))],
             ['?Some\Class', new Node\NullableType(new Node\Name('Some\Class'))],
             [
                 new Node\NullableType(new Node\Identifier('int')),
-                new Node\NullableType(new Node\Identifier('int'))
+                new Node\NullableType(new Node\Identifier('int')),
             ],
             [
                 new Node\NullableType(new Node\Name('Some\Class')),
-                new Node\NullableType(new Node\Name('Some\Class'))
+                new Node\NullableType(new Node\Name('Some\Class')),
             ],
         ];
     }
 
-    public static function provideTestUnionTypes() {
+    public static function provideTestUnionTypes()
+    {
         return [
             [
                 new Node\UnionType([
@@ -158,30 +168,33 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
                 new Node\UnionType([
                     new Node\Identifier('self'),
                     new Node\Identifier('array'),
-                    new Node\Name\FullyQualified('Foo')
+                    new Node\Name\FullyQualified('Foo'),
                 ]),
                 new Node\UnionType([
                     new Node\Identifier('self'),
                     new Node\Identifier('array'),
-                    new Node\Name\FullyQualified('Foo')
+                    new Node\Name\FullyQualified('Foo'),
                 ]),
             ],
         ];
     }
 
-    public function testVoidTypeError(): void {
+    public function testVoidTypeError(): void
+    {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Parameter type cannot be void');
         $this->createParamBuilder('test')->setType('void');
     }
 
-    public function testInvalidTypeError(): void {
+    public function testInvalidTypeError(): void
+    {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Type must be a string, or an instance of Name, Identifier or ComplexType');
         $this->createParamBuilder('test')->setType(new \stdClass());
     }
 
-    public function testByRef(): void {
+    public function testByRef(): void
+    {
         $node = $this->createParamBuilder('test')
             ->makeByRef()
             ->getNode()
@@ -193,7 +206,8 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testVariadic(): void {
+    public function testVariadic(): void
+    {
         $node = $this->createParamBuilder('test')
             ->makeVariadic()
             ->getNode()
@@ -205,7 +219,8 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testMakePublic(): void {
+    public function testMakePublic(): void
+    {
         $node = $this->createParamBuilder('test')
             ->makePublic()
             ->getNode()
@@ -217,7 +232,8 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testMakeProtected(): void {
+    public function testMakeProtected(): void
+    {
         $node = $this->createParamBuilder('test')
             ->makeProtected()
             ->getNode()
@@ -239,7 +255,8 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testMakePrivate(): void {
+    public function testMakePrivate(): void
+    {
         $node = $this->createParamBuilder('test')
             ->makePrivate()
             ->getNode()
@@ -261,7 +278,8 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testMakeReadonly(): void {
+    public function testMakeReadonly(): void
+    {
         $node = $this->createParamBuilder('test')
             ->makeReadonly()
             ->getNode()
@@ -273,7 +291,8 @@ class ParamTest extends \PHPUnit\Framework\TestCase {
         );
     }
 
-    public function testAddAttribute(): void {
+    public function testAddAttribute(): void
+    {
         $attribute = new Attribute(
             new Name('Attr'),
             [new Arg(new Int_(1), false, false, [], new Identifier('name'))]

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpParser;
 
@@ -7,32 +9,37 @@ use PhpParser\Node\Scalar;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt;
 
-abstract class ParserTestAbstract extends \PHPUnit\Framework\TestCase {
+abstract class ParserTestAbstract extends \PHPUnit\Framework\TestCase
+{
     /** @returns Parser */
     abstract protected function getParser(Lexer $lexer);
 
-    public function testParserThrowsSyntaxError(): void {
+    public function testParserThrowsSyntaxError(): void
+    {
         $this->expectException(Error::class);
         $this->expectExceptionMessage('Syntax error, unexpected EOF on line 1');
         $parser = $this->getParser(new Lexer());
         $parser->parse('<?php foo');
     }
 
-    public function testParserThrowsSpecialError(): void {
+    public function testParserThrowsSpecialError(): void
+    {
         $this->expectException(Error::class);
         $this->expectExceptionMessage('Cannot use foo as self because \'self\' is a special class name on line 1');
         $parser = $this->getParser(new Lexer());
         $parser->parse('<?php use foo as self;');
     }
 
-    public function testParserThrowsLexerError(): void {
+    public function testParserThrowsLexerError(): void
+    {
         $this->expectException(Error::class);
         $this->expectExceptionMessage('Unterminated comment on line 1');
         $parser = $this->getParser(new Lexer());
         $parser->parse('<?php /*');
     }
 
-    public function testAttributeAssignment(): void {
+    public function testAttributeAssignment(): void
+    {
         $lexer = new Lexer();
 
         $code = <<<'EOC'
@@ -54,8 +61,15 @@ EOC;
         $this->assertInstanceOf(Stmt\Function_::class, $fn);
         $this->assertEquals([
             'comments' => [
-                new Comment\Doc('/** Doc comment */',
-                    2, 6, 1, 2, 23, 1),
+                new Comment\Doc(
+                    '/** Doc comment */',
+                    2,
+                    6,
+                    1,
+                    2,
+                    23,
+                    1
+                ),
             ],
             'startLine' => 3,
             'endLine' => 7,
@@ -81,10 +95,24 @@ EOC;
         $this->assertInstanceOf(Stmt\Echo_::class, $echo);
         $this->assertEquals([
             'comments' => [
-                new Comment("// Line",
-                    4, 49, 12, 4, 55, 12),
-                new Comment("// Comments",
-                    5, 61, 14, 5, 71, 14),
+                new Comment(
+                    '// Line',
+                    4,
+                    49,
+                    12,
+                    4,
+                    55,
+                    12
+                ),
+                new Comment(
+                    '// Comments',
+                    5,
+                    61,
+                    14,
+                    5,
+                    71,
+                    14
+                ),
             ],
             'startLine' => 6,
             'endLine' => 6,
@@ -107,7 +135,8 @@ EOC;
         ], $var->getAttributes());
     }
 
-    public function testInvalidToken(): void {
+    public function testInvalidToken(): void
+    {
         $this->expectException(\RangeException::class);
         $this->expectExceptionMessage('The lexer returned an invalid token (id=999, value=foobar)');
         $lexer = new InvalidTokenLexer();
@@ -118,7 +147,8 @@ EOC;
     /**
      * @dataProvider provideTestExtraAttributes
      */
-    public function testExtraAttributes($code, $expectedAttributes): void {
+    public function testExtraAttributes($code, $expectedAttributes): void
+    {
         $parser = $this->getParser(new Lexer\Emulative());
         $stmts = $parser->parse("<?php $code;");
         $node = $stmts[0] instanceof Stmt\Expression ? $stmts[0]->expr : $stmts[0];
@@ -128,7 +158,8 @@ EOC;
         }
     }
 
-    public static function provideTestExtraAttributes() {
+    public static function provideTestExtraAttributes()
+    {
         return [
             ['0', ['kind' => Scalar\Int_::KIND_DEC]],
             ['9', ['kind' => Scalar\Int_::KIND_DEC]],
@@ -164,23 +195,24 @@ EOC;
             ["<<<STR\n    STR\n", ['kind' => String_::KIND_HEREDOC, 'docLabel' => 'STR', 'docIndentation' => '    ']],
             ["<<<STR\n\tSTR\n", ['kind' => String_::KIND_HEREDOC, 'docLabel' => 'STR', 'docIndentation' => "\t"]],
             ["<<<'STR'\n    Foo\n  STR\n", ['kind' => String_::KIND_NOWDOC, 'docLabel' => 'STR', 'docIndentation' => '  ']],
-            ["die", ['kind' => Expr\Exit_::KIND_DIE]],
+            ['die', ['kind' => Expr\Exit_::KIND_DIE]],
             ["die('done')", ['kind' => Expr\Exit_::KIND_DIE]],
-            ["exit", ['kind' => Expr\Exit_::KIND_EXIT]],
-            ["exit(1)", ['kind' => Expr\Exit_::KIND_EXIT]],
-            ["?>Foo", ['hasLeadingNewline' => false]],
+            ['exit', ['kind' => Expr\Exit_::KIND_EXIT]],
+            ['exit(1)', ['kind' => Expr\Exit_::KIND_EXIT]],
+            ['?>Foo', ['hasLeadingNewline' => false]],
             ["?>\nFoo", ['hasLeadingNewline' => true]],
-            ["namespace Foo;", ['kind' => Stmt\Namespace_::KIND_SEMICOLON]],
-            ["namespace Foo {}", ['kind' => Stmt\Namespace_::KIND_BRACED]],
-            ["namespace {}", ['kind' => Stmt\Namespace_::KIND_BRACED]],
-            ["(float) 5.0", ['kind' => Expr\Cast\Double::KIND_FLOAT]],
-            ["(double) 5.0", ['kind' => Expr\Cast\Double::KIND_DOUBLE]],
-            ["(real) 5.0", ['kind' => Expr\Cast\Double::KIND_REAL]],
-            [" (  REAL )  5.0", ['kind' => Expr\Cast\Double::KIND_REAL]],
+            ['namespace Foo;', ['kind' => Stmt\Namespace_::KIND_SEMICOLON]],
+            ['namespace Foo {}', ['kind' => Stmt\Namespace_::KIND_BRACED]],
+            ['namespace {}', ['kind' => Stmt\Namespace_::KIND_BRACED]],
+            ['(float) 5.0', ['kind' => Expr\Cast\Double::KIND_FLOAT]],
+            ['(double) 5.0', ['kind' => Expr\Cast\Double::KIND_DOUBLE]],
+            ['(real) 5.0', ['kind' => Expr\Cast\Double::KIND_REAL]],
+            [' (  REAL )  5.0', ['kind' => Expr\Cast\Double::KIND_REAL]],
         ];
     }
 
-    public function testListKindAttribute(): void {
+    public function testListKindAttribute(): void
+    {
         $parser = $this->getParser(new Lexer\Emulative());
         $stmts = $parser->parse('<?php list(list($x)) = $y; [[$x]] = $y;');
         $this->assertSame($stmts[0]->expr->var->getAttribute('kind'), Expr\List_::KIND_LIST);
@@ -189,7 +221,8 @@ EOC;
         $this->assertSame($stmts[1]->expr->var->items[0]->value->getAttribute('kind'), Expr\List_::KIND_ARRAY);
     }
 
-    public function testGetTokens(): void {
+    public function testGetTokens(): void
+    {
         $lexer = new Lexer();
         $parser = $this->getParser($lexer);
         $parser->parse('<?php echo "Foo";');
@@ -204,8 +237,10 @@ EOC;
     }
 }
 
-class InvalidTokenLexer extends Lexer {
-    public function tokenize(string $code, ?ErrorHandler $errorHandler = null): array {
+class InvalidTokenLexer extends Lexer
+{
+    public function tokenize(string $code, ?ErrorHandler $errorHandler = null): array
+    {
         return [
             new Token(999, 'foobar', 42),
         ];
