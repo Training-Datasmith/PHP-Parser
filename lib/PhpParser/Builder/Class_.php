@@ -42,7 +42,7 @@ class Class_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function extend($class) {
+    public function extend($class): self {
         $this->extends = BuilderHelpers::normalizeName($class);
 
         return $this;
@@ -55,7 +55,7 @@ class Class_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function implement(...$interfaces) {
+    public function implement(...$interfaces): self {
         foreach ($interfaces as $interface) {
             $this->implements[] = BuilderHelpers::normalizeName($interface);
         }
@@ -68,7 +68,7 @@ class Class_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeAbstract() {
+    public function makeAbstract(): self {
         $this->flags = BuilderHelpers::addClassModifier($this->flags, Modifiers::ABSTRACT);
 
         return $this;
@@ -79,7 +79,7 @@ class Class_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeFinal() {
+    public function makeFinal(): self {
         $this->flags = BuilderHelpers::addClassModifier($this->flags, Modifiers::FINAL);
 
         return $this;
@@ -90,7 +90,7 @@ class Class_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeReadonly() {
+    public function makeReadonly(): self {
         $this->flags = BuilderHelpers::addClassModifier($this->flags, Modifiers::READONLY);
 
         return $this;
@@ -128,7 +128,7 @@ class Class_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addAttribute($attribute) {
+    public function addAttribute($attribute): self {
         $this->attributeGroups[] = BuilderHelpers::normalizeAttribute($attribute);
 
         return $this;

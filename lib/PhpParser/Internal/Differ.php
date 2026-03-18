@@ -35,7 +35,7 @@ class Differ {
     public function diff(array $old, array $new): array {
         $old = \array_values($old);
         $new = \array_values($new);
-        list($trace, $x, $y) = $this->calculateTrace($old, $new);
+        [$trace, $x, $y] = $this->calculateTrace($old, $new);
         return $this->extractDiff($trace, $x, $y, $old, $new);
     }
 

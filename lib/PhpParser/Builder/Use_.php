@@ -31,7 +31,7 @@ class Use_ implements Builder {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function as(string $alias) {
+    public function as(string $alias): self {
         $this->alias = $alias;
         return $this;
     }

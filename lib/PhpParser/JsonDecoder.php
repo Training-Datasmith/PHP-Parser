@@ -59,10 +59,12 @@ class JsonDecoder {
         }
 
         foreach ($value as $name => $subNode) {
-            if ($name === 'nodeType' || $name === 'attributes') {
+            if ($name === 'nodeType') {
                 continue;
             }
-
+            if ($name === 'attributes') {
+                continue;
+            }
             $node->$name = $this->decodeRecursive($subNode);
         }
 

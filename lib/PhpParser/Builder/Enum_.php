@@ -41,7 +41,7 @@ class Enum_ extends Declaration {
      *
      * @return $this
      */
-    public function setScalarType($scalarType) {
+    public function setScalarType($scalarType): self {
         $this->scalarType = BuilderHelpers::normalizeType($scalarType);
 
         return $this;
@@ -54,7 +54,7 @@ class Enum_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function implement(...$interfaces) {
+    public function implement(...$interfaces): self {
         foreach ($interfaces as $interface) {
             $this->implements[] = BuilderHelpers::normalizeName($interface);
         }
@@ -94,7 +94,7 @@ class Enum_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addAttribute($attribute) {
+    public function addAttribute($attribute): self {
         $this->attributeGroups[] = BuilderHelpers::normalizeAttribute($attribute);
 
         return $this;

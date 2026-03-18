@@ -22,10 +22,7 @@ final class NodeConnectingVisitor extends NodeVisitorAbstract {
      */
     private array $stack = [];
 
-    /**
-     * @var ?Node
-     */
-    private $previous;
+    private ?\PhpParser\Node $previous = null;
 
     private bool $weakReferences;
 
@@ -33,12 +30,12 @@ final class NodeConnectingVisitor extends NodeVisitorAbstract {
         $this->weakReferences = $weakReferences;
     }
 
-    public function beforeTraverse(array $nodes) {
+    public function beforeTraverse(array $nodes): void {
         $this->stack    = [];
         $this->previous = null;
     }
 
-    public function enterNode(Node $node) {
+    public function enterNode(Node $node): void {
         if (!empty($this->stack)) {
             $parent = $this->stack[count($this->stack) - 1];
             if ($this->weakReferences) {
@@ -65,7 +62,7 @@ final class NodeConnectingVisitor extends NodeVisitorAbstract {
         $this->stack[] = $node;
     }
 
-    public function leaveNode(Node $node) {
+    public function leaveNode(Node $node): void {
         $this->previous = $node;
 
         array_pop($this->stack);

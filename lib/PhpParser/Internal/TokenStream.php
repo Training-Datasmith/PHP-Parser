@@ -195,9 +195,12 @@ class TokenStream {
         return false;
     }
 
-    public function haveTagInRange(int $startPos, int $endPos): bool {
-        return $this->haveTokenInRange($startPos, $endPos, \T_OPEN_TAG)
-            || $this->haveTokenInRange($startPos, $endPos, \T_CLOSE_TAG);
+    public function haveTagInRange(int $startPos, int $endPos): bool
+    {
+        if ($this->haveTokenInRange($startPos, $endPos, \T_OPEN_TAG)) {
+            return true;
+        }
+        return $this->haveTokenInRange($startPos, $endPos, \T_CLOSE_TAG);
     }
 
     /**

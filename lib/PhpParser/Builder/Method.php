@@ -33,7 +33,7 @@ class Method extends FunctionLike {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makePublic() {
+    public function makePublic(): self {
         $this->flags = BuilderHelpers::addModifier($this->flags, Modifiers::PUBLIC);
 
         return $this;
@@ -44,7 +44,7 @@ class Method extends FunctionLike {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeProtected() {
+    public function makeProtected(): self {
         $this->flags = BuilderHelpers::addModifier($this->flags, Modifiers::PROTECTED);
 
         return $this;
@@ -55,7 +55,7 @@ class Method extends FunctionLike {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makePrivate() {
+    public function makePrivate(): self {
         $this->flags = BuilderHelpers::addModifier($this->flags, Modifiers::PRIVATE);
 
         return $this;
@@ -66,7 +66,7 @@ class Method extends FunctionLike {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeStatic() {
+    public function makeStatic(): self {
         $this->flags = BuilderHelpers::addModifier($this->flags, Modifiers::STATIC);
 
         return $this;
@@ -77,7 +77,7 @@ class Method extends FunctionLike {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeAbstract() {
+    public function makeAbstract(): self {
         if (!empty($this->stmts)) {
             throw new \LogicException('Cannot make method with statements abstract');
         }
@@ -93,7 +93,7 @@ class Method extends FunctionLike {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeFinal() {
+    public function makeFinal(): self {
         $this->flags = BuilderHelpers::addModifier($this->flags, Modifiers::FINAL);
 
         return $this;
@@ -123,7 +123,7 @@ class Method extends FunctionLike {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addAttribute($attribute) {
+    public function addAttribute($attribute): self {
         $this->attributeGroups[] = BuilderHelpers::normalizeAttribute($attribute);
 
         return $this;

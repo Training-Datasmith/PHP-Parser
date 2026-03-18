@@ -20,7 +20,7 @@ class Function_ extends Node\Stmt implements FunctionLike {
     public array $attrGroups;
 
     /** @var Node\Name|null Namespaced name (if using NameResolver) */
-    public ?Node\Name $namespacedName;
+    public ?Node\Name $namespacedName = null;
 
     /**
      * Constructs a function node.

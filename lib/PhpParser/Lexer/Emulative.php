@@ -68,9 +68,7 @@ class Emulative extends Lexer {
     }
 
     public function tokenize(string $code, ?ErrorHandler $errorHandler = null): array {
-        $emulators = array_filter($this->emulators, function ($emulator) use ($code) {
-            return $emulator->isEmulationNeeded($code);
-        });
+        $emulators = array_filter($this->emulators, fn(\PhpParser\Lexer\TokenEmulator\TokenEmulator $emulator) => $emulator->isEmulationNeeded($code));
 
         if (empty($emulators)) {
             // Nothing to emulate, yay
@@ -119,9 +117,7 @@ class Emulative extends Lexer {
     private function sortPatches(): void {
         // Patches may be contributed by different emulators.
         // Make sure they are sorted by increasing patch position.
-        usort($this->patches, function ($p1, $p2) {
-            return $p1[0] <=> $p2[0];
-        });
+        usort($this->patches, fn(array $p1, array $p2) => $p1[0] <=> $p2[0]);
     }
 
     /**
@@ -135,7 +131,7 @@ class Emulative extends Lexer {
 
         // Load first patch
         $patchIdx = 0;
-        list($patchPos, $patchType, $patchText) = $this->patches[$patchIdx];
+        [$patchPos, $patchType, $patchText] = $this->patches[$patchIdx];
 
         // We use a manual loop over the tokens, because we modify the array on the fly
         $posDelta = 0;
@@ -187,7 +183,7 @@ class Emulative extends Lexer {
                     break;
                 }
 
-                list($patchPos, $patchType, $patchText) = $this->patches[$patchIdx];
+                [$patchPos, $patchType, $patchText] = $this->patches[$patchIdx];
             }
 
             $posDelta += $localPosDelta;
@@ -207,7 +203,7 @@ class Emulative extends Lexer {
             $posDelta = 0;
             $lineDelta = 0;
             foreach ($this->patches as $patch) {
-                list($patchPos, $patchType, $patchText) = $patch;
+                [$patchPos, $patchType, $patchText] = $patch;
                 if ($patchPos >= $attrs['startFilePos']) {
                     // No longer relevant
                     break;

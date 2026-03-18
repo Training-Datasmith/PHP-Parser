@@ -41,7 +41,7 @@ class TraitUseAdaptation implements Builder {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function as($alias) {
+    public function as($alias): self {
         if ($this->type === self::TYPE_UNDEFINED) {
             $this->type = self::TYPE_ALIAS;
         }
@@ -59,7 +59,7 @@ class TraitUseAdaptation implements Builder {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makePublic() {
+    public function makePublic(): self {
         $this->setModifier(Modifiers::PUBLIC);
         return $this;
     }
@@ -69,7 +69,7 @@ class TraitUseAdaptation implements Builder {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeProtected() {
+    public function makeProtected(): self {
         $this->setModifier(Modifiers::PROTECTED);
         return $this;
     }
@@ -79,7 +79,7 @@ class TraitUseAdaptation implements Builder {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makePrivate() {
+    public function makePrivate(): self {
         $this->setModifier(Modifiers::PRIVATE);
         return $this;
     }
@@ -91,7 +91,7 @@ class TraitUseAdaptation implements Builder {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function insteadof(...$traits) {
+    public function insteadof(...$traits): self {
         if ($this->type === self::TYPE_UNDEFINED) {
             if (is_null($this->trait)) {
                 throw new \LogicException('Precedence adaptation must have trait');

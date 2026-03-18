@@ -133,7 +133,7 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
     protected PhpVersion $phpVersion;
 
     /** @var TokenStream|null Original tokens for use in format-preserving pretty print */
-    protected ?TokenStream $origTokens;
+    protected ?TokenStream $origTokens = null;
     /** @var Internal\Differ<Node> Differ for node lists */
     protected Differ $nodeListDiffer;
     /** @var array<string, bool> Map determining whether a certain character is a label character */
@@ -303,7 +303,7 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
             $p = preg_replace('/^<\?php\s+\?>\r?\n?/', '', $p);
         }
         if ($stmts[count($stmts) - 1] instanceof Stmt\InlineHTML) {
-            $p = preg_replace('/<\?php$/', '', rtrim($p));
+            return preg_replace('/<\?php$/', '', rtrim($p));
         }
 
         return $p;
@@ -390,7 +390,7 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
         string $class, Node $leftNode, string $operatorString, Node $rightNode,
         int $precedence, int $lhsPrecedence
     ): string {
-        list($opPrecedence, $newPrecedenceLHS, $newPrecedenceRHS) = $this->precedenceMap[$class];
+        [$opPrecedence, $newPrecedenceLHS, $newPrecedenceRHS] = $this->precedenceMap[$class];
         $prefix = '';
         $suffix = '';
         if ($opPrecedence >= $precedence) {
@@ -704,7 +704,7 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
                     return $this->pFallback($fallbackNode, $precedence, $lhsPrecedence);
                 }
 
-                list($findToken, $beforeToken, $extraLeft, $extraRight) = $this->insertionMap[$key];
+                [$findToken, $beforeToken, $extraLeft, $extraRight] = $this->insertionMap[$key];
                 if (null !== $findToken) {
                     $subStartPos = $this->origTokens->findRight($pos, $findToken)
                         + (int) !$beforeToken;
@@ -764,9 +764,7 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
 
             $pos = $subEndPos + 1;
         }
-
-        $result .= $this->origTokens->getTokenCode($pos, $endPos + 1, $indentAdjustment);
-        return $result;
+        return $result . $this->origTokens->getTokenCode($pos, $endPos + 1, $indentAdjustment);
     }
 
     /**
@@ -1004,7 +1002,7 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
                 return null;
             }
 
-            list($findToken, $extraLeft, $extraRight) = $this->emptyListInsertionMap[$mapKey];
+            [$findToken, $extraLeft, $extraRight] = $this->emptyListInsertionMap[$mapKey];
             if (null !== $findToken) {
                 // For anon classes skip to the class keyword.
                 $isAnonClassArgs = $mapKey === PrintableNewAnonClassNode::class . '->args';
@@ -1327,7 +1325,7 @@ abstract class PrettyPrinterAbstract implements PrettyPrinter {
             return;
         }
 
-        $this->nodeListDiffer = new Internal\Differ(function ($a, $b) {
+        $this->nodeListDiffer = new Internal\Differ(function ($a, $b): bool {
             if ($a instanceof Node && $b instanceof Node) {
                 return $a === $b->getAttribute('origNode');
             }

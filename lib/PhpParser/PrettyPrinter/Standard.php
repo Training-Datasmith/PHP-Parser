@@ -238,9 +238,8 @@ class Standard extends PrettyPrinterAbstract {
             }
             if ($node->value === -\INF) {
                 return '-1.0E+1000';
-            } else {
-                return '\NAN';
             }
+            return '\NAN';
         }
 
         // Try to find a short full-precision representation
@@ -589,9 +588,8 @@ class Standard extends PrettyPrinterAbstract {
             $this->phpVersion->supportsShortArrayDestructuring() ? Expr\List_::KIND_ARRAY : Expr\List_::KIND_LIST);
         if ($syntax === Expr\List_::KIND_ARRAY) {
             return '[' . $this->pMaybeMultiline($node->items, true) . ']';
-        } else {
-            return 'list(' . $this->pMaybeMultiline($node->items, true) . ')';
         }
+        return 'list(' . $this->pMaybeMultiline($node->items, true) . ')';
     }
 
     // Other
@@ -603,9 +601,8 @@ class Standard extends PrettyPrinterAbstract {
     protected function pExpr_Variable(Expr\Variable $node): string {
         if ($node->name instanceof Expr) {
             return '${' . $this->p($node->name) . '}';
-        } else {
-            return '$' . $node->name;
         }
+        return '$' . $node->name;
     }
 
     protected function pExpr_Array(Expr\Array_ $node): string {
@@ -613,9 +610,8 @@ class Standard extends PrettyPrinterAbstract {
             $this->shortArraySyntax ? Expr\Array_::KIND_SHORT : Expr\Array_::KIND_LONG);
         if ($syntax === Expr\Array_::KIND_SHORT) {
             return '[' . $this->pMaybeMultiline($node->items, true) . ']';
-        } else {
-            return 'array(' . $this->pMaybeMultiline($node->items, true) . ')';
         }
+        return 'array(' . $this->pMaybeMultiline($node->items, true) . ')';
     }
 
     protected function pKey(?Node $node): string {
@@ -751,14 +747,13 @@ class Standard extends PrettyPrinterAbstract {
         if ($node->value === null) {
             $opPrecedence = $this->precedenceMap[Expr\Yield_::class][0];
             return $opPrecedence >= $lhsPrecedence ? '(yield)' : 'yield';
-        } else {
-            if (!$this->phpVersion->supportsYieldWithoutParentheses()) {
-                return '(yield ' . $this->pKey($node->key) . $this->p($node->value) . ')';
-            }
-            return $this->pPrefixOp(
-                Expr\Yield_::class, 'yield ' . $this->pKey($node->key),
-                $node->value, $precedence, $lhsPrecedence);
         }
+        if (!$this->phpVersion->supportsYieldWithoutParentheses()) {
+            return '(yield ' . $this->pKey($node->key) . $this->p($node->value) . ')';
+        }
+        return $this->pPrefixOp(
+            Expr\Yield_::class, 'yield ' . $this->pKey($node->key),
+            $node->value, $precedence, $lhsPrecedence);
     }
 
     // Declarations
@@ -767,10 +762,9 @@ class Standard extends PrettyPrinterAbstract {
         if ($this->canUseSemicolonNamespaces) {
             return 'namespace ' . $this->p($node->name) . ';'
                  . $this->nl . $this->pStmts($node->stmts, false);
-        } else {
-            return 'namespace' . (null !== $node->name ? ' ' . $this->p($node->name) : '')
-                 . ' {' . $this->pStmts($node->stmts) . $this->nl . '}';
         }
+        return 'namespace' . (null !== $node->name ? ' ' . $this->p($node->name) : '')
+             . ' {' . $this->pStmts($node->stmts) . $this->nl . '}';
     }
 
     protected function pStmt_Use(Stmt\Use_ $node): string {
@@ -1060,10 +1054,9 @@ class Standard extends PrettyPrinterAbstract {
     protected function pObjectProperty(Node $node): string {
         if ($node instanceof Expr) {
             return '{' . $this->p($node) . '}';
-        } else {
-            assert($node instanceof Node\Identifier);
-            return $node->name;
         }
+        assert($node instanceof Node\Identifier);
+        return $node->name;
     }
 
     /** @param (Expr|Node\InterpolatedStringPart)[] $encapsList */
@@ -1120,7 +1113,7 @@ class Standard extends PrettyPrinterAbstract {
             | (?<=[\xF0-\xF4])[\x80-\xBF](?![\x80-\xBF]{2}) # Short 4 byte sequence
             | (?<=[\xF0-\xF4][\x80-\xBF])[\x80-\xBF](?![\x80-\xBF]) # Short 4 byte sequence (2)
         )/x';
-        return preg_replace_callback($regex, function ($matches): string {
+        return preg_replace_callback($regex, function (array $matches): string {
             assert(strlen($matches[0]) === 1);
             $hex = dechex(ord($matches[0]));
             return '\\x' . str_pad($hex, 2, '0', \STR_PAD_LEFT);
@@ -1148,33 +1141,29 @@ class Standard extends PrettyPrinterAbstract {
     protected function pDereferenceLhs(Node $node): string {
         if (!$this->dereferenceLhsRequiresParens($node)) {
             return $this->p($node);
-        } else {
-            return '(' . $this->p($node) . ')';
         }
+        return '(' . $this->p($node) . ')';
     }
 
     protected function pStaticDereferenceLhs(Node $node): string {
         if (!$this->staticDereferenceLhsRequiresParens($node)) {
             return $this->p($node);
-        } else {
-            return '(' . $this->p($node) . ')';
         }
+        return '(' . $this->p($node) . ')';
     }
 
     protected function pCallLhs(Node $node): string {
         if (!$this->callLhsRequiresParens($node)) {
             return $this->p($node);
-        } else {
-            return '(' . $this->p($node) . ')';
         }
+        return '(' . $this->p($node) . ')';
     }
 
     protected function pNewOperand(Node $node): string {
         if (!$this->newOperandRequiresParens($node)) {
             return $this->p($node);
-        } else {
-            return '(' . $this->p($node) . ')';
         }
+        return '(' . $this->p($node) . ')';
     }
 
     /**
@@ -1193,9 +1182,8 @@ class Standard extends PrettyPrinterAbstract {
     protected function pMaybeMultiline(array $nodes, bool $trailingComma = false): string {
         if (!$this->hasNodeWithComments($nodes)) {
             return $this->pCommaSeparated($nodes);
-        } else {
-            return $this->pCommaSeparatedMultiline($nodes, $trailingComma) . $this->nl;
         }
+        return $this->pCommaSeparatedMultiline($nodes, $trailingComma) . $this->nl;
     }
 
     /** @param Node\Param[] $params

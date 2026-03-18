@@ -11,7 +11,7 @@ class Const_ extends NodeAbstract {
     public Expr $value;
 
     /** @var Name|null Namespaced name (if using NameResolver) */
-    public ?Name $namespacedName;
+    public ?Name $namespacedName = null;
 
     /**
      * Constructs a const node for use in class const and const statements.

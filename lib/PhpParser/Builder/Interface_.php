@@ -35,7 +35,7 @@ class Interface_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function extend(...$interfaces) {
+    public function extend(...$interfaces): self {
         foreach ($interfaces as $interface) {
             $this->extends[] = BuilderHelpers::normalizeName($interface);
         }
@@ -73,7 +73,7 @@ class Interface_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addAttribute($attribute) {
+    public function addAttribute($attribute): self {
         $this->attributeGroups[] = BuilderHelpers::normalizeAttribute($attribute);
 
         return $this;

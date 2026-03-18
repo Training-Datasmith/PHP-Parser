@@ -25,14 +25,6 @@ class TokenPolyfill {
     /** @var int The 0-based starting position of the token (or -1 if unknown). */
     public int $pos;
 
-    /** @var array<int, bool> Tokens ignored by the PHP parser. */
-    private const IGNORABLE_TOKENS = [
-        \T_WHITESPACE => true,
-        \T_COMMENT => true,
-        \T_DOC_COMMENT => true,
-        \T_OPEN_TAG => true,
-    ];
-
     /** @var array<int, bool> Tokens that may be part of a T_NAME_* identifier. */
     private static array $identifierTokens;
 

@@ -130,12 +130,12 @@ abstract class ParserAbstract implements Parser {
     protected int $errorState;
 
     /** @var \SplObjectStorage<Array_, null>|null Array nodes created during parsing, for postprocessing of empty elements. */
-    protected ?\SplObjectStorage $createdArrays;
+    protected ?\SplObjectStorage $createdArrays = null;
 
     /** @var \SplObjectStorage<Expr\ArrowFunction, null>|null
      *       Arrow functions that are wrapped in parentheses, to enforce the pipe operator parentheses requirements.
      */
-    protected ?\SplObjectStorage $parenthesizedArrowFunctions;
+    protected ?\SplObjectStorage $parenthesizedArrowFunctions = null;
 
     /** @var Token[] Tokens for the current parse */
     protected array $tokens;
@@ -587,38 +587,35 @@ abstract class ParserAbstract implements Parser {
                 }
             }
             return $stmts;
-        } else {
-            // For semicolon namespaces we have to move the statements after a namespace declaration into ->stmts
-            $resultStmts = [];
-            $targetStmts = &$resultStmts;
-            $lastNs = null;
-            foreach ($stmts as $stmt) {
-                if ($stmt instanceof Node\Stmt\Namespace_) {
-                    if ($lastNs !== null) {
-                        $this->fixupNamespaceAttributes($lastNs);
-                    }
-                    if ($stmt->stmts === null) {
-                        $stmt->stmts = [];
-                        $targetStmts = &$stmt->stmts;
-                        $resultStmts[] = $stmt;
-                    } else {
-                        // This handles the invalid case of mixed style namespaces
-                        $resultStmts[] = $stmt;
-                        $targetStmts = &$resultStmts;
-                    }
-                    $lastNs = $stmt;
-                } elseif ($stmt instanceof Node\Stmt\HaltCompiler) {
-                    // __halt_compiler() is not moved into the namespace
+        }
+        // For semicolon namespaces we have to move the statements after a namespace declaration into ->stmts
+        $resultStmts = [];
+        $targetStmts = &$resultStmts;
+        $lastNs = null;
+        foreach ($stmts as $stmt) {
+            if ($stmt instanceof Node\Stmt\Namespace_) {
+                $this->fixupNamespaceAttributes($lastNs);
+                if ($stmt->stmts === null) {
+                    $stmt->stmts = [];
+                    $targetStmts = &$stmt->stmts;
                     $resultStmts[] = $stmt;
                 } else {
-                    $targetStmts[] = $stmt;
+                    // This handles the invalid case of mixed style namespaces
+                    $resultStmts[] = $stmt;
+                    $targetStmts = &$resultStmts;
                 }
+                $lastNs = $stmt;
+            } elseif ($stmt instanceof Node\Stmt\HaltCompiler) {
+                // __halt_compiler() is not moved into the namespace
+                $resultStmts[] = $stmt;
+            } else {
+                $targetStmts[] = $stmt;
             }
-            if ($lastNs !== null) {
-                $this->fixupNamespaceAttributes($lastNs);
-            }
-            return $resultStmts;
         }
+        if ($lastNs !== null) {
+            $this->fixupNamespaceAttributes($lastNs);
+        }
+        return $resultStmts;
     }
 
     private function fixupNamespaceAttributes(Node\Stmt\Namespace_ $stmt): void {
@@ -686,11 +683,14 @@ abstract class ParserAbstract implements Parser {
                 }
                 continue;
             }
-
             /* declare(), __halt_compiler() and nops can be used before a namespace declaration */
-            if ($stmt instanceof Node\Stmt\Declare_
-                || $stmt instanceof Node\Stmt\HaltCompiler
-                || $stmt instanceof Node\Stmt\Nop) {
+            if ($stmt instanceof Node\Stmt\Declare_) {
+                continue;
+            }
+            if ($stmt instanceof Node\Stmt\HaltCompiler) {
+                continue;
+            }
+            if ($stmt instanceof Node\Stmt\Nop) {
                 continue;
             }
 
@@ -816,7 +816,7 @@ abstract class ParserAbstract implements Parser {
         $regex = '/' . $start . '([ \t]*)(' . $end . ')?/';
         return preg_replace_callback(
             $regex,
-            function ($matches) use ($indentLen, $indentChar, $attributes) {
+            function (array $matches) use ($indentLen, $indentChar, $attributes) {
                 $prefix = substr($matches[1], 0, $indentLen);
                 if (false !== strpos($prefix, $indentChar === " " ? "\t" : " ")) {
                     $this->emitError(new Error(
@@ -892,36 +892,34 @@ abstract class ParserAbstract implements Parser {
             }
 
             return new String_($contents, $attributes);
-        } else {
-            assert(count($contents) > 0);
-            if (!$contents[0] instanceof Node\InterpolatedStringPart) {
-                // If there is no leading encapsed string part, pretend there is an empty one
-                $this->stripIndentation(
-                    '', $indentLen, $indentChar, true, false, $contents[0]->getAttributes()
-                );
-            }
-
-            $newContents = [];
-            foreach ($contents as $i => $part) {
-                if ($part instanceof Node\InterpolatedStringPart) {
-                    $isLast = $i === \count($contents) - 1;
-                    $part->value = $this->stripIndentation(
-                        $part->value, $indentLen, $indentChar,
-                        $i === 0, $isLast, $part->getAttributes()
-                    );
-                    if ($isLast) {
-                        $part->value = preg_replace('~(\r\n|\n|\r)\z~', '', $part->value);
-                    }
-                    $part->setAttribute('rawValue', $part->value);
-                    $part->value = String_::parseEscapeSequences($part->value, null, $parseUnicodeEscape);
-                    if ('' === $part->value) {
-                        continue;
-                    }
-                }
-                $newContents[] = $part;
-            }
-            return new InterpolatedString($newContents, $attributes);
         }
+        assert(count($contents) > 0);
+        if (!$contents[0] instanceof Node\InterpolatedStringPart) {
+            // If there is no leading encapsed string part, pretend there is an empty one
+            $this->stripIndentation(
+                '', $indentLen, $indentChar, true, false, $contents[0]->getAttributes()
+            );
+        }
+        $newContents = [];
+        foreach ($contents as $i => $part) {
+            if ($part instanceof Node\InterpolatedStringPart) {
+                $isLast = $i === \count($contents) - 1;
+                $part->value = $this->stripIndentation(
+                    $part->value, $indentLen, $indentChar,
+                    $i === 0, $isLast, $part->getAttributes()
+                );
+                if ($isLast) {
+                    $part->value = preg_replace('~(\r\n|\n|\r)\z~', '', $part->value);
+                }
+                $part->setAttribute('rawValue', $part->value);
+                $part->value = String_::parseEscapeSequences($part->value, null, $parseUnicodeEscape);
+                if ('' === $part->value) {
+                    continue;
+                }
+            }
+            $newContents[] = $part;
+        }
+        return new InterpolatedString($newContents, $attributes);
     }
 
     protected function createCommentFromToken(Token $token, int $tokenPos): Comment {
@@ -1011,7 +1009,7 @@ abstract class ParserAbstract implements Parser {
 
     protected function fixupArrayDestructuring(Array_ $node): Expr\List_ {
         $this->createdArrays->offsetUnset($node);
-        return new Expr\List_(array_map(function (Node\ArrayItem $item) {
+        return new Expr\List_(array_map(function (Node\ArrayItem $item): ?\PhpParser\Node\ArrayItem {
             if ($item->value instanceof Expr\Error) {
                 // We used Error as a placeholder for empty elements, which are legal for destructuring.
                 return null;

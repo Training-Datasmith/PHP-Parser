@@ -172,7 +172,7 @@ class Name extends NodeAbstract {
      *
      * @return static|null Sliced name
      */
-    public function slice(int $offset, ?int $length = null) {
+    public function slice(int $offset, ?int $length = null): ?self {
         if ($offset === 1 && $length === null) {
             // Short-circuit the common case.
             if (false !== $pos = \strpos($this->name, '\\')) {
@@ -223,7 +223,7 @@ class Name extends NodeAbstract {
      *
      * @return static|null Concatenated name
      */
-    public static function concat($name1, $name2, array $attributes = []) {
+    public static function concat($name1, $name2, array $attributes = []): ?self {
         if (null === $name1 && null === $name2) {
             return null;
         }
@@ -232,11 +232,10 @@ class Name extends NodeAbstract {
         }
         if (null === $name2) {
             return new static($name1, $attributes);
-        } else {
-            return new static(
-                self::prepareName($name1) . '\\' . self::prepareName($name2), $attributes
-            );
         }
+        return new static(
+            self::prepareName($name1) . '\\' . self::prepareName($name2), $attributes
+        );
     }
 
     /**

@@ -8,7 +8,7 @@ use PhpParser\Node\Stmt;
 
 class NameContext {
     /** @var null|Name Current namespace */
-    protected ?Name $namespace;
+    protected ?Name $namespace = null;
 
     /** @var Name[][] Map of format [aliasType => [aliasName => originalName]] */
     protected array $aliases = [];

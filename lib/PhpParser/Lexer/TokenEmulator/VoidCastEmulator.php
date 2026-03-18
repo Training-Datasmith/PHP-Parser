@@ -29,8 +29,13 @@ class VoidCastEmulator extends TokenEmulator {
                 $numTokens++;
                 $j++;
             }
-
-            if ($j >= $c || $tokens[$j]->id !== \T_STRING || \strtolower($tokens[$j]->text) !== 'void') {
+            if ($j >= $c) {
+                continue;
+            }
+            if ($tokens[$j]->id !== \T_STRING) {
+                continue;
+            }
+            if (\strtolower($tokens[$j]->text) !== 'void') {
                 continue;
             }
 
@@ -42,8 +47,10 @@ class VoidCastEmulator extends TokenEmulator {
                 $numTokens++;
                 $k++;
             }
-
-            if ($k >= $c || $tokens[$k]->text !== ')') {
+            if ($k >= $c) {
+                continue;
+            }
+            if ($tokens[$k]->text !== ')') {
                 continue;
             }
 

@@ -14,7 +14,7 @@ class FirstFindingVisitor extends NodeVisitorAbstract {
     /** @var callable Filter callback */
     protected $filterCallback;
     /** @var null|Node Found node */
-    protected ?Node $foundNode;
+    protected ?Node $foundNode = null;
 
     public function __construct(callable $filterCallback) {
         $this->filterCallback = $filterCallback;

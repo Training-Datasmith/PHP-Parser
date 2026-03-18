@@ -16,7 +16,7 @@ class NodeDumper {
     private bool $dumpComments;
     private bool $dumpPositions;
     private bool $dumpOtherAttributes;
-    private ?string $code;
+    private ?string $code = null;
     private string $res;
     private string $nl;
 
@@ -197,9 +197,8 @@ class NodeDumper {
 
         if ($strs) {
             return implode(' | ', $strs) . ' (' . $flags . ')';
-        } else {
-            return (string) $flags;
         }
+        return (string) $flags;
     }
 
     /** @param array<int, string> $map */

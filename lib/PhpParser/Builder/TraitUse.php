@@ -31,7 +31,7 @@ class TraitUse implements Builder {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function and($trait) {
+    public function and($trait): self {
         $this->traits[] = BuilderHelpers::normalizeName($trait);
         return $this;
     }
@@ -43,7 +43,7 @@ class TraitUse implements Builder {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function with($adaptation) {
+    public function with($adaptation): self {
         $adaptation = BuilderHelpers::normalizeNode($adaptation);
 
         if (!$adaptation instanceof Stmt\TraitUseAdaptation) {
