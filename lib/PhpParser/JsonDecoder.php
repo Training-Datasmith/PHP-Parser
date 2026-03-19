@@ -101,7 +101,13 @@ class JsonDecoder
     {
         if (!isset($this->reflectionClassCache[$nodeType])) {
             $className = $this->classNameFromNodeType($nodeType);
-            $this->reflectionClassCache[$nodeType] = new \ReflectionClass($className);
+            $reflectionClass = new \ReflectionClass($className);
+            if (!$reflectionClass->isSubclassOf(Node::class)) {
+                throw new \RuntimeException(
+                    "Class \"$className\" for node type \"$nodeType\" is not a subclass of Node"
+                );
+            }
+            $this->reflectionClassCache[$nodeType] = $reflectionClass;
         }
         return $this->reflectionClassCache[$nodeType];
     }
