@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node;
 
-namespace PhpParser\Node;
-
-use PhpParser\Node;
-use PhpParser\Node\Stmt\Use_;
-use PhpParser\NodeAbstract;
-
-class UseItem extends NodeAbstract
+use Php_Parser\Node;
+use Php_Parser\Node\Stmt\Use_;
+use Php_Parser\Node_Abstract;
+class Use_Item extends Node_Abstract
 {
     /**
      * @var Use_::TYPE_* One of the Stmt\Use_::TYPE_* constants. Will only differ from TYPE_UNKNOWN for mixed group uses
@@ -18,7 +16,6 @@ class UseItem extends NodeAbstract
     public Name $name;
     /** @var Identifier|null Alias */
     public ?Identifier $alias;
-
     /**
      * Constructs an alias (use) item node.
      *
@@ -34,29 +31,24 @@ class UseItem extends NodeAbstract
         $this->name = $name;
         $this->alias = \is_string($alias) ? new Identifier($alias) : $alias;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['type', 'name', 'alias'];
     }
-
     /**
      * Get alias. If not explicitly given this is the last component of the used name.
      */
-    public function getAlias(): Identifier
+    public function get_alias(): Identifier
     {
         if (null !== $this->alias) {
             return $this->alias;
         }
-
-        return new Identifier($this->name->getLast());
+        return new Identifier($this->name->get_last());
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'UseItem';
     }
 }
-
 // @deprecated compatibility alias
-class_alias(UseItem::class, Stmt\UseUse::class);
+class_alias(Use_Item::class, Stmt\Use_Use::class);

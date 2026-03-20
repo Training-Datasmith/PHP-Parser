@@ -1,154 +1,134 @@
 <?php
 
-declare(strict_types=1);
-
-namespace PhpParser;
+declare (strict_types=1);
+namespace Php_Parser;
 
 /*
  * This parser is based on a skeleton written by Moriyoshi Koizumi, which in
  * turn is based on work by Masato Bito.
  */
-
-use PhpParser\Node\Arg;
-use PhpParser\Node\Expr;
-use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Expr\Cast\Double;
-use PhpParser\Node\Identifier;
-use PhpParser\Node\InterpolatedStringPart;
-use PhpParser\Node\Name;
-use PhpParser\Node\Param;
-use PhpParser\Node\PropertyHook;
-use PhpParser\Node\Scalar\Int_;
-use PhpParser\Node\Scalar\InterpolatedString;
-use PhpParser\Node\Scalar\String_;
-use PhpParser\Node\Stmt;
-use PhpParser\Node\Stmt\Class_;
-use PhpParser\Node\Stmt\ClassConst;
-use PhpParser\Node\Stmt\ClassMethod;
-use PhpParser\Node\Stmt\Const_;
-use PhpParser\Node\Stmt\Else_;
-use PhpParser\Node\Stmt\ElseIf_;
-use PhpParser\Node\Stmt\Enum_;
-use PhpParser\Node\Stmt\Interface_;
-use PhpParser\Node\Stmt\Namespace_;
-use PhpParser\Node\Stmt\Nop;
-use PhpParser\Node\Stmt\Property;
-use PhpParser\Node\Stmt\TryCatch;
-use PhpParser\Node\UseItem;
-use PhpParser\NodeVisitor\CommentAnnotatingVisitor;
-
-abstract class ParserAbstract implements Parser
+use Php_Parser\Node\Arg;
+use Php_Parser\Node\Expr;
+use Php_Parser\Node\Expr\Array_;
+use Php_Parser\Node\Expr\Cast\Double;
+use Php_Parser\Node\Identifier;
+use Php_Parser\Node\Interpolated_String_Part;
+use Php_Parser\Node\Name;
+use Php_Parser\Node\Param;
+use Php_Parser\Node\Property_Hook;
+use Php_Parser\Node\Scalar\Int_;
+use Php_Parser\Node\Scalar\Interpolated_String;
+use Php_Parser\Node\Scalar\String_;
+use Php_Parser\Node\Stmt;
+use Php_Parser\Node\Stmt\Class_;
+use Php_Parser\Node\Stmt\Class_Const;
+use Php_Parser\Node\Stmt\Class_Method;
+use Php_Parser\Node\Stmt\Const_;
+use Php_Parser\Node\Stmt\Else_;
+use Php_Parser\Node\Stmt\Else_If_;
+use Php_Parser\Node\Stmt\Enum_;
+use Php_Parser\Node\Stmt\Interface_;
+use Php_Parser\Node\Stmt\Namespace_;
+use Php_Parser\Node\Stmt\Nop;
+use Php_Parser\Node\Stmt\Property;
+use Php_Parser\Node\Stmt\Try_Catch;
+use Php_Parser\Node\Use_Item;
+use Php_Parser\Node_Visitor\Comment_Annotating_Visitor;
+abstract class Parser_Abstract implements Parser
 {
     private const SYMBOL_NONE = -1;
-
     /** @var Lexer Lexer that is used when parsing */
     protected Lexer $lexer;
     /** @var PhpVersion PHP version to target on a best-effort basis */
-    protected PhpVersion $phpVersion;
-
+    protected Php_Version $php_version;
     /*
      * The following members will be filled with generated parsing data:
      */
-
     /** @var int Size of $tokenToSymbol map */
-    protected int $tokenToSymbolMapSize;
+    protected int $token_to_symbol_map_size;
     /** @var int Size of $action table */
-    protected int $actionTableSize;
+    protected int $action_table_size;
     /** @var int Size of $goto table */
-    protected int $gotoTableSize;
-
+    protected int $goto_table_size;
     /** @var int Symbol number signifying an invalid token */
-    protected int $invalidSymbol;
+    protected int $invalid_symbol;
     /** @var int Symbol number of error recovery token */
-    protected int $errorSymbol;
+    protected int $error_symbol;
     /** @var int Action number signifying default action */
-    protected int $defaultAction;
+    protected int $default_action;
     /** @var int Rule number signifying that an unexpected token was encountered */
-    protected int $unexpectedTokenRule;
-
+    protected int $unexpected_token_rule;
     protected int $YY2TBLSTATE;
     /** @var int Number of non-leaf states */
-    protected int $numNonLeafStates;
-
+    protected int $num_non_leaf_states;
     /** @var int[] Map of PHP token IDs to internal symbols */
-    protected array $phpTokenToSymbol;
+    protected array $php_token_to_symbol;
     /** @var array<int, bool> Map of PHP token IDs to drop */
-    protected array $dropTokens;
+    protected array $drop_tokens;
     /** @var int[] Map of external symbols (static::T_*) to internal symbols */
-    protected array $tokenToSymbol;
+    protected array $token_to_symbol;
     /** @var string[] Map of symbols to their names */
-    protected array $symbolToName;
+    protected array $symbol_to_name;
     /** @var array<int, string> Names of the production rules (only necessary for debugging) */
     protected array $productions;
-
     /** @var int[] Map of states to a displacement into the $action table. The corresponding action for this
      *             state/symbol pair is $action[$actionBase[$state] + $symbol]. If $actionBase[$state] is 0, the
      *             action is defaulted, i.e. $actionDefault[$state] should be used instead. */
-    protected array $actionBase;
+    protected array $action_base;
     /** @var int[] Table of actions. Indexed according to $actionBase comment. */
     protected array $action;
     /** @var int[] Table indexed analogously to $action. If $actionCheck[$actionBase[$state] + $symbol] != $symbol
      *             then the action is defaulted, i.e. $actionDefault[$state] should be used instead. */
-    protected array $actionCheck;
+    protected array $action_check;
     /** @var int[] Map of states to their default action */
-    protected array $actionDefault;
+    protected array $action_default;
     /** @var callable[] Semantic action callbacks */
-    protected array $reduceCallbacks;
-
+    protected array $reduce_callbacks;
     /** @var int[] Map of non-terminals to a displacement into the $goto table. The corresponding goto state for this
      *             non-terminal/state pair is $goto[$gotoBase[$nonTerminal] + $state] (unless defaulted) */
-    protected array $gotoBase;
+    protected array $goto_base;
     /** @var int[] Table of states to goto after reduction. Indexed according to $gotoBase comment. */
     protected array $goto;
     /** @var int[] Table indexed analogously to $goto. If $gotoCheck[$gotoBase[$nonTerminal] + $state] != $nonTerminal
      *             then the goto state is defaulted, i.e. $gotoDefault[$nonTerminal] should be used. */
-    protected array $gotoCheck;
+    protected array $goto_check;
     /** @var int[] Map of non-terminals to the default state to goto after their reduction */
-    protected array $gotoDefault;
-
+    protected array $goto_default;
     /** @var int[] Map of rules to the non-terminal on their left-hand side, i.e. the non-terminal to use for
      *             determining the state to goto after reduction. */
-    protected array $ruleToNonTerminal;
+    protected array $rule_to_non_terminal;
     /** @var int[] Map of rules to the length of their right-hand side, which is the number of elements that have to
      *             be popped from the stack(s) on reduction. */
-    protected array $ruleToLength;
-
+    protected array $rule_to_length;
     /*
      * The following members are part of the parser state:
      */
-
     /** @var mixed Temporary value containing the result of last semantic action (reduction) */
-    protected $semValue;
+    protected $sem_value;
     /** @var mixed[] Semantic value stack (contains values of tokens and semantic action results) */
-    protected array $semStack;
+    protected array $sem_stack;
     /** @var int[] Token start position stack */
-    protected array $tokenStartStack;
+    protected array $token_start_stack;
     /** @var int[] Token end position stack */
-    protected array $tokenEndStack;
-
+    protected array $token_end_stack;
     /** @var ErrorHandler Error handler */
-    protected ErrorHandler $errorHandler;
+    protected Error_Handler $error_handler;
     /** @var int Error state, used to avoid error floods */
-    protected int $errorState;
-
+    protected int $error_state;
     /** @var \SplObjectStorage<Array_, null>|null Array nodes created during parsing, for postprocessing of empty elements. */
-    protected ?\SplObjectStorage $createdArrays = null;
-
+    protected ?\Spl_Object_Storage $created_arrays = null;
     /** @var \SplObjectStorage<Expr\ArrowFunction, null>|null
      *       Arrow functions that are wrapped in parentheses, to enforce the pipe operator parentheses requirements.
      */
-    protected ?\SplObjectStorage $parenthesizedArrowFunctions = null;
-
+    protected ?\Spl_Object_Storage $parenthesized_arrow_functions = null;
     /** @var Token[] Tokens for the current parse */
     protected array $tokens;
     /** @var int Current position in token array */
-    protected int $tokenPos;
-
+    protected int $token_pos;
     /**
      * Initialize $reduceCallbacks map.
      */
-    abstract protected function initReduceCallbacks(): void;
-
+    abstract protected function init_reduce_callbacks(): void;
     /**
      * Creates a parser instance.
      *
@@ -162,19 +142,14 @@ abstract class ParserAbstract implements Parser
      *                               errors in older versions and interpreting type hints as a name or identifier depending
      *                               on version.
      */
-    public function __construct(Lexer $lexer, ?PhpVersion $phpVersion = null)
+    public function __construct(Lexer $lexer, ?Php_Version $php_version = null)
     {
         $this->lexer = $lexer;
-        $this->phpVersion = $phpVersion ?? PhpVersion::getNewestSupported();
-
-        $this->initReduceCallbacks();
-        $this->phpTokenToSymbol = $this->createTokenMap();
-        $this->dropTokens = array_fill_keys(
-            [\T_WHITESPACE, \T_OPEN_TAG, \T_COMMENT, \T_DOC_COMMENT, \T_BAD_CHARACTER],
-            true
-        );
+        $this->php_version = $php_version ?? Php_Version::get_newest_supported();
+        $this->init_reduce_callbacks();
+        $this->php_token_to_symbol = $this->create_token_map();
+        $this->drop_tokens = array_fill_keys([\T_WHITESPACE, \T_OPEN_TAG, \T_COMMENT, \T_DOC_COMMENT, \T_BAD_CHARACTER], true);
     }
-
     /**
      * Parses PHP code into a node tree.
      *
@@ -188,106 +163,79 @@ abstract class ParserAbstract implements Parser
      * @return Node\Stmt[]|null Array of statements (or null non-throwing error handler is used and
      *                          the parser was unable to recover from an error).
      */
-    public function parse(string $code, ?ErrorHandler $errorHandler = null): ?array
+    public function parse(string $code, ?Error_Handler $error_handler = null): ?array
     {
-        $this->errorHandler = $errorHandler ?: new ErrorHandler\Throwing();
-        $this->createdArrays = new \SplObjectStorage();
-        $this->parenthesizedArrowFunctions = new \SplObjectStorage();
-
-        $this->tokens = $this->lexer->tokenize($code, $this->errorHandler);
-        $result = $this->doParse();
-
+        $this->error_handler = $error_handler ?: new Error_Handler\Throwing();
+        $this->created_arrays = new \Spl_Object_Storage();
+        $this->parenthesized_arrow_functions = new \Spl_Object_Storage();
+        $this->tokens = $this->lexer->tokenize($code, $this->error_handler);
+        $result = $this->do_parse();
         // Report errors for any empty elements used inside arrays. This is delayed until after the main parse,
         // because we don't know a priori whether a given array expression will be used in a destructuring context
         // or not.
-        foreach ($this->createdArrays as $node) {
+        foreach ($this->created_arrays as $node) {
             foreach ($node->items as $item) {
                 if ($item->value instanceof Expr\Error) {
-                    $this->errorHandler->handleError(
-                        new Error('Cannot use empty array elements in arrays', $item->getAttributes())
-                    );
+                    $this->error_handler->handle_error(new Error('Cannot use empty array elements in arrays', $item->get_attributes()));
                 }
             }
         }
-
         // Clear out some of the interior state, so we don't hold onto unnecessary
         // memory between uses of the parser
-        $this->tokenStartStack = [];
-        $this->tokenEndStack = [];
-        $this->semStack = [];
-        $this->semValue = null;
-        $this->createdArrays = null;
-        $this->parenthesizedArrowFunctions = null;
-
+        $this->token_start_stack = [];
+        $this->token_end_stack = [];
+        $this->sem_stack = [];
+        $this->sem_value = null;
+        $this->created_arrays = null;
+        $this->parenthesized_arrow_functions = null;
         if ($result !== null) {
-            $traverser = new NodeTraverser(new CommentAnnotatingVisitor($this->tokens));
+            $traverser = new Node_Traverser(new Comment_Annotating_Visitor($this->tokens));
             $traverser->traverse($result);
         }
-
         return $result;
     }
-
-    public function getTokens(): array
+    public function get_tokens(): array
     {
         return $this->tokens;
     }
-
     /** @return Stmt[]|null */
-    protected function doParse(): ?array
+    protected function do_parse(): ?array
     {
         // We start off with no lookahead-token
         $symbol = self::SYMBOL_NONE;
-        $tokenValue = null;
-        $this->tokenPos = -1;
-
+        $token_value = null;
+        $this->token_pos = -1;
         // Keep stack of start and end attributes
-        $this->tokenStartStack = [];
-        $this->tokenEndStack = [0];
-
+        $this->token_start_stack = [];
+        $this->token_end_stack = [0];
         // Start off in the initial state and keep a stack of previous states
         $state = 0;
-        $stateStack = [$state];
-
+        $state_stack = [$state];
         // Semantic value stack (contains values of tokens and semantic action results)
-        $this->semStack = [];
-
+        $this->sem_stack = [];
         // Current position in the stack(s)
-        $stackPos = 0;
-
-        $this->errorState = 0;
-
+        $stack_pos = 0;
+        $this->error_state = 0;
         for (;;) {
             //$this->traceNewState($state, $symbol);
-
-            if ($this->actionBase[$state] === 0) {
-                $rule = $this->actionDefault[$state];
+            if ($this->action_base[$state] === 0) {
+                $rule = $this->action_default[$state];
             } else {
                 if ($symbol === self::SYMBOL_NONE) {
                     do {
-                        $token = $this->tokens[++$this->tokenPos];
-                        $tokenId = $token->id;
-                    } while (isset($this->dropTokens[$tokenId]));
-
+                        $token = $this->tokens[++$this->token_pos];
+                        $token_id = $token->id;
+                    } while (isset($this->drop_tokens[$token_id]));
                     // Map the lexer token id to the internally used symbols.
-                    $tokenValue = $token->text;
-                    if (!isset($this->phpTokenToSymbol[$tokenId])) {
-                        throw new \RangeException(sprintf(
-                            'The lexer returned an invalid token (id=%d, value=%s)',
-                            $tokenId,
-                            $tokenValue
-                        ));
+                    $token_value = $token->text;
+                    if (!isset($this->php_token_to_symbol[$token_id])) {
+                        throw new \RangeException(sprintf('The lexer returned an invalid token (id=%d, value=%s)', $token_id, $token_value));
                     }
-                    $symbol = $this->phpTokenToSymbol[$tokenId];
-
+                    $symbol = $this->php_token_to_symbol[$token_id];
                     //$this->traceRead($symbol);
                 }
-
-                $idx = $this->actionBase[$state] + $symbol;
-                if ((($idx >= 0 && $idx < $this->actionTableSize && $this->actionCheck[$idx] === $symbol)
-                     || ($state < $this->YY2TBLSTATE
-                         && ($idx = $this->actionBase[$state + $this->numNonLeafStates] + $symbol) >= 0
-                         && $idx < $this->actionTableSize && $this->actionCheck[$idx] === $symbol))
-                    && ($action = $this->action[$idx]) !== $this->defaultAction) {
+                $idx = $this->action_base[$state] + $symbol;
+                if (($idx >= 0 && $idx < $this->action_table_size && $this->action_check[$idx] === $symbol || $state < $this->YY2TBLSTATE && ($idx = $this->action_base[$state + $this->num_non_leaf_states] + $symbol) >= 0 && $idx < $this->action_table_size && $this->action_check[$idx] === $symbol) && ($action = $this->action[$idx]) !== $this->default_action) {
                     /*
                      * >= numNonLeafStates: shift and reduce
                      * > 0: shift
@@ -298,144 +246,121 @@ abstract class ParserAbstract implements Parser
                     if ($action > 0) {
                         /* shift */
                         //$this->traceShift($symbol);
-
-                        ++$stackPos;
-                        $stateStack[$stackPos] = $state = $action;
-                        $this->semStack[$stackPos] = $tokenValue;
-                        $this->tokenStartStack[$stackPos] = $this->tokenPos;
-                        $this->tokenEndStack[$stackPos] = $this->tokenPos;
+                        ++$stack_pos;
+                        $state_stack[$stack_pos] = $state = $action;
+                        $this->sem_stack[$stack_pos] = $token_value;
+                        $this->token_start_stack[$stack_pos] = $this->token_pos;
+                        $this->token_end_stack[$stack_pos] = $this->token_pos;
                         $symbol = self::SYMBOL_NONE;
-
-                        if ($this->errorState) {
-                            --$this->errorState;
+                        if ($this->error_state) {
+                            --$this->error_state;
                         }
-
-                        if ($action < $this->numNonLeafStates) {
+                        if ($action < $this->num_non_leaf_states) {
                             continue;
                         }
-
                         /* $yyn >= numNonLeafStates means shift-and-reduce */
-                        $rule = $action - $this->numNonLeafStates;
+                        $rule = $action - $this->num_non_leaf_states;
                     } else {
                         $rule = -$action;
                     }
                 } else {
-                    $rule = $this->actionDefault[$state];
+                    $rule = $this->action_default[$state];
                 }
             }
-
             for (;;) {
                 if ($rule === 0) {
                     /* accept */
                     //$this->traceAccept();
-                    return $this->semValue;
+                    return $this->sem_value;
                 }
-                if ($rule !== $this->unexpectedTokenRule) {
+                if ($rule !== $this->unexpected_token_rule) {
                     /* reduce */
                     //$this->traceReduce($rule);
-
-                    $ruleLength = $this->ruleToLength[$rule];
+                    $rule_length = $this->rule_to_length[$rule];
                     try {
-                        $callback = $this->reduceCallbacks[$rule];
+                        $callback = $this->reduce_callbacks[$rule];
                         if ($callback !== null) {
-                            $callback($this, $stackPos);
-                        } elseif ($ruleLength > 0) {
-                            $this->semValue = $this->semStack[$stackPos - $ruleLength + 1];
+                            $callback($this, $stack_pos);
+                        } elseif ($rule_length > 0) {
+                            $this->sem_value = $this->sem_stack[$stack_pos - $rule_length + 1];
                         }
                     } catch (Error $e) {
-                        if (-1 === $e->getStartLine()) {
-                            $e->setStartLine($this->tokens[$this->tokenPos]->line);
+                        if (-1 === $e->get_start_line()) {
+                            $e->set_start_line($this->tokens[$this->token_pos]->line);
                         }
-
-                        $this->emitError($e);
+                        $this->emit_error($e);
                         // Can't recover from this type of error
                         return null;
                     }
-
                     /* Goto - shift nonterminal */
-                    $lastTokenEnd = $this->tokenEndStack[$stackPos];
-                    $stackPos -= $ruleLength;
-                    $nonTerminal = $this->ruleToNonTerminal[$rule];
-                    $idx = $this->gotoBase[$nonTerminal] + $stateStack[$stackPos];
-                    if ($idx >= 0 && $idx < $this->gotoTableSize && $this->gotoCheck[$idx] === $nonTerminal) {
+                    $last_token_end = $this->token_end_stack[$stack_pos];
+                    $stack_pos -= $rule_length;
+                    $non_terminal = $this->rule_to_non_terminal[$rule];
+                    $idx = $this->goto_base[$non_terminal] + $state_stack[$stack_pos];
+                    if ($idx >= 0 && $idx < $this->goto_table_size && $this->goto_check[$idx] === $non_terminal) {
                         $state = $this->goto[$idx];
                     } else {
-                        $state = $this->gotoDefault[$nonTerminal];
+                        $state = $this->goto_default[$non_terminal];
                     }
-
-                    ++$stackPos;
-                    $stateStack[$stackPos]     = $state;
-                    $this->semStack[$stackPos] = $this->semValue;
-                    $this->tokenEndStack[$stackPos] = $lastTokenEnd;
-                    if ($ruleLength === 0) {
+                    ++$stack_pos;
+                    $state_stack[$stack_pos] = $state;
+                    $this->sem_stack[$stack_pos] = $this->sem_value;
+                    $this->token_end_stack[$stack_pos] = $last_token_end;
+                    if ($rule_length === 0) {
                         // Empty productions use the start attributes of the lookahead token.
-                        $this->tokenStartStack[$stackPos] = $this->tokenPos;
+                        $this->token_start_stack[$stack_pos] = $this->token_pos;
                     }
                 } else {
                     /* error */
-                    switch ($this->errorState) {
+                    switch ($this->error_state) {
                         case 0:
-                            $msg = $this->getErrorMessage($symbol, $state);
-                            $this->emitError(new Error($msg, $this->getAttributesForToken($this->tokenPos)));
-                            // Break missing intentionally
-                            // no break
+                            $msg = $this->get_error_message($symbol, $state);
+                            $this->emit_error(new Error($msg, $this->get_attributes_for_token($this->token_pos)));
+                        // Break missing intentionally
+                        // no break
                         case 1:
                         case 2:
-                            $this->errorState = 3;
-
+                            $this->error_state = 3;
                             // Pop until error-expecting state uncovered
-                            while (!(
-                                (($idx = $this->actionBase[$state] + $this->errorSymbol) >= 0
-                                    && $idx < $this->actionTableSize && $this->actionCheck[$idx] === $this->errorSymbol)
-                                || ($state < $this->YY2TBLSTATE
-                                    && ($idx = $this->actionBase[$state + $this->numNonLeafStates] + $this->errorSymbol) >= 0
-                                    && $idx < $this->actionTableSize && $this->actionCheck[$idx] === $this->errorSymbol)
-                            ) || ($action = $this->action[$idx]) === $this->defaultAction) { // Not totally sure about this
-                                if ($stackPos <= 0) {
+                            while (!(($idx = $this->action_base[$state] + $this->error_symbol) >= 0 && $idx < $this->action_table_size && $this->action_check[$idx] === $this->error_symbol || $state < $this->YY2TBLSTATE && ($idx = $this->action_base[$state + $this->num_non_leaf_states] + $this->error_symbol) >= 0 && $idx < $this->action_table_size && $this->action_check[$idx] === $this->error_symbol) || ($action = $this->action[$idx]) === $this->default_action) {
+                                // Not totally sure about this
+                                if ($stack_pos <= 0) {
                                     // Could not recover from error
                                     return null;
                                 }
-                                $state = $stateStack[--$stackPos];
+                                $state = $state_stack[--$stack_pos];
                                 //$this->tracePop($state);
                             }
-
                             //$this->traceShift($this->errorSymbol);
-                            ++$stackPos;
-                            $stateStack[$stackPos] = $state = $action;
-
+                            ++$stack_pos;
+                            $state_stack[$stack_pos] = $state = $action;
                             // We treat the error symbol as being empty, so we reset the end attributes
                             // to the end attributes of the last non-error symbol
-                            $this->tokenStartStack[$stackPos] = $this->tokenPos;
-                            $this->tokenEndStack[$stackPos] = $this->tokenEndStack[$stackPos - 1];
+                            $this->token_start_stack[$stack_pos] = $this->token_pos;
+                            $this->token_end_stack[$stack_pos] = $this->token_end_stack[$stack_pos - 1];
                             break;
-
                         case 3:
                             if ($symbol === 0) {
                                 // Reached EOF without recovering from error
                                 return null;
                             }
-
                             //$this->traceDiscard($symbol);
                             $symbol = self::SYMBOL_NONE;
                             break 2;
                     }
                 }
-
-                if ($state < $this->numNonLeafStates) {
+                if ($state < $this->num_non_leaf_states) {
                     break;
                 }
-
                 /* >= numNonLeafStates means shift-and-reduce */
-                $rule = $state - $this->numNonLeafStates;
+                $rule = $state - $this->num_non_leaf_states;
             }
         }
     }
-
-    protected function emitError(Error $error): void
+    protected function emit_error(Error $error): void
     {
-        $this->errorHandler->handleError($error);
+        $this->error_handler->handle_error($error);
     }
-
     /**
      * Format error message including expected tokens.
      *
@@ -444,16 +369,14 @@ abstract class ParserAbstract implements Parser
      *
      * @return string Formatted error message
      */
-    protected function getErrorMessage(int $symbol, int $state): string
+    protected function get_error_message(int $symbol, int $state): string
     {
-        $expectedString = '';
-        if ($expected = $this->getExpectedTokens($state)) {
-            $expectedString = ', expecting ' . implode(' or ', $expected);
+        $expected_string = '';
+        if ($expected = $this->get_expected_tokens($state)) {
+            $expected_string = ', expecting ' . implode(' or ', $expected);
         }
-
-        return 'Syntax error, unexpected ' . $this->symbolToName[$symbol] . $expectedString;
+        return 'Syntax error, unexpected ' . $this->symbol_to_name[$symbol] . $expected_string;
     }
-
     /**
      * Get limited number of expected tokens in given state.
      *
@@ -461,35 +384,24 @@ abstract class ParserAbstract implements Parser
      *
      * @return string[] Expected tokens. If too many, an empty array is returned.
      */
-    protected function getExpectedTokens(int $state): array
+    protected function get_expected_tokens(int $state): array
     {
         $expected = [];
-
-        $base = $this->actionBase[$state];
-        foreach ($this->symbolToName as $symbol => $name) {
+        $base = $this->action_base[$state];
+        foreach ($this->symbol_to_name as $symbol => $name) {
             $idx = $base + $symbol;
-            if ($idx >= 0 && $idx < $this->actionTableSize && $this->actionCheck[$idx] === $symbol
-                || $state < $this->YY2TBLSTATE
-                && ($idx = $this->actionBase[$state + $this->numNonLeafStates] + $symbol) >= 0
-                && $idx < $this->actionTableSize && $this->actionCheck[$idx] === $symbol
-            ) {
-                if ($this->action[$idx] !== $this->unexpectedTokenRule
-                    && $this->action[$idx] !== $this->defaultAction
-                    && $symbol !== $this->errorSymbol
-                ) {
+            if ($idx >= 0 && $idx < $this->action_table_size && $this->action_check[$idx] === $symbol || $state < $this->YY2TBLSTATE && ($idx = $this->action_base[$state + $this->num_non_leaf_states] + $symbol) >= 0 && $idx < $this->action_table_size && $this->action_check[$idx] === $symbol) {
+                if ($this->action[$idx] !== $this->unexpected_token_rule && $this->action[$idx] !== $this->default_action && $symbol !== $this->error_symbol) {
                     if (count($expected) === 4) {
                         /* Too many expected tokens */
                         return [];
                     }
-
                     $expected[] = $name;
                 }
             }
         }
-
         return $expected;
     }
-
     /**
      * Get attributes for a node with the given start and end token positions.
      *
@@ -497,167 +409,140 @@ abstract class ParserAbstract implements Parser
      * @param int $tokenEndPos Token position the node ends at
      * @return array<string, mixed> Attributes
      */
-    protected function getAttributes(int $tokenStartPos, int $tokenEndPos): array
+    protected function get_attributes(int $token_start_pos, int $token_end_pos): array
     {
-        $startToken = $this->tokens[$tokenStartPos];
-        $afterEndToken = $this->tokens[$tokenEndPos + 1];
-        return [
-            'startLine' => $startToken->line,
-            'startTokenPos' => $tokenStartPos,
-            'startFilePos' => $startToken->pos,
-            'endLine' => $afterEndToken->line,
-            'endTokenPos' => $tokenEndPos,
-            'endFilePos' => $afterEndToken->pos - 1,
-        ];
+        $start_token = $this->tokens[$token_start_pos];
+        $after_end_token = $this->tokens[$token_end_pos + 1];
+        return ['startLine' => $start_token->line, 'startTokenPos' => $token_start_pos, 'startFilePos' => $start_token->pos, 'endLine' => $after_end_token->line, 'endTokenPos' => $token_end_pos, 'endFilePos' => $after_end_token->pos - 1];
     }
-
     /**
      * Get attributes for a single token at the given token position.
      *
      * @return array<string, mixed> Attributes
      */
-    protected function getAttributesForToken(int $tokenPos): array
+    protected function get_attributes_for_token(int $token_pos): array
     {
-        if ($tokenPos < \count($this->tokens) - 1) {
-            return $this->getAttributes($tokenPos, $tokenPos);
+        if ($token_pos < \count($this->tokens) - 1) {
+            return $this->get_attributes($token_pos, $token_pos);
         }
-
         // Get attributes for the sentinel token.
-        $token = $this->tokens[$tokenPos];
-        return [
-            'startLine' => $token->line,
-            'startTokenPos' => $tokenPos,
-            'startFilePos' => $token->pos,
-            'endLine' => $token->line,
-            'endTokenPos' => $tokenPos,
-            'endFilePos' => $token->pos,
-        ];
+        $token = $this->tokens[$token_pos];
+        return ['startLine' => $token->line, 'startTokenPos' => $token_pos, 'startFilePos' => $token->pos, 'endLine' => $token->line, 'endTokenPos' => $token_pos, 'endFilePos' => $token->pos];
     }
-
     /*
      * Tracing functions used for debugging the parser.
      */
-
     /*
     protected function traceNewState($state, $symbol): void {
         echo '% State ' . $state
             . ', Lookahead ' . ($symbol == self::SYMBOL_NONE ? '--none--' : $this->symbolToName[$symbol]) . "\n";
     }
-
+    
     protected function traceRead($symbol): void {
         echo '% Reading ' . $this->symbolToName[$symbol] . "\n";
     }
-
+    
     protected function traceShift($symbol): void {
         echo '% Shift ' . $this->symbolToName[$symbol] . "\n";
     }
-
+    
     protected function traceAccept(): void {
         echo "% Accepted.\n";
     }
-
+    
     protected function traceReduce($n): void {
         echo '% Reduce by (' . $n . ') ' . $this->productions[$n] . "\n";
     }
-
+    
     protected function tracePop($state): void {
         echo '% Recovering, uncovered state ' . $state . "\n";
     }
-
+    
     protected function traceDiscard($symbol): void {
         echo '% Discard ' . $this->symbolToName[$symbol] . "\n";
     }
     */
-
     /*
      * Helper functions invoked by semantic actions
      */
-
     /**
      * Moves statements of semicolon-style namespaces into $ns->stmts and checks various error conditions.
      *
      * @param Node\Stmt[] $stmts
      * @return Node\Stmt[]
      */
-    protected function handleNamespaces(array $stmts): array
+    protected function handle_namespaces(array $stmts): array
     {
-        $hasErrored = false;
-        $style = $this->getNamespacingStyle($stmts);
+        $has_errored = false;
+        $style = $this->get_namespacing_style($stmts);
         if (null === $style) {
             // not namespaced, nothing to do
             return $stmts;
         }
         if ('brace' === $style) {
             // For braced namespaces we only have to check that there are no invalid statements between the namespaces
-            $afterFirstNamespace = false;
+            $after_first_namespace = false;
             foreach ($stmts as $stmt) {
                 if ($stmt instanceof Node\Stmt\Namespace_) {
-                    $afterFirstNamespace = true;
-                } elseif (!$stmt instanceof Node\Stmt\HaltCompiler
-                        && !$stmt instanceof Node\Stmt\Nop
-                        && $afterFirstNamespace && !$hasErrored) {
-                    $this->emitError(new Error(
-                        'No code may exist outside of namespace {}',
-                        $stmt->getAttributes()
-                    ));
-                    $hasErrored = true; // Avoid one error for every statement
+                    $after_first_namespace = true;
+                } elseif (!$stmt instanceof Node\Stmt\Halt_Compiler && !$stmt instanceof Node\Stmt\Nop && $after_first_namespace && !$has_errored) {
+                    $this->emit_error(new Error('No code may exist outside of namespace {}', $stmt->get_attributes()));
+                    $has_errored = true;
+                    // Avoid one error for every statement
                 }
             }
             return $stmts;
         }
         // For semicolon namespaces we have to move the statements after a namespace declaration into ->stmts
-        $resultStmts = [];
-        $targetStmts = &$resultStmts;
-        $lastNs = null;
+        $result_stmts = [];
+        $target_stmts =& $result_stmts;
+        $last_ns = null;
         foreach ($stmts as $stmt) {
             if ($stmt instanceof Node\Stmt\Namespace_) {
-                $this->fixupNamespaceAttributes($lastNs);
+                $this->fixup_namespace_attributes($last_ns);
                 if ($stmt->stmts === null) {
                     $stmt->stmts = [];
-                    $targetStmts = &$stmt->stmts;
-                    $resultStmts[] = $stmt;
+                    $target_stmts =& $stmt->stmts;
+                    $result_stmts[] = $stmt;
                 } else {
                     // This handles the invalid case of mixed style namespaces
-                    $resultStmts[] = $stmt;
-                    $targetStmts = &$resultStmts;
+                    $result_stmts[] = $stmt;
+                    $target_stmts =& $result_stmts;
                 }
-                $lastNs = $stmt;
-            } elseif ($stmt instanceof Node\Stmt\HaltCompiler) {
+                $last_ns = $stmt;
+            } elseif ($stmt instanceof Node\Stmt\Halt_Compiler) {
                 // __halt_compiler() is not moved into the namespace
-                $resultStmts[] = $stmt;
+                $result_stmts[] = $stmt;
             } else {
-                $targetStmts[] = $stmt;
+                $target_stmts[] = $stmt;
             }
         }
-        if ($lastNs !== null) {
-            $this->fixupNamespaceAttributes($lastNs);
+        if ($last_ns !== null) {
+            $this->fixup_namespace_attributes($last_ns);
         }
-        return $resultStmts;
+        return $result_stmts;
     }
-
-    private function fixupNamespaceAttributes(Node\Stmt\Namespace_ $stmt): void
+    private function fixup_namespace_attributes(Node\Stmt\Namespace_ $stmt): void
     {
         // We moved the statements into the namespace node, as such the end of the namespace node
         // needs to be extended to the end of the statements.
         if (empty($stmt->stmts)) {
             return;
         }
-
         // We only move the builtin end attributes here. This is the best we can do with the
         // knowledge we have.
-        $endAttributes = ['endLine', 'endFilePos', 'endTokenPos'];
-        $lastStmt = $stmt->stmts[count($stmt->stmts) - 1];
-        foreach ($endAttributes as $endAttribute) {
-            if ($lastStmt->hasAttribute($endAttribute)) {
-                $stmt->setAttribute($endAttribute, $lastStmt->getAttribute($endAttribute));
+        $end_attributes = ['endLine', 'endFilePos', 'endTokenPos'];
+        $last_stmt = $stmt->stmts[count($stmt->stmts) - 1];
+        foreach ($end_attributes as $end_attribute) {
+            if ($last_stmt->has_attribute($end_attribute)) {
+                $stmt->set_attribute($end_attribute, $last_stmt->get_attribute($end_attribute));
             }
         }
     }
-
     /** @return array<string, mixed> */
-    private function getNamespaceErrorAttributes(Namespace_ $node): array
+    private function get_namespace_error_attributes(Namespace_ $node): array
     {
-        $attrs = $node->getAttributes();
+        $attrs = $node->get_attributes();
         // Adjust end attributes to only cover the "namespace" keyword, not the whole namespace.
         if (isset($attrs['startLine'])) {
             $attrs['endLine'] = $attrs['startLine'];
@@ -670,7 +555,6 @@ abstract class ParserAbstract implements Parser
         }
         return $attrs;
     }
-
     /**
      * Determine namespacing style (semicolon or brace)
      *
@@ -678,26 +562,20 @@ abstract class ParserAbstract implements Parser
      *
      * @return null|string One of "semicolon", "brace" or null (no namespaces)
      */
-    private function getNamespacingStyle(array $stmts): ?string
+    private function get_namespacing_style(array $stmts): ?string
     {
         $style = null;
-        $hasNotAllowedStmts = false;
+        $has_not_allowed_stmts = false;
         foreach ($stmts as $i => $stmt) {
             if ($stmt instanceof Node\Stmt\Namespace_) {
-                $currentStyle = null === $stmt->stmts ? 'semicolon' : 'brace';
+                $current_style = null === $stmt->stmts ? 'semicolon' : 'brace';
                 if (null === $style) {
-                    $style = $currentStyle;
-                    if ($hasNotAllowedStmts) {
-                        $this->emitError(new Error(
-                            'Namespace declaration statement has to be the very first statement in the script',
-                            $this->getNamespaceErrorAttributes($stmt)
-                        ));
+                    $style = $current_style;
+                    if ($has_not_allowed_stmts) {
+                        $this->emit_error(new Error('Namespace declaration statement has to be the very first statement in the script', $this->get_namespace_error_attributes($stmt)));
                     }
-                } elseif ($style !== $currentStyle) {
-                    $this->emitError(new Error(
-                        'Cannot mix bracketed namespace declarations with unbracketed namespace declarations',
-                        $this->getNamespaceErrorAttributes($stmt)
-                    ));
+                } elseif ($style !== $current_style) {
+                    $this->emit_error(new Error('Cannot mix bracketed namespace declarations with unbracketed namespace declarations', $this->get_namespace_error_attributes($stmt)));
                     // Treat like semicolon style for namespace normalization
                     return 'semicolon';
                 }
@@ -707,39 +585,33 @@ abstract class ParserAbstract implements Parser
             if ($stmt instanceof Node\Stmt\Declare_) {
                 continue;
             }
-            if ($stmt instanceof Node\Stmt\HaltCompiler) {
+            if ($stmt instanceof Node\Stmt\Halt_Compiler) {
                 continue;
             }
             if ($stmt instanceof Node\Stmt\Nop) {
                 continue;
             }
-
             /* There may be a hashbang line at the very start of the file */
-            if ($i === 0 && $stmt instanceof Node\Stmt\InlineHTML && preg_match('/\A#!.*\r?\n\z/', $stmt->value)) {
+            if ($i === 0 && $stmt instanceof Node\Stmt\Inline_Html && preg_match('/\A#!.*\r?\n\z/', $stmt->value)) {
                 continue;
             }
-
             /* Everything else if forbidden before namespace declarations */
-            $hasNotAllowedStmts = true;
+            $has_not_allowed_stmts = true;
         }
         return $style;
     }
-
     /** @return Name|Identifier */
-    protected function handleBuiltinTypes(Name $name)
+    protected function handle_builtin_types(Name $name)
     {
-        if (!$name->isUnqualified()) {
+        if (!$name->is_unqualified()) {
             return $name;
         }
-
-        $lowerName = $name->toLowerString();
-        if (!$this->phpVersion->supportsBuiltinType($lowerName)) {
+        $lower_name = $name->to_lower_string();
+        if (!$this->php_version->supports_builtin_type($lower_name)) {
             return $name;
         }
-
-        return new Node\Identifier($lowerName, $name->getAttributes());
+        return new Node\Identifier($lower_name, $name->get_attributes());
     }
-
     /**
      * Get combined start and end attributes at a stack location
      *
@@ -747,67 +619,56 @@ abstract class ParserAbstract implements Parser
      *
      * @return array<string, mixed> Combined start and end attributes
      */
-    protected function getAttributesAt(int $stackPos): array
+    protected function get_attributes_at(int $stack_pos): array
     {
-        return $this->getAttributes($this->tokenStartStack[$stackPos], $this->tokenEndStack[$stackPos]);
+        return $this->get_attributes($this->token_start_stack[$stack_pos], $this->token_end_stack[$stack_pos]);
     }
-
-    protected function getFloatCastKind(string $cast): int
+    protected function get_float_cast_kind(string $cast): int
     {
         $cast = strtolower($cast);
         if (strpos($cast, 'float') !== false) {
             return Double::KIND_FLOAT;
         }
-
         if (strpos($cast, 'real') !== false) {
             return Double::KIND_REAL;
         }
-
         return Double::KIND_DOUBLE;
     }
-
-    protected function getIntCastKind(string $cast): int
+    protected function get_int_cast_kind(string $cast): int
     {
         $cast = strtolower($cast);
         if (strpos($cast, 'integer') !== false) {
             return Expr\Cast\Int_::KIND_INTEGER;
         }
-
         return Expr\Cast\Int_::KIND_INT;
     }
-
-    protected function getBoolCastKind(string $cast): int
+    protected function get_bool_cast_kind(string $cast): int
     {
         $cast = strtolower($cast);
         if (strpos($cast, 'boolean') !== false) {
             return Expr\Cast\Bool_::KIND_BOOLEAN;
         }
-
         return Expr\Cast\Bool_::KIND_BOOL;
     }
-
-    protected function getStringCastKind(string $cast): int
+    protected function get_string_cast_kind(string $cast): int
     {
         $cast = strtolower($cast);
         if (strpos($cast, 'binary') !== false) {
             return Expr\Cast\String_::KIND_BINARY;
         }
-
         return Expr\Cast\String_::KIND_STRING;
     }
-
     /** @param array<string, mixed> $attributes */
-    protected function parseLNumber(string $str, array $attributes, bool $allowInvalidOctal = false): Int_
+    protected function parse_l_number(string $str, array $attributes, bool $allow_invalid_octal = false): Int_
     {
         try {
-            return Int_::fromString($str, $attributes, $allowInvalidOctal);
+            return Int_::from_string($str, $attributes, $allow_invalid_octal);
         } catch (Error $error) {
-            $this->emitError($error);
+            $this->emit_error($error);
             // Use dummy value
             return new Int_(0, $attributes);
         }
     }
-
     /**
      * Parse a T_NUM_STRING token into either an integer or string node.
      *
@@ -816,290 +677,184 @@ abstract class ParserAbstract implements Parser
      *
      * @return Int_|String_ Integer or string node.
      */
-    protected function parseNumString(string $str, array $attributes)
+    protected function parse_num_string(string $str, array $attributes)
     {
         if (!preg_match('/^(?:0|-?[1-9][0-9]*)$/', $str)) {
             return new String_($str, $attributes);
         }
-
         $num = +$str;
         if (!is_int($num)) {
             return new String_($str, $attributes);
         }
-
         return new Int_($num, $attributes);
     }
-
     /** @param array<string, mixed> $attributes */
-    protected function stripIndentation(
-        string $string,
-        int $indentLen,
-        string $indentChar,
-        bool $newlineAtStart,
-        bool $newlineAtEnd,
-        array $attributes
-    ): string {
-        if ($indentLen === 0) {
+    protected function strip_indentation(string $string, int $indent_len, string $indent_char, bool $newline_at_start, bool $newline_at_end, array $attributes): string
+    {
+        if ($indent_len === 0) {
             return $string;
         }
-
-        $start = $newlineAtStart ? '(?:(?<=\n)|\A)' : '(?<=\n)';
-        $end = $newlineAtEnd ? '(?:(?=[\r\n])|\z)' : '(?=[\r\n])';
+        $start = $newline_at_start ? '(?:(?<=\n)|\A)' : '(?<=\n)';
+        $end = $newline_at_end ? '(?:(?=[\r\n])|\z)' : '(?=[\r\n])';
         $regex = '/' . $start . '([ \t]*)(' . $end . ')?/';
-        return preg_replace_callback(
-            $regex,
-            function (array $matches) use ($indentLen, $indentChar, $attributes) {
-                $prefix = substr($matches[1], 0, $indentLen);
-                if (false !== strpos($prefix, $indentChar === ' ' ? "\t" : ' ')) {
-                    $this->emitError(new Error(
-                        'Invalid indentation - tabs and spaces cannot be mixed',
-                        $attributes
-                    ));
-                } elseif (strlen($prefix) < $indentLen && !isset($matches[2])) {
-                    $this->emitError(new Error(
-                        'Invalid body indentation level ' .
-                        '(expecting an indentation level of at least ' . $indentLen . ')',
-                        $attributes
-                    ));
-                }
-                return substr($matches[0], strlen($prefix));
-            },
-            $string
-        );
+        return preg_replace_callback($regex, function (array $matches) use ($indent_len, $indent_char, $attributes) {
+            $prefix = substr($matches[1], 0, $indent_len);
+            if (false !== strpos($prefix, $indent_char === ' ' ? "\t" : ' ')) {
+                $this->emit_error(new Error('Invalid indentation - tabs and spaces cannot be mixed', $attributes));
+            } elseif (strlen($prefix) < $indent_len && !isset($matches[2])) {
+                $this->emit_error(new Error('Invalid body indentation level ' . '(expecting an indentation level of at least ' . $indent_len . ')', $attributes));
+            }
+            return substr($matches[0], strlen($prefix));
+        }, $string);
     }
-
     /**
      * @param string|(Expr|InterpolatedStringPart)[] $contents
      * @param array<string, mixed> $attributes
      * @param array<string, mixed> $endTokenAttributes
      */
-    protected function parseDocString(
-        string $startToken,
-        $contents,
-        string $endToken,
-        array $attributes,
-        array $endTokenAttributes,
-        bool $parseUnicodeEscape
-    ): Expr {
-        $kind = strpos($startToken, "'") === false
-            ? String_::KIND_HEREDOC : String_::KIND_NOWDOC;
-
+    protected function parse_doc_string(string $start_token, $contents, string $end_token, array $attributes, array $end_token_attributes, bool $parse_unicode_escape): Expr
+    {
+        $kind = strpos($start_token, "'") === false ? String_::KIND_HEREDOC : String_::KIND_NOWDOC;
         $regex = '/\A[bB]?<<<[ \t]*[\'"]?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)[\'"]?(?:\r\n|\n|\r)\z/';
-        $result = preg_match($regex, $startToken, $matches);
+        $result = preg_match($regex, $start_token, $matches);
         assert($result === 1);
         $label = $matches[1];
-
-        $result = preg_match('/\A[ \t]*/', $endToken, $matches);
+        $result = preg_match('/\A[ \t]*/', $end_token, $matches);
         assert($result === 1);
         $indentation = $matches[0];
-
         $attributes['kind'] = $kind;
         $attributes['docLabel'] = $label;
         $attributes['docIndentation'] = $indentation;
-
-        $indentHasSpaces = false !== strpos($indentation, ' ');
-        $indentHasTabs = false !== strpos($indentation, "\t");
-        if ($indentHasSpaces && $indentHasTabs) {
-            $this->emitError(new Error(
-                'Invalid indentation - tabs and spaces cannot be mixed',
-                $endTokenAttributes
-            ));
-
+        $indent_has_spaces = false !== strpos($indentation, ' ');
+        $indent_has_tabs = false !== strpos($indentation, "\t");
+        if ($indent_has_spaces && $indent_has_tabs) {
+            $this->emit_error(new Error('Invalid indentation - tabs and spaces cannot be mixed', $end_token_attributes));
             // Proceed processing as if this doc string is not indented
             $indentation = '';
         }
-
-        $indentLen = \strlen($indentation);
-        $indentChar = $indentHasSpaces ? ' ' : "\t";
-
+        $indent_len = \strlen($indentation);
+        $indent_char = $indent_has_spaces ? ' ' : "\t";
         if (\is_string($contents)) {
             if ($contents === '') {
                 $attributes['rawValue'] = $contents;
                 return new String_('', $attributes);
             }
-
-            $contents = $this->stripIndentation(
-                $contents,
-                $indentLen,
-                $indentChar,
-                true,
-                true,
-                $attributes
-            );
+            $contents = $this->strip_indentation($contents, $indent_len, $indent_char, true, true, $attributes);
             $contents = preg_replace('~(\r\n|\n|\r)\z~', '', $contents);
             $attributes['rawValue'] = $contents;
-
             if ($kind === String_::KIND_HEREDOC) {
-                $contents = String_::parseEscapeSequences($contents, null, $parseUnicodeEscape);
+                $contents = String_::parse_escape_sequences($contents, null, $parse_unicode_escape);
             }
-
             return new String_($contents, $attributes);
         }
         assert(count($contents) > 0);
-        if (!$contents[0] instanceof Node\InterpolatedStringPart) {
+        if (!$contents[0] instanceof Node\Interpolated_String_Part) {
             // If there is no leading encapsed string part, pretend there is an empty one
-            $this->stripIndentation(
-                '',
-                $indentLen,
-                $indentChar,
-                true,
-                false,
-                $contents[0]->getAttributes()
-            );
+            $this->strip_indentation('', $indent_len, $indent_char, true, false, $contents[0]->get_attributes());
         }
-        $newContents = [];
+        $new_contents = [];
         foreach ($contents as $i => $part) {
-            if ($part instanceof Node\InterpolatedStringPart) {
-                $isLast = $i === \count($contents) - 1;
-                $part->value = $this->stripIndentation(
-                    $part->value,
-                    $indentLen,
-                    $indentChar,
-                    $i === 0,
-                    $isLast,
-                    $part->getAttributes()
-                );
-                if ($isLast) {
+            if ($part instanceof Node\Interpolated_String_Part) {
+                $is_last = $i === \count($contents) - 1;
+                $part->value = $this->strip_indentation($part->value, $indent_len, $indent_char, $i === 0, $is_last, $part->get_attributes());
+                if ($is_last) {
                     $part->value = preg_replace('~(\r\n|\n|\r)\z~', '', $part->value);
                 }
-                $part->setAttribute('rawValue', $part->value);
-                $part->value = String_::parseEscapeSequences($part->value, null, $parseUnicodeEscape);
+                $part->set_attribute('rawValue', $part->value);
+                $part->value = String_::parse_escape_sequences($part->value, null, $parse_unicode_escape);
                 if ('' === $part->value) {
                     continue;
                 }
             }
-            $newContents[] = $part;
+            $new_contents[] = $part;
         }
-        return new InterpolatedString($newContents, $attributes);
+        return new Interpolated_String($new_contents, $attributes);
     }
-
-    protected function createCommentFromToken(Token $token, int $tokenPos): Comment
+    protected function create_comment_from_token(Token $token, int $token_pos): Comment
     {
         assert($token->id === \T_COMMENT || $token->id == \T_DOC_COMMENT);
-        return \T_DOC_COMMENT === $token->id
-            ? new Comment\Doc(
-                $token->text,
-                $token->line,
-                $token->pos,
-                $tokenPos,
-                $token->getEndLine(),
-                $token->getEndPos() - 1,
-                $tokenPos
-            )
-            : new Comment(
-                $token->text,
-                $token->line,
-                $token->pos,
-                $tokenPos,
-                $token->getEndLine(),
-                $token->getEndPos() - 1,
-                $tokenPos
-            );
+        return \T_DOC_COMMENT === $token->id ? new Comment\Doc($token->text, $token->line, $token->pos, $token_pos, $token->get_end_line(), $token->get_end_pos() - 1, $token_pos) : new Comment($token->text, $token->line, $token->pos, $token_pos, $token->get_end_line(), $token->get_end_pos() - 1, $token_pos);
     }
-
     /**
      * Get last comment before the given token position, if any
      */
-    protected function getCommentBeforeToken(int $tokenPos): ?Comment
+    protected function get_comment_before_token(int $token_pos): ?Comment
     {
-        while (--$tokenPos >= 0) {
-            $token = $this->tokens[$tokenPos];
-            if (!isset($this->dropTokens[$token->id])) {
+        while (--$token_pos >= 0) {
+            $token = $this->tokens[$token_pos];
+            if (!isset($this->drop_tokens[$token->id])) {
                 break;
             }
-
             if ($token->id === \T_COMMENT || $token->id === \T_DOC_COMMENT) {
-                return $this->createCommentFromToken($token, $tokenPos);
+                return $this->create_comment_from_token($token, $token_pos);
             }
         }
         return null;
     }
-
     /**
      * Create a zero-length nop to capture preceding comments, if any.
      */
-    protected function maybeCreateZeroLengthNop(int $tokenPos): ?Nop
+    protected function maybe_create_zero_length_nop(int $token_pos): ?Nop
     {
-        $comment = $this->getCommentBeforeToken($tokenPos);
+        $comment = $this->get_comment_before_token($token_pos);
         if ($comment === null) {
             return null;
         }
-
-        $commentEndLine = $comment->getEndLine();
-        $commentEndFilePos = $comment->getEndFilePos();
-        $commentEndTokenPos = $comment->getEndTokenPos();
-        $attributes = [
-            'startLine' => $commentEndLine,
-            'endLine' => $commentEndLine,
-            'startFilePos' => $commentEndFilePos + 1,
-            'endFilePos' => $commentEndFilePos,
-            'startTokenPos' => $commentEndTokenPos + 1,
-            'endTokenPos' => $commentEndTokenPos,
-        ];
+        $comment_end_line = $comment->get_end_line();
+        $comment_end_file_pos = $comment->get_end_file_pos();
+        $comment_end_token_pos = $comment->get_end_token_pos();
+        $attributes = ['startLine' => $comment_end_line, 'endLine' => $comment_end_line, 'startFilePos' => $comment_end_file_pos + 1, 'endFilePos' => $comment_end_file_pos, 'startTokenPos' => $comment_end_token_pos + 1, 'endTokenPos' => $comment_end_token_pos];
         return new Nop($attributes);
     }
-
-    protected function maybeCreateNop(int $tokenStartPos, int $tokenEndPos): ?Nop
+    protected function maybe_create_nop(int $token_start_pos, int $token_end_pos): ?Nop
     {
-        if ($this->getCommentBeforeToken($tokenStartPos) === null) {
+        if ($this->get_comment_before_token($token_start_pos) === null) {
             return null;
         }
-        return new Nop($this->getAttributes($tokenStartPos, $tokenEndPos));
+        return new Nop($this->get_attributes($token_start_pos, $token_end_pos));
     }
-
-    protected function handleHaltCompiler(): string
+    protected function handle_halt_compiler(): string
     {
         // Prevent the lexer from returning any further tokens.
-        $nextToken = $this->tokens[$this->tokenPos + 1];
-        $this->tokenPos = \count($this->tokens) - 2;
-
+        $next_token = $this->tokens[$this->token_pos + 1];
+        $this->token_pos = \count($this->tokens) - 2;
         // Return text after __halt_compiler.
-        return $nextToken->id === \T_INLINE_HTML ? $nextToken->text : '';
+        return $next_token->id === \T_INLINE_HTML ? $next_token->text : '';
     }
-
-    protected function inlineHtmlHasLeadingNewline(int $stackPos): bool
+    protected function inline_html_has_leading_newline(int $stack_pos): bool
     {
-        $tokenPos = $this->tokenStartStack[$stackPos];
-        $token = $this->tokens[$tokenPos];
+        $token_pos = $this->token_start_stack[$stack_pos];
+        $token = $this->tokens[$token_pos];
         assert($token->id == \T_INLINE_HTML);
-        if ($tokenPos > 0) {
-            $prevToken = $this->tokens[$tokenPos - 1];
-            assert($prevToken->id == \T_CLOSE_TAG);
-            return false !== strpos($prevToken->text, "\n")
-                || false !== strpos($prevToken->text, "\r");
+        if ($token_pos > 0) {
+            $prev_token = $this->tokens[$token_pos - 1];
+            assert($prev_token->id == \T_CLOSE_TAG);
+            return false !== strpos($prev_token->text, "\n") || false !== strpos($prev_token->text, "\r");
         }
         return true;
     }
-
     /**
      * @return array<string, mixed>
      */
-    protected function createEmptyElemAttributes(int $tokenPos): array
+    protected function create_empty_elem_attributes(int $token_pos): array
     {
-        return $this->getAttributesForToken($tokenPos);
+        return $this->get_attributes_for_token($token_pos);
     }
-
-    protected function fixupArrayDestructuring(Array_ $node): Expr\List_
+    protected function fixup_array_destructuring(Array_ $node): Expr\List_
     {
-        $this->createdArrays->offsetUnset($node);
-        return new Expr\List_(array_map(function (Node\ArrayItem $item): ?\PhpParser\Node\ArrayItem {
+        $this->created_arrays->offsetUnset($node);
+        return new Expr\List_(array_map(function (Node\Array_Item $item): ?\Php_Parser\Node\Array_Item {
             if ($item->value instanceof Expr\Error) {
                 // We used Error as a placeholder for empty elements, which are legal for destructuring.
                 return null;
             }
             if ($item->value instanceof Array_) {
-                return new Node\ArrayItem(
-                    $this->fixupArrayDestructuring($item->value),
-                    $item->key,
-                    $item->byRef,
-                    $item->getAttributes()
-                );
+                return new Node\Array_Item($this->fixup_array_destructuring($item->value), $item->key, $item->by_ref, $item->get_attributes());
             }
             return $item;
-        }, $node->items), ['kind' => Expr\List_::KIND_ARRAY] + $node->getAttributes());
+        }, $node->items), ['kind' => Expr\List_::KIND_ARRAY] + $node->get_attributes());
     }
-
-    protected function postprocessList(Expr\List_ $node): void
+    protected function postprocess_list(Expr\List_ $node): void
     {
         foreach ($node->items as $i => $item) {
             if ($item->value instanceof Expr\Error) {
@@ -1108,314 +863,220 @@ abstract class ParserAbstract implements Parser
             }
         }
     }
-
     /** @param ElseIf_|Else_ $node */
-    protected function fixupAlternativeElse($node): void
+    protected function fixup_alternative_else($node): void
     {
         // Make sure a trailing nop statement carrying comments is part of the node.
-        $numStmts = \count($node->stmts);
-        if ($numStmts !== 0 && $node->stmts[$numStmts - 1] instanceof Nop) {
-            $nopAttrs = $node->stmts[$numStmts - 1]->getAttributes();
-            if (isset($nopAttrs['endLine'])) {
-                $node->setAttribute('endLine', $nopAttrs['endLine']);
+        $num_stmts = \count($node->stmts);
+        if ($num_stmts !== 0 && $node->stmts[$num_stmts - 1] instanceof Nop) {
+            $nop_attrs = $node->stmts[$num_stmts - 1]->get_attributes();
+            if (isset($nop_attrs['endLine'])) {
+                $node->set_attribute('endLine', $nop_attrs['endLine']);
             }
-            if (isset($nopAttrs['endFilePos'])) {
-                $node->setAttribute('endFilePos', $nopAttrs['endFilePos']);
+            if (isset($nop_attrs['endFilePos'])) {
+                $node->set_attribute('endFilePos', $nop_attrs['endFilePos']);
             }
-            if (isset($nopAttrs['endTokenPos'])) {
-                $node->setAttribute('endTokenPos', $nopAttrs['endTokenPos']);
+            if (isset($nop_attrs['endTokenPos'])) {
+                $node->set_attribute('endTokenPos', $nop_attrs['endTokenPos']);
             }
         }
     }
-
-    protected function checkClassModifier(int $a, int $b, int $modifierPos): void
+    protected function check_class_modifier(int $a, int $b, int $modifier_pos): void
     {
         try {
-            Modifiers::verifyClassModifier($a, $b);
+            Modifiers::verify_class_modifier($a, $b);
         } catch (Error $error) {
-            $error->setAttributes($this->getAttributesAt($modifierPos));
-            $this->emitError($error);
+            $error->set_attributes($this->get_attributes_at($modifier_pos));
+            $this->emit_error($error);
         }
     }
-
-    protected function checkModifier(int $a, int $b, int $modifierPos): void
+    protected function check_modifier(int $a, int $b, int $modifier_pos): void
     {
         // Jumping through some hoops here because verifyModifier() is also used elsewhere
         try {
-            Modifiers::verifyModifier($a, $b);
+            Modifiers::verify_modifier($a, $b);
         } catch (Error $error) {
-            $error->setAttributes($this->getAttributesAt($modifierPos));
-            $this->emitError($error);
+            $error->set_attributes($this->get_attributes_at($modifier_pos));
+            $this->emit_error($error);
         }
     }
-
-    protected function checkParam(Param $node): void
+    protected function check_param(Param $node): void
     {
         if ($node->variadic && null !== $node->default) {
-            $this->emitError(new Error(
-                'Variadic parameter cannot have a default value',
-                $node->default->getAttributes()
-            ));
+            $this->emit_error(new Error('Variadic parameter cannot have a default value', $node->default->get_attributes()));
         }
-
         if ($node->type instanceof Identifier && $node->type->name === 'void') {
-            $this->emitError(new Error(
-                'void cannot be used as a parameter type',
-                $node->type->getAttributes()
-            ));
+            $this->emit_error(new Error('void cannot be used as a parameter type', $node->type->get_attributes()));
         }
     }
-
-    protected function checkTryCatch(TryCatch $node): void
+    protected function check_try_catch(Try_Catch $node): void
     {
         if (empty($node->catches) && null === $node->finally) {
-            $this->emitError(new Error(
-                'Cannot use try without catch or finally',
-                $node->getAttributes()
-            ));
+            $this->emit_error(new Error('Cannot use try without catch or finally', $node->get_attributes()));
         }
     }
-
-    protected function checkNamespace(Namespace_ $node): void
+    protected function check_namespace(Namespace_ $node): void
     {
         if (null !== $node->stmts) {
             foreach ($node->stmts as $stmt) {
                 if ($stmt instanceof Namespace_) {
-                    $this->emitError(new Error(
-                        'Namespace declarations cannot be nested',
-                        $stmt->getAttributes()
-                    ));
+                    $this->emit_error(new Error('Namespace declarations cannot be nested', $stmt->get_attributes()));
                 }
             }
         }
     }
-
-    private function checkClassName(?Identifier $name, int $namePos): void
+    private function check_class_name(?Identifier $name, int $name_pos): void
     {
-        if (null !== $name && $name->isSpecialClassName()) {
-            $this->emitError(new Error(
-                sprintf('Cannot use \'%s\' as class name as it is reserved', $name),
-                $this->getAttributesAt($namePos)
-            ));
+        if (null !== $name && $name->is_special_class_name()) {
+            $this->emit_error(new Error(sprintf('Cannot use \'%s\' as class name as it is reserved', $name), $this->get_attributes_at($name_pos)));
         }
     }
-
     /** @param Name[] $interfaces */
-    private function checkImplementedInterfaces(array $interfaces): void
+    private function check_implemented_interfaces(array $interfaces): void
     {
         foreach ($interfaces as $interface) {
-            if ($interface->isSpecialClassName()) {
-                $this->emitError(new Error(
-                    sprintf('Cannot use \'%s\' as interface name as it is reserved', $interface),
-                    $interface->getAttributes()
-                ));
+            if ($interface->is_special_class_name()) {
+                $this->emit_error(new Error(sprintf('Cannot use \'%s\' as interface name as it is reserved', $interface), $interface->get_attributes()));
             }
         }
     }
-
-    protected function checkClass(Class_ $node, int $namePos): void
+    protected function check_class(Class_ $node, int $name_pos): void
     {
-        $this->checkClassName($node->name, $namePos);
-
-        if ($node->extends && $node->extends->isSpecialClassName()) {
-            $this->emitError(new Error(
-                sprintf('Cannot use \'%s\' as class name as it is reserved', $node->extends),
-                $node->extends->getAttributes()
-            ));
+        $this->check_class_name($node->name, $name_pos);
+        if ($node->extends && $node->extends->is_special_class_name()) {
+            $this->emit_error(new Error(sprintf('Cannot use \'%s\' as class name as it is reserved', $node->extends), $node->extends->get_attributes()));
         }
-
-        $this->checkImplementedInterfaces($node->implements);
+        $this->check_implemented_interfaces($node->implements);
     }
-
-    protected function checkInterface(Interface_ $node, int $namePos): void
+    protected function check_interface(Interface_ $node, int $name_pos): void
     {
-        $this->checkClassName($node->name, $namePos);
-        $this->checkImplementedInterfaces($node->extends);
+        $this->check_class_name($node->name, $name_pos);
+        $this->check_implemented_interfaces($node->extends);
     }
-
-    protected function checkEnum(Enum_ $node, int $namePos): void
+    protected function check_enum(Enum_ $node, int $name_pos): void
     {
-        $this->checkClassName($node->name, $namePos);
-        $this->checkImplementedInterfaces($node->implements);
+        $this->check_class_name($node->name, $name_pos);
+        $this->check_implemented_interfaces($node->implements);
     }
-
-    protected function checkClassMethod(ClassMethod $node, int $modifierPos): void
+    protected function check_class_method(Class_Method $node, int $modifier_pos): void
     {
         if ($node->flags & Modifiers::STATIC) {
-            switch ($node->name->toLowerString()) {
+            switch ($node->name->to_lower_string()) {
                 case '__construct':
-                    $this->emitError(new Error(
-                        sprintf('Constructor %s() cannot be static', $node->name),
-                        $this->getAttributesAt($modifierPos)
-                    ));
+                    $this->emit_error(new Error(sprintf('Constructor %s() cannot be static', $node->name), $this->get_attributes_at($modifier_pos)));
                     break;
                 case '__destruct':
-                    $this->emitError(new Error(
-                        sprintf('Destructor %s() cannot be static', $node->name),
-                        $this->getAttributesAt($modifierPos)
-                    ));
+                    $this->emit_error(new Error(sprintf('Destructor %s() cannot be static', $node->name), $this->get_attributes_at($modifier_pos)));
                     break;
                 case '__clone':
-                    $this->emitError(new Error(
-                        sprintf('Clone method %s() cannot be static', $node->name),
-                        $this->getAttributesAt($modifierPos)
-                    ));
+                    $this->emit_error(new Error(sprintf('Clone method %s() cannot be static', $node->name), $this->get_attributes_at($modifier_pos)));
                     break;
             }
         }
-
         if ($node->flags & Modifiers::READONLY) {
-            $this->emitError(new Error(
-                sprintf('Method %s() cannot be readonly', $node->name),
-                $this->getAttributesAt($modifierPos)
-            ));
+            $this->emit_error(new Error(sprintf('Method %s() cannot be readonly', $node->name), $this->get_attributes_at($modifier_pos)));
         }
     }
-
-    protected function checkClassConst(ClassConst $node, int $modifierPos): void
+    protected function check_class_const(Class_Const $node, int $modifier_pos): void
     {
         foreach ([Modifiers::STATIC, Modifiers::ABSTRACT, Modifiers::READONLY] as $modifier) {
             if ($node->flags & $modifier) {
-                $this->emitError(new Error(
-                    "Cannot use '" . Modifiers::toString($modifier) . "' as constant modifier",
-                    $this->getAttributesAt($modifierPos)
-                ));
+                $this->emit_error(new Error("Cannot use '" . Modifiers::to_string($modifier) . "' as constant modifier", $this->get_attributes_at($modifier_pos)));
             }
         }
     }
-
-    protected function checkUseUse(UseItem $node, int $namePos): void
+    protected function check_use_use(Use_Item $node, int $name_pos): void
     {
-        if ($node->alias && $node->alias->isSpecialClassName()) {
-            $this->emitError(new Error(
-                sprintf(
-                    'Cannot use %s as %s because \'%2$s\' is a special class name',
-                    $node->name,
-                    $node->alias
-                ),
-                $this->getAttributesAt($namePos)
-            ));
+        if ($node->alias && $node->alias->is_special_class_name()) {
+            $this->emit_error(new Error(sprintf('Cannot use %s as %s because \'%2$s\' is a special class name', $node->name, $node->alias), $this->get_attributes_at($name_pos)));
         }
     }
-
-    protected function checkPropertyHooksForMultiProperty(Property $property, int $hookPos): void
+    protected function check_property_hooks_for_multi_property(Property $property, int $hook_pos): void
     {
         if (count($property->props) > 1) {
-            $this->emitError(new Error(
-                'Cannot use hooks when declaring multiple properties',
-                $this->getAttributesAt($hookPos)
-            ));
+            $this->emit_error(new Error('Cannot use hooks when declaring multiple properties', $this->get_attributes_at($hook_pos)));
         }
     }
-
     /** @param PropertyHook[] $hooks */
-    protected function checkEmptyPropertyHookList(array $hooks, int $hookPos): void
+    protected function check_empty_property_hook_list(array $hooks, int $hook_pos): void
     {
         if (empty($hooks)) {
-            $this->emitError(new Error(
-                'Property hook list cannot be empty',
-                $this->getAttributesAt($hookPos)
-            ));
+            $this->emit_error(new Error('Property hook list cannot be empty', $this->get_attributes_at($hook_pos)));
         }
     }
-
-    protected function checkPropertyHook(PropertyHook $hook, ?int $paramListPos): void
+    protected function check_property_hook(Property_Hook $hook, ?int $param_list_pos): void
     {
-        $name = $hook->name->toLowerString();
+        $name = $hook->name->to_lower_string();
         if ($name !== 'get' && $name !== 'set') {
-            $this->emitError(new Error(
-                'Unknown hook "' . $hook->name . '", expected "get" or "set"',
-                $hook->name->getAttributes()
-            ));
+            $this->emit_error(new Error('Unknown hook "' . $hook->name . '", expected "get" or "set"', $hook->name->get_attributes()));
         }
-        if ($name === 'get' && $paramListPos !== null) {
-            $this->emitError(new Error(
-                'get hook must not have a parameter list',
-                $this->getAttributesAt($paramListPos)
-            ));
+        if ($name === 'get' && $param_list_pos !== null) {
+            $this->emit_error(new Error('get hook must not have a parameter list', $this->get_attributes_at($param_list_pos)));
         }
     }
-
-    protected function checkPropertyHookModifiers(int $a, int $b, int $modifierPos): void
+    protected function check_property_hook_modifiers(int $a, int $b, int $modifier_pos): void
     {
         try {
-            Modifiers::verifyModifier($a, $b);
+            Modifiers::verify_modifier($a, $b);
         } catch (Error $error) {
-            $error->setAttributes($this->getAttributesAt($modifierPos));
-            $this->emitError($error);
+            $error->set_attributes($this->get_attributes_at($modifier_pos));
+            $this->emit_error($error);
         }
-
         if ($b != Modifiers::FINAL) {
-            $this->emitError(new Error(
-                'Cannot use the ' . Modifiers::toString($b) . ' modifier on a property hook',
-                $this->getAttributesAt($modifierPos)
-            ));
+            $this->emit_error(new Error('Cannot use the ' . Modifiers::to_string($b) . ' modifier on a property hook', $this->get_attributes_at($modifier_pos)));
         }
     }
-
-    protected function checkConstantAttributes(Const_ $node): void
+    protected function check_constant_attributes(Const_ $node): void
     {
-        if ($node->attrGroups !== [] && count($node->consts) > 1) {
-            $this->emitError(new Error(
-                'Cannot use attributes on multiple constants at once',
-                $node->getAttributes()
-            ));
+        if ($node->attr_groups !== [] && count($node->consts) > 1) {
+            $this->emit_error(new Error('Cannot use attributes on multiple constants at once', $node->get_attributes()));
         }
     }
-
-    protected function checkPipeOperatorParentheses(Expr $node): void
+    protected function check_pipe_operator_parentheses(Expr $node): void
     {
-        if ($node instanceof Expr\ArrowFunction && !$this->parenthesizedArrowFunctions->offsetExists($node)) {
-            $this->emitError(new Error(
-                'Arrow functions on the right hand side of |> must be parenthesized',
-                $node->getAttributes()
-            ));
+        if ($node instanceof Expr\Arrow_Function && !$this->parenthesized_arrow_functions->offsetExists($node)) {
+            $this->emit_error(new Error('Arrow functions on the right hand side of |> must be parenthesized', $node->get_attributes()));
         }
     }
-
     /**
      * @param Property|Param $node
      */
-    protected function addPropertyNameToHooks(Node $node): void
+    protected function add_property_name_to_hooks(Node $node): void
     {
         if ($node instanceof Property) {
-            $name = $node->props[0]->name->toString();
+            $name = $node->props[0]->name->to_string();
         } else {
             $name = $node->var->name;
         }
         foreach ($node->hooks as $hook) {
-            $hook->setAttribute('propertyName', $name);
+            $hook->set_attribute('propertyName', $name);
         }
     }
-
     /** @param array<Node\Arg|Node\VariadicPlaceholder> $args */
-    private function isSimpleExit(array $args): bool
+    private function is_simple_exit(array $args): bool
     {
         if (\count($args) === 0) {
             return true;
         }
         if (\count($args) === 1) {
             $arg = $args[0];
-            return $arg instanceof Arg && $arg->name === null &&
-                   $arg->byRef === false && $arg->unpack === false;
+            return $arg instanceof Arg && $arg->name === null && $arg->by_ref === false && $arg->unpack === false;
         }
         return false;
     }
-
     /**
      * @param array<Node\Arg|Node\VariadicPlaceholder> $args
      * @param array<string, mixed> $attrs
      */
-    protected function createExitExpr(string $name, int $namePos, array $args, array $attrs): Expr
+    protected function create_exit_expr(string $name, int $name_pos, array $args, array $attrs): Expr
     {
-        if ($this->isSimpleExit($args)) {
+        if ($this->is_simple_exit($args)) {
             // Create Exit node for backwards compatibility.
             $attrs['kind'] = strtolower($name) === 'exit' ? Expr\Exit_::KIND_EXIT : Expr\Exit_::KIND_DIE;
             return new Expr\Exit_(\count($args) === 1 ? $args[0]->value : null, $attrs);
         }
-        return new Expr\FuncCall(new Name($name, $this->getAttributesAt($namePos)), $args, $attrs);
+        return new Expr\Func_Call(new Name($name, $this->get_attributes_at($name_pos)), $args, $attrs);
     }
-
     /**
      * Creates the token map.
      *
@@ -1425,37 +1086,32 @@ abstract class ParserAbstract implements Parser
      *
      * @return array<int, int> The token map
      */
-    protected function createTokenMap(): array
+    protected function create_token_map(): array
     {
-        $tokenMap = [];
-
+        $token_map = [];
         // Single-char tokens use an identity mapping.
         for ($i = 0; $i < 256; ++$i) {
-            $tokenMap[$i] = $i;
+            $token_map[$i] = $i;
         }
-
-        foreach ($this->symbolToName as $name) {
+        foreach ($this->symbol_to_name as $name) {
             if ($name[0] === 'T') {
-                $tokenMap[\constant($name)] = constant(static::class . '::' . $name);
+                $token_map[\constant($name)] = constant(static::class . '::' . $name);
             }
         }
-
         // T_OPEN_TAG_WITH_ECHO with dropped T_OPEN_TAG results in T_ECHO
-        $tokenMap[\T_OPEN_TAG_WITH_ECHO] = static::T_ECHO;
+        $token_map[\T_OPEN_TAG_WITH_ECHO] = static::T_ECHO;
         // T_CLOSE_TAG is equivalent to ';'
-        $tokenMap[\T_CLOSE_TAG] = ord(';');
-
+        $token_map[\T_CLOSE_TAG] = ord(';');
         // We have created a map from PHP token IDs to external symbol IDs.
         // Now map them to the internal symbol ID.
-        $fullTokenMap = [];
-        foreach ($tokenMap as $phpToken => $extSymbol) {
-            $intSymbol = $this->tokenToSymbol[$extSymbol];
-            if ($intSymbol === $this->invalidSymbol) {
+        $full_token_map = [];
+        foreach ($token_map as $php_token => $ext_symbol) {
+            $int_symbol = $this->token_to_symbol[$ext_symbol];
+            if ($int_symbol === $this->invalid_symbol) {
                 continue;
             }
-            $fullTokenMap[$phpToken] = $intSymbol;
+            $full_token_map[$php_token] = $int_symbol;
         }
-
-        return $fullTokenMap;
+        return $full_token_map;
     }
 }

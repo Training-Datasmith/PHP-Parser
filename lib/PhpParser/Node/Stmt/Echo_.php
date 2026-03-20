@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-
+use Php_Parser\Node;
 class Echo_ extends Node\Stmt
 {
     /** @var Node\Expr[] Expressions */
     public array $exprs;
-
     /**
      * Constructs an echo node.
      *
@@ -22,13 +19,11 @@ class Echo_ extends Node\Stmt
         $this->attributes = $attributes;
         $this->exprs = $exprs;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['exprs'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_Echo';
     }

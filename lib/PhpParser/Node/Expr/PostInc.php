@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Expr;
-
-class PostInc extends Expr
+use Php_Parser\Node\Expr;
+class Post_Inc extends Expr
 {
     /** @var Expr Variable */
     public Expr $var;
-
     /**
      * Constructs a post increment node.
      *
@@ -22,13 +19,11 @@ class PostInc extends Expr
         $this->attributes = $attributes;
         $this->var = $var;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['var'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_PostInc';
     }

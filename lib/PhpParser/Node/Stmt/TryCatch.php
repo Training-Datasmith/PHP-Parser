@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-
-class TryCatch extends Node\Stmt
+use Php_Parser\Node;
+class Try_Catch extends Node\Stmt
 {
     /** @var Node\Stmt[] Statements */
     public array $stmts;
@@ -14,7 +12,6 @@ class TryCatch extends Node\Stmt
     public array $catches;
     /** @var null|Finally_ Optional finally node */
     public ?Finally_ $finally;
-
     /**
      * Constructs a try catch node.
      *
@@ -30,13 +27,11 @@ class TryCatch extends Node\Stmt
         $this->catches = $catches;
         $this->finally = $finally;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['stmts', 'catches', 'finally'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_TryCatch';
     }

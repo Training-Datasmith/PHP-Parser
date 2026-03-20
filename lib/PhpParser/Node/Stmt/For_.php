@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-
+use Php_Parser\Node;
 class For_ extends Node\Stmt
 {
     /** @var Node\Expr[] Init expressions */
@@ -16,7 +14,6 @@ class For_ extends Node\Stmt
     public array $loop;
     /** @var Node\Stmt[] Statements */
     public array $stmts;
-
     /**
      * Constructs a for loop node.
      *
@@ -32,21 +29,19 @@ class For_ extends Node\Stmt
      *             'stmts' => array(): Statements
      * @param array<string, mixed> $attributes Additional attributes
      */
-    public function __construct(array $subNodes = [], array $attributes = [])
+    public function __construct(array $sub_nodes = [], array $attributes = [])
     {
         $this->attributes = $attributes;
-        $this->init = $subNodes['init'] ?? [];
-        $this->cond = $subNodes['cond'] ?? [];
-        $this->loop = $subNodes['loop'] ?? [];
-        $this->stmts = $subNodes['stmts'] ?? [];
+        $this->init = $sub_nodes['init'] ?? [];
+        $this->cond = $sub_nodes['cond'] ?? [];
+        $this->loop = $sub_nodes['loop'] ?? [];
+        $this->stmts = $sub_nodes['stmts'] ?? [];
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['init', 'cond', 'loop', 'stmts'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_For';
     }

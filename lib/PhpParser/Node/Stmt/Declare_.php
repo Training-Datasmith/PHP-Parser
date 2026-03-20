@@ -1,19 +1,16 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-use PhpParser\Node\DeclareItem;
-
+use Php_Parser\Node;
+use Php_Parser\Node\Declare_Item;
 class Declare_ extends Node\Stmt
 {
     /** @var DeclareItem[] List of declares */
     public array $declares;
     /** @var Node\Stmt[]|null Statements */
     public ?array $stmts;
-
     /**
      * Constructs a declare node.
      *
@@ -27,13 +24,11 @@ class Declare_ extends Node\Stmt
         $this->declares = $declares;
         $this->stmts = $stmts;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['declares', 'stmts'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_Declare';
     }

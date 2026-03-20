@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node\Stmt;
-
-class InlineHTML extends Stmt
+use Php_Parser\Node\Stmt;
+class Inline_Html extends Stmt
 {
     /** @var string String */
     public string $value;
-
     /**
      * Constructs an inline HTML node.
      *
@@ -22,13 +19,11 @@ class InlineHTML extends Stmt
         $this->attributes = $attributes;
         $this->value = $value;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['value'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_InlineHTML';
     }

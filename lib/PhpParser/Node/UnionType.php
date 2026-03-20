@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node;
 
-namespace PhpParser\Node;
-
-class UnionType extends ComplexType
+class Union_Type extends Complex_Type
 {
     /** @var (Identifier|Name|IntersectionType)[] Types */
     public array $types;
-
     /**
      * Constructs a union type.
      *
@@ -20,13 +18,11 @@ class UnionType extends ComplexType
         $this->attributes = $attributes;
         $this->types = $types;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['types'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'UnionType';
     }

@@ -1,19 +1,16 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node;
-use PhpParser\Node\MatchArm;
-
+use Php_Parser\Node;
+use Php_Parser\Node\Match_Arm;
 class Match_ extends Node\Expr
 {
     /** @var Node\Expr Condition */
     public Node\Expr $cond;
     /** @var MatchArm[] */
     public array $arms;
-
     /**
      * @param Node\Expr $cond Condition
      * @param MatchArm[] $arms
@@ -25,13 +22,11 @@ class Match_ extends Node\Expr
         $this->cond = $cond;
         $this->arms = $arms;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['cond', 'arms'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_Match';
     }

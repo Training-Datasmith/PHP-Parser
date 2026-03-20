@@ -1,33 +1,27 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Builder;
 
-namespace PhpParser\Builder;
-
-use PhpParser\BuilderHelpers;
-use PhpParser\Node;
-
-abstract class FunctionLike extends Declaration
+use Php_Parser\Builder_Helpers;
+use Php_Parser\Node;
+abstract class Function_Like extends Declaration
 {
-    protected bool $returnByRef = false;
+    protected bool $return_by_ref = false;
     /** @var Node\Param[] */
     protected array $params = [];
-
     /** @var Node\Identifier|Node\Name|Node\ComplexType|null */
-    protected ?Node $returnType = null;
-
+    protected ?Node $return_type = null;
     /**
      * Make the function return by reference.
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeReturnByRef()
+    public function make_return_by_ref()
     {
-        $this->returnByRef = true;
-
+        $this->return_by_ref = true;
         return $this;
     }
-
     /**
      * Adds a parameter.
      *
@@ -35,19 +29,15 @@ abstract class FunctionLike extends Declaration
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addParam($param)
+    public function add_param($param)
     {
-        $param = BuilderHelpers::normalizeNode($param);
-
+        $param = Builder_Helpers::normalize_node($param);
         if (!$param instanceof Node\Param) {
-            throw new \LogicException(sprintf('Expected parameter node, got "%s"', $param->getType()));
+            throw new \LogicException(sprintf('Expected parameter node, got "%s"', $param->get_type()));
         }
-
         $this->params[] = $param;
-
         return $this;
     }
-
     /**
      * Adds multiple parameters.
      *
@@ -55,15 +45,13 @@ abstract class FunctionLike extends Declaration
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addParams(array $params)
+    public function add_params(array $params)
     {
         foreach ($params as $param) {
-            $this->addParam($param);
+            $this->add_param($param);
         }
-
         return $this;
     }
-
     /**
      * Sets the return type for PHP 7.
      *
@@ -71,10 +59,9 @@ abstract class FunctionLike extends Declaration
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function setReturnType($type)
+    public function set_return_type($type)
     {
-        $this->returnType = BuilderHelpers::normalizeType($type);
-
+        $this->return_type = Builder_Helpers::normalize_type($type);
         return $this;
     }
 }

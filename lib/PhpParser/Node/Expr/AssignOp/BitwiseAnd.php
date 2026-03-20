@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr\Assign_Op;
 
-namespace PhpParser\Node\Expr\AssignOp;
-
-use PhpParser\Node\Expr\AssignOp;
-
-class BitwiseAnd extends AssignOp
+use Php_Parser\Node\Expr\Assign_Op;
+class Bitwise_And extends Assign_Op
 {
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_AssignOp_BitwiseAnd';
     }

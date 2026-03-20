@@ -1,21 +1,18 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node;
-use PhpParser\Node\Expr;
-use PhpParser\Node\Name;
-use PhpParser\Node\VarLikeIdentifier;
-
-class StaticPropertyFetch extends Expr
+use Php_Parser\Node;
+use Php_Parser\Node\Expr;
+use Php_Parser\Node\Name;
+use Php_Parser\Node\Var_Like_Identifier;
+class Static_Property_Fetch extends Expr
 {
     /** @var Name|Expr Class name */
     public Node $class;
     /** @var VarLikeIdentifier|Expr Property name */
     public Node $name;
-
     /**
      * Constructs a static property fetch node.
      *
@@ -27,15 +24,13 @@ class StaticPropertyFetch extends Expr
     {
         $this->attributes = $attributes;
         $this->class = $class;
-        $this->name = \is_string($name) ? new VarLikeIdentifier($name) : $name;
+        $this->name = \is_string($name) ? new Var_Like_Identifier($name) : $name;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['class', 'name'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_StaticPropertyFetch';
     }

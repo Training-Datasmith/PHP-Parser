@@ -1,20 +1,16 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Expr;
-
+use Php_Parser\Node\Expr;
 class Exit_ extends Expr
 {
     /* For use in "kind" attribute */
     public const KIND_EXIT = 1;
     public const KIND_DIE = 2;
-
     /** @var null|Expr Expression */
     public ?Expr $expr;
-
     /**
      * Constructs an exit() node.
      *
@@ -26,13 +22,11 @@ class Exit_ extends Expr
         $this->attributes = $attributes;
         $this->expr = $expr;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['expr'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_Exit';
     }

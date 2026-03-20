@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Expr;
-
+use Php_Parser\Node\Expr;
 class Variable extends Expr
 {
     /** @var string|Expr Name */
     public $name;
-
     /**
      * Constructs a variable node.
      *
@@ -22,13 +19,11 @@ class Variable extends Expr
         $this->attributes = $attributes;
         $this->name = $name;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['name'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_Variable';
     }

@@ -1,24 +1,20 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Lexer\Token_Emulator;
 
-namespace PhpParser\Lexer\TokenEmulator;
-
-use PhpParser\PhpVersion;
-
-final class PropertyTokenEmulator extends KeywordEmulator
+use Php_Parser\Php_Version;
+final class Property_Token_Emulator extends Keyword_Emulator
 {
-    public function getPhpVersion(): PhpVersion
+    public function get_php_version(): Php_Version
     {
-        return PhpVersion::fromComponents(8, 4);
+        return Php_Version::from_components(8, 4);
     }
-
-    public function getKeywordString(): string
+    public function get_keyword_string(): string
     {
         return '__property__';
     }
-
-    public function getKeywordToken(): int
+    public function get_keyword_token(): int
     {
         return \T_PROPERTY_C;
     }

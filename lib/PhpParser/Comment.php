@@ -1,19 +1,17 @@
 <?php
 
-declare(strict_types=1);
-
-namespace PhpParser;
+declare (strict_types=1);
+namespace Php_Parser;
 
 class Comment implements \JsonSerializable
 {
     protected string $text;
-    protected int $startLine;
-    protected int $startFilePos;
-    protected int $startTokenPos;
-    protected int $endLine;
-    protected int $endFilePos;
-    protected int $endTokenPos;
-
+    protected int $start_line;
+    protected int $start_file_pos;
+    protected int $start_token_pos;
+    protected int $end_line;
+    protected int $end_file_pos;
+    protected int $end_token_pos;
     /**
      * Constructs a comment node.
      *
@@ -22,96 +20,81 @@ class Comment implements \JsonSerializable
      * @param int $startFilePos File offset the comment started on
      * @param int $startTokenPos Token offset the comment started on
      */
-    public function __construct(
-        string $text,
-        int $startLine = -1,
-        int $startFilePos = -1,
-        int $startTokenPos = -1,
-        int $endLine = -1,
-        int $endFilePos = -1,
-        int $endTokenPos = -1
-    ) {
+    public function __construct(string $text, int $start_line = -1, int $start_file_pos = -1, int $start_token_pos = -1, int $end_line = -1, int $end_file_pos = -1, int $end_token_pos = -1)
+    {
         $this->text = $text;
-        $this->startLine = $startLine;
-        $this->startFilePos = $startFilePos;
-        $this->startTokenPos = $startTokenPos;
-        $this->endLine = $endLine;
-        $this->endFilePos = $endFilePos;
-        $this->endTokenPos = $endTokenPos;
+        $this->start_line = $start_line;
+        $this->start_file_pos = $start_file_pos;
+        $this->start_token_pos = $start_token_pos;
+        $this->end_line = $end_line;
+        $this->end_file_pos = $end_file_pos;
+        $this->end_token_pos = $end_token_pos;
     }
-
     /**
      * Gets the comment text.
      *
      * @return string The comment text (including comment delimiters like /*)
      */
-    public function getText(): string
+    public function get_text(): string
     {
         return $this->text;
     }
-
     /**
      * Gets the line number the comment started on.
      *
      * @return int Line number (or -1 if not available)
      * @phpstan-return -1|positive-int
      */
-    public function getStartLine(): int
+    public function get_start_line(): int
     {
-        return $this->startLine;
+        return $this->start_line;
     }
-
     /**
      * Gets the file offset the comment started on.
      *
      * @return int File offset (or -1 if not available)
      */
-    public function getStartFilePos(): int
+    public function get_start_file_pos(): int
     {
-        return $this->startFilePos;
+        return $this->start_file_pos;
     }
-
     /**
      * Gets the token offset the comment started on.
      *
      * @return int Token offset (or -1 if not available)
      */
-    public function getStartTokenPos(): int
+    public function get_start_token_pos(): int
     {
-        return $this->startTokenPos;
+        return $this->start_token_pos;
     }
-
     /**
      * Gets the line number the comment ends on.
      *
      * @return int Line number (or -1 if not available)
      * @phpstan-return -1|positive-int
      */
-    public function getEndLine(): int
+    public function get_end_line(): int
     {
-        return $this->endLine;
+        return $this->end_line;
     }
-
     /**
      * Gets the file offset the comment ends on.
      *
      * @return int File offset (or -1 if not available)
      */
-    public function getEndFilePos(): int
+    public function get_end_file_pos(): int
     {
-        return $this->endFilePos;
+        return $this->end_file_pos;
     }
-
     /**
      * Gets the token offset the comment ends on.
      *
      * @return int Token offset (or -1 if not available)
      */
-    public function getEndTokenPos(): int
+    public function get_end_token_pos(): int
     {
-        return $this->endTokenPos;
+        return $this->end_token_pos;
     }
-
     /**
      * Gets the comment text.
      *
@@ -121,7 +104,6 @@ class Comment implements \JsonSerializable
     {
         return $this->text;
     }
-
     /**
      * Gets the reformatted comment text.
      *
@@ -132,11 +114,11 @@ class Comment implements \JsonSerializable
      *
      * Additionally, this normalizes CRLF newlines to LF newlines.
      */
-    public function getReformattedText(): string
+    public function get_reformatted_text(): string
     {
         $text = str_replace("\r\n", "\n", $this->text);
-        $newlinePos = strpos($text, "\n");
-        if (false === $newlinePos) {
+        $newline_pos = strpos($text, "\n");
+        if (false === $newline_pos) {
             // Single line comments don't need further processing
             return $text;
         }
@@ -174,15 +156,13 @@ class Comment implements \JsonSerializable
             //
             // is handled by removing the difference between the shortest whitespace prefix on all
             // lines and the length of the "/* " opening sequence.
-            $prefixLen = $this->getShortestWhitespacePrefixLen(substr($text, $newlinePos + 1));
-            $removeLen = $prefixLen - strlen($matches[0]);
-            return preg_replace('(^\s{' . $removeLen . '})m', '', $text);
+            $prefix_len = $this->get_shortest_whitespace_prefix_len(substr($text, $newline_pos + 1));
+            $remove_len = $prefix_len - strlen($matches[0]);
+            return preg_replace('(^\s{' . $remove_len . '})m', '', $text);
         }
-
         // No idea how to format this comment, so simply return as is
         return $text;
     }
-
     /**
      * Get length of shortest whitespace prefix (at the start of a line).
      *
@@ -191,20 +171,19 @@ class Comment implements \JsonSerializable
      * @param string $str String to check
      * @return int Length in characters. Tabs count as single characters.
      */
-    private function getShortestWhitespacePrefixLen(string $str): int
+    private function get_shortest_whitespace_prefix_len(string $str): int
     {
         $lines = explode("\n", $str);
-        $shortestPrefixLen = \PHP_INT_MAX;
+        $shortest_prefix_len = \PHP_INT_MAX;
         foreach ($lines as $line) {
             preg_match('(^\s*)', $line, $matches);
-            $prefixLen = strlen($matches[0]);
-            if ($prefixLen < $shortestPrefixLen) {
-                $shortestPrefixLen = $prefixLen;
+            $prefix_len = strlen($matches[0]);
+            if ($prefix_len < $shortest_prefix_len) {
+                $shortest_prefix_len = $prefix_len;
             }
         }
-        return $shortestPrefixLen;
+        return $shortest_prefix_len;
     }
-
     /**
      * @return array{nodeType:string, text:mixed, line:mixed, filePos:mixed}
      */
@@ -216,12 +195,12 @@ class Comment implements \JsonSerializable
             'nodeType' => $type,
             'text' => $this->text,
             // TODO: Rename these to include "start".
-            'line' => $this->startLine,
-            'filePos' => $this->startFilePos,
-            'tokenPos' => $this->startTokenPos,
-            'endLine' => $this->endLine,
-            'endFilePos' => $this->endFilePos,
-            'endTokenPos' => $this->endTokenPos,
+            'line' => $this->start_line,
+            'filePos' => $this->start_file_pos,
+            'tokenPos' => $this->start_token_pos,
+            'endLine' => $this->end_line,
+            'endFilePos' => $this->end_file_pos,
+            'endTokenPos' => $this->end_token_pos,
         ];
     }
 }

@@ -1,13 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
-namespace PhpParser;
+declare (strict_types=1);
+namespace Php_Parser;
 
 if (!\function_exists('PhpParser\defineCompatibilityTokens')) {
-    function defineCompatibilityTokens(): void
+    function define_compatibility_tokens(): void
     {
-        $compatTokens = [
+        $compat_tokens = [
             // PHP 8.0
             'T_NAME_QUALIFIED',
             'T_NAME_FULLY_QUALIFIED',
@@ -29,48 +28,35 @@ if (!\function_exists('PhpParser\defineCompatibilityTokens')) {
             'T_PIPE',
             'T_VOID_CAST',
         ];
-
         // PHP-Parser might be used together with another library that also emulates some or all
         // of these tokens. Perform a sanity-check that all already defined tokens have been
         // assigned a unique ID.
-        $usedTokenIds = [];
-        foreach ($compatTokens as $token) {
+        $used_token_ids = [];
+        foreach ($compat_tokens as $token) {
             if (\defined($token)) {
-                $tokenId = \constant($token);
-                if (!\is_int($tokenId)) {
-                    throw new \Error(sprintf(
-                        'Token %s has ID of type %s, should be int. ' .
-                        'You may be using a library with broken token emulation',
-                        $token,
-                        \gettype($tokenId)
-                    ));
+                $token_id = \constant($token);
+                if (!\is_int($token_id)) {
+                    throw new \Error(sprintf('Token %s has ID of type %s, should be int. ' . 'You may be using a library with broken token emulation', $token, \gettype($token_id)));
                 }
-                $clashingToken = $usedTokenIds[$tokenId] ?? null;
-                if ($clashingToken !== null) {
-                    throw new \Error(sprintf(
-                        'Token %s has same ID as token %s, ' .
-                        'you may be using a library with broken token emulation',
-                        $token,
-                        $clashingToken
-                    ));
+                $clashing_token = $used_token_ids[$token_id] ?? null;
+                if ($clashing_token !== null) {
+                    throw new \Error(sprintf('Token %s has same ID as token %s, ' . 'you may be using a library with broken token emulation', $token, $clashing_token));
                 }
-                $usedTokenIds[$tokenId] = $token;
+                $used_token_ids[$token_id] = $token;
             }
         }
-
         // Now define any tokens that have not yet been emulated. Try to assign IDs from -1
         // downwards, but skip any IDs that may already be in use.
-        $newTokenId = -1;
-        foreach ($compatTokens as $token) {
+        $new_token_id = -1;
+        foreach ($compat_tokens as $token) {
             if (!\defined($token)) {
-                while (isset($usedTokenIds[$newTokenId])) {
-                    $newTokenId--;
+                while (isset($used_token_ids[$new_token_id])) {
+                    $new_token_id--;
                 }
-                \define($token, $newTokenId);
-                $newTokenId--;
+                \define($token, $new_token_id);
+                $new_token_id--;
             }
         }
     }
-
-    defineCompatibilityTokens();
+    define_compatibility_tokens();
 }

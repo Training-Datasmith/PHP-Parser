@@ -1,17 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node\StaticVar;
-use PhpParser\Node\Stmt;
-
+use Php_Parser\Node\Static_Var;
+use Php_Parser\Node\Stmt;
 class Static_ extends Stmt
 {
     /** @var StaticVar[] Variable definitions */
     public array $vars;
-
     /**
      * Constructs a static variables list node.
      *
@@ -23,13 +20,11 @@ class Static_ extends Stmt
         $this->attributes = $attributes;
         $this->vars = $vars;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['vars'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_Static';
     }

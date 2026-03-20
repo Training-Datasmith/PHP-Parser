@@ -1,28 +1,24 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node_Visitor;
 
-namespace PhpParser\NodeVisitor;
-
-use PhpParser\Node;
-use PhpParser\NodeVisitorAbstract;
-
+use Php_Parser\Node;
+use Php_Parser\Node_Visitor_Abstract;
 /**
  * This visitor can be used to find and collect all nodes satisfying some criterion determined by
  * a filter callback.
  */
-class FindingVisitor extends NodeVisitorAbstract
+class Finding_Visitor extends Node_Visitor_Abstract
 {
     /** @var callable Filter callback */
-    protected $filterCallback;
+    protected $filter_callback;
     /** @var list<Node> Found nodes */
-    protected array $foundNodes;
-
-    public function __construct(callable $filterCallback)
+    protected array $found_nodes;
+    public function __construct(callable $filter_callback)
     {
-        $this->filterCallback = $filterCallback;
+        $this->filter_callback = $filter_callback;
     }
-
     /**
      * Get found nodes satisfying the filter callback.
      *
@@ -30,25 +26,21 @@ class FindingVisitor extends NodeVisitorAbstract
      *
      * @return list<Node> Found nodes
      */
-    public function getFoundNodes(): array
+    public function get_found_nodes(): array
     {
-        return $this->foundNodes;
+        return $this->found_nodes;
     }
-
-    public function beforeTraverse(array $nodes): ?array
+    public function before_traverse(array $nodes): ?array
     {
-        $this->foundNodes = [];
-
+        $this->found_nodes = [];
         return null;
     }
-
-    public function enterNode(Node $node)
+    public function enter_node(Node $node)
     {
-        $filterCallback = $this->filterCallback;
-        if ($filterCallback($node)) {
-            $this->foundNodes[] = $node;
+        $filter_callback = $this->filter_callback;
+        if ($filter_callback($node)) {
+            $this->found_nodes[] = $node;
         }
-
         return null;
     }
 }

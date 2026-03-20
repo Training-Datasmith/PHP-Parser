@@ -1,18 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-
-class TraitUse extends Node\Stmt
+use Php_Parser\Node;
+class Trait_Use extends Node\Stmt
 {
     /** @var Node\Name[] Traits */
     public array $traits;
     /** @var TraitUseAdaptation[] Adaptations */
     public array $adaptations;
-
     /**
      * Constructs a trait use node.
      *
@@ -26,13 +23,11 @@ class TraitUse extends Node\Stmt
         $this->traits = $traits;
         $this->adaptations = $adaptations;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['traits', 'adaptations'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_TraitUse';
     }

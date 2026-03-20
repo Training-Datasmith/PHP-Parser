@@ -1,23 +1,20 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Modifiers;
-use PhpParser\Node;
-
-class ClassConst extends Node\Stmt
+use Php_Parser\Modifiers;
+use Php_Parser\Node;
+class Class_Const extends Node\Stmt
 {
     /** @var int Modifiers */
     public int $flags;
     /** @var Node\Const_[] Constant declarations */
     public array $consts;
     /** @var Node\AttributeGroup[] PHP attribute groups */
-    public array $attrGroups;
+    public array $attr_groups;
     /** @var Node\Identifier|Node\Name|Node\ComplexType|null Type declaration */
     public ?Node $type;
-
     /**
      * Constructs a class const list node.
      *
@@ -27,59 +24,47 @@ class ClassConst extends Node\Stmt
      * @param list<Node\AttributeGroup> $attrGroups PHP attribute groups
      * @param null|Node\Identifier|Node\Name|Node\ComplexType $type Type declaration
      */
-    public function __construct(
-        array $consts,
-        int $flags = 0,
-        array $attributes = [],
-        array $attrGroups = [],
-        ?Node $type = null
-    ) {
+    public function __construct(array $consts, int $flags = 0, array $attributes = [], array $attr_groups = [], ?Node $type = null)
+    {
         $this->attributes = $attributes;
         $this->flags = $flags;
         $this->consts = $consts;
-        $this->attrGroups = $attrGroups;
+        $this->attr_groups = $attr_groups;
         $this->type = $type;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['attrGroups', 'flags', 'type', 'consts'];
     }
-
     /**
      * Whether constant is explicitly or implicitly public.
      */
-    public function isPublic(): bool
+    public function is_public(): bool
     {
-        return ($this->flags & Modifiers::PUBLIC) !== 0
-            || ($this->flags & Modifiers::VISIBILITY_MASK) === 0;
+        return ($this->flags & Modifiers::PUBLIC) !== 0 || ($this->flags & Modifiers::VISIBILITY_MASK) === 0;
     }
-
     /**
      * Whether constant is protected.
      */
-    public function isProtected(): bool
+    public function is_protected(): bool
     {
         return (bool) ($this->flags & Modifiers::PROTECTED);
     }
-
     /**
      * Whether constant is private.
      */
-    public function isPrivate(): bool
+    public function is_private(): bool
     {
         return (bool) ($this->flags & Modifiers::PRIVATE);
     }
-
     /**
      * Whether constant is final.
      */
-    public function isFinal(): bool
+    public function is_final(): bool
     {
         return (bool) ($this->flags & Modifiers::FINAL);
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_ClassConst';
     }

@@ -1,33 +1,27 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Lexer\Token_Emulator;
 
-namespace PhpParser\Lexer\TokenEmulator;
-
-use PhpParser\PhpVersion;
-use PhpParser\Token;
-
+use Php_Parser\Php_Version;
+use Php_Parser\Token;
 /** @internal */
-abstract class TokenEmulator
+abstract class Token_Emulator
 {
-    abstract public function getPhpVersion(): PhpVersion;
-
-    abstract public function isEmulationNeeded(string $code): bool;
-
+    abstract public function get_php_version(): Php_Version;
+    abstract public function is_emulation_needed(string $code): bool;
     /**
      * @param Token[] $tokens Original tokens
      * @return Token[] Modified Tokens
      */
     abstract public function emulate(string $code, array $tokens): array;
-
     /**
      * @param Token[] $tokens Original tokens
      * @return Token[] Modified Tokens
      */
-    abstract public function reverseEmulate(string $code, array $tokens): array;
-
+    abstract public function reverse_emulate(string $code, array $tokens): array;
     /** @param array{int, string, string}[] $patches */
-    public function preprocessCode(string $code, array &$patches): string
+    public function preprocess_code(string $code, array &$patches): string
     {
         return $code;
     }

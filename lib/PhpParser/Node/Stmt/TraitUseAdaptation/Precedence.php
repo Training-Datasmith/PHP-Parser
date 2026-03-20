@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt\Trait_Use_Adaptation;
 
-namespace PhpParser\Node\Stmt\TraitUseAdaptation;
-
-use PhpParser\Node;
-
-class Precedence extends Node\Stmt\TraitUseAdaptation
+use Php_Parser\Node;
+class Precedence extends Node\Stmt\Trait_Use_Adaptation
 {
     /** @var Node\Name[] Overwritten traits */
     public array $insteadof;
-
     /**
      * Constructs a trait use precedence adaptation node.
      *
@@ -26,13 +23,11 @@ class Precedence extends Node\Stmt\TraitUseAdaptation
         $this->method = \is_string($method) ? new Node\Identifier($method) : $method;
         $this->insteadof = $insteadof;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['trait', 'method', 'insteadof'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_TraitUseAdaptation_Precedence';
     }

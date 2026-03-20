@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-
+use Php_Parser\Node;
 class Finally_ extends Node\Stmt
 {
     /** @var Node\Stmt[] Statements */
     public array $stmts;
-
     /**
      * Constructs a finally node.
      *
@@ -22,13 +19,11 @@ class Finally_ extends Node\Stmt
         $this->attributes = $attributes;
         $this->stmts = $stmts;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['stmts'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_Finally';
     }

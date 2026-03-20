@@ -1,20 +1,16 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node;
 
-namespace PhpParser\Node;
-
-use PhpParser\Node;
-use PhpParser\NodeAbstract;
-
-class Attribute extends NodeAbstract
+use Php_Parser\Node;
+use Php_Parser\Node_Abstract;
+class Attribute extends Node_Abstract
 {
     /** @var Name Attribute name */
     public Name $name;
-
     /** @var list<Arg> Attribute arguments */
     public array $args;
-
     /**
      * @param Node\Name $name Attribute name
      * @param list<Arg> $args Attribute arguments
@@ -26,13 +22,11 @@ class Attribute extends NodeAbstract
         $this->name = $name;
         $this->args = $args;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['name', 'args'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Attribute';
     }

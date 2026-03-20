@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-
+use Php_Parser\Node;
 class If_ extends Node\Stmt
 {
     /** @var Node\Expr Condition expression */
@@ -16,7 +14,6 @@ class If_ extends Node\Stmt
     public array $elseifs;
     /** @var null|Else_ Else clause */
     public ?Else_ $else;
-
     /**
      * Constructs an if node.
      *
@@ -31,21 +28,19 @@ class If_ extends Node\Stmt
      *             'else'    => null   : Else clause
      * @param array<string, mixed> $attributes Additional attributes
      */
-    public function __construct(Node\Expr $cond, array $subNodes = [], array $attributes = [])
+    public function __construct(Node\Expr $cond, array $sub_nodes = [], array $attributes = [])
     {
         $this->attributes = $attributes;
         $this->cond = $cond;
-        $this->stmts = $subNodes['stmts'] ?? [];
-        $this->elseifs = $subNodes['elseifs'] ?? [];
-        $this->else = $subNodes['else'] ?? null;
+        $this->stmts = $sub_nodes['stmts'] ?? [];
+        $this->elseifs = $sub_nodes['elseifs'] ?? [];
+        $this->else = $sub_nodes['else'] ?? null;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['cond', 'stmts', 'elseifs', 'else'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_If';
     }

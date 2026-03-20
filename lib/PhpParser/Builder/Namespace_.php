@@ -1,20 +1,17 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Builder;
 
-namespace PhpParser\Builder;
-
-use PhpParser;
-use PhpParser\BuilderHelpers;
-use PhpParser\Node;
-use PhpParser\Node\Stmt;
-
+use Php_Parser;
+use Php_Parser\Builder_Helpers;
+use Php_Parser\Node;
+use Php_Parser\Node\Stmt;
 class Namespace_ extends Declaration
 {
     private ?Node\Name $name;
     /** @var Stmt[] */
     private array $stmts = [];
-
     /**
      * Creates a namespace builder.
      *
@@ -22,9 +19,8 @@ class Namespace_ extends Declaration
      */
     public function __construct($name)
     {
-        $this->name = null !== $name ? BuilderHelpers::normalizeName($name) : null;
+        $this->name = null !== $name ? Builder_Helpers::normalize_name($name) : null;
     }
-
     /**
      * Adds a statement.
      *
@@ -32,19 +28,17 @@ class Namespace_ extends Declaration
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addStmt($stmt)
+    public function add_stmt($stmt)
     {
-        $this->stmts[] = BuilderHelpers::normalizeStmt($stmt);
-
+        $this->stmts[] = Builder_Helpers::normalize_stmt($stmt);
         return $this;
     }
-
     /**
      * Returns the built node.
      *
      * @return Stmt\Namespace_ The built node
      */
-    public function getNode(): Node
+    public function get_node(): Node
     {
         return new Stmt\Namespace_($this->name, $this->stmts, $this->attributes);
     }

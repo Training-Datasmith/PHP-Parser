@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Expr;
-
-class ErrorSuppress extends Expr
+use Php_Parser\Node\Expr;
+class Error_Suppress extends Expr
 {
     /** @var Expr Expression */
     public Expr $expr;
-
     /**
      * Constructs an error suppress node.
      *
@@ -22,13 +19,11 @@ class ErrorSuppress extends Expr
         $this->attributes = $attributes;
         $this->expr = $expr;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['expr'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_ErrorSuppress';
     }

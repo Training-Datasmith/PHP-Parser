@@ -1,26 +1,22 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Builder;
 
-namespace PhpParser\Builder;
-
-use PhpParser;
-use PhpParser\BuilderHelpers;
-use PhpParser\Node;
-use PhpParser\Node\Identifier;
-use PhpParser\Node\Stmt;
-
-class EnumCase implements PhpParser\Builder
+use Php_Parser;
+use Php_Parser\Builder_Helpers;
+use Php_Parser\Node;
+use Php_Parser\Node\Identifier;
+use Php_Parser\Node\Stmt;
+class Enum_Case implements Php_Parser\Builder
 {
     /** @var Identifier|string */
     protected $name;
     protected ?Node\Expr $value = null;
     /** @var array<string, mixed> */
     protected array $attributes = [];
-
     /** @var list<Node\AttributeGroup> */
-    protected array $attributeGroups = [];
-
+    protected array $attribute_groups = [];
     /**
      * Creates an enum case builder.
      *
@@ -30,7 +26,6 @@ class EnumCase implements PhpParser\Builder
     {
         $this->name = $name;
     }
-
     /**
      * Sets the value.
      *
@@ -38,13 +33,11 @@ class EnumCase implements PhpParser\Builder
      *
      * @return $this
      */
-    public function setValue($value): self
+    public function set_value($value): self
     {
-        $this->value = BuilderHelpers::normalizeValue($value);
-
+        $this->value = Builder_Helpers::normalize_value($value);
         return $this;
     }
-
     /**
      * Sets doc comment for the constant.
      *
@@ -52,15 +45,11 @@ class EnumCase implements PhpParser\Builder
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function setDocComment($docComment): self
+    public function set_doc_comment($doc_comment): self
     {
-        $this->attributes = [
-            'comments' => [BuilderHelpers::normalizeDocComment($docComment)],
-        ];
-
+        $this->attributes = ['comments' => [Builder_Helpers::normalize_doc_comment($doc_comment)]];
         return $this;
     }
-
     /**
      * Adds an attribute group.
      *
@@ -68,25 +57,18 @@ class EnumCase implements PhpParser\Builder
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addAttribute($attribute): self
+    public function add_attribute($attribute): self
     {
-        $this->attributeGroups[] = BuilderHelpers::normalizeAttribute($attribute);
-
+        $this->attribute_groups[] = Builder_Helpers::normalize_attribute($attribute);
         return $this;
     }
-
     /**
      * Returns the built enum case node.
      *
      * @return Stmt\EnumCase The built constant node
      */
-    public function getNode(): PhpParser\Node
+    public function get_node(): Php_Parser\Node
     {
-        return new Stmt\EnumCase(
-            $this->name,
-            $this->value,
-            $this->attributeGroups,
-            $this->attributes
-        );
+        return new Stmt\Enum_Case($this->name, $this->value, $this->attribute_groups, $this->attributes);
     }
 }

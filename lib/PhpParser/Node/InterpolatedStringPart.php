@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node;
 
-namespace PhpParser\Node;
-
-use PhpParser\NodeAbstract;
-
-class InterpolatedStringPart extends NodeAbstract
+use Php_Parser\Node_Abstract;
+class Interpolated_String_Part extends Node_Abstract
 {
     /** @var string String value */
     public string $value;
-
     /**
      * Constructs a node representing a string part of an interpolated string.
      *
@@ -22,17 +19,14 @@ class InterpolatedStringPart extends NodeAbstract
         $this->attributes = $attributes;
         $this->value = $value;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['value'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'InterpolatedStringPart';
     }
 }
-
 // @deprecated compatibility alias
-class_alias(InterpolatedStringPart::class, Scalar\EncapsedStringPart::class);
+class_alias(Interpolated_String_Part::class, Scalar\Encapsed_String_Part::class);

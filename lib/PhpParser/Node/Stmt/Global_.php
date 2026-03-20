@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-
+use Php_Parser\Node;
 class Global_ extends Node\Stmt
 {
     /** @var Node\Expr[] Variables */
     public array $vars;
-
     /**
      * Constructs a global variables list node.
      *
@@ -22,13 +19,11 @@ class Global_ extends Node\Stmt
         $this->attributes = $attributes;
         $this->vars = $vars;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['vars'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_Global';
     }

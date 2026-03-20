@@ -1,26 +1,23 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Builder;
 
-namespace PhpParser\Builder;
-
-use PhpParser;
-use PhpParser\BuilderHelpers;
-use PhpParser\Modifiers;
-use PhpParser\Node;
-
-class Param implements PhpParser\Builder
+use Php_Parser;
+use Php_Parser\Builder_Helpers;
+use Php_Parser\Modifiers;
+use Php_Parser\Node;
+class Param implements Php_Parser\Builder
 {
     protected string $name;
     protected ?Node\Expr $default = null;
     /** @var Node\Identifier|Node\Name|Node\ComplexType|null */
     protected ?Node $type = null;
-    protected bool $byRef = false;
+    protected bool $by_ref = false;
     protected int $flags = 0;
     protected bool $variadic = false;
     /** @var list<Node\AttributeGroup> */
-    protected array $attributeGroups = [];
-
+    protected array $attribute_groups = [];
     /**
      * Creates a parameter builder.
      *
@@ -30,7 +27,6 @@ class Param implements PhpParser\Builder
     {
         $this->name = $name;
     }
-
     /**
      * Sets default value for the parameter.
      *
@@ -38,13 +34,11 @@ class Param implements PhpParser\Builder
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function setDefault($value): self
+    public function set_default($value): self
     {
-        $this->default = BuilderHelpers::normalizeValue($value);
-
+        $this->default = Builder_Helpers::normalize_value($value);
         return $this;
     }
-
     /**
      * Sets type for the parameter.
      *
@@ -52,112 +46,94 @@ class Param implements PhpParser\Builder
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function setType($type): self
+    public function set_type($type): self
     {
-        $this->type = BuilderHelpers::normalizeType($type);
+        $this->type = Builder_Helpers::normalize_type($type);
         if ($this->type == 'void') {
             throw new \LogicException('Parameter type cannot be void');
         }
-
         return $this;
     }
-
     /**
      * Make the parameter accept the value by reference.
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeByRef(): self
+    public function make_by_ref(): self
     {
-        $this->byRef = true;
-
+        $this->by_ref = true;
         return $this;
     }
-
     /**
      * Make the parameter variadic
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeVariadic(): self
+    public function make_variadic(): self
     {
         $this->variadic = true;
-
         return $this;
     }
-
     /**
      * Makes the (promoted) parameter public.
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makePublic(): self
+    public function make_public(): self
     {
-        $this->flags = BuilderHelpers::addModifier($this->flags, Modifiers::PUBLIC);
-
+        $this->flags = Builder_Helpers::add_modifier($this->flags, Modifiers::PUBLIC);
         return $this;
     }
-
     /**
      * Makes the (promoted) parameter protected.
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeProtected(): self
+    public function make_protected(): self
     {
-        $this->flags = BuilderHelpers::addModifier($this->flags, Modifiers::PROTECTED);
-
+        $this->flags = Builder_Helpers::add_modifier($this->flags, Modifiers::PROTECTED);
         return $this;
     }
-
     /**
      * Makes the (promoted) parameter private.
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makePrivate(): self
+    public function make_private(): self
     {
-        $this->flags = BuilderHelpers::addModifier($this->flags, Modifiers::PRIVATE);
-
+        $this->flags = Builder_Helpers::add_modifier($this->flags, Modifiers::PRIVATE);
         return $this;
     }
-
     /**
      * Makes the (promoted) parameter readonly.
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeReadonly(): self
+    public function make_readonly(): self
     {
-        $this->flags = BuilderHelpers::addModifier($this->flags, Modifiers::READONLY);
-
+        $this->flags = Builder_Helpers::add_modifier($this->flags, Modifiers::READONLY);
         return $this;
     }
-
     /**
      * Gives the promoted property private(set) visibility.
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makePrivateSet(): self
+    public function make_private_set(): self
     {
-        $this->flags = BuilderHelpers::addModifier($this->flags, Modifiers::PRIVATE_SET);
-
+        $this->flags = Builder_Helpers::add_modifier($this->flags, Modifiers::PRIVATE_SET);
         return $this;
     }
-
     /**
      * Gives the promoted property protected(set) visibility.
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeProtectedSet(): self
+    public function make_protected_set(): self
     {
-        $this->flags = BuilderHelpers::addModifier($this->flags, Modifiers::PROTECTED_SET);
-
+        $this->flags = Builder_Helpers::add_modifier($this->flags, Modifiers::PROTECTED_SET);
         return $this;
     }
-
     /**
      * Adds an attribute group.
      *
@@ -165,29 +141,18 @@ class Param implements PhpParser\Builder
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addAttribute($attribute): self
+    public function add_attribute($attribute): self
     {
-        $this->attributeGroups[] = BuilderHelpers::normalizeAttribute($attribute);
-
+        $this->attribute_groups[] = Builder_Helpers::normalize_attribute($attribute);
         return $this;
     }
-
     /**
      * Returns the built parameter node.
      *
      * @return Node\Param The built parameter node
      */
-    public function getNode(): Node
+    public function get_node(): Node
     {
-        return new Node\Param(
-            new Node\Expr\Variable($this->name),
-            $this->default,
-            $this->type,
-            $this->byRef,
-            $this->variadic,
-            [],
-            $this->flags,
-            $this->attributeGroups
-        );
+        return new Node\Param(new Node\Expr\Variable($this->name), $this->default, $this->type, $this->by_ref, $this->variadic, [], $this->flags, $this->attribute_groups);
     }
 }

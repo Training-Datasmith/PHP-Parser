@@ -1,30 +1,26 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-use PhpParser\Node\FunctionLike;
-
-class Function_ extends Node\Stmt implements FunctionLike
+use Php_Parser\Node;
+use Php_Parser\Node\Function_Like;
+class Function_ extends Node\Stmt implements Function_Like
 {
     /** @var bool Whether function returns by reference */
-    public bool $byRef;
+    public bool $by_ref;
     /** @var Node\Identifier Name */
     public Node\Identifier $name;
     /** @var Node\Param[] Parameters */
     public array $params;
     /** @var null|Node\Identifier|Node\Name|Node\ComplexType Return type */
-    public ?Node $returnType;
+    public ?Node $return_type;
     /** @var Node\Stmt[] Statements */
     public array $stmts;
     /** @var Node\AttributeGroup[] PHP attribute groups */
-    public array $attrGroups;
-
+    public array $attr_groups;
     /** @var Node\Name|null Namespaced name (if using NameResolver) */
-    public ?Node\Name $namespacedName = null;
-
+    public ?Node\Name $namespaced_name = null;
     /**
      * Constructs a function node.
      *
@@ -43,49 +39,42 @@ class Function_ extends Node\Stmt implements FunctionLike
      *             'attrGroups' => array(): PHP attribute groups
      * @param array<string, mixed> $attributes Additional attributes
      */
-    public function __construct($name, array $subNodes = [], array $attributes = [])
+    public function __construct($name, array $sub_nodes = [], array $attributes = [])
     {
         $this->attributes = $attributes;
-        $this->byRef = $subNodes['byRef'] ?? false;
+        $this->by_ref = $sub_nodes['byRef'] ?? false;
         $this->name = \is_string($name) ? new Node\Identifier($name) : $name;
-        $this->params = $subNodes['params'] ?? [];
-        $this->returnType = $subNodes['returnType'] ?? null;
-        $this->stmts = $subNodes['stmts'] ?? [];
-        $this->attrGroups = $subNodes['attrGroups'] ?? [];
+        $this->params = $sub_nodes['params'] ?? [];
+        $this->return_type = $sub_nodes['returnType'] ?? null;
+        $this->stmts = $sub_nodes['stmts'] ?? [];
+        $this->attr_groups = $sub_nodes['attrGroups'] ?? [];
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['attrGroups', 'byRef', 'name', 'params', 'returnType', 'stmts'];
     }
-
-    public function returnsByRef(): bool
+    public function returns_by_ref(): bool
     {
-        return $this->byRef;
+        return $this->by_ref;
     }
-
-    public function getParams(): array
+    public function get_params(): array
     {
         return $this->params;
     }
-
-    public function getReturnType()
+    public function get_return_type()
     {
-        return $this->returnType;
+        return $this->return_type;
     }
-
-    public function getAttrGroups(): array
+    public function get_attr_groups(): array
     {
-        return $this->attrGroups;
+        return $this->attr_groups;
     }
-
     /** @return Node\Stmt[] */
-    public function getStmts(): array
+    public function get_stmts(): array
     {
         return $this->stmts;
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_Function';
     }

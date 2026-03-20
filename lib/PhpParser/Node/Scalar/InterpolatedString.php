@@ -1,18 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Scalar;
 
-namespace PhpParser\Node\Scalar;
-
-use PhpParser\Node\Expr;
-use PhpParser\Node\InterpolatedStringPart;
-use PhpParser\Node\Scalar;
-
-class InterpolatedString extends Scalar
+use Php_Parser\Node\Expr;
+use Php_Parser\Node\Interpolated_String_Part;
+use Php_Parser\Node\Scalar;
+class Interpolated_String extends Scalar
 {
     /** @var (Expr|InterpolatedStringPart)[] list of string parts */
     public array $parts;
-
     /**
      * Constructs an interpolated string node.
      *
@@ -24,17 +21,14 @@ class InterpolatedString extends Scalar
         $this->attributes = $attributes;
         $this->parts = $parts;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['parts'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Scalar_InterpolatedString';
     }
 }
-
 // @deprecated compatibility alias
-class_alias(InterpolatedString::class, Encapsed::class);
+class_alias(Interpolated_String::class, Encapsed::class);

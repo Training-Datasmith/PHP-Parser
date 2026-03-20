@@ -1,18 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Expr;
-
-class AssignRef extends Expr
+use Php_Parser\Node\Expr;
+class Assign_Ref extends Expr
 {
     /** @var Expr Variable reference is assigned to */
     public Expr $var;
     /** @var Expr Variable which is referenced */
     public Expr $expr;
-
     /**
      * Constructs an assignment node.
      *
@@ -26,13 +23,11 @@ class AssignRef extends Expr
         $this->var = $var;
         $this->expr = $expr;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['var', 'expr'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_AssignRef';
     }

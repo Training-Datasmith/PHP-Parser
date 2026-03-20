@@ -1,23 +1,19 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Builder;
 
-namespace PhpParser\Builder;
-
-use PhpParser;
-use PhpParser\BuilderHelpers;
-use PhpParser\Node;
-use PhpParser\Node\Stmt;
-
-class Function_ extends FunctionLike
+use Php_Parser;
+use Php_Parser\Builder_Helpers;
+use Php_Parser\Node;
+use Php_Parser\Node\Stmt;
+class Function_ extends Function_Like
 {
     protected string $name;
     /** @var list<Stmt> */
     protected array $stmts = [];
-
     /** @var list<Node\AttributeGroup> */
-    protected array $attributeGroups = [];
-
+    protected array $attribute_groups = [];
     /**
      * Creates a function builder.
      *
@@ -27,7 +23,6 @@ class Function_ extends FunctionLike
     {
         $this->name = $name;
     }
-
     /**
      * Adds a statement.
      *
@@ -35,13 +30,11 @@ class Function_ extends FunctionLike
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addStmt($stmt)
+    public function add_stmt($stmt)
     {
-        $this->stmts[] = BuilderHelpers::normalizeStmt($stmt);
-
+        $this->stmts[] = Builder_Helpers::normalize_stmt($stmt);
         return $this;
     }
-
     /**
      * Adds an attribute group.
      *
@@ -49,26 +42,18 @@ class Function_ extends FunctionLike
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addAttribute($attribute): self
+    public function add_attribute($attribute): self
     {
-        $this->attributeGroups[] = BuilderHelpers::normalizeAttribute($attribute);
-
+        $this->attribute_groups[] = Builder_Helpers::normalize_attribute($attribute);
         return $this;
     }
-
     /**
      * Returns the built function node.
      *
      * @return Stmt\Function_ The built function node
      */
-    public function getNode(): Node
+    public function get_node(): Node
     {
-        return new Stmt\Function_($this->name, [
-            'byRef'      => $this->returnByRef,
-            'params'     => $this->params,
-            'returnType' => $this->returnType,
-            'stmts'      => $this->stmts,
-            'attrGroups' => $this->attributeGroups,
-        ], $this->attributes);
+        return new Stmt\Function_($this->name, ['byRef' => $this->return_by_ref, 'params' => $this->params, 'returnType' => $this->return_type, 'stmts' => $this->stmts, 'attrGroups' => $this->attribute_groups], $this->attributes);
     }
 }

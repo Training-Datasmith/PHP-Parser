@@ -1,19 +1,16 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node;
 
-namespace PhpParser\Node;
-
-use PhpParser\Node;
-use PhpParser\NodeAbstract;
-
-class DeclareItem extends NodeAbstract
+use Php_Parser\Node;
+use Php_Parser\Node_Abstract;
+class Declare_Item extends Node_Abstract
 {
     /** @var Node\Identifier Key */
     public Identifier $key;
     /** @var Node\Expr Value */
     public Expr $value;
-
     /**
      * Constructs a declare key=>value pair node.
      *
@@ -27,17 +24,14 @@ class DeclareItem extends NodeAbstract
         $this->key = \is_string($key) ? new Node\Identifier($key) : $key;
         $this->value = $value;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['key', 'value'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'DeclareItem';
     }
 }
-
 // @deprecated compatibility alias
-class_alias(DeclareItem::class, Stmt\DeclareDeclare::class);
+class_alias(Declare_Item::class, Stmt\Declare_Declare::class);

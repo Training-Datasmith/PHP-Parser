@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-
-abstract class TraitUseAdaptation extends Node\Stmt
+use Php_Parser\Node;
+abstract class Trait_Use_Adaptation extends Node\Stmt
 {
     /** @var Node\Name|null Trait name */
     public ?Node\Name $trait = null;

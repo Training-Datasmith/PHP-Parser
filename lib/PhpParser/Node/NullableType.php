@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node;
 
-namespace PhpParser\Node;
-
-use PhpParser\Node;
-
-class NullableType extends ComplexType
+use Php_Parser\Node;
+class Nullable_Type extends Complex_Type
 {
     /** @var Identifier|Name Type */
     public Node $type;
-
     /**
      * Constructs a nullable type (wrapping another type).
      *
@@ -22,13 +19,11 @@ class NullableType extends ComplexType
         $this->attributes = $attributes;
         $this->type = $type;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['type'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'NullableType';
     }

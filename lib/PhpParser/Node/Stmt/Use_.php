@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node\Stmt;
-use PhpParser\Node\UseItem;
-
+use Php_Parser\Node\Stmt;
+use Php_Parser\Node\Use_Item;
 class Use_ extends Stmt
 {
     /**
@@ -21,12 +19,10 @@ class Use_ extends Stmt
     public const TYPE_FUNCTION = 2;
     /** Constant import */
     public const TYPE_CONSTANT = 3;
-
     /** @var self::TYPE_* Type of alias */
     public int $type;
     /** @var UseItem[] Aliases */
     public array $uses;
-
     /**
      * Constructs an alias (use) list node.
      *
@@ -40,13 +36,11 @@ class Use_ extends Stmt
         $this->type = $type;
         $this->uses = $uses;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['type', 'uses'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_Use';
     }

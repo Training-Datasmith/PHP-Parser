@@ -1,19 +1,16 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node;
-use PhpParser\Node\Expr;
-
-class FuncCall extends CallLike
+use Php_Parser\Node;
+use Php_Parser\Node\Expr;
+class Func_Call extends Call_Like
 {
     /** @var Node\Name|Expr Function name */
     public Node $name;
     /** @var array<Node\Arg|Node\VariadicPlaceholder> Arguments */
     public array $args;
-
     /**
      * Constructs a function call node.
      *
@@ -27,18 +24,15 @@ class FuncCall extends CallLike
         $this->name = $name;
         $this->args = $args;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['name', 'args'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_FuncCall';
     }
-
-    public function getRawArgs(): array
+    public function get_raw_args(): array
     {
         return $this->args;
     }

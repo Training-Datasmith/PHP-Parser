@@ -1,15 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser;
 
-namespace PhpParser;
-
-interface ErrorHandler
+interface Error_Handler
 {
     /**
      * Handle an error generated during lexing, parsing or some other operation.
      *
      * @param Error $error The error that needs to be handled
      */
-    public function handleError(Error $error): void;
+    public function handle_error(Error $error): void;
 }

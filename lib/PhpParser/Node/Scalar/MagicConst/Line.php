@@ -1,19 +1,16 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Scalar\Magic_Const;
 
-namespace PhpParser\Node\Scalar\MagicConst;
-
-use PhpParser\Node\Scalar\MagicConst;
-
-class Line extends MagicConst
+use Php_Parser\Node\Scalar\Magic_Const;
+class Line extends Magic_Const
 {
-    public function getName(): string
+    public function get_name(): string
     {
         return '__LINE__';
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Scalar_MagicConst_Line';
     }

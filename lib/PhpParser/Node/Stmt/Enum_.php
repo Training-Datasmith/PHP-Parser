@@ -1,18 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-
-class Enum_ extends ClassLike
+use Php_Parser\Node;
+class Enum_ extends Class_Like
 {
     /** @var null|Node\Identifier Scalar Type */
-    public ?Node $scalarType;
+    public ?Node $scalar_type;
     /** @var Node\Name[] Names of implemented interfaces */
     public array $implements;
-
     /**
      * @param string|Node\Identifier|null $name Name
      * @param array{
@@ -27,23 +24,20 @@ class Enum_ extends ClassLike
      *             'attrGroups'  => array() : PHP attribute groups
      * @param array<string, mixed> $attributes Additional attributes
      */
-    public function __construct($name, array $subNodes = [], array $attributes = [])
+    public function __construct($name, array $sub_nodes = [], array $attributes = [])
     {
         $this->name = \is_string($name) ? new Node\Identifier($name) : $name;
-        $this->scalarType = $subNodes['scalarType'] ?? null;
-        $this->implements = $subNodes['implements'] ?? [];
-        $this->stmts = $subNodes['stmts'] ?? [];
-        $this->attrGroups = $subNodes['attrGroups'] ?? [];
-
+        $this->scalar_type = $sub_nodes['scalarType'] ?? null;
+        $this->implements = $sub_nodes['implements'] ?? [];
+        $this->stmts = $sub_nodes['stmts'] ?? [];
+        $this->attr_groups = $sub_nodes['attrGroups'] ?? [];
         parent::__construct($attributes);
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['attrGroups', 'name', 'scalarType', 'implements', 'stmts'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_Enum';
     }

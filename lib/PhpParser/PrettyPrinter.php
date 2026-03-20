@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser;
 
-namespace PhpParser;
-
-use PhpParser\Node\Expr;
-
-interface PrettyPrinter
+use Php_Parser\Node\Expr;
+interface Pretty_Printer
 {
     /**
      * Pretty prints an array of statements.
@@ -15,8 +13,7 @@ interface PrettyPrinter
      *
      * @return string Pretty printed statements
      */
-    public function prettyPrint(array $stmts): string;
-
+    public function pretty_print(array $stmts): string;
     /**
      * Pretty prints an expression.
      *
@@ -24,8 +21,7 @@ interface PrettyPrinter
      *
      * @return string Pretty printed node
      */
-    public function prettyPrintExpr(Expr $node): string;
-
+    public function pretty_print_expr(Expr $node): string;
     /**
      * Pretty prints a file of statements (includes the opening <?php tag if it is required).
      *
@@ -33,8 +29,7 @@ interface PrettyPrinter
      *
      * @return string Pretty printed statements
      */
-    public function prettyPrintFile(array $stmts): string;
-
+    public function pretty_print_file(array $stmts): string;
     /**
      * Perform a format-preserving pretty print of an AST.
      *
@@ -50,5 +45,5 @@ interface PrettyPrinter
      * @param Node[] $origStmts Original AST with token offset information
      * @param Token[] $origTokens Tokens of the original code
      */
-    public function printFormatPreserving(array $stmts, array $origStmts, array $origTokens): string;
+    public function print_format_preserving(array $stmts, array $orig_stmts, array $orig_tokens): string;
 }

@@ -1,24 +1,20 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Lexer\Token_Emulator;
 
-namespace PhpParser\Lexer\TokenEmulator;
-
-use PhpParser\PhpVersion;
-use PhpParser\Token;
-
-final class AttributeEmulator extends TokenEmulator
+use Php_Parser\Php_Version;
+use Php_Parser\Token;
+final class Attribute_Emulator extends Token_Emulator
 {
-    public function getPhpVersion(): PhpVersion
+    public function get_php_version(): Php_Version
     {
-        return PhpVersion::fromComponents(8, 0);
+        return Php_Version::from_components(8, 0);
     }
-
-    public function isEmulationNeeded(string $code): bool
+    public function is_emulation_needed(string $code): bool
     {
         return strpos($code, '#[') !== false;
     }
-
     public function emulate(string $code, array $tokens): array
     {
         // We need to manually iterate and manage a count because we'll change
@@ -26,24 +22,19 @@ final class AttributeEmulator extends TokenEmulator
         for ($i = 0, $c = count($tokens); $i < $c; ++$i) {
             $token = $tokens[$i];
             if ($token->text === '#' && isset($tokens[$i + 1]) && $tokens[$i + 1]->text === '[') {
-                array_splice($tokens, $i, 2, [
-                    new Token(\T_ATTRIBUTE, '#[', $token->line, $token->pos),
-                ]);
+                array_splice($tokens, $i, 2, [new Token(\T_ATTRIBUTE, '#[', $token->line, $token->pos)]);
                 $c--;
                 continue;
             }
         }
-
         return $tokens;
     }
-
-    public function reverseEmulate(string $code, array $tokens): array
+    public function reverse_emulate(string $code, array $tokens): array
     {
         // TODO
         return $tokens;
     }
-
-    public function preprocessCode(string $code, array &$patches): string
+    public function preprocess_code(string $code, array &$patches): string
     {
         $pos = 0;
         while (false !== $pos = strpos($code, '#[', $pos)) {

@@ -1,19 +1,16 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node;
 
-namespace PhpParser\Node;
-
-use PhpParser\Node;
-use PhpParser\NodeAbstract;
-
-class PropertyItem extends NodeAbstract
+use Php_Parser\Node;
+use Php_Parser\Node_Abstract;
+class Property_Item extends Node_Abstract
 {
     /** @var Node\VarLikeIdentifier Name */
-    public VarLikeIdentifier $name;
+    public Var_Like_Identifier $name;
     /** @var null|Node\Expr Default */
     public ?Expr $default;
-
     /**
      * Constructs a class property item node.
      *
@@ -24,20 +21,17 @@ class PropertyItem extends NodeAbstract
     public function __construct($name, ?Node\Expr $default = null, array $attributes = [])
     {
         $this->attributes = $attributes;
-        $this->name = \is_string($name) ? new Node\VarLikeIdentifier($name) : $name;
+        $this->name = \is_string($name) ? new Node\Var_Like_Identifier($name) : $name;
         $this->default = $default;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['name', 'default'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'PropertyItem';
     }
 }
-
 // @deprecated compatibility alias
-class_alias(PropertyItem::class, Stmt\PropertyProperty::class);
+class_alias(Property_Item::class, Stmt\Property_Property::class);

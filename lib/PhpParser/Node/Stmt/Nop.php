@@ -1,20 +1,17 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-
+use Php_Parser\Node;
 /** Nop/empty statement (;). */
 class Nop extends Node\Stmt
 {
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return [];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_Nop';
     }

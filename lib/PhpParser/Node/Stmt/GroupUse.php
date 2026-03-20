@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node\Name;
-use PhpParser\Node\Stmt;
-use PhpParser\Node\UseItem;
-
-class GroupUse extends Stmt
+use Php_Parser\Node\Name;
+use Php_Parser\Node\Stmt;
+use Php_Parser\Node\Use_Item;
+class Group_Use extends Stmt
 {
     /**
      * @var Use_::TYPE_* Type of group use
@@ -18,7 +16,6 @@ class GroupUse extends Stmt
     public Name $prefix;
     /** @var UseItem[] Uses */
     public array $uses;
-
     /**
      * Constructs a group use node.
      *
@@ -34,13 +31,11 @@ class GroupUse extends Stmt
         $this->prefix = $prefix;
         $this->uses = $uses;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['type', 'prefix', 'uses'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_GroupUse';
     }

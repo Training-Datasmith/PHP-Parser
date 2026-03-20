@@ -1,21 +1,17 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node;
 
-namespace PhpParser\Node;
-
-use PhpParser\NodeAbstract;
-
-class Const_ extends NodeAbstract
+use Php_Parser\Node_Abstract;
+class Const_ extends Node_Abstract
 {
     /** @var Identifier Name */
     public Identifier $name;
     /** @var Expr Value */
     public Expr $value;
-
     /** @var Name|null Namespaced name (if using NameResolver) */
-    public ?Name $namespacedName = null;
-
+    public ?Name $namespaced_name = null;
     /**
      * Constructs a const node for use in class const and const statements.
      *
@@ -29,13 +25,11 @@ class Const_ extends NodeAbstract
         $this->name = \is_string($name) ? new Identifier($name) : $name;
         $this->value = $value;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['name', 'value'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Const';
     }

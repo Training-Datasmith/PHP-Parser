@@ -1,29 +1,25 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node_Visitor;
 
-namespace PhpParser\NodeVisitor;
-
-use PhpParser\Node;
-use PhpParser\NodeVisitor;
-use PhpParser\NodeVisitorAbstract;
-
+use Php_Parser\Node;
+use Php_Parser\Node_Visitor;
+use Php_Parser\Node_Visitor_Abstract;
 /**
  * This visitor can be used to find the first node satisfying some criterion determined by
  * a filter callback.
  */
-class FirstFindingVisitor extends NodeVisitorAbstract
+class First_Finding_Visitor extends Node_Visitor_Abstract
 {
     /** @var callable Filter callback */
-    protected $filterCallback;
+    protected $filter_callback;
     /** @var null|Node Found node */
-    protected ?Node $foundNode = null;
-
-    public function __construct(callable $filterCallback)
+    protected ?Node $found_node = null;
+    public function __construct(callable $filter_callback)
     {
-        $this->filterCallback = $filterCallback;
+        $this->filter_callback = $filter_callback;
     }
-
     /**
      * Get found node satisfying the filter callback.
      *
@@ -31,26 +27,22 @@ class FirstFindingVisitor extends NodeVisitorAbstract
      *
      * @return null|Node Found node (or null if not found)
      */
-    public function getFoundNode(): ?Node
+    public function get_found_node(): ?Node
     {
-        return $this->foundNode;
+        return $this->found_node;
     }
-
-    public function beforeTraverse(array $nodes): ?array
+    public function before_traverse(array $nodes): ?array
     {
-        $this->foundNode = null;
-
+        $this->found_node = null;
         return null;
     }
-
-    public function enterNode(Node $node)
+    public function enter_node(Node $node)
     {
-        $filterCallback = $this->filterCallback;
-        if ($filterCallback($node)) {
-            $this->foundNode = $node;
-            return NodeVisitor::STOP_TRAVERSAL;
+        $filter_callback = $this->filter_callback;
+        if ($filter_callback($node)) {
+            $this->found_node = $node;
+            return Node_Visitor::STOP_TRAVERSAL;
         }
-
         return null;
     }
 }

@@ -1,21 +1,18 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Builder;
 
-namespace PhpParser\Builder;
-
-use PhpParser\Builder;
-use PhpParser\BuilderHelpers;
-use PhpParser\Node;
-use PhpParser\Node\Stmt;
-
+use Php_Parser\Builder;
+use Php_Parser\Builder_Helpers;
+use Php_Parser\Node;
+use Php_Parser\Node\Stmt;
 class Use_ implements Builder
 {
     protected Node\Name $name;
     /** @var Stmt\Use_::TYPE_* */
     protected int $type;
     protected ?string $alias = null;
-
     /**
      * Creates a name use (alias) builder.
      *
@@ -24,10 +21,9 @@ class Use_ implements Builder
      */
     public function __construct($name, int $type)
     {
-        $this->name = BuilderHelpers::normalizeName($name);
+        $this->name = Builder_Helpers::normalize_name($name);
         $this->type = $type;
     }
-
     /**
      * Sets alias for used name.
      *
@@ -40,16 +36,13 @@ class Use_ implements Builder
         $this->alias = $alias;
         return $this;
     }
-
     /**
      * Returns the built node.
      *
      * @return Stmt\Use_ The built node
      */
-    public function getNode(): Node
+    public function get_node(): Node
     {
-        return new Stmt\Use_([
-            new Node\UseItem($this->name, $this->alias),
-        ], $this->type);
+        return new Stmt\Use_([new Node\Use_Item($this->name, $this->alias)], $this->type);
     }
 }

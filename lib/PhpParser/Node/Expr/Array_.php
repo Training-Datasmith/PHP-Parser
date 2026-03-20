@@ -1,21 +1,19 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\ArrayItem;
-use PhpParser\Node\Expr;
-
+use Php_Parser\Node\Array_Item;
+use Php_Parser\Node\Expr;
 class Array_ extends Expr
 {
     // For use in "kind" attribute
-    public const KIND_LONG = 1;  // array() syntax
-    public const KIND_SHORT = 2; // [] syntax
-
+    public const KIND_LONG = 1;
+    // array() syntax
+    public const KIND_SHORT = 2;
+    // [] syntax
     /** @var ArrayItem[] Items */
     public array $items;
-
     /**
      * Constructs an array node.
      *
@@ -27,13 +25,11 @@ class Array_ extends Expr
         $this->attributes = $attributes;
         $this->items = $items;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['items'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_Array';
     }

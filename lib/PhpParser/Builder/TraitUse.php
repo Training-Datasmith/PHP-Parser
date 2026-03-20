@@ -1,21 +1,18 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Builder;
 
-namespace PhpParser\Builder;
-
-use PhpParser\Builder;
-use PhpParser\BuilderHelpers;
-use PhpParser\Node;
-use PhpParser\Node\Stmt;
-
-class TraitUse implements Builder
+use Php_Parser\Builder;
+use Php_Parser\Builder_Helpers;
+use Php_Parser\Node;
+use Php_Parser\Node\Stmt;
+class Trait_Use implements Builder
 {
     /** @var Node\Name[] */
     protected array $traits = [];
     /** @var Stmt\TraitUseAdaptation[] */
     protected array $adaptations = [];
-
     /**
      * Creates a trait use builder.
      *
@@ -27,7 +24,6 @@ class TraitUse implements Builder
             $this->and($trait);
         }
     }
-
     /**
      * Adds used trait.
      *
@@ -37,10 +33,9 @@ class TraitUse implements Builder
      */
     public function and($trait): self
     {
-        $this->traits[] = BuilderHelpers::normalizeName($trait);
+        $this->traits[] = Builder_Helpers::normalize_name($trait);
         return $this;
     }
-
     /**
      * Adds trait adaptation.
      *
@@ -50,23 +45,20 @@ class TraitUse implements Builder
      */
     public function with($adaptation): self
     {
-        $adaptation = BuilderHelpers::normalizeNode($adaptation);
-
-        if (!$adaptation instanceof Stmt\TraitUseAdaptation) {
+        $adaptation = Builder_Helpers::normalize_node($adaptation);
+        if (!$adaptation instanceof Stmt\Trait_Use_Adaptation) {
             throw new \LogicException('Adaptation must have type TraitUseAdaptation');
         }
-
         $this->adaptations[] = $adaptation;
         return $this;
     }
-
     /**
      * Returns the built node.
      *
      * @return Node The built node
      */
-    public function getNode(): Node
+    public function get_node(): Node
     {
-        return new Stmt\TraitUse($this->traits, $this->adaptations);
+        return new Stmt\Trait_Use($this->traits, $this->adaptations);
     }
 }

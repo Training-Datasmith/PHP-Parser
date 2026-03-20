@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser;
 
-namespace PhpParser;
-
-use PhpParser\NodeVisitor\FindingVisitor;
-use PhpParser\NodeVisitor\FirstFindingVisitor;
-
-class NodeFinder
+use Php_Parser\Node_Visitor\Finding_Visitor;
+use Php_Parser\Node_Visitor\First_Finding_Visitor;
+class Node_Finder
 {
     /**
      * Find all nodes satisfying a filter callback.
@@ -22,22 +20,16 @@ class NodeFinder
         if ($nodes === []) {
             return [];
         }
-
         if (!is_array($nodes)) {
             $nodes = [$nodes];
         }
-
-        $visitor = new FindingVisitor($filter);
-
-        $traverser = new NodeTraverser($visitor);
+        $visitor = new Finding_Visitor($filter);
+        $traverser = new Node_Traverser($visitor);
         $traverser->traverse($nodes);
-
-        return $visitor->getFoundNodes();
+        return $visitor->get_found_nodes();
     }
-
     /**
      * Find all nodes that are instances of a certain class.
-
      * @template TNode as Node
      *
      * @param Node|Node[] $nodes Single node or array of nodes to search in
@@ -45,11 +37,10 @@ class NodeFinder
      *
      * @return TNode[] Found nodes (all instances of $class)
      */
-    public function findInstanceOf($nodes, string $class): array
+    public function find_instance_of($nodes, string $class): array
     {
-        return $this->find($nodes, fn ($node): bool => $node instanceof $class);
+        return $this->find($nodes, fn($node): bool => $node instanceof $class);
     }
-
     /**
      * Find first node satisfying a filter callback.
      *
@@ -58,24 +49,19 @@ class NodeFinder
      *
      * @return null|Node Found node (or null if none found)
      */
-    public function findFirst($nodes, callable $filter): ?Node
+    public function find_first($nodes, callable $filter): ?Node
     {
         if ($nodes === []) {
             return null;
         }
-
         if (!is_array($nodes)) {
             $nodes = [$nodes];
         }
-
-        $visitor = new FirstFindingVisitor($filter);
-
-        $traverser = new NodeTraverser($visitor);
+        $visitor = new First_Finding_Visitor($filter);
+        $traverser = new Node_Traverser($visitor);
         $traverser->traverse($nodes);
-
-        return $visitor->getFoundNode();
+        return $visitor->get_found_node();
     }
-
     /**
      * Find first node that is an instance of a certain class.
      *
@@ -86,8 +72,8 @@ class NodeFinder
      *
      * @return null|TNode Found node, which is an instance of $class (or null if none found)
      */
-    public function findFirstInstanceOf($nodes, string $class): ?Node
+    public function find_first_instance_of($nodes, string $class): ?Node
     {
-        return $this->findFirst($nodes, fn ($node): bool => $node instanceof $class);
+        return $this->find_first($nodes, fn($node): bool => $node instanceof $class);
     }
 }

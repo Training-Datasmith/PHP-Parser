@@ -1,9 +1,8 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser;
 
-namespace PhpParser;
-
-class ConstExprEvaluationException extends \Exception
+class Const_Expr_Evaluation_Exception extends \Exception
 {
 }

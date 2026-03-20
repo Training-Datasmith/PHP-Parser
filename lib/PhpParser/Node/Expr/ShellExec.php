@@ -1,17 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Expr;
-use PhpParser\Node\InterpolatedStringPart;
-
-class ShellExec extends Expr
+use Php_Parser\Node\Expr;
+use Php_Parser\Node\Interpolated_String_Part;
+class Shell_Exec extends Expr
 {
     /** @var (Expr|InterpolatedStringPart)[] Interpolated string array */
     public array $parts;
-
     /**
      * Constructs a shell exec (backtick) node.
      *
@@ -23,13 +20,11 @@ class ShellExec extends Expr
         $this->attributes = $attributes;
         $this->parts = $parts;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['parts'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_ShellExec';
     }

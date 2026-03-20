@@ -1,56 +1,50 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-use PhpParser\Node\PropertyItem;
-
-abstract class ClassLike extends Node\Stmt
+use Php_Parser\Node;
+use Php_Parser\Node\Property_Item;
+abstract class Class_Like extends Node\Stmt
 {
     /** @var Node\Identifier|null Name */
     public ?Node\Identifier $name = null;
     /** @var Node\Stmt[] Statements */
     public array $stmts;
     /** @var Node\AttributeGroup[] PHP attribute groups */
-    public array $attrGroups;
-
+    public array $attr_groups;
     /** @var Node\Name|null Namespaced name (if using NameResolver) */
-    public ?Node\Name $namespacedName = null;
-
+    public ?Node\Name $namespaced_name = null;
     /**
      * @return list<TraitUse>
      */
-    public function getTraitUses(): array
+    public function get_trait_uses(): array
     {
-        $traitUses = [];
+        $trait_uses = [];
         foreach ($this->stmts as $stmt) {
-            if ($stmt instanceof TraitUse) {
-                $traitUses[] = $stmt;
+            if ($stmt instanceof Trait_Use) {
+                $trait_uses[] = $stmt;
             }
         }
-        return $traitUses;
+        return $trait_uses;
     }
-
     /**
      * @return list<ClassConst>
      */
-    public function getConstants(): array
+    public function get_constants(): array
     {
         $constants = [];
         foreach ($this->stmts as $stmt) {
-            if ($stmt instanceof ClassConst) {
+            if ($stmt instanceof Class_Const) {
                 $constants[] = $stmt;
             }
         }
         return $constants;
     }
-
     /**
      * @return list<Property>
      */
-    public function getProperties(): array
+    public function get_properties(): array
     {
         $properties = [];
         foreach ($this->stmts as $stmt) {
@@ -60,7 +54,6 @@ abstract class ClassLike extends Node\Stmt
         }
         return $properties;
     }
-
     /**
      * Gets property with the given name defined directly in this class/interface/trait.
      *
@@ -68,12 +61,12 @@ abstract class ClassLike extends Node\Stmt
      *
      * @return Property|null Property node or null if the property does not exist
      */
-    public function getProperty(string $name): ?Property
+    public function get_property(string $name): ?Property
     {
         foreach ($this->stmts as $stmt) {
             if ($stmt instanceof Property) {
                 foreach ($stmt->props as $prop) {
-                    if ($prop instanceof PropertyItem && $name === $prop->name->toString()) {
+                    if ($prop instanceof Property_Item && $name === $prop->name->to_string()) {
                         return $stmt;
                     }
                 }
@@ -81,23 +74,21 @@ abstract class ClassLike extends Node\Stmt
         }
         return null;
     }
-
     /**
      * Gets all methods defined directly in this class/interface/trait
      *
      * @return list<ClassMethod>
      */
-    public function getMethods(): array
+    public function get_methods(): array
     {
         $methods = [];
         foreach ($this->stmts as $stmt) {
-            if ($stmt instanceof ClassMethod) {
+            if ($stmt instanceof Class_Method) {
                 $methods[] = $stmt;
             }
         }
         return $methods;
     }
-
     /**
      * Gets method with the given name defined directly in this class/interface/trait.
      *
@@ -105,11 +96,11 @@ abstract class ClassLike extends Node\Stmt
      *
      * @return ClassMethod|null Method node or null if the method does not exist
      */
-    public function getMethod(string $name): ?ClassMethod
+    public function get_method(string $name): ?Class_Method
     {
-        $lowerName = strtolower($name);
+        $lower_name = strtolower($name);
         foreach ($this->stmts as $stmt) {
-            if ($stmt instanceof ClassMethod && $lowerName === $stmt->name->toLowerString()) {
+            if ($stmt instanceof Class_Method && $lower_name === $stmt->name->to_lower_string()) {
                 return $stmt;
             }
         }

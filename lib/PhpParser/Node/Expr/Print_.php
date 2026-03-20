@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Expr;
-
+use Php_Parser\Node\Expr;
 class Print_ extends Expr
 {
     /** @var Expr Expression */
     public Expr $expr;
-
     /**
      * Constructs an print() node.
      *
@@ -22,13 +19,11 @@ class Print_ extends Expr
         $this->attributes = $attributes;
         $this->expr = $expr;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['expr'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_Print';
     }

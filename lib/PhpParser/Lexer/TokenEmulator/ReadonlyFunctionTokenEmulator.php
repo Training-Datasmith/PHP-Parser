@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Lexer\Token_Emulator;
 
-namespace PhpParser\Lexer\TokenEmulator;
-
-use PhpParser\PhpVersion;
-
+use Php_Parser\Php_Version;
 /*
  * In PHP 8.1, "readonly(" was special cased in the lexer in order to support functions with
  * name readonly. In PHP 8.2, this may conflict with readonly properties having a DNF type. For
@@ -13,24 +11,21 @@ use PhpParser\PhpVersion;
  * parser. This emulator only exists to handle this special case, which is skipped by the
  * PHP 8.1 ReadonlyTokenEmulator.
  */
-class ReadonlyFunctionTokenEmulator extends KeywordEmulator
+class Readonly_Function_Token_Emulator extends Keyword_Emulator
 {
-    public function getKeywordString(): string
+    public function get_keyword_string(): string
     {
         return 'readonly';
     }
-
-    public function getKeywordToken(): int
+    public function get_keyword_token(): int
     {
         return \T_READONLY;
     }
-
-    public function getPhpVersion(): PhpVersion
+    public function get_php_version(): Php_Version
     {
-        return PhpVersion::fromComponents(8, 2);
+        return Php_Version::from_components(8, 2);
     }
-
-    public function reverseEmulate(string $code, array $tokens): array
+    public function reverse_emulate(string $code, array $tokens): array
     {
         // Don't bother
         return $tokens;

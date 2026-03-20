@@ -1,19 +1,16 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr\Binary_Op;
 
-namespace PhpParser\Node\Expr\BinaryOp;
-
-use PhpParser\Node\Expr\BinaryOp;
-
-class LogicalAnd extends BinaryOp
+use Php_Parser\Node\Expr\Binary_Op;
+class Logical_And extends Binary_Op
 {
-    public function getOperatorSigil(): string
+    public function get_operator_sigil(): string
     {
         return 'and';
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_BinaryOp_LogicalAnd';
     }

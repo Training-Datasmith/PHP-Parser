@@ -1,68 +1,58 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser;
 
-namespace PhpParser;
-
-class NodeTraverser implements NodeTraverserInterface
+class Node_Traverser implements Node_Traverser_Interface
 {
     /**
      * @deprecated Use NodeVisitor::DONT_TRAVERSE_CHILDREN instead.
      */
-    public const DONT_TRAVERSE_CHILDREN = NodeVisitor::DONT_TRAVERSE_CHILDREN;
-
+    public const DONT_TRAVERSE_CHILDREN = Node_Visitor::DONT_TRAVERSE_CHILDREN;
     /**
      * @deprecated Use NodeVisitor::STOP_TRAVERSAL instead.
      */
-    public const STOP_TRAVERSAL = NodeVisitor::STOP_TRAVERSAL;
-
+    public const STOP_TRAVERSAL = Node_Visitor::STOP_TRAVERSAL;
     /**
      * @deprecated Use NodeVisitor::REMOVE_NODE instead.
      */
-    public const REMOVE_NODE = NodeVisitor::REMOVE_NODE;
-
+    public const REMOVE_NODE = Node_Visitor::REMOVE_NODE;
     /**
      * @deprecated Use NodeVisitor::DONT_TRAVERSE_CURRENT_AND_CHILDREN instead.
      */
-    public const DONT_TRAVERSE_CURRENT_AND_CHILDREN = NodeVisitor::DONT_TRAVERSE_CURRENT_AND_CHILDREN;
-
+    public const DONT_TRAVERSE_CURRENT_AND_CHILDREN = Node_Visitor::DONT_TRAVERSE_CURRENT_AND_CHILDREN;
     /** @var list<NodeVisitor> Visitors */
     protected array $visitors = [];
-
     /** @var bool Whether traversal should be stopped */
-    protected bool $stopTraversal;
-
+    protected bool $stop_traversal;
     /**
      * Create a traverser with the given visitors.
      *
      * @param NodeVisitor ...$visitors Node visitors
      */
-    public function __construct(NodeVisitor ...$visitors)
+    public function __construct(Node_Visitor ...$visitors)
     {
         $this->visitors = $visitors;
     }
-
     /**
      * Adds a visitor.
      *
      * @param NodeVisitor $visitor Visitor to add
      */
-    public function addVisitor(NodeVisitor $visitor): void
+    public function add_visitor(Node_Visitor $visitor): void
     {
         $this->visitors[] = $visitor;
     }
-
     /**
      * Removes an added visitor.
      */
-    public function removeVisitor(NodeVisitor $visitor): void
+    public function remove_visitor(Node_Visitor $visitor): void
     {
         $index = array_search($visitor, $this->visitors);
         if ($index !== false) {
             array_splice($this->visitors, $index, 1, []);
         }
     }
-
     /**
      * Traverses an array of nodes using the registered visitors.
      *
@@ -72,113 +62,92 @@ class NodeTraverser implements NodeTraverserInterface
      */
     public function traverse(array $nodes): array
     {
-        $this->stopTraversal = false;
-
+        $this->stop_traversal = false;
         foreach ($this->visitors as $visitor) {
-            if (null !== $return = $visitor->beforeTraverse($nodes)) {
+            if (null !== $return = $visitor->before_traverse($nodes)) {
                 $nodes = $return;
             }
         }
-
-        $nodes = $this->traverseArray($nodes);
-
+        $nodes = $this->traverse_array($nodes);
         for ($i = \count($this->visitors) - 1; $i >= 0; --$i) {
             $visitor = $this->visitors[$i];
-            if (null !== $return = $visitor->afterTraverse($nodes)) {
+            if (null !== $return = $visitor->after_traverse($nodes)) {
                 $nodes = $return;
             }
         }
-
         return $nodes;
     }
-
     /**
      * Recursively traverse a node.
      *
      * @param Node $node Node to traverse.
      */
-    protected function traverseNode(Node $node): void
+    protected function traverse_node(Node $node): void
     {
-        foreach ($node->getSubNodeNames() as $name) {
-            $subNode = $node->$name;
-
-            if (\is_array($subNode)) {
-                $node->$name = $this->traverseArray($subNode);
-                if ($this->stopTraversal) {
+        foreach ($node->get_sub_node_names() as $name) {
+            $sub_node = $node->{$name};
+            if (\is_array($sub_node)) {
+                $node->{$name} = $this->traverse_array($sub_node);
+                if ($this->stop_traversal) {
                     break;
                 }
-
                 continue;
             }
-
-            if (!$subNode instanceof Node) {
+            if (!$sub_node instanceof Node) {
                 continue;
             }
-
-            $traverseChildren = true;
-            $visitorIndex = -1;
-
-            foreach ($this->visitors as $visitorIndex => $visitor) {
-                $return = $visitor->enterNode($subNode);
+            $traverse_children = true;
+            $visitor_index = -1;
+            foreach ($this->visitors as $visitor_index => $visitor) {
+                $return = $visitor->enter_node($sub_node);
                 if (null !== $return) {
                     if ($return instanceof Node) {
-                        $this->ensureReplacementReasonable($subNode, $return);
-                        $subNode = $node->$name = $return;
-                    } elseif (NodeVisitor::DONT_TRAVERSE_CHILDREN === $return) {
-                        $traverseChildren = false;
-                    } elseif (NodeVisitor::DONT_TRAVERSE_CURRENT_AND_CHILDREN === $return) {
-                        $traverseChildren = false;
+                        $this->ensure_replacement_reasonable($sub_node, $return);
+                        $sub_node = $node->{$name} = $return;
+                    } elseif (Node_Visitor::DONT_TRAVERSE_CHILDREN === $return) {
+                        $traverse_children = false;
+                    } elseif (Node_Visitor::DONT_TRAVERSE_CURRENT_AND_CHILDREN === $return) {
+                        $traverse_children = false;
                         break;
-                    } elseif (NodeVisitor::STOP_TRAVERSAL === $return) {
-                        $this->stopTraversal = true;
+                    } elseif (Node_Visitor::STOP_TRAVERSAL === $return) {
+                        $this->stop_traversal = true;
                         break 2;
-                    } elseif (NodeVisitor::REPLACE_WITH_NULL === $return) {
-                        $node->$name = null;
+                    } elseif (Node_Visitor::REPLACE_WITH_NULL === $return) {
+                        $node->{$name} = null;
                         continue 2;
                     } else {
-                        throw new \LogicException(
-                            'enterNode() returned invalid value of type ' . gettype($return)
-                        );
+                        throw new \LogicException('enterNode() returned invalid value of type ' . gettype($return));
                     }
                 }
             }
-
-            if ($traverseChildren) {
-                $this->traverseNode($subNode);
-                if ($this->stopTraversal) {
+            if ($traverse_children) {
+                $this->traverse_node($sub_node);
+                if ($this->stop_traversal) {
                     break;
                 }
             }
-
-            for (; $visitorIndex >= 0; --$visitorIndex) {
-                $visitor = $this->visitors[$visitorIndex];
-                $return = $visitor->leaveNode($subNode);
-
+            for (; $visitor_index >= 0; --$visitor_index) {
+                $visitor = $this->visitors[$visitor_index];
+                $return = $visitor->leave_node($sub_node);
                 if (null !== $return) {
                     if ($return instanceof Node) {
-                        $this->ensureReplacementReasonable($subNode, $return);
-                        $subNode = $node->$name = $return;
-                    } elseif (NodeVisitor::STOP_TRAVERSAL === $return) {
-                        $this->stopTraversal = true;
+                        $this->ensure_replacement_reasonable($sub_node, $return);
+                        $sub_node = $node->{$name} = $return;
+                    } elseif (Node_Visitor::STOP_TRAVERSAL === $return) {
+                        $this->stop_traversal = true;
                         break 2;
-                    } elseif (NodeVisitor::REPLACE_WITH_NULL === $return) {
-                        $node->$name = null;
+                    } elseif (Node_Visitor::REPLACE_WITH_NULL === $return) {
+                        $node->{$name} = null;
                         break;
                     } elseif (\is_array($return)) {
-                        throw new \LogicException(
-                            'leaveNode() may only return an array ' .
-                            'if the parent structure is an array'
-                        );
+                        throw new \LogicException('leaveNode() may only return an array ' . 'if the parent structure is an array');
                     } else {
-                        throw new \LogicException(
-                            'leaveNode() returned invalid value of type ' . gettype($return)
-                        );
+                        throw new \LogicException('leaveNode() returned invalid value of type ' . gettype($return));
                     }
                 }
             }
         }
     }
-
     /**
      * Recursively traverse array (usually of nodes).
      *
@@ -186,10 +155,9 @@ class NodeTraverser implements NodeTraverserInterface
      *
      * @return Node[] Result of traversal (may be original array or changed one)
      */
-    protected function traverseArray(array $nodes): array
+    protected function traverse_array(array $nodes): array
     {
-        $doNodes = [];
-
+        $do_nodes = [];
         foreach ($nodes as $i => $node) {
             if (!$node instanceof Node) {
                 if (\is_array($node)) {
@@ -197,103 +165,79 @@ class NodeTraverser implements NodeTraverserInterface
                 }
                 continue;
             }
-
-            $traverseChildren = true;
-            $visitorIndex = -1;
-
-            foreach ($this->visitors as $visitorIndex => $visitor) {
-                $return = $visitor->enterNode($node);
+            $traverse_children = true;
+            $visitor_index = -1;
+            foreach ($this->visitors as $visitor_index => $visitor) {
+                $return = $visitor->enter_node($node);
                 if (null !== $return) {
                     if ($return instanceof Node) {
-                        $this->ensureReplacementReasonable($node, $return);
+                        $this->ensure_replacement_reasonable($node, $return);
                         $nodes[$i] = $node = $return;
                     } elseif (\is_array($return)) {
-                        $doNodes[] = [$i, $return];
+                        $do_nodes[] = [$i, $return];
                         continue 2;
-                    } elseif (NodeVisitor::REMOVE_NODE === $return) {
-                        $doNodes[] = [$i, []];
+                    } elseif (Node_Visitor::REMOVE_NODE === $return) {
+                        $do_nodes[] = [$i, []];
                         continue 2;
-                    } elseif (NodeVisitor::DONT_TRAVERSE_CHILDREN === $return) {
-                        $traverseChildren = false;
-                    } elseif (NodeVisitor::DONT_TRAVERSE_CURRENT_AND_CHILDREN === $return) {
-                        $traverseChildren = false;
+                    } elseif (Node_Visitor::DONT_TRAVERSE_CHILDREN === $return) {
+                        $traverse_children = false;
+                    } elseif (Node_Visitor::DONT_TRAVERSE_CURRENT_AND_CHILDREN === $return) {
+                        $traverse_children = false;
                         break;
-                    } elseif (NodeVisitor::STOP_TRAVERSAL === $return) {
-                        $this->stopTraversal = true;
+                    } elseif (Node_Visitor::STOP_TRAVERSAL === $return) {
+                        $this->stop_traversal = true;
                         break 2;
-                    } elseif (NodeVisitor::REPLACE_WITH_NULL === $return) {
-                        throw new \LogicException(
-                            'REPLACE_WITH_NULL can not be used if the parent structure is an array'
-                        );
+                    } elseif (Node_Visitor::REPLACE_WITH_NULL === $return) {
+                        throw new \LogicException('REPLACE_WITH_NULL can not be used if the parent structure is an array');
                     } else {
-                        throw new \LogicException(
-                            'enterNode() returned invalid value of type ' . gettype($return)
-                        );
+                        throw new \LogicException('enterNode() returned invalid value of type ' . gettype($return));
                     }
                 }
             }
-
-            if ($traverseChildren) {
-                $this->traverseNode($node);
-                if ($this->stopTraversal) {
+            if ($traverse_children) {
+                $this->traverse_node($node);
+                if ($this->stop_traversal) {
                     break;
                 }
             }
-
-            for (; $visitorIndex >= 0; --$visitorIndex) {
-                $visitor = $this->visitors[$visitorIndex];
-                $return = $visitor->leaveNode($node);
-
+            for (; $visitor_index >= 0; --$visitor_index) {
+                $visitor = $this->visitors[$visitor_index];
+                $return = $visitor->leave_node($node);
                 if (null !== $return) {
                     if ($return instanceof Node) {
-                        $this->ensureReplacementReasonable($node, $return);
+                        $this->ensure_replacement_reasonable($node, $return);
                         $nodes[$i] = $node = $return;
                     } elseif (\is_array($return)) {
-                        $doNodes[] = [$i, $return];
+                        $do_nodes[] = [$i, $return];
                         break;
-                    } elseif (NodeVisitor::REMOVE_NODE === $return) {
-                        $doNodes[] = [$i, []];
+                    } elseif (Node_Visitor::REMOVE_NODE === $return) {
+                        $do_nodes[] = [$i, []];
                         break;
-                    } elseif (NodeVisitor::STOP_TRAVERSAL === $return) {
-                        $this->stopTraversal = true;
+                    } elseif (Node_Visitor::STOP_TRAVERSAL === $return) {
+                        $this->stop_traversal = true;
                         break 2;
-                    } elseif (NodeVisitor::REPLACE_WITH_NULL === $return) {
-                        throw new \LogicException(
-                            'REPLACE_WITH_NULL can not be used if the parent structure is an array'
-                        );
+                    } elseif (Node_Visitor::REPLACE_WITH_NULL === $return) {
+                        throw new \LogicException('REPLACE_WITH_NULL can not be used if the parent structure is an array');
                     } else {
-                        throw new \LogicException(
-                            'leaveNode() returned invalid value of type ' . gettype($return)
-                        );
+                        throw new \LogicException('leaveNode() returned invalid value of type ' . gettype($return));
                     }
                 }
             }
         }
-
-        if (!empty($doNodes)) {
-            while ([$i, $replace] = array_pop($doNodes)) {
+        if (!empty($do_nodes)) {
+            while ([$i, $replace] = array_pop($do_nodes)) {
                 array_splice($nodes, $i, 1, $replace);
             }
         }
-
         return $nodes;
     }
-
-    private function ensureReplacementReasonable(Node $old, Node $new): void
+    private function ensure_replacement_reasonable(Node $old, Node $new): void
     {
         if ($old instanceof Node\Stmt && $new instanceof Node\Expr) {
-            throw new \LogicException(
-                "Trying to replace statement ({$old->getType()}) " .
-                "with expression ({$new->getType()}). Are you missing a " .
-                'Stmt_Expression wrapper?'
-            );
+            throw new \LogicException("Trying to replace statement ({$old->get_type()}) " . "with expression ({$new->get_type()}). Are you missing a " . 'Stmt_Expression wrapper?');
         }
-
         if ($old instanceof Node\Expr && $new instanceof Node\Stmt) {
-            throw new \LogicException(
-                "Trying to replace expression ({$old->getType()}) " .
-                "with statement ({$new->getType()})"
-            );
+            throw new \LogicException("Trying to replace expression ({$old->get_type()}) " . "with statement ({$new->get_type()})");
         }
     }
 }

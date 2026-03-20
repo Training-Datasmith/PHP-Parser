@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
-namespace PhpParser;
+declare (strict_types=1);
+namespace Php_Parser;
 
 require __DIR__ . '/compatibility_tokens.php';
-
 class Lexer
 {
     /**
@@ -24,102 +22,70 @@ class Lexer
      *                                        ErrorHandler\Throwing.
      * @return Token[] Tokens
      */
-    public function tokenize(string $code, ?ErrorHandler $errorHandler = null): array
+    public function tokenize(string $code, ?Error_Handler $error_handler = null): array
     {
-        if (null === $errorHandler) {
-            $errorHandler = new ErrorHandler\Throwing();
+        if (null === $error_handler) {
+            $error_handler = new Error_Handler\Throwing();
         }
-
         $scream = ini_set('xdebug.scream', '0');
-
         $tokens = @Token::tokenize($code);
-        $this->postprocessTokens($tokens, $errorHandler);
-
+        $this->postprocess_tokens($tokens, $error_handler);
         if (false !== $scream) {
             ini_set('xdebug.scream', $scream);
         }
-
         return $tokens;
     }
-
-    private function handleInvalidCharacter(Token $token, ErrorHandler $errorHandler): void
+    private function handle_invalid_character(Token $token, Error_Handler $error_handler): void
     {
         $chr = $token->text;
-        if ($chr === "\0") {
+        if ($chr === "\x00") {
             // PHP cuts error message after null byte, so need special case
-            $errorMsg = 'Unexpected null byte';
+            $error_msg = 'Unexpected null byte';
         } else {
-            $errorMsg = sprintf(
-                'Unexpected character "%s" (ASCII %d)',
-                $chr,
-                ord($chr)
-            );
+            $error_msg = sprintf('Unexpected character "%s" (ASCII %d)', $chr, ord($chr));
         }
-
-        $errorHandler->handleError(new Error($errorMsg, [
-            'startLine' => $token->line,
-            'endLine' => $token->line,
-            'startFilePos' => $token->pos,
-            'endFilePos' => $token->pos,
-        ]));
+        $error_handler->handle_error(new Error($error_msg, ['startLine' => $token->line, 'endLine' => $token->line, 'startFilePos' => $token->pos, 'endFilePos' => $token->pos]));
     }
-
-    private function isUnterminatedComment(Token $token): bool
+    private function is_unterminated_comment(Token $token): bool
     {
-        return $token->is([\T_COMMENT, \T_DOC_COMMENT])
-            && substr($token->text, 0, 2) === '/*'
-            && substr($token->text, -2) !== '*/';
+        return $token->is([\T_COMMENT, \T_DOC_COMMENT]) && substr($token->text, 0, 2) === '/*' && substr($token->text, -2) !== '*/';
     }
-
     /**
      * @param list<Token> $tokens
      */
-    protected function postprocessTokens(array &$tokens, ErrorHandler $errorHandler): void
+    protected function postprocess_tokens(array &$tokens, Error_Handler $error_handler): void
     {
         // This function reports errors (bad characters and unterminated comments) in the token
         // array, and performs certain canonicalizations:
         //  * Use PHP 8.1 T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG and
         //    T_AMPERSAND_FOLLOWED_BY_VAR_OR_VARARG tokens used to disambiguate intersection types.
         //  * Add a sentinel token with ID 0.
-
-        $numTokens = \count($tokens);
-        if ($numTokens === 0) {
+        $num_tokens = \count($tokens);
+        if ($num_tokens === 0) {
             // Empty input edge case: Just add the sentinel token.
-            $tokens[] = new Token(0, "\0", 1, 0);
+            $tokens[] = new Token(0, "\x00", 1, 0);
             return;
         }
-
-        for ($i = 0; $i < $numTokens; $i++) {
+        for ($i = 0; $i < $num_tokens; $i++) {
             $token = $tokens[$i];
             if ($token->id === \T_BAD_CHARACTER) {
-                $this->handleInvalidCharacter($token, $errorHandler);
+                $this->handle_invalid_character($token, $error_handler);
             }
-
             if ($token->id === \ord('&')) {
                 $next = $i + 1;
                 while (isset($tokens[$next]) && $tokens[$next]->id === \T_WHITESPACE) {
                     $next++;
                 }
-                $followedByVarOrVarArg = isset($tokens[$next]) &&
-                    $tokens[$next]->is([\T_VARIABLE, \T_ELLIPSIS]);
-                $token->id = $followedByVarOrVarArg
-                    ? \T_AMPERSAND_FOLLOWED_BY_VAR_OR_VARARG
-                    : \T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG;
+                $followed_by_var_or_var_arg = isset($tokens[$next]) && $tokens[$next]->is([\T_VARIABLE, \T_ELLIPSIS]);
+                $token->id = $followed_by_var_or_var_arg ? \T_AMPERSAND_FOLLOWED_BY_VAR_OR_VARARG : \T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG;
             }
         }
-
         // Check for unterminated comment
-        $lastToken = $tokens[$numTokens - 1];
-        if ($this->isUnterminatedComment($lastToken)) {
-            $errorHandler->handleError(new Error('Unterminated comment', [
-                'startLine' => $lastToken->line,
-                'endLine' => $lastToken->getEndLine(),
-                'startFilePos' => $lastToken->pos,
-                'endFilePos' => $lastToken->getEndPos(),
-            ]));
+        $last_token = $tokens[$num_tokens - 1];
+        if ($this->is_unterminated_comment($last_token)) {
+            $error_handler->handle_error(new Error('Unterminated comment', ['startLine' => $last_token->line, 'endLine' => $last_token->get_end_line(), 'startFilePos' => $last_token->pos, 'endFilePos' => $last_token->get_end_pos()]));
         }
-
         // Add sentinel token.
-        $tokens[] = new Token(0, "\0", $lastToken->getEndLine(), $lastToken->getEndPos());
+        $tokens[] = new Token(0, "\x00", $last_token->get_end_line(), $last_token->get_end_pos());
     }
 }

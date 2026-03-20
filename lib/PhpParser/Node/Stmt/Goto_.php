@@ -1,17 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node\Identifier;
-use PhpParser\Node\Stmt;
-
+use Php_Parser\Node\Identifier;
+use Php_Parser\Node\Stmt;
 class Goto_ extends Stmt
 {
     /** @var Identifier Name of label to jump to */
     public Identifier $name;
-
     /**
      * Constructs a goto node.
      *
@@ -23,13 +20,11 @@ class Goto_ extends Stmt
         $this->attributes = $attributes;
         $this->name = \is_string($name) ? new Identifier($name) : $name;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['name'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_Goto';
     }

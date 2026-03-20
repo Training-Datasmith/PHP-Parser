@@ -1,18 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node;
 
-namespace PhpParser\Node;
-
-use PhpParser\NodeAbstract;
-
-class ClosureUse extends NodeAbstract
+use Php_Parser\Node_Abstract;
+class Closure_Use extends Node_Abstract
 {
     /** @var Expr\Variable Variable to use */
     public Expr\Variable $var;
     /** @var bool Whether to use by reference */
-    public bool $byRef;
-
+    public bool $by_ref;
     /**
      * Constructs a closure use node.
      *
@@ -20,23 +17,20 @@ class ClosureUse extends NodeAbstract
      * @param bool $byRef Whether to use by reference
      * @param array<string, mixed> $attributes Additional attributes
      */
-    public function __construct(Expr\Variable $var, bool $byRef = false, array $attributes = [])
+    public function __construct(Expr\Variable $var, bool $by_ref = false, array $attributes = [])
     {
         $this->attributes = $attributes;
         $this->var = $var;
-        $this->byRef = $byRef;
+        $this->by_ref = $by_ref;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['var', 'byRef'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'ClosureUse';
     }
 }
-
 // @deprecated compatibility alias
-class_alias(ClosureUse::class, Expr\ClosureUse::class);
+class_alias(Closure_Use::class, Expr\Closure_Use::class);

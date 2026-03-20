@@ -1,30 +1,26 @@
 <?php
 
-declare(strict_types=1);
-
-namespace PhpParser;
+declare (strict_types=1);
+namespace Php_Parser;
 
 /**
  * @codeCoverageIgnore
  */
-abstract class NodeVisitorAbstract implements NodeVisitor
+abstract class Node_Visitor_Abstract implements Node_Visitor
 {
-    public function beforeTraverse(array $nodes)
+    public function before_traverse(array $nodes)
     {
         return null;
     }
-
-    public function enterNode(Node $node)
+    public function enter_node(Node $node)
     {
         return null;
     }
-
-    public function leaveNode(Node $node)
+    public function leave_node(Node $node)
     {
         return null;
     }
-
-    public function afterTraverse(array $nodes)
+    public function after_traverse(array $nodes)
     {
         return null;
     }

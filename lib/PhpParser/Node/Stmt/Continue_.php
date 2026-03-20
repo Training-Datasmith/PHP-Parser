@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node;
-
+use Php_Parser\Node;
 class Continue_ extends Node\Stmt
 {
     /** @var null|Node\Expr Number of loops to continue */
     public ?Node\Expr $num;
-
     /**
      * Constructs a continue node.
      *
@@ -22,13 +19,11 @@ class Continue_ extends Node\Stmt
         $this->attributes = $attributes;
         $this->num = $num;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['num'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_Continue';
     }

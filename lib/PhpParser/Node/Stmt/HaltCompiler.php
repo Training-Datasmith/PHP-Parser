@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-namespace PhpParser\Node\Stmt;
-
-use PhpParser\Node\Stmt;
-
-class HaltCompiler extends Stmt
+use Php_Parser\Node\Stmt;
+class Halt_Compiler extends Stmt
 {
     /** @var string Remaining text after halt compiler statement. */
     public string $remaining;
-
     /**
      * Constructs a __halt_compiler node.
      *
@@ -22,13 +19,11 @@ class HaltCompiler extends Stmt
         $this->attributes = $attributes;
         $this->remaining = $remaining;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['remaining'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_HaltCompiler';
     }

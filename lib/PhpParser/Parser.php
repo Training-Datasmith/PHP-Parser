@@ -1,8 +1,7 @@
 <?php
 
-declare(strict_types=1);
-
-namespace PhpParser;
+declare (strict_types=1);
+namespace Php_Parser;
 
 interface Parser
 {
@@ -16,12 +15,11 @@ interface Parser
      * @return Node\Stmt[]|null Array of statements (or null non-throwing error handler is used and
      *                          the parser was unable to recover from an error).
      */
-    public function parse(string $code, ?ErrorHandler $errorHandler = null): ?array;
-
+    public function parse(string $code, ?Error_Handler $error_handler = null): ?array;
     /**
      * Return tokens for the last parse.
      *
      * @return Token[]
      */
-    public function getTokens(): array;
+    public function get_tokens(): array;
 }

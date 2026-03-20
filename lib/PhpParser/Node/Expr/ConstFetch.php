@@ -1,17 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Expr;
-use PhpParser\Node\Name;
-
-class ConstFetch extends Expr
+use Php_Parser\Node\Expr;
+use Php_Parser\Node\Name;
+class Const_Fetch extends Expr
 {
     /** @var Name Constant name */
     public Name $name;
-
     /**
      * Constructs a const fetch node.
      *
@@ -23,13 +20,11 @@ class ConstFetch extends Expr
         $this->attributes = $attributes;
         $this->name = $name;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['name'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_ConstFetch';
     }

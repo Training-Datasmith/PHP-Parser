@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Arg;
-use PhpParser\Node\Expr;
-use PhpParser\Node\VariadicPlaceholder;
-
-abstract class CallLike extends Expr
+use Php_Parser\Node\Arg;
+use Php_Parser\Node\Expr;
+use Php_Parser\Node\Variadic_Placeholder;
+abstract class Call_Like extends Expr
 {
     /**
      * Return raw arguments, which may be actual Args, or VariadicPlaceholders for first-class
@@ -16,28 +14,25 @@ abstract class CallLike extends Expr
      *
      * @return array<Arg|VariadicPlaceholder>
      */
-    abstract public function getRawArgs(): array;
-
+    abstract public function get_raw_args(): array;
     /**
      * Returns whether this call expression is actually a first class callable.
      */
-    public function isFirstClassCallable(): bool
+    public function is_first_class_callable(): bool
     {
-        $rawArgs = $this->getRawArgs();
-        return count($rawArgs) === 1 && current($rawArgs) instanceof VariadicPlaceholder;
+        $raw_args = $this->get_raw_args();
+        return count($raw_args) === 1 && current($raw_args) instanceof Variadic_Placeholder;
     }
-
     /**
      * Assert that this is not a first-class callable and return only ordinary Args.
      *
      * @return Arg[]
      */
-    public function getArgs(): array
+    public function get_args(): array
     {
-        assert(!$this->isFirstClassCallable());
-        return $this->getRawArgs();
+        assert(!$this->is_first_class_callable());
+        return $this->get_raw_args();
     }
-
     /**
      * Retrieves a specific argument from the raw arguments.
      *
@@ -45,19 +40,16 @@ abstract class CallLike extends Expr
      * positional (unnamed) argument that exists at the given `$position`,
      * otherwise, returns `null` for first-class callables or if no match is found.
      */
-    public function getArg(string $name, int $position): ?Arg
+    public function get_arg(string $name, int $position): ?Arg
     {
-        if ($this->isFirstClassCallable()) {
+        if ($this->is_first_class_callable()) {
             return null;
         }
-        foreach ($this->getRawArgs() as $i => $arg) {
+        foreach ($this->get_raw_args() as $i => $arg) {
             if ($arg->unpack) {
                 continue;
             }
-            if (
-                ($arg->name !== null && $arg->name->toString() === $name)
-                || ($arg->name === null && $i === $position)
-            ) {
+            if ($arg->name !== null && $arg->name->to_string() === $name || $arg->name === null && $i === $position) {
                 return $arg;
             }
         }

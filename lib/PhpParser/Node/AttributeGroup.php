@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node;
 
-namespace PhpParser\Node;
-
-use PhpParser\NodeAbstract;
-
-class AttributeGroup extends NodeAbstract
+use Php_Parser\Node_Abstract;
+class Attribute_Group extends Node_Abstract
 {
     /** @var Attribute[] Attributes */
     public array $attrs;
-
     /**
      * @param Attribute[] $attrs PHP attributes
      * @param array<string, mixed> $attributes Additional node attributes
@@ -20,13 +17,11 @@ class AttributeGroup extends NodeAbstract
         $this->attributes = $attributes;
         $this->attrs = $attrs;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['attrs'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'AttributeGroup';
     }

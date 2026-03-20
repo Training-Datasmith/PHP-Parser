@@ -1,18 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt\Trait_Use_Adaptation;
 
-namespace PhpParser\Node\Stmt\TraitUseAdaptation;
-
-use PhpParser\Node;
-
-class Alias extends Node\Stmt\TraitUseAdaptation
+use Php_Parser\Node;
+class Alias extends Node\Stmt\Trait_Use_Adaptation
 {
     /** @var null|int New modifier */
-    public ?int $newModifier;
+    public ?int $new_modifier;
     /** @var null|Node\Identifier New name */
-    public ?Node\Identifier $newName;
-
+    public ?Node\Identifier $new_name;
     /**
      * Constructs a trait use precedence adaptation node.
      *
@@ -22,21 +19,19 @@ class Alias extends Node\Stmt\TraitUseAdaptation
      * @param null|string|Node\Identifier $newName New name
      * @param array<string, mixed> $attributes Additional attributes
      */
-    public function __construct(?Node\Name $trait, $method, ?int $newModifier, $newName, array $attributes = [])
+    public function __construct(?Node\Name $trait, $method, ?int $new_modifier, $new_name, array $attributes = [])
     {
         $this->attributes = $attributes;
         $this->trait = $trait;
         $this->method = \is_string($method) ? new Node\Identifier($method) : $method;
-        $this->newModifier = $newModifier;
-        $this->newName = \is_string($newName) ? new Node\Identifier($newName) : $newName;
+        $this->new_modifier = $new_modifier;
+        $this->new_name = \is_string($new_name) ? new Node\Identifier($new_name) : $new_name;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['trait', 'method', 'newModifier', 'newName'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Stmt_TraitUseAdaptation_Alias';
     }

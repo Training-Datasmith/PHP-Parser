@@ -1,16 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node;
-use PhpParser\Node\Arg;
-use PhpParser\Node\Expr;
-use PhpParser\Node\Identifier;
-use PhpParser\Node\VariadicPlaceholder;
-
-class MethodCall extends CallLike
+use Php_Parser\Node;
+use Php_Parser\Node\Arg;
+use Php_Parser\Node\Expr;
+use Php_Parser\Node\Identifier;
+use Php_Parser\Node\Variadic_Placeholder;
+class Method_Call extends Call_Like
 {
     /** @var Expr Variable holding object */
     public Expr $var;
@@ -18,7 +16,6 @@ class MethodCall extends CallLike
     public Node $name;
     /** @var array<Arg|VariadicPlaceholder> Arguments */
     public array $args;
-
     /**
      * Constructs a function call node.
      *
@@ -34,18 +31,15 @@ class MethodCall extends CallLike
         $this->name = \is_string($name) ? new Identifier($name) : $name;
         $this->args = $args;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['var', 'name', 'args'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_MethodCall';
     }
-
-    public function getRawArgs(): array
+    public function get_raw_args(): array
     {
         return $this->args;
     }

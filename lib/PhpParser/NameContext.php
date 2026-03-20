@@ -1,37 +1,30 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser;
 
-namespace PhpParser;
-
-use PhpParser\Node\Name;
-use PhpParser\Node\Name\FullyQualified;
-use PhpParser\Node\Stmt;
-
-class NameContext
+use Php_Parser\Node\Name;
+use Php_Parser\Node\Name\Fully_Qualified;
+use Php_Parser\Node\Stmt;
+class Name_Context
 {
     /** @var null|Name Current namespace */
     protected ?Name $namespace = null;
-
     /** @var Name[][] Map of format [aliasType => [aliasName => originalName]] */
     protected array $aliases = [];
-
     /** @var Name[][] Same as $aliases but preserving original case */
-    protected array $origAliases = [];
-
+    protected array $orig_aliases = [];
     /** @var ErrorHandler Error handler */
-    protected ErrorHandler $errorHandler;
-
+    protected Error_Handler $error_handler;
     /**
      * Create a name context.
      *
      * @param ErrorHandler $errorHandler Error handling used to report errors
      */
-    public function __construct(ErrorHandler $errorHandler)
+    public function __construct(Error_Handler $error_handler)
     {
-        $this->errorHandler = $errorHandler;
+        $this->error_handler = $error_handler;
     }
-
     /**
      * Start a new namespace.
      *
@@ -39,16 +32,11 @@ class NameContext
      *
      * @param Name|null $namespace Null is the global namespace
      */
-    public function startNamespace(?Name $namespace = null): void
+    public function start_namespace(?Name $namespace = null): void
     {
         $this->namespace = $namespace;
-        $this->origAliases = $this->aliases = [
-            Stmt\Use_::TYPE_NORMAL   => [],
-            Stmt\Use_::TYPE_FUNCTION => [],
-            Stmt\Use_::TYPE_CONSTANT => [],
-        ];
+        $this->orig_aliases = $this->aliases = [Stmt\Use_::TYPE_NORMAL => [], Stmt\Use_::TYPE_FUNCTION => [], Stmt\Use_::TYPE_CONSTANT => []];
     }
-
     /**
      * Add an alias / import.
      *
@@ -57,48 +45,31 @@ class NameContext
      * @param Stmt\Use_::TYPE_* $type One of Stmt\Use_::TYPE_*
      * @param array<string, mixed> $errorAttrs Attributes to use to report an error
      */
-    public function addAlias(Name $name, string $aliasName, int $type, array $errorAttrs = []): void
+    public function add_alias(Name $name, string $alias_name, int $type, array $error_attrs = []): void
     {
         // Constant names are case sensitive, everything else case insensitive
         if ($type === Stmt\Use_::TYPE_CONSTANT) {
-            $aliasLookupName = $aliasName;
+            $alias_lookup_name = $alias_name;
         } else {
-            $aliasLookupName = strtolower($aliasName);
+            $alias_lookup_name = strtolower($alias_name);
         }
-
-        if (isset($this->aliases[$type][$aliasLookupName])) {
-            $typeStringMap = [
-                Stmt\Use_::TYPE_NORMAL   => '',
-                Stmt\Use_::TYPE_FUNCTION => 'function ',
-                Stmt\Use_::TYPE_CONSTANT => 'const ',
-            ];
-
-            $this->errorHandler->handleError(new Error(
-                sprintf(
-                    'Cannot use %s%s as %s because the name is already in use',
-                    $typeStringMap[$type],
-                    $name,
-                    $aliasName
-                ),
-                $errorAttrs
-            ));
+        if (isset($this->aliases[$type][$alias_lookup_name])) {
+            $type_string_map = [Stmt\Use_::TYPE_NORMAL => '', Stmt\Use_::TYPE_FUNCTION => 'function ', Stmt\Use_::TYPE_CONSTANT => 'const '];
+            $this->error_handler->handle_error(new Error(sprintf('Cannot use %s%s as %s because the name is already in use', $type_string_map[$type], $name, $alias_name), $error_attrs));
             return;
         }
-
-        $this->aliases[$type][$aliasLookupName] = $name;
-        $this->origAliases[$type][$aliasName] = $name;
+        $this->aliases[$type][$alias_lookup_name] = $name;
+        $this->orig_aliases[$type][$alias_name] = $name;
     }
-
     /**
      * Get current namespace.
      *
      * @return null|Name Namespace (or null if global namespace)
      */
-    public function getNamespace(): ?Name
+    public function get_namespace(): ?Name
     {
         return $this->namespace;
     }
-
     /**
      * Get resolved name.
      *
@@ -107,43 +78,34 @@ class NameContext
      *
      * @return null|Name Resolved name, or null if static resolution is not possible
      */
-    public function getResolvedName(Name $name, int $type): ?Name
+    public function get_resolved_name(Name $name, int $type): ?Name
     {
         // don't resolve special class names
-        if ($type === Stmt\Use_::TYPE_NORMAL && $name->isSpecialClassName()) {
-            if (!$name->isUnqualified()) {
-                $this->errorHandler->handleError(new Error(
-                    sprintf("'\\%s' is an invalid class name", $name->toString()),
-                    $name->getAttributes()
-                ));
+        if ($type === Stmt\Use_::TYPE_NORMAL && $name->is_special_class_name()) {
+            if (!$name->is_unqualified()) {
+                $this->error_handler->handle_error(new Error(sprintf("'\\%s' is an invalid class name", $name->to_string()), $name->get_attributes()));
             }
             return $name;
         }
-
         // fully qualified names are already resolved
-        if ($name->isFullyQualified()) {
+        if ($name->is_fully_qualified()) {
             return $name;
         }
-
         // Try to resolve aliases
-        if (null !== $resolvedName = $this->resolveAlias($name, $type)) {
-            return $resolvedName;
+        if (null !== $resolved_name = $this->resolve_alias($name, $type)) {
+            return $resolved_name;
         }
-
-        if ($type !== Stmt\Use_::TYPE_NORMAL && $name->isUnqualified()) {
+        if ($type !== Stmt\Use_::TYPE_NORMAL && $name->is_unqualified()) {
             if (null === $this->namespace) {
                 // outside of a namespace unaliased unqualified is same as fully qualified
-                return new FullyQualified($name, $name->getAttributes());
+                return new Fully_Qualified($name, $name->get_attributes());
             }
-
             // Cannot resolve statically
             return null;
         }
-
         // if no alias exists prepend current namespace
-        return FullyQualified::concat($this->namespace, $name, $name->getAttributes());
+        return Fully_Qualified::concat($this->namespace, $name, $name->get_attributes());
     }
-
     /**
      * Get resolved class name.
      *
@@ -151,11 +113,10 @@ class NameContext
      *
      * @return Name Resolved name
      */
-    public function getResolvedClassName(Name $name): Name
+    public function get_resolved_class_name(Name $name): Name
     {
-        return $this->getResolvedName($name, Stmt\Use_::TYPE_NORMAL);
+        return $this->get_resolved_name($name, Stmt\Use_::TYPE_NORMAL);
     }
-
     /**
      * Get possible ways of writing a fully qualified name (e.g., by making use of aliases).
      *
@@ -164,55 +125,45 @@ class NameContext
      *
      * @return Name[] Possible representations of the name
      */
-    public function getPossibleNames(string $name, int $type): array
+    public function get_possible_names(string $name, int $type): array
     {
-        $lcName = strtolower($name);
-
+        $lc_name = strtolower($name);
         if ($type === Stmt\Use_::TYPE_NORMAL) {
             // self, parent and static must always be unqualified
-            if ($lcName === 'self' || $lcName === 'parent' || $lcName === 'static') {
+            if ($lc_name === 'self' || $lc_name === 'parent' || $lc_name === 'static') {
                 return [new Name($name)];
             }
         }
-
         // Collect possible ways to write this name, starting with the fully-qualified name
-        $possibleNames = [new FullyQualified($name)];
-
-        if (null !== $nsRelativeName = $this->getNamespaceRelativeName($name, $lcName, $type)) {
+        $possible_names = [new Fully_Qualified($name)];
+        if (null !== $ns_relative_name = $this->get_namespace_relative_name($name, $lc_name, $type)) {
             // Make sure there is no alias that makes the normally namespace-relative name
             // into something else
-            if (null === $this->resolveAlias($nsRelativeName, $type)) {
-                $possibleNames[] = $nsRelativeName;
+            if (null === $this->resolve_alias($ns_relative_name, $type)) {
+                $possible_names[] = $ns_relative_name;
             }
         }
-
         // Check for relevant namespace use statements
-        foreach ($this->origAliases[Stmt\Use_::TYPE_NORMAL] as $alias => $orig) {
-            $lcOrig = $orig->toLowerString();
-            if (0 === strpos($lcName, $lcOrig . '\\')) {
-                $possibleNames[] = new Name($alias . substr($name, strlen($lcOrig)));
+        foreach ($this->orig_aliases[Stmt\Use_::TYPE_NORMAL] as $alias => $orig) {
+            $lc_orig = $orig->to_lower_string();
+            if (0 === strpos($lc_name, $lc_orig . '\\')) {
+                $possible_names[] = new Name($alias . substr($name, strlen($lc_orig)));
             }
         }
-
         // Check for relevant type-specific use statements
-        foreach ($this->origAliases[$type] as $alias => $orig) {
+        foreach ($this->orig_aliases[$type] as $alias => $orig) {
             if ($type === Stmt\Use_::TYPE_CONSTANT) {
                 // Constants are complicated-sensitive
-                $normalizedOrig = $this->normalizeConstName($orig->toString());
-                if ($normalizedOrig === $this->normalizeConstName($name)) {
-                    $possibleNames[] = new Name($alias);
+                $normalized_orig = $this->normalize_const_name($orig->to_string());
+                if ($normalized_orig === $this->normalize_const_name($name)) {
+                    $possible_names[] = new Name($alias);
                 }
-            } else {
-                // Everything else is case-insensitive
-                if ($orig->toLowerString() === $lcName) {
-                    $possibleNames[] = new Name($alias);
-                }
+            } else if ($orig->to_lower_string() === $lc_name) {
+                $possible_names[] = new Name($alias);
             }
         }
-
-        return $possibleNames;
+        return $possible_names;
     }
-
     /**
      * Get shortest representation of this fully-qualified name.
      *
@@ -221,80 +172,69 @@ class NameContext
      *
      * @return Name Shortest representation
      */
-    public function getShortName(string $name, int $type): Name
+    public function get_short_name(string $name, int $type): Name
     {
-        $possibleNames = $this->getPossibleNames($name, $type);
-
+        $possible_names = $this->get_possible_names($name, $type);
         // Find shortest name
-        $shortestName = null;
-        $shortestLength = \INF;
-        foreach ($possibleNames as $possibleName) {
-            $length = strlen($possibleName->toCodeString());
-            if ($length < $shortestLength) {
-                $shortestName = $possibleName;
-                $shortestLength = $length;
+        $shortest_name = null;
+        $shortest_length = \INF;
+        foreach ($possible_names as $possible_name) {
+            $length = strlen($possible_name->to_code_string());
+            if ($length < $shortest_length) {
+                $shortest_name = $possible_name;
+                $shortest_length = $length;
             }
         }
-
-        return $shortestName;
+        return $shortest_name;
     }
-
-    private function resolveAlias(Name $name, int $type): ?FullyQualified
+    private function resolve_alias(Name $name, int $type): ?Fully_Qualified
     {
-        $firstPart = $name->getFirst();
-
-        if ($name->isQualified()) {
+        $first_part = $name->get_first();
+        if ($name->is_qualified()) {
             // resolve aliases for qualified names, always against class alias table
-            $checkName = strtolower($firstPart);
-            if (isset($this->aliases[Stmt\Use_::TYPE_NORMAL][$checkName])) {
-                $alias = $this->aliases[Stmt\Use_::TYPE_NORMAL][$checkName];
-                return FullyQualified::concat($alias, $name->slice(1), $name->getAttributes());
+            $check_name = strtolower($first_part);
+            if (isset($this->aliases[Stmt\Use_::TYPE_NORMAL][$check_name])) {
+                $alias = $this->aliases[Stmt\Use_::TYPE_NORMAL][$check_name];
+                return Fully_Qualified::concat($alias, $name->slice(1), $name->get_attributes());
             }
-        } elseif ($name->isUnqualified()) {
+        } elseif ($name->is_unqualified()) {
             // constant aliases are case-sensitive, function aliases case-insensitive
-            $checkName = $type === Stmt\Use_::TYPE_CONSTANT ? $firstPart : strtolower($firstPart);
-            if (isset($this->aliases[$type][$checkName])) {
+            $check_name = $type === Stmt\Use_::TYPE_CONSTANT ? $first_part : strtolower($first_part);
+            if (isset($this->aliases[$type][$check_name])) {
                 // resolve unqualified aliases
-                return new FullyQualified($this->aliases[$type][$checkName], $name->getAttributes());
+                return new Fully_Qualified($this->aliases[$type][$check_name], $name->get_attributes());
             }
         }
-
         // No applicable aliases
         return null;
     }
-
-    private function getNamespaceRelativeName(string $name, string $lcName, int $type): ?Name
+    private function get_namespace_relative_name(string $name, string $lc_name, int $type): ?Name
     {
         if (null === $this->namespace) {
             return new Name($name);
         }
-
         if ($type === Stmt\Use_::TYPE_CONSTANT) {
             // The constants true/false/null always resolve to the global symbols, even inside a
             // namespace, so they may be used without qualification
-            if ($lcName === 'true' || $lcName === 'false' || $lcName === 'null') {
+            if ($lc_name === 'true' || $lc_name === 'false' || $lc_name === 'null') {
                 return new Name($name);
             }
         }
-
-        $namespacePrefix = strtolower($this->namespace . '\\');
-        if (0 === strpos($lcName, $namespacePrefix)) {
-            return new Name(substr($name, strlen($namespacePrefix)));
+        $namespace_prefix = strtolower($this->namespace . '\\');
+        if (0 === strpos($lc_name, $namespace_prefix)) {
+            return new Name(substr($name, strlen($namespace_prefix)));
         }
-
         return null;
     }
-
-    private function normalizeConstName(string $name): string
+    private function normalize_const_name(string $name): string
     {
-        $nsSep = strrpos($name, '\\');
-        if (false === $nsSep) {
+        $ns_sep = strrpos($name, '\\');
+        if (false === $ns_sep) {
             return $name;
         }
-
         // Constants have case-insensitive namespace and case-sensitive short-name
-        $ns = substr($name, 0, $nsSep);
-        $shortName = substr($name, $nsSep + 1);
-        return strtolower($ns) . '\\' . $shortName;
+        $ns = substr($name, 0, $ns_sep);
+        $short_name = substr($name, $ns_sep + 1);
+        return strtolower($ns) . '\\' . $short_name;
     }
 }

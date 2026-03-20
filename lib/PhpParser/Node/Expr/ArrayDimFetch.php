@@ -1,18 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Expr;
-
-class ArrayDimFetch extends Expr
+use Php_Parser\Node\Expr;
+class Array_Dim_Fetch extends Expr
 {
     /** @var Expr Variable */
     public Expr $var;
     /** @var null|Expr Array index / dim */
     public ?Expr $dim;
-
     /**
      * Constructs an array index fetch node.
      *
@@ -26,13 +23,11 @@ class ArrayDimFetch extends Expr
         $this->var = $var;
         $this->dim = $dim;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['var', 'dim'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_ArrayDimFetch';
     }

@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Expr;
-
+use Php_Parser\Node\Expr;
 /**
  * Error node used during parsing with error recovery.
  *
@@ -23,13 +21,11 @@ class Error extends Expr
     {
         $this->attributes = $attributes;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return [];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_Error';
     }

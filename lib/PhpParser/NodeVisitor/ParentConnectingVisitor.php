@@ -1,15 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
-namespace PhpParser\NodeVisitor;
+declare (strict_types=1);
+namespace Php_Parser\Node_Visitor;
 
 use function array_pop;
 use function count;
-
-use PhpParser\Node;
-use PhpParser\NodeVisitorAbstract;
-
+use Php_Parser\Node;
+use Php_Parser\Node_Visitor_Abstract;
 /**
  * Visitor that connects a child node to its parent node.
  *
@@ -18,40 +15,34 @@ use PhpParser\NodeVisitorAbstract;
  *
  * With <code>$weakReferences=true</code> the attribute name is "weak_parent" instead.
  */
-final class ParentConnectingVisitor extends NodeVisitorAbstract
+final class Parent_Connecting_Visitor extends Node_Visitor_Abstract
 {
     /**
      * @var Node[]
      */
     private array $stack = [];
-
-    private bool $weakReferences;
-
-    public function __construct(bool $weakReferences = false)
+    private bool $weak_references;
+    public function __construct(bool $weak_references = false)
     {
-        $this->weakReferences = $weakReferences;
+        $this->weak_references = $weak_references;
     }
-
-    public function beforeTraverse(array $nodes): void
+    public function before_traverse(array $nodes): void
     {
         $this->stack = [];
     }
-
-    public function enterNode(Node $node): void
+    public function enter_node(Node $node): void
     {
         if (!empty($this->stack)) {
             $parent = $this->stack[count($this->stack) - 1];
-            if ($this->weakReferences) {
-                $node->setAttribute('weak_parent', \WeakReference::create($parent));
+            if ($this->weak_references) {
+                $node->set_attribute('weak_parent', \WeakReference::create($parent));
             } else {
-                $node->setAttribute('parent', $parent);
+                $node->set_attribute('parent', $parent);
             }
         }
-
         $this->stack[] = $node;
     }
-
-    public function leaveNode(Node $node): void
+    public function leave_node(Node $node): void
     {
         array_pop($this->stack);
     }

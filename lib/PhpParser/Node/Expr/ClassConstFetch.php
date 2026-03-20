@@ -1,21 +1,18 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node;
-use PhpParser\Node\Expr;
-use PhpParser\Node\Identifier;
-use PhpParser\Node\Name;
-
-class ClassConstFetch extends Expr
+use Php_Parser\Node;
+use Php_Parser\Node\Expr;
+use Php_Parser\Node\Identifier;
+use Php_Parser\Node\Name;
+class Class_Const_Fetch extends Expr
 {
     /** @var Name|Expr Class name */
     public Node $class;
     /** @var Identifier|Expr|Error Constant name */
     public Node $name;
-
     /**
      * Constructs a class const fetch node.
      *
@@ -29,13 +26,11 @@ class ClassConstFetch extends Expr
         $this->class = $class;
         $this->name = \is_string($name) ? new Identifier($name) : $name;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['class', 'name'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_ClassConstFetch';
     }

@@ -1,18 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Expr;
-
+use Php_Parser\Node\Expr;
 class Yield_ extends Expr
 {
     /** @var null|Expr Key expression */
     public ?Expr $key;
     /** @var null|Expr Value expression */
     public ?Expr $value;
-
     /**
      * Constructs a yield expression node.
      *
@@ -26,13 +23,11 @@ class Yield_ extends Expr
         $this->key = $key;
         $this->value = $value;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['key', 'value'];
     }
-
-    public function getType(): string
+    public function get_type(): string
     {
         return 'Expr_Yield';
     }

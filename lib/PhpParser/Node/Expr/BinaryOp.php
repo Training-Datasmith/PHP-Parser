@@ -1,18 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-namespace PhpParser\Node\Expr;
-
-use PhpParser\Node\Expr;
-
-abstract class BinaryOp extends Expr
+use Php_Parser\Node\Expr;
+abstract class Binary_Op extends Expr
 {
     /** @var Expr The left hand side expression */
     public Expr $left;
     /** @var Expr The right hand side expression */
     public Expr $right;
-
     /**
      * Constructs a binary operator node.
      *
@@ -26,17 +23,15 @@ abstract class BinaryOp extends Expr
         $this->left = $left;
         $this->right = $right;
     }
-
-    public function getSubNodeNames(): array
+    public function get_sub_node_names(): array
     {
         return ['left', 'right'];
     }
-
     /**
      * Get the operator sigil for this binary operation.
      *
      * In the case there are multiple possible sigils for an operator, this method does not
      * necessarily return the one used in the parsed code.
      */
-    abstract public function getOperatorSigil(): string;
+    abstract public function get_operator_sigil(): string;
 }
