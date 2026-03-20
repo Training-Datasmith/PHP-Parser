@@ -79,8 +79,8 @@ class Const_Expr_Evaluator
     /**
      * Directly evaluates a constant expression into a PHP value.
      *
-     * May generate Error exceptions, warnings or notices. Use evaluateSilently() to convert these
-     * into a ConstExprEvaluationException.
+     * Unlike {@see evaluateSilently()}, this method does NOT suppress PHP errors or warnings.
+     * Use it when you want to observe raw PHP errors during evaluation (e.g. division by zero).
      *
      * If some part of the expression cannot be evaluated, the fallback evaluator passed to the
      * constructor will be invoked. By default, if no fallback is provided, an exception of type
@@ -88,10 +88,13 @@ class Const_Expr_Evaluator
      *
      * See class doc comment for caveats and limitations.
      *
-     * @param Expr $expr Constant expression to evaluate
-     * @return mixed Result of evaluation
+     * @param Expr $expr Constant expression node to evaluate (e.g. from the AST)
      *
-     * @throws ConstExprEvaluationException if the expression cannot be evaluated
+     * @return mixed Result of evaluation; the type depends on the expression (int, float, string, bool, array, null)
+     *
+     * @throws Const_Expr_Evaluation_Exception if the expression cannot be evaluated
+     *
+     * @complexity O(d) where d is the depth of the constant expression tree
      */
     public function evaluate_directly(Expr $expr)
     {

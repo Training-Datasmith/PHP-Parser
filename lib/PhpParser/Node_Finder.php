@@ -10,10 +10,15 @@ class Node_Finder
     /**
      * Find all nodes satisfying a filter callback.
      *
-     * @param Node|Node[] $nodes Single node or array of nodes to search in
-     * @param callable $filter Filter callback: function(Node $node) : bool
+     * Performs a depth-first traversal of the AST rooted at $nodes and
+     * returns every node for which $filter returns true.
      *
-     * @return Node[] Found nodes satisfying the filter callback
+     * @param Node|Node[] $nodes  Single node or array of nodes to search in
+     * @param callable    $filter Predicate: function(Node $node): bool — return true to include the node
+     *
+     * @return Node[] Found nodes satisfying the filter callback, in traversal order
+     *
+     * @complexity O(n) where n is the total number of nodes in the subtree
      */
     public function find($nodes, callable $filter): array
     {
@@ -30,12 +35,18 @@ class Node_Finder
     }
     /**
      * Find all nodes that are instances of a certain class.
-     * @template TNode as Node
      *
-     * @param Node|Node[] $nodes Single node or array of nodes to search in
-     * @param class-string<TNode> $class Class name
+     * Shorthand for {@see find()} with an instanceof filter. Generic typing
+     * lets PHPStan and Psalm infer the concrete node type in the return array.
      *
-     * @return TNode[] Found nodes (all instances of $class)
+     * @template TNode of Node
+     *
+     * @param Node|Node[]         $nodes Single node or array of nodes to search in
+     * @param class-string<TNode> $class Fully-qualified class name to match against
+     *
+     * @return TNode[] Found nodes, all guaranteed to be instances of $class
+     *
+     * @complexity O(n) where n is the total number of nodes in the subtree
      */
     public function find_instance_of($nodes, string $class): array
     {
@@ -44,10 +55,16 @@ class Node_Finder
     /**
      * Find first node satisfying a filter callback.
      *
-     * @param Node|Node[] $nodes Single node or array of nodes to search in
-     * @param callable $filter Filter callback: function(Node $node) : bool
+     * Traverses depth-first and returns the first node for which $filter
+     * returns true, then stops. More efficient than {@see find()} when only
+     * one match is expected.
      *
-     * @return null|Node Found node (or null if none found)
+     * @param Node|Node[] $nodes  Single node or array of nodes to search in
+     * @param callable    $filter Predicate: function(Node $node): bool
+     *
+     * @return Node|null The first matching node, or null if no match is found
+     *
+     * @complexity O(n) worst case, O(1) best case (match at root)
      */
     public function find_first($nodes, callable $filter): ?Node
     {
@@ -65,12 +82,17 @@ class Node_Finder
     /**
      * Find first node that is an instance of a certain class.
      *
-     * @template TNode as Node
+     * Shorthand for {@see find_first()} with an instanceof filter.
+     * Traversal stops as soon as the first match is found.
      *
-     * @param Node|Node[] $nodes Single node or array of nodes to search in
-     * @param class-string<TNode> $class Class name
+     * @template TNode of Node
      *
-     * @return null|TNode Found node, which is an instance of $class (or null if none found)
+     * @param Node|Node[]         $nodes Single node or array of nodes to search in
+     * @param class-string<TNode> $class Fully-qualified class name to match against
+     *
+     * @return TNode|null The first node that is an instance of $class, or null if none found
+     *
+     * @complexity O(n) worst case, O(1) best case (match at root)
      */
     public function find_first_instance_of($nodes, string $class): ?Node
     {

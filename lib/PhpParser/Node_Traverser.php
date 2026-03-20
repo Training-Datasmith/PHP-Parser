@@ -26,25 +26,39 @@ class Node_Traverser implements Node_Traverser_Interface
     /** @var bool Whether traversal should be stopped */
     protected bool $stop_traversal;
     /**
-     * Create a traverser with the given visitors.
+     * Creates a traverser pre-loaded with the given visitors.
      *
-     * @param NodeVisitor ...$visitors Node visitors
+     * Visitors are applied in the order they are passed for enterNode() calls,
+     * and in reverse order for leaveNode() calls, mirroring a call stack.
+     *
+     * @param Node_Visitor ...$visitors One or more node visitors to register
+     *
+     * @since 1.0
      */
     public function __construct(Node_Visitor ...$visitors)
     {
         $this->visitors = $visitors;
     }
     /**
-     * Adds a visitor.
+     * Adds a visitor to the end of the visitor chain.
      *
-     * @param NodeVisitor $visitor Visitor to add
+     * The new visitor will participate in the next call to {@see traverse()}.
+     * Adding a visitor after traversal has started has no effect on the
+     * current traversal pass.
+     *
+     * @param Node_Visitor $visitor Visitor to append to the chain
      */
     public function add_visitor(Node_Visitor $visitor): void
     {
         $this->visitors[] = $visitor;
     }
     /**
-     * Removes an added visitor.
+     * Removes a previously registered visitor from the chain.
+     *
+     * Comparison is done by identity (===). If the visitor is not registered,
+     * the call is a no-op.
+     *
+     * @param Node_Visitor $visitor The visitor instance to remove
      */
     public function remove_visitor(Node_Visitor $visitor): void
     {
@@ -54,11 +68,24 @@ class Node_Traverser implements Node_Traverser_Interface
         }
     }
     /**
-     * Traverses an array of nodes using the registered visitors.
+     * Traverses an array of top-level nodes using all registered visitors.
      *
-     * @param Node[] $nodes Array of nodes
+     * Performs a depth-first traversal, calling visitors in registration order
+     * on enterNode() and in reverse order on leaveNode(). Visitors can control
+     * traversal via the sentinel return values defined on {@see NodeVisitor}.
      *
-     * @return Node[] Traversed array of nodes
+     * The traversal order is:
+     *  1. beforeTraverse($nodes) on all visitors (in order)
+     *  2. Depth-first descent: enterNode → children → leaveNode
+     *  3. afterTraverse($nodes) on all visitors (in reverse order)
+     *
+     * @param Node[] $nodes Top-level statement nodes to traverse (e.g. from Parser::parse())
+     *
+     * @return Node[] Resulting node array after all visitor transformations
+     *
+     * @complexity O(n * v) where n is the number of nodes and v is the number of visitors
+     *
+     * @see NodeVisitor for return value constants that control traversal
      */
     public function traverse(array $nodes): array
     {

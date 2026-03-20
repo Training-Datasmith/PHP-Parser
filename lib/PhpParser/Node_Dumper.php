@@ -25,12 +25,16 @@ class Node_Dumper
      * Constructs a NodeDumper.
      *
      * Supported options:
-     *  * bool dumpComments: Whether comments should be dumped.
-     *  * bool dumpPositions: Whether line/offset information should be dumped. To dump offset
-     *                        information, the code needs to be passed to dump().
-     *  * bool dumpOtherAttributes: Whether non-comment, non-position attributes should be dumped.
+     *  * bool dumpComments:       Whether comments attached to nodes should be included in the dump.
+     *  * bool dumpPositions:      Whether line/offset information should be included in the dump.
+     *                             When true, pass the original source code to {@see dump()} to also
+     *                             get column information alongside line numbers.
+     *  * bool dumpOtherAttributes: Whether non-comment, non-position node attributes should be
+     *                             included in the dump.
      *
-     * @param array $options Options (see description)
+     * @param array{dumpComments?: bool, dumpPositions?: bool, dumpOtherAttributes?: bool} $options Dump configuration
+     *
+     * @since 1.0
      */
     public function __construct(array $options = [])
     {
@@ -39,14 +43,20 @@ class Node_Dumper
         $this->dump_other_attributes = !empty($options['dumpOtherAttributes']);
     }
     /**
-     * Dumps a node or array.
+     * Dumps a node or array to a human-readable string representation.
      *
-     * @param array|Node $node Node or array to dump
-     * @param string|null $code Code corresponding to dumped AST. This only needs to be passed if
-     *                          the dumpPositions option is enabled and the dumping of node offsets
-     *                          is desired.
+     * Each node is represented as "NodeType(key: value, ...)" with indentation
+     * reflecting nesting depth. Pass the original PHP source as $code to
+     * include column information in position annotations (requires 'dumpPositions'
+     * option to be enabled).
      *
-     * @return string Dumped value
+     * @param array<mixed>|Node $node Node or flat array of nodes to dump
+     * @param string|null       $code Original PHP source code corresponding to the AST.
+     *                                Required for column-level position output; ignored otherwise.
+     *
+     * @return string Human-readable dump of the node tree
+     *
+     * @complexity O(n) where n is the total number of nodes in the subtree
      */
     public function dump($node, ?string $code = null): string
     {

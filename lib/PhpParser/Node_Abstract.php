@@ -147,14 +147,38 @@ abstract class Node_Abstract implements Node, \JsonSerializable
         $comments[] = $doc_comment;
         $this->set_attribute('comments', $comments);
     }
+    /**
+     * Sets an attribute on this node.
+     *
+     * Common attribute keys: 'startLine', 'endLine', 'startFilePos', 'endFilePos',
+     * 'startTokenPos', 'endTokenPos', 'comments'.
+     *
+     * @param string $key   Attribute name
+     * @param mixed  $value Attribute value (any type)
+     */
     public function set_attribute(string $key, $value): void
     {
         $this->attributes[$key] = $value;
     }
+    /**
+     * Returns whether an attribute with the given key exists on this node.
+     *
+     * @param string $key Attribute name to check
+     *
+     * @return bool True if the attribute is set, false otherwise
+     */
     public function has_attribute(string $key): bool
     {
         return array_key_exists($key, $this->attributes);
     }
+    /**
+     * Returns the value of an attribute, or a default if the attribute is not set.
+     *
+     * @param string $key     Attribute name to retrieve
+     * @param mixed  $default Value returned when the attribute is absent (default: null)
+     *
+     * @return mixed Attribute value, or $default if the attribute does not exist
+     */
     public function get_attribute(string $key, $default = null)
     {
         if (array_key_exists($key, $this->attributes)) {
@@ -162,10 +186,23 @@ abstract class Node_Abstract implements Node, \JsonSerializable
         }
         return $default;
     }
+    /**
+     * Returns all attributes set on this node.
+     *
+     * @return array<string, mixed> Map of attribute name → value
+     */
     public function get_attributes(): array
     {
         return $this->attributes;
     }
+    /**
+     * Replaces all attributes on this node with the given map.
+     *
+     * This overwrites any previously set attributes, including source position
+     * and comment data. Use with care.
+     *
+     * @param array<string, mixed> $attributes New attribute map
+     */
     public function set_attributes(array $attributes): void
     {
         $this->attributes = $attributes;
