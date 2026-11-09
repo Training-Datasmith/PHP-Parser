@@ -22,7 +22,7 @@ $a = $b or $c;
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_BinaryOp_BooleanAnd(
+        expr: Expr_Binary_Op_Boolean_And(
             left: Expr_Variable(
                 name: a
             )
@@ -35,7 +35,7 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_BinaryOp_BooleanOr(
+        expr: Expr_Binary_Op_Boolean_Or(
             left: Expr_Variable(
                 name: a
             )
@@ -45,15 +45,15 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_BooleanNot(
+        expr: Expr_Boolean_Not(
             expr: Expr_Variable(
                 name: a
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_BooleanNot(
-            expr: Expr_BooleanNot(
+        expr: Expr_Boolean_Not(
+            expr: Expr_Boolean_Not(
                 expr: Expr_Variable(
                     name: a
                 )
@@ -61,7 +61,7 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Expr_BinaryOp_LogicalAnd(
+        expr: Expr_Binary_Op_Logical_And(
             left: Expr_Variable(
                 name: a
             )
@@ -74,7 +74,7 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Expr_BinaryOp_LogicalOr(
+        expr: Expr_Binary_Op_Logical_Or(
             left: Expr_Variable(
                 name: a
             )
@@ -84,7 +84,7 @@ array(
         )
     )
     6: Stmt_Expression(
-        expr: Expr_BinaryOp_LogicalXor(
+        expr: Expr_Binary_Op_Logical_Xor(
             left: Expr_Variable(
                 name: a
             )
@@ -94,8 +94,8 @@ array(
         )
     )
     7: Stmt_Expression(
-        expr: Expr_BinaryOp_BooleanOr(
-            left: Expr_BinaryOp_BooleanAnd(
+        expr: Expr_Binary_Op_Boolean_Or(
+            left: Expr_Binary_Op_Boolean_And(
                 left: Expr_Variable(
                     name: a
                 )
@@ -103,7 +103,7 @@ array(
                     name: b
                 )
             )
-            right: Expr_BinaryOp_BooleanAnd(
+            right: Expr_Binary_Op_Boolean_And(
                 left: Expr_Variable(
                     name: c
                 )
@@ -117,12 +117,12 @@ array(
         )
     )
     8: Stmt_Expression(
-        expr: Expr_BinaryOp_BooleanAnd(
-            left: Expr_BinaryOp_BooleanAnd(
+        expr: Expr_Binary_Op_Boolean_And(
+            left: Expr_Binary_Op_Boolean_And(
                 left: Expr_Variable(
                     name: a
                 )
-                right: Expr_BinaryOp_BooleanOr(
+                right: Expr_Binary_Op_Boolean_Or(
                     left: Expr_Variable(
                         name: b
                     )
@@ -141,7 +141,7 @@ array(
             var: Expr_Variable(
                 name: a
             )
-            expr: Expr_BinaryOp_BooleanOr(
+            expr: Expr_Binary_Op_Boolean_Or(
                 left: Expr_Variable(
                     name: b
                 )
@@ -152,7 +152,7 @@ array(
         )
     )
     10: Stmt_Expression(
-        expr: Expr_BinaryOp_LogicalOr(
+        expr: Expr_Binary_Op_Logical_Or(
             left: Expr_Assign(
                 var: Expr_Variable(
                     name: a

@@ -32,7 +32,7 @@ array(
             3: // bar 1
         )
     )
-    1: Stmt_If(
+    1: Stmt_If_(
         cond: Expr_Variable(
             name: cond
         )
@@ -86,8 +86,8 @@ array(
 if (42) {}
 -----
 array(
-    0: Stmt_If(
-        cond: Scalar_Int(
+    0: Stmt_If_(
+        cond: Scalar_Int_(
             value: 42
         )
         stmts: array(

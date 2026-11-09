@@ -8,36 +8,36 @@ isset("str"->a);
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_Isset(
+        expr: Expr_Isset_(
             vars: array(
-                0: Expr_ArrayDimFetch(
-                    var: Expr_BinaryOp_Plus(
-                        left: Expr_Array(
+                0: Expr_Array_Dim_Fetch(
+                    var: Expr_Binary_Op_Plus(
+                        left: Expr_Array_(
                             items: array(
                                 0: Array_Item(
                                     key: null
-                                    value: Scalar_Int(
+                                    value: Scalar_Int_(
                                         value: 0
                                     )
-                                    byRef: false
+                                    by_ref: false
                                     unpack: false
                                 )
                                 1: Array_Item(
                                     key: null
-                                    value: Scalar_Int(
+                                    value: Scalar_Int_(
                                         value: 1
                                     )
-                                    byRef: false
+                                    by_ref: false
                                     unpack: false
                                 )
                             )
                         )
-                        right: Expr_Array(
+                        right: Expr_Array_(
                             items: array(
                             )
                         )
                     )
-                    dim: Scalar_Int(
+                    dim: Scalar_Int_(
                         value: 0
                     )
                 )
@@ -45,19 +45,19 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_Isset(
+        expr: Expr_Isset_(
             vars: array(
-                0: Expr_PropertyFetch(
-                    var: Expr_Array(
+                0: Expr_Property_Fetch(
+                    var: Expr_Array_(
                         items: array(
                             0: Array_Item(
-                                key: Scalar_String(
+                                key: Scalar_String_(
                                     value: a
                                 )
-                                value: Scalar_String(
+                                value: Scalar_String_(
                                     value: b
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
@@ -70,10 +70,10 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_Isset(
+        expr: Expr_Isset_(
             vars: array(
-                0: Expr_PropertyFetch(
-                    var: Scalar_String(
+                0: Expr_Property_Fetch(
+                    var: Scalar_String_(
                         value: str
                     )
                     name: Identifier(

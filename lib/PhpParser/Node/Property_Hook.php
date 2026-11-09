@@ -36,9 +36,9 @@ class Property_Hook extends Node_Abstract implements Function_Like
      *     attrGroups?: AttributeGroup[],
      * } $subNodes Array of the following optional subnodes:
      *             'flags       => 0      : Flags
-     *             'byRef'      => false  : Whether hook returns by reference
+     *             'by_ref'      => false  : Whether hook returns by reference
      *             'params'     => array(): Parameters
-     *             'attrGroups' => array(): PHP attribute groups
+     *             'attr_groups' => array(): PHP attribute groups
      * @param array<string, mixed> $attributes Additional attributes
      */
     public function __construct($name, $body, array $sub_nodes = [], array $attributes = [])
@@ -47,9 +47,9 @@ class Property_Hook extends Node_Abstract implements Function_Like
         $this->name = \is_string($name) ? new Identifier($name) : $name;
         $this->body = $body;
         $this->flags = $sub_nodes['flags'] ?? 0;
-        $this->by_ref = $sub_nodes['byRef'] ?? false;
+        $this->by_ref = $sub_nodes['by_ref'] ?? false;
         $this->params = $sub_nodes['params'] ?? [];
-        $this->attr_groups = $sub_nodes['attrGroups'] ?? [];
+        $this->attr_groups = $sub_nodes['attr_groups'] ?? [];
     }
     public function returns_by_ref(): bool
     {
@@ -94,10 +94,10 @@ class Property_Hook extends Node_Abstract implements Function_Like
         return $this->attr_groups;
     }
     public function get_type(): string {
-        return 'PropertyHook';
+        return 'Property_Hook';
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'flags', 'byRef', 'name', 'params', 'body'];
+        return ['attr_groups', 'flags', 'by_ref', 'name', 'params', 'body'];
     }
 }

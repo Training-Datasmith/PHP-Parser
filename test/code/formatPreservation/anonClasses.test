@@ -11,9 +11,9 @@ $new->class->extends = null;
 $new->args[] = new Expr\Variable('y');
 -----
 <?php
-new class
-($x, $y)
-{ };
+new class($x, $y)
+{
+};
 -----
 <?php
 new class

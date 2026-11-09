@@ -9,8 +9,8 @@ class Test {
 }
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -21,12 +21,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC | FINAL (33)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop
                         )
@@ -37,12 +37,12 @@ array(
                 )
             )
             1: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PROTECTED | ABSTRACT (18)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop
                         )
@@ -53,12 +53,12 @@ array(
                 )
             )
             2: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: READONLY (64)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop
                         )
@@ -69,12 +69,12 @@ array(
                 )
             )
             3: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PRIVATE | STATIC (12)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop
                         )

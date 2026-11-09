@@ -18,26 +18,26 @@ class Enum_ extends Class_Like
      *     stmts?: Node\Stmt[],
      *     attrGroups?: Node\AttributeGroup[],
      * } $subNodes Array of the following optional subnodes:
-     *             'scalarType'  => null    : Scalar type
+     *             'scalar_type'  => null    : Scalar type
      *             'implements'  => array() : Names of implemented interfaces
      *             'stmts'       => array() : Statements
-     *             'attrGroups'  => array() : PHP attribute groups
+     *             'attr_groups'  => array() : PHP attribute groups
      * @param array<string, mixed> $attributes Additional attributes
      */
     public function __construct($name, array $sub_nodes = [], array $attributes = [])
     {
         $this->name = \is_string($name) ? new Node\Identifier($name) : $name;
-        $this->scalar_type = $sub_nodes['scalarType'] ?? null;
+        $this->scalar_type = $sub_nodes['scalar_type'] ?? null;
         $this->implements = $sub_nodes['implements'] ?? [];
         $this->stmts = $sub_nodes['stmts'] ?? [];
-        $this->attr_groups = $sub_nodes['attrGroups'] ?? [];
+        $this->attr_groups = $sub_nodes['attr_groups'] ?? [];
         parent::__construct($attributes);
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'name', 'scalarType', 'implements', 'stmts'];
+        return ['attr_groups', 'name', 'scalar_type', 'implements', 'stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_Enum';
+        return 'Stmt_Enum_';
     }
 }

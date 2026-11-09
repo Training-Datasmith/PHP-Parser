@@ -5,17 +5,17 @@ Encapsed string negative var offsets
 "$a[-1]";
 "$a[-0x0]";
 "$a[-00]";
-"$a[@@{ -PHP_INT_MAX - 1 }@@]";
+"$a[-9223372036854775808]";
 -----
 array(
     0: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: a
                     )
-                    dim: Scalar_String(
+                    dim: Scalar_String_(
                         value: -0
                     )
                 )
@@ -25,11 +25,11 @@ array(
     1: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: a
                     )
-                    dim: Scalar_Int(
+                    dim: Scalar_Int_(
                         value: -1
                     )
                 )
@@ -39,11 +39,11 @@ array(
     2: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: a
                     )
-                    dim: Scalar_String(
+                    dim: Scalar_String_(
                         value: -0x0
                     )
                 )
@@ -53,11 +53,11 @@ array(
     3: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: a
                     )
-                    dim: Scalar_String(
+                    dim: Scalar_String_(
                         value: -00
                     )
                 )
@@ -67,12 +67,12 @@ array(
     4: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: a
                     )
-                    dim: Scalar_Int(
-                        value: @@{ -PHP_INT_MAX - 1 }@@
+                    dim: Scalar_Int_(
+                        value: -9223372036854775808
                     )
                 )
             )

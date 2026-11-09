@@ -16,8 +16,8 @@ $stmts = $parser->parse($code);
 
 // MODIFY $stmts here
 
-$prettyPrinter = new PhpParser\PrettyPrinter\Standard;
-$newCode = $prettyPrinter->prettyPrintFile($stmts);
+$prettyPrinter = new Php_Parser\Pretty_Printer\Standard;
+$newCode = $prettyPrinter->pretty_print_file($stmts);
 ```
 
 The pretty printer has three basic printing methods: `prettyPrint()`, `prettyPrintFile()` and
@@ -92,19 +92,19 @@ code which has been modified or newly inserted.
 Use of the formatting-preservation functionality requires some additional preparatory steps:
 
 ```php
-use PhpParser\{NodeTraverser, NodeVisitor, ParserFactory, PrettyPrinter};
+use Php_Parser\{Node_Traverser, NodeVisitor, Parser_Factory, Pretty_Printer};
 
-$parser = (new ParserFactory())->createForHostVersion();
+$parser = (new Parser_Factory())->createForHostVersion();
 $oldStmts = $parser->parse($code);
 $oldTokens = $parser->getTokens();
 
 // Run CloningVisitor before making changes to the AST.
-$traverser = new NodeTraverser(new NodeVisitor\CloningVisitor());
+$traverser = new Node_Traverser(new NodeVisitor\CloningVisitor());
 $newStmts = $traverser->traverse($oldStmts);
 
 // MODIFY $newStmts HERE
 
-$printer = new PrettyPrinter\Standard();
+$printer = new Pretty_Printer\Standard();
 $newCode = $printer->printFormatPreserving($newStmts, $oldStmts, $oldTokens);
 ```
 

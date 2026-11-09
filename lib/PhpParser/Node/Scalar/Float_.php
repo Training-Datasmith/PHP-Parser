@@ -65,8 +65,6 @@ class Float_ extends Scalar
         return (float) $str;
     }
     public function get_type(): string {
-        return 'Scalar_Float';
+        return 'Scalar_Float_';
     }
 }
-// @deprecated compatibility alias
-class_alias(Float_::class, DNumber::class);

@@ -32,9 +32,9 @@ $a = #[A12] static function() {};
 $b = #[A13] static fn() => 0;
 -----
 array(
-    0: Stmt_Function(
-        attrGroups: array(
-            0: AttributeGroup(
+    0: Stmt_Function_(
+        attr_groups: array(
+            0: Attribute_Group(
                 attrs: array(
                     0: Attribute(
                         name: Name(
@@ -57,10 +57,10 @@ array(
                         args: array(
                             0: Arg(
                                 name: null
-                                value: Scalar_Int(
+                                value: Scalar_Int_(
                                     value: 0
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
@@ -74,10 +74,10 @@ array(
                                 name: Identifier(
                                     name: x
                                 )
-                                value: Scalar_Int(
+                                value: Scalar_Int_(
                                     value: 1
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
@@ -85,19 +85,19 @@ array(
                 )
             )
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: a
         )
         params: array(
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )
-    1: Stmt_Class(
-        attrGroups: array(
-            0: AttributeGroup(
+    1: Stmt_Class_(
+        attr_groups: array(
+            0: Attribute_Group(
                 attrs: array(
                     0: Attribute(
                         name: Name(
@@ -118,8 +118,8 @@ array(
         )
         stmts: array(
             0: Stmt_Class_Method(
-                attrGroups: array(
-                    0: AttributeGroup(
+                attr_groups: array(
+                    0: Attribute_Group(
                         attrs: array(
                             0: Attribute(
                                 name: Name(
@@ -132,14 +132,14 @@ array(
                     )
                 )
                 flags: PUBLIC (1)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: m
                 )
                 params: array(
                     0: Param(
-                        attrGroups: array(
-                            0: AttributeGroup(
+                        attr_groups: array(
+                            0: Attribute_Group(
                                 attrs: array(
                                     0: Attribute(
                                         name: Name(
@@ -153,7 +153,7 @@ array(
                         )
                         flags: 0
                         type: null
-                        byRef: false
+                        by_ref: false
                         variadic: false
                         var: Expr_Variable(
                             name: param
@@ -163,13 +163,13 @@ array(
                         )
                     )
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
             1: Stmt_Property(
-                attrGroups: array(
-                    0: AttributeGroup(
+                attr_groups: array(
+                    0: Attribute_Group(
                         attrs: array(
                             0: Attribute(
                                 name: Name(
@@ -184,7 +184,7 @@ array(
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop
                         )
@@ -196,9 +196,9 @@ array(
             )
         )
     )
-    2: Stmt_Interface(
-        attrGroups: array(
-            0: AttributeGroup(
+    2: Stmt_Interface_(
+        attr_groups: array(
+            0: Attribute_Group(
                 attrs: array(
                     0: Attribute(
                         name: Name(
@@ -218,9 +218,9 @@ array(
         stmts: array(
         )
     )
-    3: Stmt_Trait(
-        attrGroups: array(
-            0: AttributeGroup(
+    3: Stmt_Trait_(
+        attr_groups: array(
+            0: Attribute_Group(
                 attrs: array(
                     0: Attribute(
                         name: Name(
@@ -244,8 +244,8 @@ array(
                 name: x
             )
             expr: Expr_Closure(
-                attrGroups: array(
-                    0: AttributeGroup(
+                attr_groups: array(
+                    0: Attribute_Group(
                         attrs: array(
                             0: Attribute(
                                 name: Name(
@@ -258,12 +258,12 @@ array(
                     )
                 )
                 static: false
-                byRef: false
+                by_ref: false
                 params: array(
                 )
                 uses: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
@@ -274,9 +274,9 @@ array(
             var: Expr_Variable(
                 name: y
             )
-            expr: Expr_ArrowFunction(
-                attrGroups: array(
-                    0: AttributeGroup(
+            expr: Expr_Arrow_Function(
+                attr_groups: array(
+                    0: Attribute_Group(
                         attrs: array(
                             0: Attribute(
                                 name: Name(
@@ -289,11 +289,11 @@ array(
                     )
                 )
                 static: false
-                byRef: false
+                by_ref: false
                 params: array(
                 )
-                returnType: null
-                expr: Scalar_Int(
+                return_type: null
+                expr: Scalar_Int_(
                     value: 0
                 )
             )
@@ -305,8 +305,8 @@ array(
                 name: a
             )
             expr: Expr_Closure(
-                attrGroups: array(
-                    0: AttributeGroup(
+                attr_groups: array(
+                    0: Attribute_Group(
                         attrs: array(
                             0: Attribute(
                                 name: Name(
@@ -319,12 +319,12 @@ array(
                     )
                 )
                 static: true
-                byRef: false
+                by_ref: false
                 params: array(
                 )
                 uses: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
@@ -335,9 +335,9 @@ array(
             var: Expr_Variable(
                 name: b
             )
-            expr: Expr_ArrowFunction(
-                attrGroups: array(
-                    0: AttributeGroup(
+            expr: Expr_Arrow_Function(
+                attr_groups: array(
+                    0: Attribute_Group(
                         attrs: array(
                             0: Attribute(
                                 name: Name(
@@ -350,11 +350,11 @@ array(
                     )
                 )
                 static: true
-                byRef: false
+                by_ref: false
                 params: array(
                 )
-                returnType: null
-                expr: Scalar_Int(
+                return_type: null
+                expr: Scalar_Int_(
                     value: 0
                 )
             )

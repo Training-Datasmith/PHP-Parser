@@ -44,6 +44,7 @@ foreach ($parserToDefines as $name => $defines) {
     $output = execCmd("$kmyacc $additionalArgs -m $skeletonFile -p $name $tmpGrammarFile");
 
     $resultCode = file_get_contents($tmpResultFile);
+    $resultCode = normalize_generated_parser($resultCode);
     $resultCode = removeTrailingWhitespace($resultCode);
 
     ensureDirExists($resultDir);
@@ -74,6 +75,21 @@ function execCmd($cmd)
         echo $output;
     }
     return $output;
+}
+
+function normalize_generated_parser(string $code): string
+{
+    $pairs = [
+        '$self->semStack' => '$self->sem_stack',
+        '$self->semValue' => '$self->sem_value',
+        '$stackPos' => '$stack_pos',
+        '$this->semStack' => '$this->sem_stack',
+        '$this->semValue' => '$this->sem_value',
+        '$this->reduceCallbacks' => '$this->reduce_callbacks',
+        'Scalar\\Float_::fromString' => 'Scalar\\Float_::from_string',
+    ];
+
+    return str_replace(array_keys($pairs), array_values($pairs), $code);
 }
 
 function replaceIfBlocks(string $code, array $defines): string

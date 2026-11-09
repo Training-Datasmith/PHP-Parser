@@ -2,8 +2,8 @@ Lexer component documentation
 =============================
 
 The lexer is responsible for providing tokens to the parser. Typical use of the library does not require direct
-interaction with the lexer, as an appropriate lexer is created by `PhpParser\ParserFactory`. The tokens produced
-by the lexer can then be retrieved using `PhpParser\Parser::getTokens()`.
+interaction with the lexer, as an appropriate lexer is created by `Php_Parser\Parser_Factory`. The tokens produced
+by the lexer can then be retrieved using `Php_Parser\Parser::getTokens()`.
 
 Emulation
 ---------
@@ -13,7 +13,7 @@ this extension only supports lexing code for the PHP version you are running on,
 parsing newer code. For that reason, the lexer performs additional "emulation" in three layers:
 
 First, PhpParser uses the `PhpToken` based representation introduced in PHP 8.0, rather than the array-based tokens from
-previous versions. The `PhpParser\Token` class either extends `PhpToken` (on PHP 8.0) or a polyfill implementation. The
+previous versions. The `Php_Parser\Token` class either extends `PhpToken` (on PHP 8.0) or a polyfill implementation. The
 polyfill implementation will also perform two emulations that are required by the parser and cannot be disabled:
 
  * Single-line comments use the PHP 8.0 representation that does not include a trailing newline. The newline will be
@@ -23,11 +23,11 @@ polyfill implementation will also perform two emulations that are required by th
    This means that certain code that is legal on older versions (namespaced names including whitespace, such as `A \ B`)
    will not be accepted by the parser.
 
-Second, the `PhpParser\Lexer` base class will convert `&` tokens into the PHP 8.1 representation of either
+Second, the `Php_Parser\Lexer` base class will convert `&` tokens into the PHP 8.1 representation of either
 `T_AMPERSAND_FOLLOWED_BY_VAR_OR_VARARG` or `T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG`. This is required by the parser
 and cannot be disabled.
 
-Finally, `PhpParser\Lexer\Emulative` performs other, optional emulations. This lexer is parameterized by `PhpVersion`
+Finally, `Php_Parser\Lexer\Emulative` performs other, optional emulations. This lexer is parameterized by `Php_Version`
 and will try to emulate `ext/tokenizer` output for that version. This is done using separate `TokenEmulator`s for each
 emulated feature.
 
@@ -37,7 +37,7 @@ older PHP versions, which can make keywords from newer versions non-reserved.
 Tokens, positions and attributes
 --------------------------------
 
-The `Lexer::tokenize()` method returns an array of `PhpParser\Token`s. The most important parts of the interface can be
+The `Lexer::tokenize()` method returns an array of `Php_Parser\Token`s. The most important parts of the interface can be
 summarized as follows:
 
 ```php
@@ -64,7 +64,7 @@ using `Parser::getTokens()`.
 Nodes in the AST produced by the parser always corresponds to some range of tokens. The parser adds a number of
 positioning attributes to allow mapping nodes back to lines, tokens or file offsets:
 
- * `startLine`: Line in which the node starts. Used by `$node->getStartLine()`.
+ * `startLine`: Line in which the node starts. Used by `$node->get_start_line()`.
  * `endLine`: Line in which the node ends. Used by `$node->getEndLine()`.
  * `startTokenPos`: Offset into the token array of the first token in the node. Used by `$node->getStartTokenPos()`.
  * `endTokenPos`: Offset into the token array of the last token in the node. Used by `$node->getEndTokenPos()`.
@@ -87,8 +87,8 @@ does not distinguish whether a property was declared using `public` or using `va
 information based on the token position:
 
 ```php
-/** @param PhpParser\Token[] $tokens */
-function isDeclaredUsingVar(array $tokens, PhpParser\Node\Stmt\Property $prop) {
+/** @param Php_Parser\Token[] $tokens */
+function isDeclaredUsingVar(array $tokens, Php_Parser\Node\Stmt\Property $prop) {
     $i = $prop->getStartTokenPos();
     return $tokens[$i]->id === T_VAR;
 }
@@ -98,29 +98,29 @@ In order to make use of this function, you will have to provide the tokens from 
 code similar to the following:
 
 ```php
-class MyNodeVisitor extends PhpParser\NodeVisitorAbstract {
+class MyNodeVisitor extends Php_Parser\Node_Visitor_Abstract {
     private $tokens;
     public function setTokens(array $tokens) {
         $this->tokens = $tokens;
     }
 
-    public function leaveNode(PhpParser\Node $node) {
-        if ($node instanceof PhpParser\Node\Stmt\Property) {
+    public function leaveNode(Php_Parser\Node $node) {
+        if ($node instanceof Php_Parser\Node\Stmt\Property) {
             var_dump(isDeclaredUsingVar($this->tokens, $node));
         }
     }
 }
 
-$parser = (new PhpParser\ParserFactory())->createForHostVersion($lexerOptions);
+$parser = (new Php_Parser\Parser_Factory())->createForHostVersion($lexerOptions);
 
 $visitor = new MyNodeVisitor();
-$traverser = new PhpParser\NodeTraverser($visitor);
+$traverser = new Php_Parser\Node_Traverser($visitor);
 
 try {
     $stmts = $parser->parse($code);
     $visitor->setTokens($parser->getTokens());
     $stmts = $traverser->traverse($stmts);
-} catch (PhpParser\Error $e) {
+} catch (Php_Parser\Error $e) {
     echo 'Parse Error: ', $e->getMessage();
 }
 ```

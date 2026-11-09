@@ -9,8 +9,8 @@ class C {
 -----
 Cannot use "<?=" as an identifier from 4:17 to 4:19
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -20,7 +20,7 @@ array(
         implements: array(
         )
         stmts: array(
-            0: Stmt_TraitUse(
+            0: Stmt_Trait_Use(
                 traits: array(
                     0: Name(
                         name: T
@@ -33,9 +33,7 @@ array(
                             name: x
                         )
                         newModifier: null
-                        newName: Identifier(
-                            name: y
-                        )
+                        newName: null
                     )
                     1: Stmt_Trait_Use_Adaptation_Alias(
                         trait: null
@@ -43,9 +41,7 @@ array(
                             name: <?=
                         )
                         newModifier: null
-                        newName: Identifier(
-                            name: my_echo
-                        )
+                        newName: null
                     )
                 )
             )

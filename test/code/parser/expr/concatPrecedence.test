@@ -7,40 +7,40 @@ Precedence of concatenation in PHP 7 and PHP 8
 !!version=8.0
 array(
     0: Stmt_Expression(
-        expr: Expr_BinaryOp_Concat(
-            left: Expr_BinaryOp_Plus(
-                left: Scalar_Int(
+        expr: Expr_Binary_Op_Concat(
+            left: Expr_Binary_Op_Plus(
+                left: Scalar_Int_(
                     value: 1
                 )
-                right: Scalar_Int(
+                right: Scalar_Int_(
                     value: 2
                 )
             )
-            right: Expr_BinaryOp_Plus(
-                left: Scalar_Int(
+            right: Expr_Binary_Op_Plus(
+                left: Scalar_Int_(
                     value: 3
                 )
-                right: Scalar_Int(
+                right: Scalar_Int_(
                     value: 4
                 )
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_BinaryOp_Concat(
-            left: Expr_BinaryOp_ShiftLeft(
-                left: Scalar_Int(
+        expr: Expr_Binary_Op_Concat(
+            left: Expr_Binary_Op_Shift_Left(
+                left: Scalar_Int_(
                     value: 1
                 )
-                right: Scalar_Int(
+                right: Scalar_Int_(
                     value: 2
                 )
             )
-            right: Expr_BinaryOp_ShiftLeft(
-                left: Scalar_Int(
+            right: Expr_Binary_Op_Shift_Left(
+                left: Scalar_Int_(
                     value: 3
                 )
-                right: Scalar_Int(
+                right: Scalar_Int_(
                     value: 4
                 )
             )
@@ -55,41 +55,41 @@ array(
 !!version=7.4
 array(
     0: Stmt_Expression(
-        expr: Expr_BinaryOp_Plus(
-            left: Expr_BinaryOp_Concat(
-                left: Expr_BinaryOp_Plus(
-                    left: Scalar_Int(
+        expr: Expr_Binary_Op_Plus(
+            left: Expr_Binary_Op_Concat(
+                left: Expr_Binary_Op_Plus(
+                    left: Scalar_Int_(
                         value: 1
                     )
-                    right: Scalar_Int(
+                    right: Scalar_Int_(
                         value: 2
                     )
                 )
-                right: Scalar_Int(
+                right: Scalar_Int_(
                     value: 3
                 )
             )
-            right: Scalar_Int(
+            right: Scalar_Int_(
                 value: 4
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_BinaryOp_ShiftLeft(
-            left: Expr_BinaryOp_ShiftLeft(
-                left: Scalar_Int(
+        expr: Expr_Binary_Op_Shift_Left(
+            left: Expr_Binary_Op_Shift_Left(
+                left: Scalar_Int_(
                     value: 1
                 )
-                right: Expr_BinaryOp_Concat(
-                    left: Scalar_Int(
+                right: Expr_Binary_Op_Concat(
+                    left: Scalar_Int_(
                         value: 2
                     )
-                    right: Scalar_Int(
+                    right: Scalar_Int_(
                         value: 3
                     )
                 )
             )
-            right: Scalar_Int(
+            right: Scalar_Int_(
                 value: 4
             )
         )

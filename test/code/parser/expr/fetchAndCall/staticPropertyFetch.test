@@ -14,7 +14,7 @@ A::$b['c'];
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_StaticPropertyFetch(
+        expr: Expr_Static_Property_Fetch(
             class: Name(
                 name: A
             )
@@ -27,7 +27,7 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_StaticPropertyFetch(
+        expr: Expr_Static_Property_Fetch(
             class: Name(
                 name: A
             )
@@ -37,18 +37,18 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_StaticPropertyFetch(
+        expr: Expr_Static_Property_Fetch(
             class: Name(
                 name: A
             )
-            name: Scalar_String(
+            name: Scalar_String_(
                 value: b
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_StaticPropertyFetch(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Static_Property_Fetch(
                 class: Name(
                     name: A
                 )
@@ -56,7 +56,7 @@ array(
                     name: b
                 )
             )
-            dim: Scalar_String(
+            dim: Scalar_String_(
                 value: c
             )
         )

@@ -28,6 +28,6 @@ class While_ extends Node\Stmt
         return ['cond', 'stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_While';
+        return 'Stmt_While_';
     }
 }

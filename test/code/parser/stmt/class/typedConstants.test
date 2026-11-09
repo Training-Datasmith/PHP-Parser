@@ -9,8 +9,8 @@ class Test {
 }
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -20,74 +20,74 @@ array(
         implements: array(
         )
         stmts: array(
-            0: Stmt_ClassConst(
-                attrGroups: array(
+            0: Stmt_Class_Const(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: int
                 )
                 consts: array(
-                    0: Const(
+                    0: Const_(
                         name: Identifier(
                             name: X
                         )
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 1
                         )
                     )
                 )
             )
-            1: Stmt_ClassConst(
-                attrGroups: array(
+            1: Stmt_Class_Const(
+                attr_groups: array(
                 )
                 flags: PRIVATE (4)
                 type: Identifier(
                     name: string
                 )
                 consts: array(
-                    0: Const(
+                    0: Const_(
                         name: Identifier(
                             name: Y
                         )
-                        value: Scalar_String(
+                        value: Scalar_String_(
                             value: a
                         )
                     )
-                    1: Const(
+                    1: Const_(
                         name: Identifier(
                             name: Z
                         )
-                        value: Scalar_String(
+                        value: Scalar_String_(
                             value: b
                         )
                     )
                 )
             )
-            2: Stmt_ClassConst(
-                attrGroups: array(
+            2: Stmt_Class_Const(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: array
                 )
                 consts: array(
-                    0: Const(
+                    0: Const_(
                         name: Identifier(
                             name: ARRAY
                         )
-                        value: Expr_Array(
+                        value: Expr_Array_(
                             items: array(
                             )
                         )
                     )
                 )
             )
-            3: Stmt_ClassConst(
-                attrGroups: array(
+            3: Stmt_Class_Const(
+                attr_groups: array(
                 )
                 flags: 0
-                type: UnionType(
+                type: Union_Type(
                     types: array(
                         0: Name(
                             name: Foo
@@ -101,11 +101,11 @@ array(
                     )
                 )
                 consts: array(
-                    0: Const(
+                    0: Const_(
                         name: Identifier(
                             name: FOO
                         )
-                        value: Expr_ConstFetch(
+                        value: Expr_Const_Fetch(
                             name: Name(
                                 name: null
                             )

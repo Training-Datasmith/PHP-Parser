@@ -6,7 +6,7 @@ namespace Php_Parser\Node;
 
 class Identifier_Test extends \PHPUnit\Framework\TestCase
 {
-    public function testConstructorThrows(): void
+    public function testConst_ructorThrows(): void
     {
         self::expectException(\InvalidArgumentException::class);
         new Identifier('');

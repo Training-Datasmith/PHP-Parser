@@ -6,14 +6,14 @@ unset($a);
 unset($b, $c);
 -----
 array(
-    0: Stmt_Unset(
+    0: Stmt_Unset_(
         vars: array(
             0: Expr_Variable(
                 name: a
             )
         )
     )
-    1: Stmt_Unset(
+    1: Stmt_Unset_(
         vars: array(
             0: Expr_Variable(
                 name: b

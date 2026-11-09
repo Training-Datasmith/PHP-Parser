@@ -9,33 +9,33 @@ ${$a}['b'];
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
+        expr: Expr_Array_Dim_Fetch(
             var: Expr_Variable(
                 name: a
             )
-            dim: Scalar_String(
+            dim: Scalar_String_(
                 value: b
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_ArrayDimFetch(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Array_Dim_Fetch(
                 var: Expr_Variable(
                     name: a
                 )
-                dim: Scalar_String(
+                dim: Scalar_String_(
                     value: b
                 )
             )
-            dim: Scalar_String(
+            dim: Scalar_String_(
                 value: c
             )
         )
     )
     2: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_ArrayDimFetch(
+            var: Expr_Array_Dim_Fetch(
                 var: Expr_Variable(
                     name: a
                 )
@@ -47,13 +47,13 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
+        expr: Expr_Array_Dim_Fetch(
             var: Expr_Variable(
                 name: Expr_Variable(
                     name: a
                 )
             )
-            dim: Scalar_String(
+            dim: Scalar_String_(
                 value: b
             )
         )

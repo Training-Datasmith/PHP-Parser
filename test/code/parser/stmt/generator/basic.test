@@ -32,19 +32,19 @@ function gen() {
 }
 -----
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: gen
         )
         params: array(
         )
-        returnType: null
+        return_type: null
         stmts: array(
             0: Stmt_Expression(
-                expr: Expr_Yield(
+                expr: Expr_Yield_(
                     key: null
                     value: null
                 )
@@ -53,7 +53,7 @@ array(
                 )
             )
             1: Stmt_Expression(
-                expr: Expr_Yield(
+                expr: Expr_Yield_(
                     key: null
                     value: Expr_Variable(
                         name: value
@@ -61,7 +61,7 @@ array(
                 )
             )
             2: Stmt_Expression(
-                expr: Expr_Yield(
+                expr: Expr_Yield_(
                     key: Expr_Variable(
                         name: key
                     )
@@ -75,7 +75,7 @@ array(
                     var: Expr_Variable(
                         name: data
                     )
-                    expr: Expr_Yield(
+                    expr: Expr_Yield_(
                         key: null
                         value: null
                     )
@@ -89,7 +89,7 @@ array(
                     var: Expr_Variable(
                         name: data
                     )
-                    expr: Expr_Yield(
+                    expr: Expr_Yield_(
                         key: null
                         value: Expr_Variable(
                             name: value
@@ -102,7 +102,7 @@ array(
                     var: Expr_Variable(
                         name: data
                     )
-                    expr: Expr_Yield(
+                    expr: Expr_Yield_(
                         key: Expr_Variable(
                             name: key
                         )
@@ -112,8 +112,8 @@ array(
                     )
                 )
             )
-            6: Stmt_If(
-                cond: Expr_Yield(
+            6: Stmt_If_(
+                cond: Expr_Yield_(
                     key: null
                     value: Expr_Variable(
                         name: foo
@@ -122,8 +122,8 @@ array(
                 stmts: array(
                 )
                 elseifs: array(
-                    0: Stmt_ElseIf(
-                        cond: Expr_Yield(
+                    0: Stmt_Else_If_(
+                        cond: Expr_Yield_(
                             key: null
                             value: Expr_Variable(
                                 name: foo
@@ -138,8 +138,8 @@ array(
                     0: // yield in language constructs with their own parentheses
                 )
             )
-            7: Stmt_If(
-                cond: Expr_Yield(
+            7: Stmt_If_(
+                cond: Expr_Yield_(
                     key: null
                     value: Expr_Variable(
                         name: foo
@@ -148,8 +148,8 @@ array(
                 stmts: array(
                 )
                 elseifs: array(
-                    0: Stmt_ElseIf(
-                        cond: Expr_Yield(
+                    0: Stmt_Else_If_(
+                        cond: Expr_Yield_(
                             key: null
                             value: Expr_Variable(
                                 name: foo
@@ -161,8 +161,8 @@ array(
                 )
                 else: null
             )
-            8: Stmt_While(
-                cond: Expr_Yield(
+            8: Stmt_While_(
+                cond: Expr_Yield_(
                     key: null
                     value: Expr_Variable(
                         name: foo
@@ -171,18 +171,18 @@ array(
                 stmts: array(
                 )
             )
-            9: Stmt_Do(
+            9: Stmt_Do_(
                 stmts: array(
                 )
-                cond: Expr_Yield(
+                cond: Expr_Yield_(
                     key: null
                     value: Expr_Variable(
                         name: foo
                     )
                 )
             )
-            10: Stmt_Switch(
-                cond: Expr_Yield(
+            10: Stmt_Switch_(
+                cond: Expr_Yield_(
                     key: null
                     value: Expr_Variable(
                         name: foo
@@ -192,8 +192,8 @@ array(
                 )
             )
             11: Stmt_Expression(
-                expr: Expr_Exit(
-                    expr: Expr_Yield(
+                expr: Expr_Exit_(
+                    expr: Expr_Yield_(
                         key: null
                         value: Expr_Variable(
                             name: foo
@@ -202,20 +202,20 @@ array(
                 )
             )
             12: Stmt_Expression(
-                expr: Expr_FuncCall(
+                expr: Expr_Func_Call(
                     name: Name(
                         name: func
                     )
                     args: array(
                         0: Arg(
                             name: null
-                            value: Expr_Yield(
+                            value: Expr_Yield_(
                                 key: null
                                 value: Expr_Variable(
                                     name: foo
                                 )
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                     )
@@ -225,7 +225,7 @@ array(
                 )
             )
             13: Stmt_Expression(
-                expr: Expr_MethodCall(
+                expr: Expr_Method_Call(
                     var: Expr_Variable(
                         name: foo
                     )
@@ -235,53 +235,53 @@ array(
                     args: array(
                         0: Arg(
                             name: null
-                            value: Expr_Yield(
+                            value: Expr_Yield_(
                                 key: null
                                 value: Expr_Variable(
                                     name: foo
                                 )
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                     )
                 )
             )
             14: Stmt_Expression(
-                expr: Expr_New(
+                expr: Expr_New_(
                     class: Name(
                         name: Foo
                     )
                     args: array(
                         0: Arg(
                             name: null
-                            value: Expr_Yield(
+                            value: Expr_Yield_(
                                 key: null
                                 value: Expr_Variable(
                                     name: foo
                                 )
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                     )
                 )
             )
             15: Stmt_Expression(
-                expr: Expr_YieldFrom(
+                expr: Expr_Yield_From(
                     expr: Expr_Variable(
                         name: foo
                     )
                 )
             )
             16: Stmt_Expression(
-                expr: Expr_BinaryOp_LogicalAnd(
-                    left: Expr_YieldFrom(
+                expr: Expr_Binary_Op_Logical_And(
+                    left: Expr_Yield_From(
                         expr: Expr_Variable(
                             name: foo
                         )
                     )
-                    right: Expr_YieldFrom(
+                    right: Expr_Yield_From(
                         expr: Expr_Variable(
                             name: bar
                         )
@@ -289,8 +289,8 @@ array(
                 )
             )
             17: Stmt_Expression(
-                expr: Expr_YieldFrom(
-                    expr: Expr_BinaryOp_Plus(
+                expr: Expr_Yield_From(
+                    expr: Expr_Binary_Op_Plus(
                         left: Expr_Variable(
                             name: foo
                         )

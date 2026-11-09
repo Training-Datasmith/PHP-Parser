@@ -9,45 +9,45 @@ function gen() {
 }
 -----
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: gen
         )
         params: array(
         )
-        returnType: null
+        return_type: null
         stmts: array(
             0: Stmt_Expression(
-                expr: Expr_Yield(
+                expr: Expr_Yield_(
                     key: null
-                    value: Expr_UnaryPlus(
-                        expr: Scalar_Int(
+                    value: Expr_Unary_Plus(
+                        expr: Scalar_Int_(
                             value: 1
                         )
                     )
                 )
             )
             1: Stmt_Expression(
-                expr: Expr_Yield(
+                expr: Expr_Yield_(
                     key: null
-                    value: Expr_UnaryMinus(
-                        expr: Scalar_Int(
+                    value: Expr_Unary_Minus(
+                        expr: Scalar_Int_(
                             value: 1
                         )
                     )
                 )
             )
             2: Stmt_Expression(
-                expr: Expr_BinaryOp_Mul(
-                    left: Expr_Yield(
+                expr: Expr_Binary_Op_Mul(
+                    left: Expr_Yield_(
                         key: null
                         value: null
                     )
-                    right: Expr_UnaryMinus(
-                        expr: Scalar_Int(
+                    right: Expr_Unary_Minus(
+                        expr: Scalar_Int_(
                             value: 1
                         )
                     )

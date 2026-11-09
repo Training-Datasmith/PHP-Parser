@@ -12,8 +12,8 @@ Arrow functions on the right hand side of |> must be parenthesized from 7:23 to 
 Arrow functions on the right hand side of |> must be parenthesized from 7:7 to 7:34
 array(
     0: Stmt_Expression(
-        expr: Expr_BinaryOp_Pipe(
-            left: Expr_BinaryOp_Pipe(
+        expr: Expr_Binary_Op_Pipe(
+            left: Expr_Binary_Op_Pipe(
                 left: Expr_Variable(
                     name: a
                 )
@@ -27,8 +27,8 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_BinaryOp_Pipe(
-            left: Expr_BinaryOp_Concat(
+        expr: Expr_Binary_Op_Pipe(
+            left: Expr_Binary_Op_Concat(
                 left: Expr_Variable(
                     name: a
                 )
@@ -36,7 +36,7 @@ array(
                     name: b
                 )
             )
-            right: Expr_BinaryOp_Concat(
+            right: Expr_Binary_Op_Concat(
                 left: Expr_Variable(
                     name: c
                 )
@@ -47,8 +47,8 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_BinaryOp_Equal(
-            left: Expr_BinaryOp_Pipe(
+        expr: Expr_Binary_Op_Equal(
+            left: Expr_Binary_Op_Pipe(
                 left: Expr_Variable(
                     name: a
                 )
@@ -62,11 +62,11 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_BinaryOp_Equal(
+        expr: Expr_Binary_Op_Equal(
             left: Expr_Variable(
                 name: c
             )
-            right: Expr_BinaryOp_Pipe(
+            right: Expr_Binary_Op_Pipe(
                 left: Expr_Variable(
                     name: a
                 )
@@ -77,23 +77,23 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Expr_BinaryOp_Pipe(
-            left: Expr_BinaryOp_Pipe(
+        expr: Expr_Binary_Op_Pipe(
+            left: Expr_Binary_Op_Pipe(
                 left: Expr_Variable(
                     name: a
                 )
-                right: Expr_ArrowFunction(
-                    attrGroups: array(
+                right: Expr_Arrow_Function(
+                    attr_groups: array(
                     )
                     static: false
-                    byRef: false
+                    by_ref: false
                     params: array(
                         0: Param(
-                            attrGroups: array(
+                            attr_groups: array(
                             )
                             flags: 0
                             type: null
-                            byRef: false
+                            by_ref: false
                             variadic: false
                             var: Expr_Variable(
                                 name: x
@@ -103,24 +103,24 @@ array(
                             )
                         )
                     )
-                    returnType: null
+                    return_type: null
                     expr: Expr_Variable(
                         name: x
                     )
                 )
             )
-            right: Expr_ArrowFunction(
-                attrGroups: array(
+            right: Expr_Arrow_Function(
+                attr_groups: array(
                 )
                 static: false
-                byRef: false
+                by_ref: false
                 params: array(
                     0: Param(
-                        attrGroups: array(
+                        attr_groups: array(
                         )
                         flags: 0
                         type: null
-                        byRef: false
+                        by_ref: false
                         variadic: false
                         var: Expr_Variable(
                             name: y
@@ -130,7 +130,7 @@ array(
                         )
                     )
                 )
-                returnType: null
+                return_type: null
                 expr: Expr_Variable(
                     name: y
                 )
@@ -138,22 +138,22 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Expr_BinaryOp_Pipe(
+        expr: Expr_Binary_Op_Pipe(
             left: Expr_Variable(
                 name: a
             )
-            right: Expr_ArrowFunction(
-                attrGroups: array(
+            right: Expr_Arrow_Function(
+                attr_groups: array(
                 )
                 static: false
-                byRef: false
+                by_ref: false
                 params: array(
                     0: Param(
-                        attrGroups: array(
+                        attr_groups: array(
                         )
                         flags: 0
                         type: null
-                        byRef: false
+                        by_ref: false
                         variadic: false
                         var: Expr_Variable(
                             name: x
@@ -163,23 +163,23 @@ array(
                         )
                     )
                 )
-                returnType: null
-                expr: Expr_BinaryOp_Pipe(
+                return_type: null
+                expr: Expr_Binary_Op_Pipe(
                     left: Expr_Variable(
                         name: x
                     )
-                    right: Expr_ArrowFunction(
-                        attrGroups: array(
+                    right: Expr_Arrow_Function(
+                        attr_groups: array(
                         )
                         static: false
-                        byRef: false
+                        by_ref: false
                         params: array(
                             0: Param(
-                                attrGroups: array(
+                                attr_groups: array(
                                 )
                                 flags: 0
                                 type: null
-                                byRef: false
+                                by_ref: false
                                 variadic: false
                                 var: Expr_Variable(
                                     name: y
@@ -189,7 +189,7 @@ array(
                                 )
                             )
                         )
-                        returnType: null
+                        return_type: null
                         expr: Expr_Variable(
                             name: y
                         )

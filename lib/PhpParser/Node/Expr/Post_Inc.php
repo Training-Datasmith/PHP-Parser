@@ -24,6 +24,6 @@ class Post_Inc extends Expr
         return ['var'];
     }
     public function get_type(): string {
-        return 'Expr_PostInc';
+        return 'Expr_Post_Inc';
     }
 }

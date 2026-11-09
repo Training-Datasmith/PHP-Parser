@@ -31,7 +31,7 @@ class New_ extends Call_Like
         return ['class', 'args'];
     }
     public function get_type(): string {
-        return 'Expr_New';
+        return 'Expr_New_';
     }
     public function get_raw_args(): array
     {

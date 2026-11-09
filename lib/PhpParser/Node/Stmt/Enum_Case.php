@@ -28,9 +28,9 @@ class Enum_Case extends Node\Stmt
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'name', 'expr'];
+        return ['attr_groups', 'name', 'expr'];
     }
     public function get_type(): string {
-        return 'Stmt_EnumCase';
+        return 'Stmt_Enum_Case';
     }
 }

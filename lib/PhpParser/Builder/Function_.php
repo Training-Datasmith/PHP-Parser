@@ -26,7 +26,7 @@ class Function_ extends Function_Like
     /**
      * Adds a statement.
      *
-     * @param Node|PhpParser\Builder $stmt The statement to add
+     * @param Node|Php_Parser\Builder $stmt The statement to add
      *
      * @return $this The builder instance (for fluid interface)
      */
@@ -54,6 +54,6 @@ class Function_ extends Function_Like
      */
     public function get_node(): Node
     {
-        return new Stmt\Function_($this->name, ['byRef' => $this->return_by_ref, 'params' => $this->params, 'returnType' => $this->return_type, 'stmts' => $this->stmts, 'attrGroups' => $this->attribute_groups], $this->attributes);
+        return new Stmt\Function_($this->name, ['by_ref' => $this->return_by_ref, 'params' => $this->params, 'return_type' => $this->return_type, 'stmts' => $this->stmts, 'attr_groups' => $this->attribute_groups], $this->attributes);
     }
 }

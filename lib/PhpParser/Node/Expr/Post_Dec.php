@@ -24,6 +24,6 @@ class Post_Dec extends Expr
         return ['var'];
     }
     public function get_type(): string {
-        return 'Expr_PostDec';
+        return 'Expr_Post_Dec';
     }
 }

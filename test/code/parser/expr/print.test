@@ -5,7 +5,7 @@ print $a;
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_Print(
+        expr: Expr_Print_(
             expr: Expr_Variable(
                 name: a
             )

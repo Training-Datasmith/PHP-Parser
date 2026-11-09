@@ -37,7 +37,7 @@ foo() {
 }
 -----
 // This triggers a fallback
-$stmts[0]->byRef = true;
+$stmts[0]->by_ref = true;
 -----
 <?php
 function &foo()
@@ -55,7 +55,7 @@ End";
 }
 -----
 // This triggers a fallback
-$stmts[0]->byRef = true;
+$stmts[0]->by_ref = true;
 -----
 <?php
 function &foo()

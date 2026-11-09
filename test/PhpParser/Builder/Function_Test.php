@@ -33,7 +33,7 @@ class Function_Test extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals(
             new Stmt\Function_('test', [
-                'byRef' => true,
+                'by_ref' => true,
             ]),
             $node
         );
@@ -107,7 +107,7 @@ class Function_Test extends \PHPUnit\Framework\TestCase
             ->get_node();
 
         $this->assertEquals(new Stmt\Function_('attrGroup', [
-            'attrGroups' => [$attributeGroup],
+            'attr_groups' => [$attributeGroup],
         ], []), $node);
     }
 
@@ -118,7 +118,7 @@ class Function_Test extends \PHPUnit\Framework\TestCase
             ->get_node();
 
         $this->assertEquals(new Stmt\Function_('test', [
-            'returnType' => new Identifier('void'),
+            'return_type' => new Identifier('void'),
         ], []), $node);
     }
 

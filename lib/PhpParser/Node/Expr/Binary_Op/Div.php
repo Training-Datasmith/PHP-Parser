@@ -11,6 +11,6 @@ class Div extends Binary_Op
         return '/';
     }
     public function get_type(): string {
-        return 'Expr_BinaryOp_Div';
+        return 'Expr_Binary_Op_Div';
     }
 }

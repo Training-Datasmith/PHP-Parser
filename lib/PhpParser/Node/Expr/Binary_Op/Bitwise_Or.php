@@ -11,6 +11,6 @@ class Bitwise_Or extends Binary_Op
         return '|';
     }
     public function get_type(): string {
-        return 'Expr_BinaryOp_BitwiseOr';
+        return 'Expr_Binary_Op_Bitwise_Or';
     }
 }

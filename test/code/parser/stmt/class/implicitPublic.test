@@ -13,8 +13,8 @@ abstract class A {
 }
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: ABSTRACT (16)
         name: Identifier(
@@ -25,12 +25,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: a
                         )
@@ -41,12 +41,12 @@ array(
                 )
             )
             1: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: STATIC (8)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: b
                         )
@@ -57,71 +57,71 @@ array(
                 )
             )
             2: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: ABSTRACT (16)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: c
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: null
             )
             3: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: FINAL (32)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: d
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
             4: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: STATIC (8)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: e
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
             5: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: STATIC | FINAL (40)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: f
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
             6: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: g
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )

@@ -24,7 +24,7 @@ class Namespace_ extends Declaration
     /**
      * Adds a statement.
      *
-     * @param Node|PhpParser\Builder $stmt The statement to add
+     * @param Node|Php_Parser\Builder $stmt The statement to add
      *
      * @return $this The builder instance (for fluid interface)
      */

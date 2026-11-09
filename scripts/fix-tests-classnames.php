@@ -21,8 +21,8 @@ $classReplacements = [
     'Node\\ArrayItem' => 'Node\\Array_Item',
     'Node\\UseItem' => 'Node\\Use_Item',
     'Node\\MatchArm' => 'Node\\Match_Arm',
-    'Expr\\ClassConstFetch' => 'Expr\\Class_Const_Fetch',
-    'Expr\\ConstFetch' => 'Expr\\Const_Fetch',
+    'Expr\\ClassConst_Fetch' => 'Expr\\Class_Const_Fetch',
+    'Expr\\Const_Fetch' => 'Expr\\Const_Fetch',
     'Expr\\FuncCall' => 'Expr\\Func_Call',
     'Expr\\MethodCall' => 'Expr\\Method_Call',
     'Expr\\StaticCall' => 'Expr\\Static_Call',
@@ -51,7 +51,7 @@ $classReplacements = [
     'classConst' => 'class_const',
     'createClassConstBuilder' => 'create_class_const_builder',
     'testFactoryClassConst' => 'test_factory_class_const',
-    'testPrettyPrintWithErrorInClassConstFetch' => 'test_pretty_print_with_error_in_class_const_fetch',
+    'testPrettyPrintWithErrorInClassConst_Fetch' => 'test_pretty_print_with_error_in_class_const_fetch',
 ];
 
 $iterator = new RecursiveIteratorIterator(

@@ -24,6 +24,6 @@ class Isset_ extends Expr
         return ['vars'];
     }
     public function get_type(): string {
-        return 'Expr_Isset';
+        return 'Expr_Isset_';
     }
 }

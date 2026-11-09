@@ -11,6 +11,6 @@ class Pow extends Binary_Op
         return '**';
     }
     public function get_type(): string {
-        return 'Expr_BinaryOp_Pow';
+        return 'Expr_Binary_Op_Pow';
     }
 }

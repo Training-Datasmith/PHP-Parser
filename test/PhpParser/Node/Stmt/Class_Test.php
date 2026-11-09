@@ -66,7 +66,7 @@ class Class_Test extends \PHPUnit\Framework\TestCase
         $this->assertSame($methods, $class->get_methods());
     }
 
-    public function testGetConstants(): void
+    public function testGetConst_ants(): void
     {
         $constants = [
             new Class_Const([new \Php_Parser\Node\Const_('foo', new String_('foo_value'))]),
@@ -131,18 +131,18 @@ class Class_Test extends \PHPUnit\Framework\TestCase
 
     public function testGetMethod(): void
     {
-        $methodConstruct = new Class_Method('__CONSTRUCT');
+        $methodConst_ruct = new Class_Method('__CONSTRUCT');
         $methodTest = new Class_Method('test');
         $class = new Class_('Foo', [
             'stmts' => [
                 new Class_Const([]),
-                $methodConstruct,
+                $methodConst_ruct,
                 new Property(0, []),
                 $methodTest,
             ],
         ]);
 
-        $this->assertSame($methodConstruct, $class->get_method('__construct'));
+        $this->assertSame($methodConst_ruct, $class->get_method('__construct'));
         $this->assertSame($methodTest, $class->get_method('test'));
         $this->assertNull($class->get_method('nonExisting'));
     }

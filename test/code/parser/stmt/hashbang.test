@@ -13,9 +13,9 @@ array(
         value: #!/usr/bin/env php
 
     )
-    1: Stmt_Echo(
+    1: Stmt_Echo_(
         exprs: array(
-            0: Scalar_String(
+            0: Scalar_String_(
                 value: foobar
             )
         )

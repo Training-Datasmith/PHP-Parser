@@ -8,7 +8,7 @@ if (false) {
     /**
      * For classmap-authoritative support.
      *
-     * @deprecated use \PhpParser\Node\Scalar\InterpolatedString instead.
+     * @deprecated use \Php_Parser\Node\Scalar\InterpolatedString instead.
      */
     class Encapsed extends Interpolated_String
     {

@@ -9,28 +9,28 @@ namespace\A\B;
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: A
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: A\B
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name_Fully_Qualified(
                 name: A\B
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name_Relative(
                 name: A\B
             )

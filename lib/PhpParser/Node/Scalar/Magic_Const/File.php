@@ -11,6 +11,6 @@ class File extends Magic_Const
         return '__FILE__';
     }
     public function get_type(): string {
-        return 'Scalar_MagicConst_File';
+        return 'Scalar_Magic_Const_File';
     }
 }

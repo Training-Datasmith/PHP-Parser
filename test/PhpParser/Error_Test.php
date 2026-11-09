@@ -6,7 +6,7 @@ namespace Php_Parser;
 
 class Error_Test extends \PHPUnit\Framework\TestCase
 {
-    public function testConstruct()
+    public function testConst_ruct()
     {
         $attributes = [
             'startLine' => 10,
@@ -24,7 +24,7 @@ class Error_Test extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @depends testConstruct
+     * @depends testConst_ruct
      */
     public function testSetMessageAndLine(Error $error): void
     {

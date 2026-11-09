@@ -12,7 +12,7 @@ abstract class Declaration implements Php_Parser\Builder
     /**
      * Adds a statement.
      *
-     * @param PhpParser\Node\Stmt|PhpParser\Builder $stmt The statement to add
+     * @param Php_Parser\Node\Stmt|Php_Parser\Builder $stmt The statement to add
      *
      * @return $this The builder instance (for fluid interface)
      */
@@ -20,7 +20,7 @@ abstract class Declaration implements Php_Parser\Builder
     /**
      * Adds multiple statements.
      *
-     * @param (PhpParser\Node\Stmt|PhpParser\Builder)[] $stmts The statements to add
+     * @param (Php_Parser\Node\Stmt|Php_Parser\Builder)[] $stmts The statements to add
      *
      * @return $this The builder instance (for fluid interface)
      */
@@ -34,7 +34,7 @@ abstract class Declaration implements Php_Parser\Builder
     /**
      * Sets doc comment for the declaration.
      *
-     * @param PhpParser\Comment\Doc|string $docComment Doc comment to set
+     * @param Php_Parser\Comment\Doc|string $docComment Doc comment to set
      *
      * @return $this The builder instance (for fluid interface)
      */

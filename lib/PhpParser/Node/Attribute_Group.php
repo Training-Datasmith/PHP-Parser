@@ -22,6 +22,6 @@ class Attribute_Group extends Node_Abstract
         return ['attrs'];
     }
     public function get_type(): string {
-        return 'AttributeGroup';
+        return 'Attribute_Group';
     }
 }

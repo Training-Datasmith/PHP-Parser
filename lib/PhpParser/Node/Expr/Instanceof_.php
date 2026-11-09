@@ -30,6 +30,6 @@ class Instanceof_ extends Expr
         return ['expr', 'class'];
     }
     public function get_type(): string {
-        return 'Expr_Instanceof';
+        return 'Expr_Instanceof_';
     }
 }

@@ -12,63 +12,63 @@ declare (A='B', C='D'):
 enddeclare;
 -----
 array(
-    0: Stmt_Declare(
+    0: Stmt_Declare_(
         declares: array(
-            0: DeclareItem(
+            0: Declare_Item(
                 key: Identifier(
                     name: X
                 )
-                value: Scalar_String(
+                value: Scalar_String_(
                     value: Y
                 )
             )
         )
         stmts: null
     )
-    1: Stmt_Declare(
+    1: Stmt_Declare_(
         declares: array(
-            0: DeclareItem(
+            0: Declare_Item(
                 key: Identifier(
                     name: A
                 )
-                value: Scalar_String(
+                value: Scalar_String_(
                     value: B
                 )
             )
-            1: DeclareItem(
+            1: Declare_Item(
                 key: Identifier(
                     name: C
                 )
-                value: Scalar_String(
+                value: Scalar_String_(
                     value: D
                 )
             )
         )
         stmts: array(
-            0: Stmt_Echo(
+            0: Stmt_Echo_(
                 exprs: array(
-                    0: Scalar_String(
+                    0: Scalar_String_(
                         value: foo
                     )
                 )
             )
         )
     )
-    2: Stmt_Declare(
+    2: Stmt_Declare_(
         declares: array(
-            0: DeclareItem(
+            0: Declare_Item(
                 key: Identifier(
                     name: A
                 )
-                value: Scalar_String(
+                value: Scalar_String_(
                     value: B
                 )
             )
-            1: DeclareItem(
+            1: Declare_Item(
                 key: Identifier(
                     name: C
                 )
-                value: Scalar_String(
+                value: Scalar_String_(
                     value: D
                 )
             )

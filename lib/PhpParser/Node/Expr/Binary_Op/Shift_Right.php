@@ -11,6 +11,6 @@ class Shift_Right extends Binary_Op
         return '>>';
     }
     public function get_type(): string {
-        return 'Expr_BinaryOp_ShiftRight';
+        return 'Expr_Binary_Op_Shift_Right';
     }
 }

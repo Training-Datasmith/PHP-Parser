@@ -17,7 +17,7 @@ do $A; while ($a);
 declare (a='b') $C;
 -----
 array(
-    0: Stmt_If(
+    0: Stmt_If_(
         cond: Expr_Variable(
             name: a
         )
@@ -29,7 +29,7 @@ array(
             )
         )
         elseifs: array(
-            0: Stmt_ElseIf(
+            0: Stmt_Else_If_(
                 cond: Expr_Variable(
                     name: b
                 )
@@ -42,7 +42,7 @@ array(
                 )
             )
         )
-        else: Stmt_Else(
+        else: Stmt_Else_(
             stmts: array(
                 0: Stmt_Expression(
                     expr: Expr_Variable(
@@ -52,7 +52,7 @@ array(
             )
         )
     )
-    1: Stmt_For(
+    1: Stmt_For_(
         init: array(
         )
         cond: array(
@@ -67,13 +67,13 @@ array(
             )
         )
     )
-    2: Stmt_Foreach(
+    2: Stmt_Foreach_(
         expr: Expr_Variable(
             name: a
         )
-        keyVar: null
-        byRef: false
-        valueVar: Expr_Variable(
+        key_var: null
+        by_ref: false
+        value_var: Expr_Variable(
             name: b
         )
         stmts: array(
@@ -84,7 +84,7 @@ array(
             )
         )
     )
-    3: Stmt_While(
+    3: Stmt_While_(
         cond: Expr_Variable(
             name: a
         )
@@ -96,7 +96,7 @@ array(
             )
         )
     )
-    4: Stmt_Do(
+    4: Stmt_Do_(
         stmts: array(
             0: Stmt_Expression(
                 expr: Expr_Variable(
@@ -108,13 +108,13 @@ array(
             name: a
         )
     )
-    5: Stmt_Declare(
+    5: Stmt_Declare_(
         declares: array(
-            0: DeclareItem(
+            0: Declare_Item(
                 key: Identifier(
                     name: a
                 )
-                value: Scalar_String(
+                value: Scalar_String_(
                     value: b
                 )
             )

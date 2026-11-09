@@ -56,10 +56,10 @@ class Printable_New_Anon_Class_Node extends Expr
         return new self($class->attr_groups, $class->flags, $new_node->args, $class->extends, $class->implements, $class->stmts, $new_node->get_attributes());
     }
     public function get_type(): string {
-        return 'Expr_PrintableNewAnonClass';
+        return 'Printable_New_Anon_Class_Node';
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'flags', 'args', 'extends', 'implements', 'stmts'];
+        return ['attr_groups', 'flags', 'args', 'extends', 'implements', 'stmts'];
     }
 }

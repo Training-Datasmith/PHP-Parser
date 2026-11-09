@@ -94,14 +94,14 @@ try {} catch
 finally
 {}
 -----
-$stmts[0]->returnType = null;
+$stmts[0]->return_type = null;
 $stmts[0]->params[0]->default = null;
 $stmts[0]->params[1]->type = null;
-$stmts[1]->expr->returnType = null;
+$stmts[1]->expr->return_type = null;
 $stmts[2]->extends = null;
-$stmts[2]->stmts[0]->returnType = null;
+$stmts[2]->stmts[0]->return_type = null;
 $stmts[2]->stmts[1]->props[0]->default = null;
-$stmts[2]->stmts[2]->adaptations[0]->newName = null;
+$stmts[2]->stmts[2]->adaptations[0]->new_name = null;
 $stmts[2]->stmts[3]->type = null;
 $stmts[3]->expr->dim = null;
 $stmts[4]->expr->expr = null;
@@ -111,72 +111,59 @@ $stmts[7]->expr->key = null;
 $stmts[8]->expr->value = null;
 $stmts[9]->num = null;
 $stmts[10]->num = null;
-$stmts[11]->keyVar = null;
+$stmts[11]->key_var = null;
 $stmts[12]->else = null;
 $stmts[13]->expr = null;
 $stmts[14]->vars[0]->default = null;
 $stmts[15]->finally = null;
 -----
 <?php
-function
-foo (
-    Bar $foo,
-    $bar)
-{}
-
-function
-()
-{};
-
-class
-Foo
+function foo(Bar $foo, $bar)
 {
-    public
-    function
-    foo() {}
+}
 
+function () {
+};
+
+class Foo
+{
+    public function foo()
+    {
+    }
     public
       $prop
     ;
-
     use T {
         T
         ::
         x
         as
         public
+        y
         ;
     }
-
-    const
-    X
+    const X
     = 1;
 }
 
-$foo [];
-exit ();
+$foo[];
+exit;
 $foo
 ?:
 $baz;
 [ $a => $b
 , & $d];
 
-yield
-$bar;
+yield $bar;
 yield;
 
 break;
 continue;
 
-foreach(
-    $array
-as
-    $value
-) {}
+foreach ($array as $value) {
+}
 
-if
-($x)
-{
+if ($x) {
 }
 
 return;
@@ -184,7 +171,8 @@ static
   $x
 ;
 
-try {} catch
+try {
+} catch
   (X $y)
   {}
 -----
@@ -199,9 +187,8 @@ $stmts[0]->name = null;
 -----
 <?php
 
-namespace
-    {
-    }
+namespace {
+}
 -----
 <?php
 try
@@ -217,6 +204,5 @@ $stmts[0]->catches[0]->var = null;
 try
 {
 }
-catch (Exception)
-{
+catch (Exception) {
 }

@@ -435,11 +435,11 @@ EOC;
         $traverser->add_visitor(new Name_Resolver());
         $stmts = $traverser->traverse($stmts);
 
-        $this->assertSame('NS\\foo', (string) $stmts[0]->stmts[0]->name->get_attribute('namespacedName'));
-        $this->assertSame('NS\\FOO', (string) $stmts[0]->stmts[1]->name->get_attribute('namespacedName'));
+        $this->assertSame('NS\\foo', (string) $stmts[0]->stmts[0]->name->get_attribute('namespaced_name'));
+        $this->assertSame('NS\\FOO', (string) $stmts[0]->stmts[1]->name->get_attribute('namespaced_name'));
 
-        $this->assertFalse($stmts[1]->stmts[0]->name->has_attribute('namespacedName'));
-        $this->assertFalse($stmts[1]->stmts[1]->name->has_attribute('namespacedName'));
+        $this->assertFalse($stmts[1]->stmts[0]->name->has_attribute('namespaced_name'));
+        $this->assertFalse($stmts[1]->stmts[1]->name->has_attribute('namespaced_name'));
     }
 
     /**
@@ -595,7 +595,7 @@ EOC;
         $this->assertFalse($n2->has_attribute('resolvedName'));
         $this->assertEquals(
             new Name\Fully_Qualified('Foo\bar'),
-            $n2->get_attribute('namespacedName')
+            $n2->get_attribute('namespaced_name')
         );
     }
 

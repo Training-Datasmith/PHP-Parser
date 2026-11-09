@@ -5,7 +5,7 @@ use A\{B,};
 use function A\{b,};
 -----
 array(
-    0: Stmt_GroupUse(
+    0: Stmt_Group_Use(
         type: TYPE_UNKNOWN (0)
         prefix: Name(
             name: A
@@ -20,7 +20,7 @@ array(
             )
         )
     )
-    1: Stmt_GroupUse(
+    1: Stmt_Group_Use(
         type: TYPE_FUNCTION (2)
         prefix: Name(
             name: A

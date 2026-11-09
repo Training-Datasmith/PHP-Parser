@@ -49,5 +49,3 @@ class Use_Item extends Node_Abstract
         return 'Use_Item';
     }
 }
-// @deprecated compatibility alias
-class_alias(Use_Item::class, Stmt\UseUse::class);

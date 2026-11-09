@@ -11,6 +11,6 @@ class Method extends Magic_Const
         return '__METHOD__';
     }
     public function get_type(): string {
-        return 'Scalar_MagicConst_Method';
+        return 'Scalar_Magic_Const_Method';
     }
 }

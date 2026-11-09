@@ -30,6 +30,6 @@ class Property_Fetch extends Expr
         return ['var', 'name'];
     }
     public function get_type(): string {
-        return 'Expr_PropertyFetch';
+        return 'Expr_Property_Fetch';
     }
 }

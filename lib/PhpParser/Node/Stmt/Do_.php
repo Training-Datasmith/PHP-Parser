@@ -28,6 +28,6 @@ class Do_ extends Node\Stmt
         return ['stmts', 'cond'];
     }
     public function get_type(): string {
-        return 'Stmt_Do';
+        return 'Stmt_Do_';
     }
 }

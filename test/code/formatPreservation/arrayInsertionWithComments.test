@@ -7,7 +7,7 @@ $items = [
     'b' => 'bar',
 ];
 -----
-$node = new Expr\ArrayItem(new Scalar\String_('baz'), new Scalar\String_('c'));
+$node = new Node\Array_Item(new Scalar\String_('baz'), new Scalar\String_('c'));
 $node->set_attribute('comments', [new Comment\Doc(<<<COMMENT
 /**
  * A doc comment
@@ -35,7 +35,7 @@ $items = [
     'b' => 'bar',
 ];
 -----
-$node = new Expr\ArrayItem(new Scalar\String_('baz'), new Scalar\String_('c'));
+$node = new Node\Array_Item(new Scalar\String_('baz'), new Scalar\String_('c'));
 $node->set_attribute('comments', [new Comment("/* Block comment */")]);
 $array = $stmts[0]->expr->expr;
 $array->items[] = $node;
@@ -56,7 +56,7 @@ $items = [
     'b' => 'bar',
 ];
 -----
-$node = new Expr\ArrayItem(new Scalar\String_('baz'), new Scalar\String_('c'));
+$node = new Node\Array_Item(new Scalar\String_('baz'), new Scalar\String_('c'));
 $node->set_attribute('comments', [new Comment("// Line comment")]);
 $array = $stmts[0]->expr->expr;
 $array->items[] = $node;
@@ -76,7 +76,7 @@ $items = [
     'a' => 'foo',
 ];
 -----
-$node = new Expr\ArrayItem(new Scalar\String_('bar'), new Scalar\String_('b'));
+$node = new Node\Array_Item(new Scalar\String_('bar'), new Scalar\String_('b'));
 $node->set_attribute('comments', [new Comment("// Line comment")]);
 $array = $stmts[0]->expr->expr;
 $array->items[] = $node;
@@ -93,7 +93,7 @@ $items = [
 
 $items = [];
 -----
-$node = new Expr\ArrayItem(new Scalar\String_('foo'), new Scalar\String_('a'));
+$node = new Node\Array_Item(new Scalar\String_('foo'), new Scalar\String_('a'));
 $node->set_attribute('comments', [new Comment("// Line comment")]);
 $array = $stmts[0]->expr->expr;
 $array->items[] = $node;

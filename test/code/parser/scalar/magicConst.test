@@ -14,39 +14,39 @@ __PROPERTY__;
 -----
 array(
     0: Stmt_Expression(
-        expr: Scalar_MagicConst_Class(
+        expr: Scalar_Magic_Const_Class_(
         )
     )
     1: Stmt_Expression(
-        expr: Scalar_MagicConst_Dir(
+        expr: Scalar_Magic_Const_Dir(
         )
     )
     2: Stmt_Expression(
-        expr: Scalar_MagicConst_File(
+        expr: Scalar_Magic_Const_File(
         )
     )
     3: Stmt_Expression(
-        expr: Scalar_MagicConst_Function(
+        expr: Scalar_Magic_Const_Function_(
         )
     )
     4: Stmt_Expression(
-        expr: Scalar_MagicConst_Line(
+        expr: Scalar_Magic_Const_Line(
         )
     )
     5: Stmt_Expression(
-        expr: Scalar_MagicConst_Method(
+        expr: Scalar_Magic_Const_Method(
         )
     )
     6: Stmt_Expression(
-        expr: Scalar_MagicConst_Namespace(
+        expr: Scalar_Magic_Const_Namespace_(
         )
     )
     7: Stmt_Expression(
-        expr: Scalar_MagicConst_Trait(
+        expr: Scalar_Magic_Const_Trait_(
         )
     )
     8: Stmt_Expression(
-        expr: Scalar_MagicConst_Property(
+        expr: Scalar_Magic_Const_Property(
         )
     )
 )

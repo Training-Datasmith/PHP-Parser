@@ -15,8 +15,8 @@ class Test {
 }
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -27,12 +27,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PROTECTED | PRIVATE_SET (514)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: a
                         )
@@ -43,12 +43,12 @@ array(
                 )
             )
             1: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PRIVATE | PUBLIC_SET (132)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: b
                         )
@@ -59,12 +59,12 @@ array(
                 )
             )
             2: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PROTECTED_SET (256)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: c
                         )
@@ -75,20 +75,20 @@ array(
                 )
             )
             3: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: __construct
                 )
                 params: array(
                     0: Param(
-                        attrGroups: array(
+                        attr_groups: array(
                         )
                         flags: PROTECTED | PRIVATE_SET (514)
                         type: null
-                        byRef: false
+                        by_ref: false
                         variadic: false
                         var: Expr_Variable(
                             name: d
@@ -98,11 +98,11 @@ array(
                         )
                     )
                     1: Param(
-                        attrGroups: array(
+                        attr_groups: array(
                         )
                         flags: PRIVATE | PUBLIC_SET (132)
                         type: null
-                        byRef: false
+                        by_ref: false
                         variadic: false
                         var: Expr_Variable(
                             name: e
@@ -112,11 +112,11 @@ array(
                         )
                     )
                     2: Param(
-                        attrGroups: array(
+                        attr_groups: array(
                         )
                         flags: PROTECTED_SET (256)
                         type: null
-                        byRef: false
+                        by_ref: false
                         variadic: false
                         var: Expr_Variable(
                             name: f
@@ -126,7 +126,7 @@ array(
                         )
                     )
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
@@ -143,8 +143,8 @@ class Test {
 Multiple access type modifiers are not allowed from 3:18 to 3:29
 Multiple access type modifiers are not allowed from 4:18 to 4:28
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -155,12 +155,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PRIVATE_SET (512)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: x
                         )
@@ -171,12 +171,12 @@ array(
                 )
             )
             1: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC_SET | PRIVATE_SET (640)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: x
                         )

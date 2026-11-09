@@ -130,7 +130,7 @@ Version 5.2.0 (2024-09-15)
 * [8.4] Added support for generalized exit function. For backwards compatibility, exit without
   argument or a single plain argument continues to use a `Node\Expr\Exit_` node. Otherwise (e.g.
   if a named argument is used) it will be represented as a plain `Node\Expr\FuncCall`.
-* Added support for passing enum values to various builder methods, like `BuilderFactory::val()`.
+* Added support for passing enum values to various builder methods, like `Builder_Factory::val()`.
 
 ### Removed
 
@@ -164,7 +164,7 @@ printer.
 
 * Avoid cyclic references in `Parser` objects. This means that no longer used parser objects are
   immediately destroyed now, instead of requiring cycle GC.
-* Update `PhpVersion::getNewestSupported()` to report PHP 8.3 instead of PHP 8.2.
+* Update `Php_Version::getNewestSupported()` to report PHP 8.3 instead of PHP 8.2.
 
 Version 5.0.1 (2024-02-21)
 --------------------------
@@ -195,7 +195,7 @@ See UPGRADE-5.0 for detailed migration instructions.
 
 ### Added
 
-* Added support for printing additional attributes (like `kind`) in `NodeDumper`.
+* Added support for printing additional attributes (like `kind`) in `Node_Dumper`.
 * Added `rawValue` attribute to `InterpolatedStringPart` and heredoc/nowdoc `String_`s, which
   provides the original, unparsed value. It was previously only available for non-interpolated
   single/double quoted strings.
@@ -209,12 +209,12 @@ See UPGRADE-5.0 for detailed migration instructions.
 * Use visitor to assign comments. This fixes the long-standing issue where comments were assigned
   to all nodes sharing a starting position. Now only the outer-most node will hold the comments.
 * Don't parse unicode escape sequences when targeting PHP < 7.0.
-* Improve NodeDumper performance for large dumps.
+* Improve Node_Dumper performance for large dumps.
 
 ### Removed
 
 * Removed `Stmt\Throw_` node, use `Expr\Throw_` inside `Stmt\Expression` instead.
-* Removed `ParserFactory::create()`.
+* Removed `Parser_Factory::create()`.
 
 Version 5.0.0-beta1 (2023-09-17)
 --------------------------------
@@ -223,14 +223,14 @@ See UPGRADE-5.0 for detailed migration instructions.
 
 ### Added
 
-* Visitors can now be passed directly to the `NodeTraverser` constructor. A separate call to
+* Visitors can now be passed directly to the `Node_Traverser` constructor. A separate call to
   `addVisitor()` is no longer required.
 
 ### Changed
 
 * The minimum host PHP version is now PHP 7.4. It is still possible to parse code from older
   versions. Property types have been added where possible.
-* The `Lexer` no longer accepts options. `Lexer\Emulative` only accepts a `PhpVersion`. The
+* The `Lexer` no longer accepts options. `Lexer\Emulative` only accepts a `Php_Version`. The
   `startLexing()`, `getTokens()` and `handleHaltCompiler()` methods have been removed. Instead,
   there is a single method `tokenize()` returning the tokens.
 * The `Parser::getLexer()` method has been replaced by `Parser::getTokens()`.
@@ -268,7 +268,7 @@ See UPGRADE-5.0 for detailed migration instructions.
 * Use PHP 7.1 as the default target version for the pretty printer.
 * Print `else if { }` instead of `else { if { } }`.
 * The `leaveNode()` method on visitors is now invoked in reverse order of `enterNode()`.
-* Moved `NodeTraverser::REMOVE_NODE` etc. to `NodeVisitor::REMOVE_NODE`. The old constants are still
+* Moved `Node_Traverser::REMOVE_NODE` etc. to `NodeVisitor::REMOVE_NODE`. The old constants are still
   available for compatibility.
 * The `Name` subnode `parts` has been replaced by `name`, which stores the name as a string rather
   than an array of parts separated by namespace separators. The `getParts()` method returns the old
@@ -298,7 +298,7 @@ See UPGRADE-5.0 for detailed migration instructions.
 * Added `isPromoted()`, `isPublic()`, `isProtected()`, `isPrivate()` and `isReadonly()` methods
   on `Param`.
 * Added support for class constants in trait builder.
-* Added `PrettyPrinter` interface.
+* Added `Pretty_Printer` interface.
 * Added support for formatting preservation when toggling static modifiers.
 * The `php-parse` binary now accepts `-` as the file name, in which case it will read from stdin.
 
@@ -335,7 +335,7 @@ See UPGRADE-5.0 for detailed migration instructions.
 
 * PHP 7.1 is now required to run PHP-Parser.
 * Formatting of the standard pretty printer has been adjusted to match PSR-12 more closely.
-* The internal token representation now uses a `PhpParser\Token` class, which is compatible with
+* The internal token representation now uses a `Php_Parser\Token` class, which is compatible with
   PHP 8 token representation (`PhpToken`).
 * Destructuring is now always represented using `Expr\List_` nodes, even if it uses `[]` syntax.
 * Renamed a number of node classes, and moved things that were not real expressions/statements
@@ -343,8 +343,8 @@ See UPGRADE-5.0 for detailed migration instructions.
 
 ### Added
 
-* Added `PhpVersion` class, which is accepted in a number of places (e.g. ParserFactory, Parser,
-  Lexer, PrettyPrinter) and gives more precise control over the PHP version being targeted.
+* Added `Php_Version` class, which is accepted in a number of places (e.g. Parser_Factory, Parser,
+  Lexer, Pretty_Printer) and gives more precise control over the PHP version being targeted.
 * Added PHP 8 parser though it only differs from the PHP 7 parser in concatenation precedence.
 * Added `Parser::getLexer()` method.
 * Added a `Modifiers` class, as a replacement for `Stmt\Class_::MODIFIER_*`.
@@ -449,15 +449,15 @@ Version 4.11.0 (2021-07-03)
 
 ### Added
 
-* `BuilderFactory::args()` now accepts named arguments.
-* `BuilderFactory::attribute()` has been added.
+* `Builder_Factory::args()` now accepts named arguments.
+* `Builder_Factory::attribute()` has been added.
 * An `addAttribute()` method accepting an `Attribute` or `AttributeGroup` has been adde to all
   builders that accept attributes, such as `Builder\Class_`.
 
 ### Fixed
 
 * `NameResolver` now handles enums.
-* `PrettyPrinter` now prints backing enum type.
+* `Pretty_Printer` now prints backing enum type.
 * Builder methods for types now property handle `never` type.
 
 Version 4.10.5 (2021-05-03)
@@ -528,7 +528,7 @@ Version 4.10.0 (2020-09-19)
 * [PHP 8.0] Added support for attributes. These are represented using a new `AttributeGroup` node
   containing `Attribute` nodes. A new `attrGroups` subnode is available on all node types that
   support attributes, i.e. `Stmt\Class_`, `Stmt\Trait_`, `Stmt\Interface_`, `Stmt\Function_`,
-  `Stmt\ClassMethod`, `Stmt\ClassConst`, `Stmt\Property`, `Expr\Closure`, `Expr\ArrowFunction` and
+  `Stmt\Class_Method`, `Stmt\ClassConst`, `Stmt\Property`, `Expr\Closure`, `Expr\ArrowFunction` and
   `Param`.
 * [PHP 8.0] Added support for nullsafe properties inside interpolated strings, in line with an
   upstream change.
@@ -746,7 +746,7 @@ Version 4.1.0 (2018-10-10)
      and some cases which we do not expect to occur in practice (such as flexible doc strings being
      nested within each other through abuse of variable-variable interpolation syntax) may not be
      recognized correctly.
-* Added `DONT_TRAVERSE_CURRENT_AND_CHILDREN` to `NodeTraverser` to skip both traversal of child
+* Added `DONT_TRAVERSE_CURRENT_AND_CHILDREN` to `Node_Traverser` to skip both traversal of child
   nodes, and prevent subsequent visitors from visiting the current node.
 
 Version 4.0.4 (2018-09-18)
@@ -754,7 +754,7 @@ Version 4.0.4 (2018-09-18)
 
 ### Added
 
-* The following methods have been added to `BuilderFactory`:
+* The following methods have been added to `Builder_Factory`:
   * `useTrait()` (fluent builder)
   * `traitUseAdaptation()` (fluent builder)
   * `useFunction()` (fluent builder)
@@ -800,7 +800,7 @@ Version 4.0.1 (2018-03-25)
 * [PHP 7.3] Added support for by-reference array destructuring. 
 * Added checks to node traverser to prevent replacing a statement with an expression or vice versa.
   This should prevent common mistakes in the implementation of node visitors.
-* Added the following methods to `BuilderFactory`, to simplify creation of expressions:
+* Added the following methods to `Builder_Factory`, to simplify creation of expressions:
   * `funcCall()`
   * `methodCall()`
   * `staticCall()`
@@ -868,20 +868,20 @@ Version 4.0.0-alpha1 (2017-10-18)
 * Added `NodeFinder` class, which can be used to find nodes based on a callback or class name. This
   is a utility to avoid custom node visitor implementations for simple search operations.
 * Added `ClassMethod::isMagic()` method.
-* Added `BuilderFactory` methods: `val()` method for creating an AST for a simple value, `concat()`
+* Added `Builder_Factory` methods: `val()` method for creating an AST for a simple value, `concat()`
   for creating concatenation trees, `args()` for preparing function arguments.
-* Added `NameContext` class, which encapsulates the `NameResolver` logic independently of the actual
+* Added `Name_Context` class, which encapsulates the `NameResolver` logic independently of the actual
   AST traversal. This facilitates use in other context, such as class names in doc comments.
   Additionally it provides an API for getting the shortest representation of a name.
 * Added `Node::setAttributes()` method.
-* Added `JsonDecoder`. This allows conversion JSON back into an AST.
+* Added `Json_Decoder`. This allows conversion JSON back into an AST.
 * Added `Name` methods `toLowerString()` and `isSpecialClassName()`.
 * Added `Identifier` and `VarLikeIdentifier` nodes, which are used in place of simple strings in
   many places.
 * Added `getComments()`, `getStartLine()`, `getEndLine()`, `getStartTokenPos()`, `getEndTokenPos()`,
   `getStartFilePos()` and `getEndFilePos()` methods to `Node`. These provide a more obvious access
   point for the already existing attributes of the same name.
-* Added `ConstExprEvaluator` to evaluate constant expressions to PHP values.
+* Added `Const_Expr_Evaluator` to evaluate constant expressions to PHP values.
 * Added `Expr\BinaryOp::getOperatorSigil()`, returning `+` for `Expr\BinaryOp\Plus`, etc.
 
 ### Changed
@@ -907,8 +907,8 @@ Version 4.0.0-alpha1 (2017-10-18)
   PHP versions (such as PHP 5.2), while running on PHP 7.
 * Removed `type` subnode on `Class`, `ClassMethod` and `Property` nodes. Use `flags` instead.
 * The `ClassConst::isStatic()` method has been removed. Constants cannot have a static modifier.
-* The `NodeTraverser` no longer accepts `false` as a return value from a `leaveNode()` method.
-  `NodeTraverser::REMOVE_NODE` should be returned instead.
+* The `Node_Traverser` no longer accepts `false` as a return value from a `leaveNode()` method.
+  `Node_Traverser::REMOVE_NODE` should be returned instead.
 * The `Node::setLine()` method has been removed. If you really need to, you can use `setAttribute()`
   instead.
 * The misspelled `Class_::VISIBILITY_MODIFER_MASK` constant has been dropped in favor of
@@ -1069,7 +1069,7 @@ Version 3.0.0 (2016-11-30)
 
 ### Added
 
-* Added support for dumping node positions in the NodeDumper through the `dumpPositions` option.
+* Added support for dumping node positions in the Node_Dumper through the `dumpPositions` option.
 * Added error recovery support for `$`, `new`, `Foo::`.
 
 Version 3.0.0-beta2 (2016-10-29)
@@ -1084,9 +1084,9 @@ This release primarily improves our support for error recovery.
 * Added support for recovery from lexer errors.
 * Added support for recovering from "special" errors (i.e. non-syntax parse errors).
 * Added precise location information for lexer errors.
-* Added `ErrorHandler` interface, and `ErrorHandler\Throwing` and `ErrorHandler\Collecting` as
+* Added `Error_Handler` interface, and `Error_Handler\Throwing` and `Error_Handler\Collecting` as
   specific implementations. These provide a general mechanism for handling error recovery.
-* Added optional `ErrorHandler` argument to `Parser::parse()`, `Lexer::startLexing()` and
+* Added optional `Error_Handler` argument to `Parser::parse()`, `Lexer::startLexing()` and
   `NameResolver::__construct()`.
 * The `NameResolver` now adds a `namespacedName` attribute on name nodes that cannot be statically
   resolved (unqualified unaliased function or constant names in namespaces).
@@ -1110,9 +1110,9 @@ This release primarily improves our support for error recovery.
   the immutable `Name::concat()`.
 * Removed `Error::getRawLine()` and `Error::setRawLine()`. These methods have been superseded by
   `Error::getStartLine()` and `Error::setStartLine()`.
-* Removed support for node cloning in the `NodeTraverser`.
+* Removed support for node cloning in the `Node_Traverser`.
 * Removed `$separator` argument from `Name::toString()`.
-* Removed `throw_on_error` parser option and `Parser::getErrors()` method. Use the `ErrorHandler`
+* Removed `throw_on_error` parser option and `Parser::getErrors()` method. Use the `Error_Handler`
   mechanism instead.
 
 Version 3.0.0-beta1 (2016-09-16)
@@ -1178,9 +1178,9 @@ Additionally the following changes were made:
   explicit `Finally` node. This allows for more accurate attribute assignment.
 * The `Trait` constructor now has the same form as the `Class` and `Interface` constructors: It
   takes an array of subnodes. Unlike classes/interfaces, traits can only have a `stmts` subnode.
-* The `NodeDumper` now prints class/method/property/constant modifiers, as well as the include and
+* The `Node_Dumper` now prints class/method/property/constant modifiers, as well as the include and
   use type in a textual representation, instead of only showing the number.
-* All methods on `PrettyPrinter\Standard` are now protected. Previously most of them were public.
+* All methods on `Pretty_Printer\Standard` are now protected. Previously most of them were public.
 
 ### Removed
 
@@ -1314,18 +1314,18 @@ A more detailed description of backwards incompatible changes can be found in th
   * Scalar type declarations. These are presented using `'bool'`, `'int'`, `'float'` and `'string'`
     as the type. The PHP 5 parser also accepts these, however they'll be `Name` instances there.
   * Unicode escape sequences.
-* Added `PhpParser\ParserFactory` class, which should be used to create parser instances.
+* Added `Php_Parser\Parser_Factory` class, which should be used to create parser instances.
 * Added `Name::concat()` which concatenates two names.
 * Added `Name->slice()` which takes a subslice of a name.
 
 ### Changed
 
-* `PhpParser\Parser` is now an interface, implemented by `Parser\Php5`, `Parser\Php7` and
+* `Php_Parser\Parser` is now an interface, implemented by `Parser\Php5`, `Parser\Php7` and
   `Parser\Multiple`. The `Multiple` parser will try multiple parsers, until one succeeds.
-* Token constants are now defined on `PhpParser\Parser\Tokens` rather than `PhpParser\Parser`.
+* Token constants are now defined on `Php_Parser\Parser\Tokens` rather than `Php_Parser\Parser`.
 * The `Name->set()`, `Name->append()`, `Name->prepend()` and `Name->setFirst()` methods are
   deprecated in favor of `Name::concat()` and `Name->slice()`.
-* The `NodeTraverser` no longer clones nodes by default. The old behavior can be restored by
+* The `Node_Traverser` no longer clones nodes by default. The old behavior can be restored by
   passing `true` to the constructor.
 * The constructor for `Scalar` nodes no longer has a default value. E.g. `new LNumber()` should now
   be written as `new LNumber(0)`.

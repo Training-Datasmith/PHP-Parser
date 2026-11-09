@@ -10,8 +10,8 @@ Uniform variable syntax in PHP 7 (misc)
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_MethodCall(
-            var: Scalar_String(
+        expr: Expr_Method_Call(
+            var: Scalar_String_(
                 value: string
             )
             name: Identifier(
@@ -22,10 +22,10 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
+        expr: Expr_Array_Dim_Fetch(
             var: Scalar_Interpolated_String(
                 parts: array(
-                    0: Interpolated_StringPart(
+                    0: Interpolated_String_Part(
                         value: foo
                     )
                     1: Expr_Variable(
@@ -33,16 +33,16 @@ array(
                     )
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 0
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_MethodCall(
+        expr: Expr_Method_Call(
             var: Scalar_Interpolated_String(
                 parts: array(
-                    0: Interpolated_StringPart(
+                    0: Interpolated_String_Part(
                         value: foo
                     )
                     1: Expr_Variable(
@@ -58,10 +58,10 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_FuncCall(
-            name: Expr_ArrayDimFetch(
-                var: Expr_PropertyFetch(
-                    var: Expr_Clone(
+        expr: Expr_Func_Call(
+            name: Expr_Array_Dim_Fetch(
+                var: Expr_Property_Fetch(
+                    var: Expr_Clone_(
                         expr: Expr_Variable(
                             name: obj
                         )
@@ -70,17 +70,17 @@ array(
                         name: b
                     )
                 )
-                dim: Scalar_Int(
+                dim: Scalar_Int_(
                     value: 0
                 )
             )
             args: array(
                 0: Arg(
                     name: null
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 1
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
@@ -88,32 +88,32 @@ array(
     )
     4: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_ArrayDimFetch(
-                var: Expr_Array(
+            var: Expr_Array_Dim_Fetch(
+                var: Expr_Array_(
                     items: array(
                         0: Array_Item(
                             key: null
-                            value: Scalar_Int(
+                            value: Scalar_Int_(
                                 value: 0
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                         1: Array_Item(
                             key: null
-                            value: Scalar_Int(
+                            value: Scalar_Int_(
                                 value: 1
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                     )
                 )
-                dim: Scalar_Int(
+                dim: Scalar_Int_(
                     value: 0
                 )
             )
-            expr: Scalar_Int(
+            expr: Scalar_Int_(
                 value: 1
             )
         )

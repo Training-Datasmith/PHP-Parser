@@ -15,7 +15,7 @@ $a instanceof $b;
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_BinaryOp_Smaller(
+        expr: Expr_Binary_Op_Smaller(
             left: Expr_Variable(
                 name: a
             )
@@ -25,7 +25,7 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_BinaryOp_SmallerOrEqual(
+        expr: Expr_Binary_Op_Smaller_Or_Equal(
             left: Expr_Variable(
                 name: a
             )
@@ -35,7 +35,7 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_BinaryOp_Greater(
+        expr: Expr_Binary_Op_Greater(
             left: Expr_Variable(
                 name: a
             )
@@ -45,7 +45,7 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_BinaryOp_GreaterOrEqual(
+        expr: Expr_Binary_Op_Greater_Or_Equal(
             left: Expr_Variable(
                 name: a
             )
@@ -55,7 +55,7 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Expr_BinaryOp_Equal(
+        expr: Expr_Binary_Op_Equal(
             left: Expr_Variable(
                 name: a
             )
@@ -65,7 +65,7 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Expr_BinaryOp_Identical(
+        expr: Expr_Binary_Op_Identical(
             left: Expr_Variable(
                 name: a
             )
@@ -75,7 +75,7 @@ array(
         )
     )
     6: Stmt_Expression(
-        expr: Expr_BinaryOp_NotEqual(
+        expr: Expr_Binary_Op_Not_Equal(
             left: Expr_Variable(
                 name: a
             )
@@ -85,7 +85,7 @@ array(
         )
     )
     7: Stmt_Expression(
-        expr: Expr_BinaryOp_NotIdentical(
+        expr: Expr_Binary_Op_Not_Identical(
             left: Expr_Variable(
                 name: a
             )
@@ -95,7 +95,7 @@ array(
         )
     )
     8: Stmt_Expression(
-        expr: Expr_BinaryOp_Spaceship(
+        expr: Expr_Binary_Op_Spaceship(
             left: Expr_Variable(
                 name: a
             )
@@ -105,7 +105,7 @@ array(
         )
     )
     9: Stmt_Expression(
-        expr: Expr_Instanceof(
+        expr: Expr_Instanceof_(
             expr: Expr_Variable(
                 name: a
             )
@@ -115,7 +115,7 @@ array(
         )
     )
     10: Stmt_Expression(
-        expr: Expr_Instanceof(
+        expr: Expr_Instanceof_(
             expr: Expr_Variable(
                 name: a
             )

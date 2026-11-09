@@ -13,7 +13,7 @@ array(
             name: a
         )
     )
-    1: Stmt_HaltCompiler(
+    1: Stmt_Halt_Compiler(
         remaining: Hallo World!
     )
 )
@@ -29,7 +29,7 @@ array(
             name: a
         )
     )
-    1: Stmt_HaltCompiler(
+    1: Stmt_Halt_Compiler(
         remaining: Hallo World!
     )
 )
@@ -41,7 +41,7 @@ $a;
 __halt_compiler();
 -----
 array(
-    0: Stmt_Namespace(
+    0: Stmt_Namespace_(
         name: Name(
             name: A
         )
@@ -53,7 +53,7 @@ array(
             )
         )
     )
-    1: Stmt_HaltCompiler(
+    1: Stmt_Halt_Compiler(
         remaining:
     )
 )

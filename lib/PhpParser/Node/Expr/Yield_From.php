@@ -24,6 +24,6 @@ class Yield_From extends Expr
         return ['expr'];
     }
     public function get_type(): string {
-        return 'Expr_YieldFrom';
+        return 'Expr_Yield_From';
     }
 }

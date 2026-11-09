@@ -30,6 +30,6 @@ class Nullsafe_Property_Fetch extends Expr
         return ['var', 'name'];
     }
     public function get_type(): string {
-        return 'Expr_NullsafePropertyFetch';
+        return 'Expr_Nullsafe_Property_Fetch';
     }
 }

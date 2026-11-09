@@ -138,7 +138,7 @@ class Property implements Php_Parser\Builder
     /**
      * Sets doc comment for the property.
      *
-     * @param PhpParser\Comment\Doc|string $docComment Doc comment to set
+     * @param Php_Parser\Comment\Doc|string $docComment Doc comment to set
      *
      * @return $this The builder instance (for fluid interface)
      */

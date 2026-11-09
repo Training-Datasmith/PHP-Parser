@@ -35,7 +35,7 @@ $a ** $b ** $c;
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_BitwiseNot(
+        expr: Expr_Bitwise_Not(
             expr: Expr_Variable(
                 name: a
             )
@@ -45,21 +45,21 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_UnaryPlus(
+        expr: Expr_Unary_Plus(
             expr: Expr_Variable(
                 name: a
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_UnaryMinus(
+        expr: Expr_Unary_Minus(
             expr: Expr_Variable(
                 name: a
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_BinaryOp_BitwiseAnd(
+        expr: Expr_Binary_Op_Bitwise_And(
             left: Expr_Variable(
                 name: a
             )
@@ -72,7 +72,7 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Expr_BinaryOp_BitwiseOr(
+        expr: Expr_Binary_Op_Bitwise_Or(
             left: Expr_Variable(
                 name: a
             )
@@ -82,7 +82,7 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Expr_BinaryOp_BitwiseXor(
+        expr: Expr_Binary_Op_Bitwise_Xor(
             left: Expr_Variable(
                 name: a
             )
@@ -92,7 +92,7 @@ array(
         )
     )
     6: Stmt_Expression(
-        expr: Expr_BinaryOp_Concat(
+        expr: Expr_Binary_Op_Concat(
             left: Expr_Variable(
                 name: a
             )
@@ -102,7 +102,7 @@ array(
         )
     )
     7: Stmt_Expression(
-        expr: Expr_BinaryOp_Div(
+        expr: Expr_Binary_Op_Div(
             left: Expr_Variable(
                 name: a
             )
@@ -112,7 +112,7 @@ array(
         )
     )
     8: Stmt_Expression(
-        expr: Expr_BinaryOp_Minus(
+        expr: Expr_Binary_Op_Minus(
             left: Expr_Variable(
                 name: a
             )
@@ -122,7 +122,7 @@ array(
         )
     )
     9: Stmt_Expression(
-        expr: Expr_BinaryOp_Mod(
+        expr: Expr_Binary_Op_Mod(
             left: Expr_Variable(
                 name: a
             )
@@ -132,7 +132,7 @@ array(
         )
     )
     10: Stmt_Expression(
-        expr: Expr_BinaryOp_Mul(
+        expr: Expr_Binary_Op_Mul(
             left: Expr_Variable(
                 name: a
             )
@@ -142,7 +142,7 @@ array(
         )
     )
     11: Stmt_Expression(
-        expr: Expr_BinaryOp_Plus(
+        expr: Expr_Binary_Op_Plus(
             left: Expr_Variable(
                 name: a
             )
@@ -152,7 +152,7 @@ array(
         )
     )
     12: Stmt_Expression(
-        expr: Expr_BinaryOp_ShiftLeft(
+        expr: Expr_Binary_Op_Shift_Left(
             left: Expr_Variable(
                 name: a
             )
@@ -162,7 +162,7 @@ array(
         )
     )
     13: Stmt_Expression(
-        expr: Expr_BinaryOp_ShiftRight(
+        expr: Expr_Binary_Op_Shift_Right(
             left: Expr_Variable(
                 name: a
             )
@@ -172,7 +172,7 @@ array(
         )
     )
     14: Stmt_Expression(
-        expr: Expr_BinaryOp_Pow(
+        expr: Expr_Binary_Op_Pow(
             left: Expr_Variable(
                 name: a
             )
@@ -182,8 +182,8 @@ array(
         )
     )
     15: Stmt_Expression(
-        expr: Expr_BinaryOp_Mul(
-            left: Expr_BinaryOp_Mul(
+        expr: Expr_Binary_Op_Mul(
+            left: Expr_Binary_Op_Mul(
                 left: Expr_Variable(
                     name: a
                 )
@@ -200,11 +200,11 @@ array(
         )
     )
     16: Stmt_Expression(
-        expr: Expr_BinaryOp_Mul(
+        expr: Expr_Binary_Op_Mul(
             left: Expr_Variable(
                 name: a
             )
-            right: Expr_BinaryOp_Mul(
+            right: Expr_Binary_Op_Mul(
                 left: Expr_Variable(
                     name: b
                 )
@@ -215,11 +215,11 @@ array(
         )
     )
     17: Stmt_Expression(
-        expr: Expr_BinaryOp_Plus(
+        expr: Expr_Binary_Op_Plus(
             left: Expr_Variable(
                 name: a
             )
-            right: Expr_BinaryOp_Mul(
+            right: Expr_Binary_Op_Mul(
                 left: Expr_Variable(
                     name: b
                 )
@@ -233,8 +233,8 @@ array(
         )
     )
     18: Stmt_Expression(
-        expr: Expr_BinaryOp_Mul(
-            left: Expr_BinaryOp_Plus(
+        expr: Expr_Binary_Op_Mul(
+            left: Expr_Binary_Op_Plus(
                 left: Expr_Variable(
                     name: a
                 )
@@ -248,11 +248,11 @@ array(
         )
     )
     19: Stmt_Expression(
-        expr: Expr_BinaryOp_Pow(
+        expr: Expr_Binary_Op_Pow(
             left: Expr_Variable(
                 name: a
             )
-            right: Expr_BinaryOp_Pow(
+            right: Expr_Binary_Op_Pow(
                 left: Expr_Variable(
                     name: b
                 )
@@ -266,8 +266,8 @@ array(
         )
     )
     20: Stmt_Expression(
-        expr: Expr_BinaryOp_Pow(
-            left: Expr_BinaryOp_Pow(
+        expr: Expr_Binary_Op_Pow(
+            left: Expr_Binary_Op_Pow(
                 left: Expr_Variable(
                     name: a
                 )

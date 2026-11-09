@@ -18,13 +18,13 @@ foreach ($a as $b):
 endforeach;
 -----
 array(
-    0: Stmt_Foreach(
+    0: Stmt_Foreach_(
         expr: Expr_Variable(
             name: a
         )
-        keyVar: null
-        byRef: false
-        valueVar: Expr_Variable(
+        key_var: null
+        by_ref: false
+        value_var: Expr_Variable(
             name: b
         )
         stmts: array(
@@ -33,60 +33,60 @@ array(
             0: // foreach on variable
         )
     )
-    1: Stmt_Foreach(
+    1: Stmt_Foreach_(
         expr: Expr_Variable(
             name: a
         )
-        keyVar: null
-        byRef: true
-        valueVar: Expr_Variable(
+        key_var: null
+        by_ref: true
+        value_var: Expr_Variable(
             name: b
         )
         stmts: array(
         )
     )
-    2: Stmt_Foreach(
+    2: Stmt_Foreach_(
         expr: Expr_Variable(
             name: a
         )
-        keyVar: Expr_Variable(
+        key_var: Expr_Variable(
             name: b
         )
-        byRef: false
-        valueVar: Expr_Variable(
+        by_ref: false
+        value_var: Expr_Variable(
             name: c
         )
         stmts: array(
         )
     )
-    3: Stmt_Foreach(
+    3: Stmt_Foreach_(
         expr: Expr_Variable(
             name: a
         )
-        keyVar: Expr_Variable(
+        key_var: Expr_Variable(
             name: b
         )
-        byRef: true
-        valueVar: Expr_Variable(
+        by_ref: true
+        value_var: Expr_Variable(
             name: c
         )
         stmts: array(
         )
     )
-    4: Stmt_Foreach(
+    4: Stmt_Foreach_(
         expr: Expr_Variable(
             name: a
         )
-        keyVar: null
-        byRef: false
-        valueVar: Expr_List(
+        key_var: null
+        by_ref: false
+        value_var: Expr_List_(
             items: array(
                 0: Array_Item(
                     key: null
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Array_Item(
@@ -94,7 +94,7 @@ array(
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
@@ -102,22 +102,22 @@ array(
         stmts: array(
         )
     )
-    5: Stmt_Foreach(
+    5: Stmt_Foreach_(
         expr: Expr_Variable(
             name: a
         )
-        keyVar: Expr_Variable(
+        key_var: Expr_Variable(
             name: a
         )
-        byRef: false
-        valueVar: Expr_List(
+        by_ref: false
+        value_var: Expr_List_(
             items: array(
                 0: Array_Item(
                     key: null
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: null
@@ -126,7 +126,7 @@ array(
                     value: Expr_Variable(
                         name: c
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
@@ -134,14 +134,14 @@ array(
         stmts: array(
         )
     )
-    6: Stmt_Foreach(
-        expr: Expr_Array(
+    6: Stmt_Foreach_(
+        expr: Expr_Array_(
             items: array(
             )
         )
-        keyVar: null
-        byRef: false
-        valueVar: Expr_Variable(
+        key_var: null
+        by_ref: false
+        value_var: Expr_Variable(
             name: b
         )
         stmts: array(
@@ -150,13 +150,13 @@ array(
             0: // foreach on expression
         )
     )
-    7: Stmt_Foreach(
+    7: Stmt_Foreach_(
         expr: Expr_Variable(
             name: a
         )
-        keyVar: null
-        byRef: false
-        valueVar: Expr_Variable(
+        key_var: null
+        by_ref: false
+        value_var: Expr_Variable(
             name: b
         )
         stmts: array(

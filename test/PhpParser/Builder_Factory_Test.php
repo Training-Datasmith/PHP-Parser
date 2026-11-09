@@ -43,7 +43,7 @@ class Builder_Factory_Test extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function testFactoryClassConst(): void
+    public function testFactoryClassConst_(): void
     {
         $factory = new Builder_Factory();
         $this->assertInstanceOf(Builder\Class_Const::class, $factory->class_const('TEST', 1));
@@ -350,7 +350,7 @@ class Builder_Factory_Test extends \PHPUnit\Framework\TestCase
                 ->add_stmt(
                     $factory->class_const('CONST_WITH_ATTRIBUTE', 1)
                     ->make_public()
-                    ->add_attribute($factory->attribute('ConstAttribute'))
+                    ->add_attribute($factory->attribute('Const_Attribute'))
                 )
 
                 ->add_stmt($factory->class_const('FIRST_CLASS_CONST', 1)
@@ -377,7 +377,7 @@ abstract class SomeClass extends SomeOtherClass implements A\Few, \Interfaces
         AnotherTrait::baz as test;
         AnotherTrait::func insteadof SecondTrait;
     }
-    #[ConstAttribute]
+    #[Const_Attribute]
     public const CONST_WITH_ATTRIBUTE = 1;
     private const FIRST_CLASS_CONST = 1, SECOND_CLASS_CONST = 2;
     protected $someProperty;

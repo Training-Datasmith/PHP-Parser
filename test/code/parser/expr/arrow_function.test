@@ -13,20 +13,20 @@ fn($a, $b) => $a && $b;
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_ArrowFunction(
-            attrGroups: array(
+        expr: Expr_Arrow_Function(
+            attr_groups: array(
             )
             static: false
-            byRef: false
+            by_ref: false
             params: array(
                 0: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: Identifier(
                         name: bool
                     )
-                    byRef: false
+                    by_ref: false
                     variadic: false
                     var: Expr_Variable(
                         name: a
@@ -36,55 +36,55 @@ array(
                     )
                 )
             )
-            returnType: null
+            return_type: null
             expr: Expr_Variable(
                 name: a
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_ArrowFunction(
-            attrGroups: array(
+        expr: Expr_Arrow_Function(
+            attr_groups: array(
             )
             static: false
-            byRef: false
+            by_ref: false
             params: array(
                 0: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: false
+                    by_ref: false
                     variadic: false
                     var: Expr_Variable(
                         name: x
                     )
-                    default: Scalar_Int(
+                    default: Scalar_Int_(
                         value: 42
                     )
                     hooks: array(
                     )
                 )
             )
-            returnType: null
+            return_type: null
             expr: Expr_Variable(
                 name: x
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_ArrowFunction(
-            attrGroups: array(
+        expr: Expr_Arrow_Function(
+            attr_groups: array(
             )
             static: true
-            byRef: false
+            by_ref: false
             params: array(
                 0: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: true
+                    by_ref: true
                     variadic: false
                     var: Expr_Variable(
                         name: x
@@ -94,25 +94,25 @@ array(
                     )
                 )
             )
-            returnType: null
+            return_type: null
             expr: Expr_Variable(
                 name: x
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_ArrowFunction(
-            attrGroups: array(
+        expr: Expr_Arrow_Function(
+            attr_groups: array(
             )
             static: false
-            byRef: true
+            by_ref: true
             params: array(
                 0: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: false
+                    by_ref: false
                     variadic: false
                     var: Expr_Variable(
                         name: x
@@ -122,25 +122,25 @@ array(
                     )
                 )
             )
-            returnType: null
+            return_type: null
             expr: Expr_Variable(
                 name: x
             )
         )
     )
     4: Stmt_Expression(
-        expr: Expr_ArrowFunction(
-            attrGroups: array(
+        expr: Expr_Arrow_Function(
+            attr_groups: array(
             )
             static: false
-            byRef: false
+            by_ref: false
             params: array(
                 0: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: false
+                    by_ref: false
                     variadic: false
                     var: Expr_Variable(
                         name: x
@@ -150,11 +150,11 @@ array(
                     )
                 )
                 1: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: false
+                    by_ref: false
                     variadic: true
                     var: Expr_Variable(
                         name: rest
@@ -164,21 +164,21 @@ array(
                     )
                 )
             )
-            returnType: null
+            return_type: null
             expr: Expr_Variable(
                 name: rest
             )
         )
     )
     5: Stmt_Expression(
-        expr: Expr_ArrowFunction(
-            attrGroups: array(
+        expr: Expr_Arrow_Function(
+            attr_groups: array(
             )
             static: false
-            byRef: false
+            by_ref: false
             params: array(
             )
-            returnType: Identifier(
+            return_type: Identifier(
                 name: int
             )
             expr: Expr_Variable(
@@ -187,18 +187,18 @@ array(
         )
     )
     6: Stmt_Expression(
-        expr: Expr_ArrowFunction(
-            attrGroups: array(
+        expr: Expr_Arrow_Function(
+            attr_groups: array(
             )
             static: false
-            byRef: false
+            by_ref: false
             params: array(
                 0: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: false
+                    by_ref: false
                     variadic: false
                     var: Expr_Variable(
                         name: a
@@ -208,11 +208,11 @@ array(
                     )
                 )
                 1: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: false
+                    by_ref: false
                     variadic: false
                     var: Expr_Variable(
                         name: b
@@ -222,8 +222,8 @@ array(
                     )
                 )
             )
-            returnType: null
-            expr: Expr_BinaryOp_LogicalAnd(
+            return_type: null
+            expr: Expr_Binary_Op_Logical_And(
                 left: Expr_Variable(
                     name: a
                 )
@@ -234,18 +234,18 @@ array(
         )
     )
     7: Stmt_Expression(
-        expr: Expr_ArrowFunction(
-            attrGroups: array(
+        expr: Expr_Arrow_Function(
+            attr_groups: array(
             )
             static: false
-            byRef: false
+            by_ref: false
             params: array(
                 0: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: false
+                    by_ref: false
                     variadic: false
                     var: Expr_Variable(
                         name: a
@@ -255,11 +255,11 @@ array(
                     )
                 )
                 1: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: false
+                    by_ref: false
                     variadic: false
                     var: Expr_Variable(
                         name: b
@@ -269,8 +269,8 @@ array(
                     )
                 )
             )
-            returnType: null
-            expr: Expr_BinaryOp_BooleanAnd(
+            return_type: null
+            expr: Expr_Binary_Op_Boolean_And(
                 left: Expr_Variable(
                     name: a
                 )

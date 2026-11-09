@@ -14,7 +14,7 @@ function foo() {}
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: foo
             )
@@ -25,7 +25,7 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_MethodCall(
+        expr: Expr_Method_Call(
             var: Expr_Variable(
                 name: this
             )
@@ -39,7 +39,7 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_StaticCall(
+        expr: Expr_Static_Call(
             class: Name(
                 name: A
             )
@@ -53,7 +53,7 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_New(
+        expr: Expr_New_(
             class: Name(
                 name: Foo
             )
@@ -67,7 +67,7 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Expr_NullsafeMethodCall(
+        expr: Expr_Nullsafe_Method_Call(
             var: Expr_Variable(
                 name: this
             )
@@ -80,9 +80,9 @@ array(
             )
         )
     )
-    5: Stmt_Function(
-        attrGroups: array(
-            0: AttributeGroup(
+    5: Stmt_Function_(
+        attr_groups: array(
+            0: Attribute_Group(
                 attrs: array(
                     0: Attribute(
                         name: Name(
@@ -96,13 +96,13 @@ array(
                 )
             )
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: foo
         )
         params: array(
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )

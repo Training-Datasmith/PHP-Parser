@@ -8,9 +8,9 @@ $obj instanceof ('Foo' . $bar);
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_New(
-            class: Expr_BinaryOp_Concat(
-                left: Scalar_String(
+        expr: Expr_New_(
+            class: Expr_Binary_Op_Concat(
+                left: Scalar_String_(
                     value: Foo
                 )
                 right: Expr_Variable(
@@ -22,9 +22,9 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_New(
-            class: Expr_BinaryOp_Concat(
-                left: Scalar_String(
+        expr: Expr_New_(
+            class: Expr_Binary_Op_Concat(
+                left: Scalar_String_(
                     value: Foo
                 )
                 right: Expr_Variable(
@@ -37,19 +37,19 @@ array(
                     value: Expr_Variable(
                         name: arg
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_Instanceof(
+        expr: Expr_Instanceof_(
             expr: Expr_Variable(
                 name: obj
             )
-            class: Expr_BinaryOp_Concat(
-                left: Scalar_String(
+            class: Expr_Binary_Op_Concat(
+                left: Scalar_String_(
                     value: Foo
                 )
                 right: Expr_Variable(

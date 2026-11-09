@@ -7,7 +7,7 @@ encode the AST directly using `json_encode()`:
 ```php
 <?php
 
-use PhpParser\ParserFactory;
+use Php_Parser\Parser_Factory;
 
 $code = <<<'CODE'
 <?php
@@ -18,13 +18,13 @@ function printLine($msg) {
 }
 CODE;
 
-$parser = (new ParserFactory())->createForHostVersion();
+$parser = (new Parser_Factory())->createForHostVersion();
 
 try {
     $stmts = $parser->parse($code);
 
     echo json_encode($stmts, JSON_PRETTY_PRINT), "\n";
-} catch (PhpParser\Error $e) {
+} catch (Php_Parser\Error $e) {
     echo 'Parse Error: ', $e->getMessage();
 }
 ```
@@ -119,12 +119,12 @@ This will result in the following output (which includes attributes):
 ]
 ```
 
-The JSON representation may be converted back into an AST using the `JsonDecoder`:
+The JSON representation may be converted back into an AST using the `Json_Decoder`:
 
 ```php
 <?php
 
-$jsonDecoder = new PhpParser\JsonDecoder();
+$jsonDecoder = new Php_Parser\Json_Decoder();
 $ast = $jsonDecoder->decode($json);
 ```
 

@@ -25,6 +25,6 @@ class Goto_ extends Stmt
         return ['name'];
     }
     public function get_type(): string {
-        return 'Stmt_Goto';
+        return 'Stmt_Goto_';
     }
 }

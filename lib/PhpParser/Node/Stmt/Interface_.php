@@ -19,7 +19,7 @@ class Interface_ extends Class_Like
      * } $subNodes Array of the following optional subnodes:
      *             'extends'    => array(): Name of extended interfaces
      *             'stmts'      => array(): Statements
-     *             'attrGroups' => array(): PHP attribute groups
+     *             'attr_groups' => array(): PHP attribute groups
      * @param array<string, mixed> $attributes Additional attributes
      */
     public function __construct($name, array $sub_nodes = [], array $attributes = [])
@@ -28,13 +28,13 @@ class Interface_ extends Class_Like
         $this->name = \is_string($name) ? new Node\Identifier($name) : $name;
         $this->extends = $sub_nodes['extends'] ?? [];
         $this->stmts = $sub_nodes['stmts'] ?? [];
-        $this->attr_groups = $sub_nodes['attrGroups'] ?? [];
+        $this->attr_groups = $sub_nodes['attr_groups'] ?? [];
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'name', 'extends', 'stmts'];
+        return ['attr_groups', 'name', 'extends', 'stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_Interface';
+        return 'Stmt_Interface_';
     }
 }

@@ -12,6 +12,6 @@ class Int_ extends Cast
     public const KIND_INTEGER = 2;
     // "integer" syntax
     public function get_type(): string {
-        return 'Expr_Cast_Int';
+        return 'Expr_Cast_Int_';
     }
 }

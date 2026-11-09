@@ -34,7 +34,7 @@ class Class_Const extends Node\Stmt
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'flags', 'type', 'consts'];
+        return ['attr_groups', 'flags', 'type', 'consts'];
     }
     /**
      * Whether constant is explicitly or implicitly public.
@@ -65,6 +65,6 @@ class Class_Const extends Node\Stmt
         return (bool) ($this->flags & Modifiers::FINAL);
     }
     public function get_type(): string {
-        return 'Stmt_ClassConst';
+        return 'Stmt_Class_Const';
     }
 }

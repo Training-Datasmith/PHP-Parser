@@ -4,15 +4,36 @@ set -euo pipefail
 export COMPOSER_ALLOW_SUPERUSER=1
 git config --global --add safe.directory /app 2>/dev/null || true
 
+strip_ansi() {
+    local file="$1"
+    local stripped
+    stripped="$(mktemp)"
+    sed -E 's/\x1b\[[0-9;]*[[:alpha:]]//g' "${file}" >"${stripped}"
+    echo "${stripped}"
+}
+
 fail_deprecation_output() {
     local label="$1"
     local file="$2"
     local stripped
-    stripped="$(mktemp)"
-    sed -E 's/\x1b\[[0-9;]*[[:alpha:]]//g' "${file}" >"${stripped}"
+    stripped="$(strip_ansi "${file}")"
     if grep -E '^(PHP )?(Warning|Deprecated|Notice):' "${stripped}" >/dev/null; then
         echo "${label}: output contains Warning, Deprecated, or Notice" >&2
         grep -E '^(PHP )?(Warning|Deprecated|Notice):' "${stripped}" >&2 || true
+        rm -f "${stripped}"
+        exit 1
+    fi
+    rm -f "${stripped}"
+}
+
+require_anchored_line() {
+    local label="$1"
+    local file="$2"
+    local pattern="$3"
+    local stripped
+    stripped="$(strip_ansi "${file}")"
+    if ! grep -Exq "${pattern}" "${stripped}"; then
+        echo "${label}: missing anchored success line (${pattern})" >&2
         rm -f "${stripped}"
         exit 1
     fi
@@ -64,9 +85,6 @@ if [[ ${lint_status} -ne 0 ]]; then
     rm -f "${lint_out}"
     exit "${lint_status}"
 fi
-if ! grep -Fxq 'No syntax errors detected in lib/PhpParser/compatibility_tokens.php' "${lint_out}"; then
-    :
-fi
 if ! grep -q '^No syntax errors detected' "${lint_out}"; then
     echo 'php -l: missing syntax success lines' >&2
     rm -f "${lint_out}"
@@ -89,11 +107,14 @@ if ! grep -q 'function init_reduce_callbacks' lib/PhpParser/Parser/Php7.php \
     || ! grep -q 'function init_reduce_callbacks' lib/PhpParser/Parser/Php8.php; then
     echo 'rebuild_Parsers: generated parsers missing init_reduce_callbacks' >&2
     rm -f "${parser_out}"
-    git checkout -- lib/PhpParser/Parser/Php7.php lib/PhpParser/Parser/Php8.php 2>/dev/null || true
     exit 1
 fi
 rm -f "${parser_out}"
-git checkout -- lib/PhpParser/Parser/Php7.php lib/PhpParser/Parser/Php8.php
+if ! git diff --exit-code -- lib/PhpParser/Parser/Php7.php lib/PhpParser/Parser/Php8.php >/dev/null; then
+    echo 'rebuild_Parsers: committed parsers differ from fresh phpyacc output' >&2
+    git diff -- lib/PhpParser/Parser/Php7.php lib/PhpParser/Parser/Php8.php >&2 || true
+    exit 1
+fi
 
 pins_out="$(mktemp)"
 set +e
@@ -106,11 +127,7 @@ if [[ ${pins_status} -ne 0 ]]; then
     rm -f "${pins_out}"
     exit "${pins_status}"
 fi
-if ! grep -Fxq 'check-cluster-pins: index org packages satisfied (0 pinned); Packagist PHPUnit guard passed.' "${pins_out}"; then
-    echo 'check-cluster-pins: missing exact success line' >&2
-    rm -f "${pins_out}"
-    exit 1
-fi
+require_anchored_line "check-cluster-pins" "${pins_out}" 'check-cluster-pins: index org packages satisfied \(0 pinned\); Packagist PHPUnit guard passed\.'
 rm -f "${pins_out}"
 
 audit_out="$(mktemp)"
@@ -123,10 +140,7 @@ fail_deprecation_output "composer audit" "${audit_out}"
 if [[ ${audit_status} -ne 0 ]]; then
     exit "${audit_status}"
 fi
-if ! grep -Fxq 'No security vulnerability advisories found.' "${audit_out}"; then
-    echo 'composer audit: missing exact success line' >&2
-    exit 1
-fi
+require_anchored_line "composer audit" "${audit_out}" 'No security vulnerability advisories found\.'
 rm -f "${audit_out}"
 
 rename_out="$(mktemp)"
@@ -140,11 +154,7 @@ if [[ ${rename_status} -ne 0 ]]; then
     rm -f "${rename_out}"
     exit "${rename_status}"
 fi
-if ! grep -Fxq 'check-rename-complete: no pre-rename repo-owned names remain.' "${rename_out}"; then
-    echo 'check-rename-complete: missing exact success line' >&2
-    rm -f "${rename_out}"
-    exit 1
-fi
+require_anchored_line "check-rename-complete" "${rename_out}" 'check-rename-complete: no pre-rename repo-owned names remain\.'
 rm -f "${rename_out}"
 
 if [[ ! -f scripts/baseline-counts.txt ]]; then
@@ -167,10 +177,7 @@ if [[ -z "${EXPECTED_OK_LINE:-}" ]]; then
     echo 'baseline ok_line not loaded' >&2
     exit 1
 fi
-if ! grep -Fxq "${EXPECTED_OK_LINE}" "${phpunit_out}"; then
-    echo "phpunit: missing strict OK success line (${EXPECTED_OK_LINE})" >&2
-    exit 1
-fi
+require_anchored_line "phpunit" "${phpunit_out}" "${EXPECTED_OK_LINE}"
 rm -f "${phpunit_out}"
 
 echo 'system-test: all steps passed.'

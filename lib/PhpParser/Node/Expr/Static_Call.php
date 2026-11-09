@@ -36,7 +36,7 @@ class Static_Call extends Call_Like
         return ['class', 'name', 'args'];
     }
     public function get_type(): string {
-        return 'Expr_StaticCall';
+        return 'Expr_Static_Call';
     }
     public function get_raw_args(): array
     {

@@ -29,8 +29,6 @@ class Declare_Item extends Node_Abstract
         return ['key', 'value'];
     }
     public function get_type(): string {
-        return 'DeclareItem';
+        return 'Declare_Item';
     }
 }
-// @deprecated compatibility alias
-class_alias(Declare_Item::class, Stmt\DeclareDeclare::class);

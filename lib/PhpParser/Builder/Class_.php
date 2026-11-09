@@ -22,7 +22,7 @@ class Class_ extends Declaration
     protected array $constants = [];
     /** @var list<Stmt\Property> */
     protected array $properties = [];
-    /** @var list<Stmt\ClassMethod> */
+    /** @var list<Stmt\Class_Method> */
     protected array $methods = [];
     /** @var list<Node\AttributeGroup> */
     protected array $attribute_groups = [];
@@ -94,7 +94,7 @@ class Class_ extends Declaration
     /**
      * Adds a statement.
      *
-     * @param Stmt|PhpParser\Builder $stmt The statement to add
+     * @param Stmt|Php_Parser\Builder $stmt The statement to add
      *
      * @return $this The builder instance (for fluid interface)
      */
@@ -133,6 +133,6 @@ class Class_ extends Declaration
      */
     public function get_node(): Php_Parser\Node
     {
-        return new Stmt\Class_($this->name, ['flags' => $this->flags, 'extends' => $this->extends, 'implements' => $this->implements, 'stmts' => array_merge($this->uses, $this->constants, $this->properties, $this->methods), 'attrGroups' => $this->attribute_groups], $this->attributes);
+        return new Stmt\Class_($this->name, ['flags' => $this->flags, 'extends' => $this->extends, 'implements' => $this->implements, 'stmts' => array_merge($this->uses, $this->constants, $this->properties, $this->methods), 'attr_groups' => $this->attribute_groups], $this->attributes);
     }
 }

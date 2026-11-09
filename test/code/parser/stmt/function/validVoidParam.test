@@ -5,22 +5,22 @@ function foo(void $foo) {}
 -----
 !!version=7.0
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: foo
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: void
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: foo
@@ -30,7 +30,7 @@ array(
                 )
             )
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )

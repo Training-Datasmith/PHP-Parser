@@ -10,7 +10,7 @@ empty(array(1, 2, 3));
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_Isset(
+        expr: Expr_Isset_(
             vars: array(
                 0: Expr_Variable(
                     name: a
@@ -19,7 +19,7 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_Isset(
+        expr: Expr_Isset_(
             vars: array(
                 0: Expr_Variable(
                     name: a
@@ -34,15 +34,15 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_Empty(
+        expr: Expr_Empty_(
             expr: Expr_Variable(
                 name: a
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_Empty(
-            expr: Expr_FuncCall(
+        expr: Expr_Empty_(
+            expr: Expr_Func_Call(
                 name: Name(
                     name: foo
                 )
@@ -52,31 +52,31 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Expr_Empty(
-            expr: Expr_Array(
+        expr: Expr_Empty_(
+            expr: Expr_Array_(
                 items: array(
                     0: Array_Item(
                         key: null
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 1
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     1: Array_Item(
                         key: null
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 2
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     2: Array_Item(
                         key: null
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 3
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )

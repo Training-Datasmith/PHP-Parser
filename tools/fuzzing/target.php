@@ -77,7 +77,7 @@ $visitor = new class extends PhpParser\NodeVisitorAbstract {
         // be parsed back as a cast. E.g. "foo(int)" will fail to parse, because the argument is
         // interpreted as a cast. We can run into this with inputs like "foo(int\n)", where the
         // newline is not preserved.
-        if ($node instanceof Expr\ConstFetch && $node->name->isUnqualified() &&
+        if ($node instanceof Expr\Const_Fetch && $node->name->isUnqualified() &&
             in_array($node->name->toLowerString(), self::CAST_NAMES)
         ) {
             $this->hasProblematicConstruct = true;

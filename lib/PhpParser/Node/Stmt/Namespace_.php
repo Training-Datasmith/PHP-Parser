@@ -31,6 +31,6 @@ class Namespace_ extends Node\Stmt
         return ['name', 'stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_Namespace';
+        return 'Stmt_Namespace_';
     }
 }

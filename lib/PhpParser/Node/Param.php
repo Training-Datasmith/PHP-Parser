@@ -51,7 +51,7 @@ class Param extends Node_Abstract
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'flags', 'type', 'byRef', 'variadic', 'var', 'default', 'hooks'];
+        return ['attr_groups', 'flags', 'type', 'by_ref', 'variadic', 'var', 'default', 'hooks'];
     }
     public function get_type(): string {
         return 'Param';

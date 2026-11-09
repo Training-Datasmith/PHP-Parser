@@ -6,10 +6,10 @@ As a basic example, the following code changes all literal integers in the AST i
 `42` becomes `'42'`.)
 
 ```php
-use PhpParser\{Node, NodeTraverser, NodeVisitorAbstract};
+use Php_Parser\{Node, Node_Traverser, Node_Visitor_Abstract};
 
-$traverser = new NodeTraverser;
-$traverser->addVisitor(new class extends NodeVisitorAbstract {
+$traverser = new Node_Traverser;
+$traverser->add_visitor(new class extends Node_Visitor_Abstract {
     public function leaveNode(Node $node) {
         if ($node instanceof Node\Scalar\Int_) {
             return new Node\Scalar\String_((string) $node->value);
@@ -21,16 +21,16 @@ $stmts = ...;
 $modifiedStmts = $traverser->traverse($stmts);
 ```
 
-Visitors can be either passed to the `NodeTraverser` constructor, or added using `addVisitor()`:
+Visitors can be either passed to the `Node_Traverser` constructor, or added using `addVisitor()`:
 
 ```php
-$traverser = new NodeTraverser($visitor1, $visitor2, $visitor3);
+$traverser = new Node_Traverser($visitor1, $visitor2, $visitor3);
 
 // Equivalent to:
-$traverser = new NodeTraverser();
-$traverser->addVisitor($visitor1);
-$traverser->addVisitor($visitor2);
-$traverser->addVisitor($visitor3);
+$traverser = new Node_Traverser();
+$traverser->add_visitor($visitor1);
+$traverser->add_visitor($visitor2);
+$traverser->add_visitor($visitor3);
 ```
 
 Node visitors
@@ -68,7 +68,7 @@ Expr_FuncCall(
            value: Scalar_String(
                value: Hello World!!!
            )
-           byRef: false
+           by_ref: false
            unpack: false
        )
    )
@@ -93,7 +93,7 @@ performs modifications based on that. At the time when `leaveNode` is called, al
 the node will have already been visited and necessary information collected.
 
 As you usually do not want to implement all four methods, it is recommended that you extend
-`NodeVisitorAbstract` instead of implementing the interface directly. The abstract class provides
+`Node_Visitor_Abstract` instead of implementing the interface directly. The abstract class provides
 empty default implementations.
 
 Modifying the AST
@@ -256,9 +256,9 @@ Multiple visitors
 A single traverser can be used with multiple visitors:
 
 ```php
-$traverser = new NodeTraverser;
-$traverser->addVisitor($visitorA);
-$traverser->addVisitor($visitorB);
+$traverser = new Node_Traverser;
+$traverser->add_visitor($visitorA);
+$traverser->add_visitor($visitorB);
 $stmts = $traverser->traverse($stmts);
 ```
 
@@ -276,14 +276,14 @@ Stmt_Return(
 the following method calls will be performed:
 
 ```php
-$visitorA->enterNode(Stmt_Return)
-$visitorB->enterNode(Stmt_Return)
-$visitorA->enterNode(Expr_Variable)
-$visitorB->enterNode(Expr_Variable)
-$visitorB->leaveNode(Expr_Variable)
-$visitorA->leaveNode(Expr_Variable)
-$visitorB->leaveNode(Stmt_Return)
-$visitorA->leaveNode(Stmt_Return)
+$visitorA->enter_node(Stmt_Return)
+$visitorB->enter_node(Stmt_Return)
+$visitorA->enter_node(Expr_Variable)
+$visitorB->enter_node(Expr_Variable)
+$visitorB->leave_node(Expr_Variable)
+$visitorA->leave_node(Expr_Variable)
+$visitorB->leave_node(Stmt_Return)
+$visitorA->leave_node(Stmt_Return)
 ```
 
 That is, when visiting a node, `enterNode()` and `leaveNode()` will always be called for all
@@ -293,10 +293,10 @@ once. However, it is not always possible to write visitors in a way that allows 
 execution. In this case, you can always fall back to performing multiple traversals:
 
 ```php
-$traverserA = new NodeTraverser;
-$traverserA->addVisitor($visitorA);
-$traverserB = new NodeTraverser;
-$traverserB->addVisitor($visitorB);
+$traverserA = new Node_Traverser;
+$traverserA->add_visitor($visitorA);
+$traverserB = new Node_Traverser;
+$traverserB->add_visitor($visitorB);
 $stmts = $traverserA->traverser($stmts);
 $stmts = $traverserB->traverser($stmts);
 ```
@@ -325,7 +325,7 @@ satisfy a certain callback, or which are instances of a certain node type. A cou
 shown in the following:
 
 ```php
-use PhpParser\{Node, NodeFinder};
+use Php_Parser\{Node, NodeFinder};
 
 $nodeFinder = new NodeFinder;
 

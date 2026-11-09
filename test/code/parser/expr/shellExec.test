@@ -9,24 +9,24 @@ Shell execution
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_ShellExec(
+        expr: Expr_Shell_Exec(
             parts: array(
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_ShellExec(
+        expr: Expr_Shell_Exec(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: test
                 )
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_ShellExec(
+        expr: Expr_Shell_Exec(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: test
                 )
                 1: Expr_Variable(
@@ -36,18 +36,18 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_ShellExec(
+        expr: Expr_Shell_Exec(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: test `
                 )
             )
         )
     )
     4: Stmt_Expression(
-        expr: Expr_ShellExec(
+        expr: Expr_Shell_Exec(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: test \"
                 )
             )

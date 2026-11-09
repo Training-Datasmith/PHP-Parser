@@ -10,8 +10,8 @@ class A {
 }
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -22,14 +22,14 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: Identifier(
                     name: string
                 )
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: a
                         )
@@ -40,14 +40,14 @@ array(
                 )
             )
             1: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PROTECTED | STATIC (10)
                 type: Name(
                     name: D
                 )
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: b
                         )
@@ -58,7 +58,7 @@ array(
                 )
             )
             2: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PRIVATE (4)
                 type: Nullable_Type(
@@ -67,7 +67,7 @@ array(
                     )
                 )
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: c
                         )
@@ -78,7 +78,7 @@ array(
                 )
             )
             3: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC | STATIC | READONLY (73)
                 type: Nullable_Type(
@@ -87,7 +87,7 @@ array(
                     )
                 )
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: d
                         )

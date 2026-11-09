@@ -5,8 +5,8 @@ Final class
 final class A {}
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: FINAL (32)
         name: Identifier(

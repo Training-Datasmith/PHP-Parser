@@ -8,24 +8,24 @@ function a() {
 }
 -----
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: a
         )
         params: array(
         )
-        returnType: null
+        return_type: null
         stmts: array(
-            0: Stmt_Global(
+            0: Stmt_Global_(
                 vars: array(
                     0: Expr_Variable(
                         name: a
                     )
                     1: Expr_Variable(
-                        name: Scalar_String(
+                        name: Scalar_String_(
                             value: b
                         )
                     )
@@ -36,19 +36,19 @@ array(
                     )
                 )
             )
-            1: Stmt_Static(
+            1: Stmt_Static_(
                 vars: array(
-                    0: StaticVar(
+                    0: Static_Var(
                         var: Expr_Variable(
                             name: c
                         )
                         default: null
                     )
-                    1: StaticVar(
+                    1: Static_Var(
                         var: Expr_Variable(
                             name: d
                         )
-                        default: Scalar_String(
+                        default: Scalar_String_(
                             value: e
                         )
                     )

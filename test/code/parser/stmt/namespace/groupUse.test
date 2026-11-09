@@ -9,7 +9,7 @@ use const \A\{B\C, D};
 use A\B\{C\D, function b\c, const D};
 -----
 array(
-    0: Stmt_GroupUse(
+    0: Stmt_Group_Use(
         type: TYPE_UNKNOWN (0)
         prefix: Name(
             name: A
@@ -24,7 +24,7 @@ array(
             )
         )
     )
-    1: Stmt_GroupUse(
+    1: Stmt_Group_Use(
         type: TYPE_UNKNOWN (0)
         prefix: Name(
             name: A
@@ -46,7 +46,7 @@ array(
             )
         )
     )
-    2: Stmt_GroupUse(
+    2: Stmt_Group_Use(
         type: TYPE_UNKNOWN (0)
         prefix: Name(
             name: A\B
@@ -68,7 +68,7 @@ array(
             )
         )
     )
-    3: Stmt_GroupUse(
+    3: Stmt_Group_Use(
         type: TYPE_FUNCTION (2)
         prefix: Name(
             name: A
@@ -90,7 +90,7 @@ array(
             )
         )
     )
-    4: Stmt_GroupUse(
+    4: Stmt_Group_Use(
         type: TYPE_CONSTANT (3)
         prefix: Name(
             name: A
@@ -112,7 +112,7 @@ array(
             )
         )
     )
-    5: Stmt_GroupUse(
+    5: Stmt_Group_Use(
         type: TYPE_UNKNOWN (0)
         prefix: Name(
             name: A\B

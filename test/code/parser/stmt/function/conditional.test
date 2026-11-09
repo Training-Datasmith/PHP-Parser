@@ -7,23 +7,23 @@ if (true) {
 }
 -----
 array(
-    0: Stmt_If(
-        cond: Expr_ConstFetch(
+    0: Stmt_If_(
+        cond: Expr_Const_Fetch(
             name: Name(
                 name: true
             )
         )
         stmts: array(
-            0: Stmt_Function(
-                attrGroups: array(
+            0: Stmt_Function_(
+                attr_groups: array(
                 )
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: A
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )

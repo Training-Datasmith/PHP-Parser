@@ -29,8 +29,6 @@ class Static_Var extends Node_Abstract
         return ['var', 'default'];
     }
     public function get_type(): string {
-        return 'StaticVar';
+        return 'Static_Var';
     }
 }
-// @deprecated compatibility alias
-class_alias(Static_Var::class, Stmt\StaticVar::class);

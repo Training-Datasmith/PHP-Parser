@@ -32,6 +32,6 @@ class Try_Catch extends Node\Stmt
         return ['stmts', 'catches', 'finally'];
     }
     public function get_type(): string {
-        return 'Stmt_TryCatch';
+        return 'Stmt_Try_Catch';
     }
 }

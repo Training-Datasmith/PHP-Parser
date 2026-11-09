@@ -14,47 +14,47 @@ Different integer syntaxes
 -----
 array(
     0: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 0
         )
     )
     1: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 1
         )
     )
     2: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: @@{ PHP_INT_MAX }@@
         )
     )
     3: Stmt_Expression(
-        expr: Scalar_Float(
+        expr: Scalar_Float_(
             value: @@{ PHP_INT_MAX + 1 }@@
         )
     )
     4: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 4095
         )
     )
     5: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 4095
         )
     )
     6: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 4095
         )
     )
     7: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 511
         )
     )
     8: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 3640
         )
     )

@@ -17,210 +17,210 @@ $foo::BAR[2][1][0];
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Scalar_String(
+        expr: Expr_Array_Dim_Fetch(
+            var: Scalar_String_(
                 value: abc
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 2
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_ArrayDimFetch(
-                var: Expr_ArrayDimFetch(
-                    var: Scalar_String(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Array_Dim_Fetch(
+                var: Expr_Array_Dim_Fetch(
+                    var: Scalar_String_(
                         value: abc
                     )
-                    dim: Scalar_Int(
+                    dim: Scalar_Int_(
                         value: 2
                     )
                 )
-                dim: Scalar_Int(
+                dim: Scalar_Int_(
                     value: 0
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 0
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_Array(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Array_(
                 items: array(
                     0: Array_Item(
                         key: null
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 1
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     1: Array_Item(
                         key: null
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 2
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     2: Array_Item(
                         key: null
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 3
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 2
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_ArrayDimFetch(
-                var: Expr_ArrayDimFetch(
-                    var: Expr_Array(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Array_Dim_Fetch(
+                var: Expr_Array_Dim_Fetch(
+                    var: Expr_Array_(
                         items: array(
                             0: Array_Item(
                                 key: null
-                                value: Scalar_Int(
+                                value: Scalar_Int_(
                                     value: 1
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                             1: Array_Item(
                                 key: null
-                                value: Scalar_Int(
+                                value: Scalar_Int_(
                                     value: 2
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                             2: Array_Item(
                                 key: null
-                                value: Scalar_Int(
+                                value: Scalar_Int_(
                                     value: 3
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
                     )
-                    dim: Scalar_Int(
+                    dim: Scalar_Int_(
                         value: 2
                     )
                 )
-                dim: Scalar_Int(
+                dim: Scalar_Int_(
                     value: 0
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 0
             )
         )
     )
     4: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_Array(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Array_(
                 items: array(
                     0: Array_Item(
                         key: null
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 1
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     1: Array_Item(
                         key: null
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 2
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     2: Array_Item(
                         key: null
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 3
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 2
             )
         )
     )
     5: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_ArrayDimFetch(
-                var: Expr_ArrayDimFetch(
-                    var: Expr_Array(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Array_Dim_Fetch(
+                var: Expr_Array_Dim_Fetch(
+                    var: Expr_Array_(
                         items: array(
                             0: Array_Item(
                                 key: null
-                                value: Scalar_Int(
+                                value: Scalar_Int_(
                                     value: 1
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                             1: Array_Item(
                                 key: null
-                                value: Scalar_Int(
+                                value: Scalar_Int_(
                                     value: 2
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                             2: Array_Item(
                                 key: null
-                                value: Scalar_Int(
+                                value: Scalar_Int_(
                                     value: 3
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
                     )
-                    dim: Scalar_Int(
+                    dim: Scalar_Int_(
                         value: 2
                     )
                 )
-                dim: Scalar_Int(
+                dim: Scalar_Int_(
                     value: 0
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 0
             )
         )
     )
     6: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_ConstFetch(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Const_Fetch(
                 name: Name(
                     name: FOO
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 0
             )
         )
     )
     7: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_ClassConstFetch(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Class_Const_Fetch(
                 class: Name(
                     name: Foo
                 )
@@ -228,16 +228,16 @@ array(
                     name: BAR
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 1
             )
         )
     )
     8: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_ArrayDimFetch(
-                var: Expr_ArrayDimFetch(
-                    var: Expr_ClassConstFetch(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Array_Dim_Fetch(
+                var: Expr_Array_Dim_Fetch(
+                    var: Expr_Class_Const_Fetch(
                         class: Expr_Variable(
                             name: foo
                         )
@@ -245,15 +245,15 @@ array(
                             name: BAR
                         )
                     )
-                    dim: Scalar_Int(
+                    dim: Scalar_Int_(
                         value: 2
                     )
                 )
-                dim: Scalar_Int(
+                dim: Scalar_Int_(
                     value: 1
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 0
             )
         )

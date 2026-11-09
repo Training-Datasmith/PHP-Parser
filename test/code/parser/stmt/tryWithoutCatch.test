@@ -8,10 +8,10 @@ try {
 -----
 Cannot use try without catch or finally from 3:1 to 5:1
 array(
-    0: Stmt_TryCatch(
+    0: Stmt_Try_Catch(
         stmts: array(
             0: Stmt_Expression(
-                expr: Expr_FuncCall(
+                expr: Expr_Func_Call(
                     name: Name(
                         name: foo
                     )

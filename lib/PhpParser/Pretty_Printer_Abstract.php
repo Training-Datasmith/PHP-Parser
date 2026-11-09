@@ -23,18 +23,18 @@ abstract class Pretty_Printer_Abstract implements Pretty_Printer
 {
     protected function resolve_p_method(string $type): string
     {
-        $direct = 'p' . $type;
-        if (method_exists($this, $direct)) {
-            return $direct;
+        $method = 'p_' . strtolower($type);
+        if (!method_exists($this, $method) && substr($method, -1) === '_') {
+            $trimmed = substr($method, 0, -1);
+            if (method_exists($this, $trimmed)) {
+                $method = $trimmed;
+            }
+        }
+        if (!method_exists($this, $method)) {
+            throw new \LogicException(sprintf('No pretty printer method for node type "%s".', $type));
         }
 
-        $normalized = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $type));
-        $snake = 'p_' . $normalized;
-        if (method_exists($this, $snake)) {
-            return $snake;
-        }
-
-        return $direct;
+        return $method;
     }
 
     protected const FIXUP_PREC_LEFT = 0;
@@ -166,14 +166,14 @@ abstract class Pretty_Printer_Abstract implements Pretty_Printer
      */
     protected array $fixup_map;
     /**
-     * @var array<string, array{left?: int|string, right?: int|string}> Map from "{$node->getType()}->{$subNode}"
+     * @var array<string, array{left?: int|string, right?: int|string}> Map from "{$node->get_type()}->{$subNode}"
      *                                                                  to ['left' => $l, 'right' => $r], where $l and $r specify the token type that needs to be stripped
      *                                                                  when removing this node.
      */
     protected array $removal_map;
     /**
      * @var array<string, array{int|string|null, bool, string|null, string|null}> Map from
-     *                                                                            "{$node->getType()}->{$subNode}" to [$find, $beforeToken, $extraLeft, $extraRight].
+     *                                                                            "{$node->get_type()}->{$subNode}" to [$find, $beforeToken, $extraLeft, $extraRight].
      *                                                                            $find is an optional token after which the insertion occurs. $extraLeft/Right
      *                                                                            are optionally added before/after the main insertions.
      */
@@ -1305,7 +1305,7 @@ abstract class Pretty_Printer_Abstract implements Pretty_Printer
             Stmt\Interface_::class . '->extends' => ', ',
             Expr\Match_::class . '->arms' => ', ',
             Stmt\Property::class . '->props' => ', ',
-            Stmt\Static_Var::class . '->vars' => ', ',
+            Node\Static_Var::class . '->vars' => ', ',
             Stmt\Trait_Use::class . '->traits' => ', ',
             Stmt\Trait_Use_Adaptation\Precedence::class . '->insteadof' => ', ',
             Stmt\Unset_::class . '->vars' => ', ',

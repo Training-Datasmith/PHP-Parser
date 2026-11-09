@@ -485,8 +485,8 @@ class Node_Traverser_Test extends \PHPUnit\Framework\TestCase
             [$stmts, $visitor4, 'leaveNode() returned invalid value of type string'],
             [$stmts, $visitor5, 'leaveNode() may only return an array if the parent structure is an array'],
             [$stmts, $visitor6, 'leaveNode() returned invalid value of type bool'],
-            [$stmts, $visitor7, 'Trying to replace statement (Stmt_Expression) with expression (Scalar_Int). Are you missing a Stmt_Expression wrapper?'],
-            [$stmts, $visitor8, 'Trying to replace expression (Scalar_Int) with statement (Stmt_Return)'],
+            [$stmts, $visitor7, 'Trying to replace statement (Stmt_Expression) with expression (Scalar_Int_). Are you missing a Stmt_Expression wrapper?'],
+            [$stmts, $visitor8, 'Trying to replace expression (Scalar_Int_) with statement (Stmt_Return_)'],
             [$stmts, $visitor9, 'REPLACE_WITH_NULL can not be used if the parent structure is an array'],
             [$stmts, $visitor10, 'REPLACE_WITH_NULL can not be used if the parent structure is an array'],
         ];

@@ -36,28 +36,28 @@ class Closure extends Expr implements Function_Like
      *     attrGroups?: Node\AttributeGroup[],
      * } $subNodes Array of the following optional subnodes:
      *             'static'     => false  : Whether the closure is static
-     *             'byRef'      => false  : Whether to return by reference
+     *             'by_ref'      => false  : Whether to return by reference
      *             'params'     => array(): Parameters
      *             'uses'       => array(): use()s
-     *             'returnType' => null   : Return type
+     *             'return_type' => null   : Return type
      *             'stmts'      => array(): Statements
-     *             'attrGroups' => array(): PHP attributes groups
+     *             'attr_groups' => array(): PHP attributes groups
      * @param array<string, mixed> $attributes Additional attributes
      */
     public function __construct(array $sub_nodes = [], array $attributes = [])
     {
         $this->attributes = $attributes;
         $this->static = $sub_nodes['static'] ?? false;
-        $this->by_ref = $sub_nodes['byRef'] ?? false;
+        $this->by_ref = $sub_nodes['by_ref'] ?? false;
         $this->params = $sub_nodes['params'] ?? [];
         $this->uses = $sub_nodes['uses'] ?? [];
-        $this->return_type = $sub_nodes['returnType'] ?? null;
+        $this->return_type = $sub_nodes['return_type'] ?? null;
         $this->stmts = $sub_nodes['stmts'] ?? [];
-        $this->attr_groups = $sub_nodes['attrGroups'] ?? [];
+        $this->attr_groups = $sub_nodes['attr_groups'] ?? [];
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'static', 'byRef', 'params', 'uses', 'returnType', 'stmts'];
+        return ['attr_groups', 'static', 'by_ref', 'params', 'uses', 'return_type', 'stmts'];
     }
     public function returns_by_ref(): bool
     {

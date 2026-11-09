@@ -11,6 +11,6 @@ class Logical_And extends Binary_Op
         return 'and';
     }
     public function get_type(): string {
-        return 'Expr_BinaryOp_LogicalAnd';
+        return 'Expr_Binary_Op_Logical_And';
     }
 }

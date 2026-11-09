@@ -27,6 +27,6 @@ class Match_ extends Node\Expr
         return ['cond', 'arms'];
     }
     public function get_type(): string {
-        return 'Expr_Match';
+        return 'Expr_Match_';
     }
 }

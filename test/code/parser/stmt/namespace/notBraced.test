@@ -9,13 +9,13 @@ namespace Bar;
 bar;
 -----
 array(
-    0: Stmt_Namespace(
+    0: Stmt_Namespace_(
         name: Name(
             name: Foo\Bar
         )
         stmts: array(
             0: Stmt_Expression(
-                expr: Expr_ConstFetch(
+                expr: Expr_Const_Fetch(
                     name: Name(
                         name: foo
                     )
@@ -23,13 +23,13 @@ array(
             )
         )
     )
-    1: Stmt_Namespace(
+    1: Stmt_Namespace_(
         name: Name(
             name: Bar
         )
         stmts: array(
             0: Stmt_Expression(
-                expr: Expr_ConstFetch(
+                expr: Expr_Const_Fetch(
                     name: Name(
                         name: bar
                     )

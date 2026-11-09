@@ -48,7 +48,7 @@ class Enum_Test extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals(
             new Stmt\Enum_('Test', [
-                'scalarType' => new Identifier('int'),
+                'scalar_type' => new Identifier('int'),
             ]),
             $node
         );
@@ -128,7 +128,7 @@ DOC;
 
         $this->assertEquals(
             new Stmt\Enum_('ATTR_GROUP', [
-                'attrGroups' => [
+                'attr_groups' => [
                     $attributeGroup,
                 ],
             ], []),
@@ -139,7 +139,7 @@ DOC;
     public function testInvalidStmtError(): void
     {
         $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('Unexpected node of type "PropertyItem"');
+        $this->expectExceptionMessage('Unexpected node of type "Property_Item"');
         $this->createEnumBuilder('Test')
             ->add_stmt(new Node\Property_Item('property'))
         ;

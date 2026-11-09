@@ -24,6 +24,6 @@ class Boolean_Not extends Expr
         return ['expr'];
     }
     public function get_type(): string {
-        return 'Expr_BooleanNot';
+        return 'Expr_Boolean_Not';
     }
 }

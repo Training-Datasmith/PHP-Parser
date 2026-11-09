@@ -31,25 +31,25 @@ class Arrow_Function extends Expr implements Function_Like
      * } $subNodes Array of the following subnodes:
      *             'expr'                  : Expression body
      *             'static'     => false   : Whether the closure is static
-     *             'byRef'      => false   : Whether to return by reference
+     *             'by_ref'      => false   : Whether to return by reference
      *             'params'     => array() : Parameters
-     *             'returnType' => null    : Return type
-     *             'attrGroups' => array() : PHP attribute groups
+     *             'return_type' => null    : Return type
+     *             'attr_groups' => array() : PHP attribute groups
      * @param array<string, mixed> $attributes Additional attributes
      */
     public function __construct(array $sub_nodes, array $attributes = [])
     {
         $this->attributes = $attributes;
         $this->static = $sub_nodes['static'] ?? false;
-        $this->by_ref = $sub_nodes['byRef'] ?? false;
+        $this->by_ref = $sub_nodes['by_ref'] ?? false;
         $this->params = $sub_nodes['params'] ?? [];
-        $this->return_type = $sub_nodes['returnType'] ?? null;
+        $this->return_type = $sub_nodes['return_type'] ?? null;
         $this->expr = $sub_nodes['expr'];
-        $this->attr_groups = $sub_nodes['attrGroups'] ?? [];
+        $this->attr_groups = $sub_nodes['attr_groups'] ?? [];
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'static', 'byRef', 'params', 'returnType', 'expr'];
+        return ['attr_groups', 'static', 'by_ref', 'params', 'return_type', 'expr'];
     }
     public function returns_by_ref(): bool
     {
@@ -75,6 +75,6 @@ class Arrow_Function extends Expr implements Function_Like
         return [new Node\Stmt\Return_($this->expr)];
     }
     public function get_type(): string {
-        return 'Expr_ArrowFunction';
+        return 'Expr_Arrow_Function';
     }
 }

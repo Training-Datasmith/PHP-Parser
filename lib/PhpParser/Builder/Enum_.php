@@ -21,7 +21,7 @@ class Enum_ extends Declaration
     protected array $enum_cases = [];
     /** @var list<Stmt\ClassConst> */
     protected array $constants = [];
-    /** @var list<Stmt\ClassMethod> */
+    /** @var list<Stmt\Class_Method> */
     protected array $methods = [];
     /** @var list<Node\AttributeGroup> */
     protected array $attribute_groups = [];
@@ -63,7 +63,7 @@ class Enum_ extends Declaration
     /**
      * Adds a statement.
      *
-     * @param Stmt|PhpParser\Builder $stmt The statement to add
+     * @param Stmt|Php_Parser\Builder $stmt The statement to add
      *
      * @return $this The builder instance (for fluid interface)
      */
@@ -102,6 +102,6 @@ class Enum_ extends Declaration
      */
     public function get_node(): Php_Parser\Node
     {
-        return new Stmt\Enum_($this->name, ['scalarType' => $this->scalar_type, 'implements' => $this->implements, 'stmts' => array_merge($this->uses, $this->enum_cases, $this->constants, $this->methods), 'attrGroups' => $this->attribute_groups], $this->attributes);
+        return new Stmt\Enum_($this->name, ['scalar_type' => $this->scalar_type, 'implements' => $this->implements, 'stmts' => array_merge($this->uses, $this->enum_cases, $this->constants, $this->methods), 'attr_groups' => $this->attribute_groups], $this->attributes);
     }
 }

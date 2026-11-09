@@ -6,9 +6,9 @@ new readonly class {};
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_New(
-            class: Stmt_Class(
-                attrGroups: array(
+        expr: Expr_New_(
+            class: Stmt_Class_(
+                attr_groups: array(
                 )
                 flags: READONLY (64)
                 name: null

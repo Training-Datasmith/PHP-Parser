@@ -8,30 +8,30 @@ echo match (1) {
 };
 -----
 array(
-    0: Stmt_Echo(
+    0: Stmt_Echo_(
         exprs: array(
-            0: Expr_Match(
-                cond: Scalar_Int(
+            0: Expr_Match_(
+                cond: Scalar_Int_(
                     value: 1
                 )
                 arms: array(
                     0: Match_Arm(
                         conds: array(
-                            0: Scalar_Int(
+                            0: Scalar_Int_(
                                 value: 0
                             )
                         )
-                        body: Scalar_String(
+                        body: Scalar_String_(
                             value: Foo
                         )
                     )
                     1: Match_Arm(
                         conds: array(
-                            0: Scalar_Int(
+                            0: Scalar_Int_(
                                 value: 1
                             )
                         )
-                        body: Scalar_String(
+                        body: Scalar_String_(
                             value: Bar
                         )
                     )
@@ -54,21 +54,21 @@ array(
             var: Expr_Variable(
                 name: value
             )
-            expr: Expr_Match(
-                cond: Scalar_Int(
+            expr: Expr_Match_(
+                cond: Scalar_Int_(
                     value: 1
                 )
                 arms: array(
                     0: Match_Arm(
                         conds: array(
-                            0: Scalar_Int(
+                            0: Scalar_Int_(
                                 value: 0
                             )
-                            1: Scalar_Int(
+                            1: Scalar_Int_(
                                 value: 1
                             )
                         )
-                        body: Scalar_String(
+                        body: Scalar_String_(
                             value: Foo
                         )
                         comments: array(
@@ -93,14 +93,14 @@ array(
             var: Expr_Variable(
                 name: result
             )
-            expr: Expr_Match(
+            expr: Expr_Match_(
                 cond: Expr_Variable(
                     name: operator
                 )
                 arms: array(
                     0: Match_Arm(
                         conds: array(
-                            0: Expr_ClassConstFetch(
+                            0: Expr_Class_Const_Fetch(
                                 class: Name(
                                     name: BinaryOperator
                                 )
@@ -109,7 +109,7 @@ array(
                                 )
                             )
                         )
-                        body: Expr_BinaryOp_Plus(
+                        body: Expr_Binary_Op_Plus(
                             left: Expr_Variable(
                                 name: lhs
                             )
@@ -137,24 +137,24 @@ array(
             var: Expr_Variable(
                 name: value
             )
-            expr: Expr_Match(
+            expr: Expr_Match_(
                 cond: Expr_Variable(
                     name: char
                 )
                 arms: array(
                     0: Match_Arm(
                         conds: array(
-                            0: Scalar_Int(
+                            0: Scalar_Int_(
                                 value: 1
                             )
                         )
-                        body: Scalar_String(
+                        body: Scalar_String_(
                             value: 1
                         )
                     )
                     1: Match_Arm(
                         conds: null
-                        body: Scalar_String(
+                        body: Scalar_String_(
                             value: default
                         )
                     )
@@ -177,27 +177,27 @@ array(
             var: Expr_Variable(
                 name: value
             )
-            expr: Expr_Match(
-                cond: Scalar_Int(
+            expr: Expr_Match_(
+                cond: Scalar_Int_(
                     value: 1
                 )
                 arms: array(
                     0: Match_Arm(
                         conds: array(
-                            0: Scalar_Int(
+                            0: Scalar_Int_(
                                 value: 0
                             )
-                            1: Scalar_Int(
+                            1: Scalar_Int_(
                                 value: 1
                             )
                         )
-                        body: Scalar_String(
+                        body: Scalar_String_(
                             value: Foo
                         )
                     )
                     1: Match_Arm(
                         conds: null
-                        body: Scalar_String(
+                        body: Scalar_String_(
                             value: Bar
                         )
                     )

@@ -36,6 +36,6 @@ class Group_Use extends Stmt
         return ['type', 'prefix', 'uses'];
     }
     public function get_type(): string {
-        return 'Stmt_GroupUse';
+        return 'Stmt_Group_Use';
     }
 }

@@ -24,6 +24,6 @@ class Bitwise_Not extends Expr
         return ['expr'];
     }
     public function get_type(): string {
-        return 'Expr_BitwiseNot';
+        return 'Expr_Bitwise_Not';
     }
 }

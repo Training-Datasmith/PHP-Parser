@@ -14,8 +14,8 @@ $x = (void) $y;
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_Cast_Void(
-            expr: Expr_FuncCall(
+        expr: Expr_Cast_Void_(
+            expr: Expr_Func_Call(
                 name: Name(
                     name: foo
                 )
@@ -25,8 +25,8 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_Cast_Void(
-            expr: Expr_FuncCall(
+        expr: Expr_Cast_Void_(
+            expr: Expr_Func_Call(
                 name: Name(
                     name: foo
                 )
@@ -36,8 +36,8 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_Cast_Void(
-            expr: Expr_BinaryOp_LogicalOr(
+        expr: Expr_Cast_Void_(
+            expr: Expr_Binary_Op_Logical_Or(
                 left: Expr_Variable(
                     name: a
                 )
@@ -47,10 +47,10 @@ array(
             )
         )
     )
-    3: Stmt_For(
+    3: Stmt_For_(
         init: array(
-            0: Expr_Cast_Void(
-                expr: Expr_FuncCall(
+            0: Expr_Cast_Void_(
+                expr: Expr_Func_Call(
                     name: Name(
                         name: a
                     )
@@ -65,7 +65,7 @@ array(
             )
         )
         loop: array(
-            0: Expr_Cast_Void(
+            0: Expr_Cast_Void_(
                 expr: Expr_Variable(
                     name: c
                 )
@@ -82,7 +82,7 @@ array(
             var: Expr_Variable(
                 name: x
             )
-            expr: Expr_Cast_Void(
+            expr: Expr_Cast_Void_(
                 expr: Expr_Variable(
                     name: y
                 )

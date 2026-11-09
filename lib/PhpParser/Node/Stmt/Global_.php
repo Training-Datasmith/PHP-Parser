@@ -24,6 +24,6 @@ class Global_ extends Node\Stmt
         return ['vars'];
     }
     public function get_type(): string {
-        return 'Stmt_Global';
+        return 'Stmt_Global_';
     }
 }

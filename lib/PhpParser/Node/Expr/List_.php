@@ -30,6 +30,6 @@ class List_ extends Expr
         return ['items'];
     }
     public function get_type(): string {
-        return 'Expr_List';
+        return 'Expr_List_';
     }
 }

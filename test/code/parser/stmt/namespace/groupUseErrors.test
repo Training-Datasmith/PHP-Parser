@@ -7,7 +7,7 @@ use Bar\{Foo};
 -----
 Syntax error, unexpected T_USE, expecting ';' from 4:1 to 4:3
 array(
-    0: Stmt_GroupUse(
+    0: Stmt_Group_Use(
         type: TYPE_UNKNOWN (0)
         prefix: Name(
             name: Foo
@@ -25,7 +25,7 @@ array(
             0: // Missing semicolon
         )
     )
-    1: Stmt_GroupUse(
+    1: Stmt_Group_Use(
         type: TYPE_UNKNOWN (0)
         prefix: Name(
             name: Bar
@@ -48,7 +48,7 @@ use Foo {Bar, Baz};
 -----
 Syntax error, unexpected '{', expecting ';' from 3:9 to 3:9
 array(
-    0: Stmt_Use(
+    0: Stmt_Use_(
         type: TYPE_NORMAL (1)
         uses: array(
             0: Use_Item(
@@ -66,14 +66,14 @@ array(
     1: Stmt_Block(
         stmts: array(
             0: Stmt_Expression(
-                expr: Expr_ConstFetch(
+                expr: Expr_Const_Fetch(
                     name: Name(
                         name: Bar
                     )
                 )
             )
             1: Stmt_Expression(
-                expr: Expr_ConstFetch(
+                expr: Expr_Const_Fetch(
                     name: Name(
                         name: Baz
                     )
@@ -90,7 +90,7 @@ use Foo\{\Bar};
 Syntax error, unexpected T_NAME_FULLY_QUALIFIED, expecting T_STRING or T_FUNCTION or T_CONST or T_NAME_QUALIFIED from 3:10 to 3:13
 array(
     0: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name_Fully_Qualified(
                 name: Bar
             )

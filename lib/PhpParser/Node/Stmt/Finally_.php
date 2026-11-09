@@ -24,6 +24,6 @@ class Finally_ extends Node\Stmt
         return ['stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_Finally';
+        return 'Stmt_Finally_';
     }
 }

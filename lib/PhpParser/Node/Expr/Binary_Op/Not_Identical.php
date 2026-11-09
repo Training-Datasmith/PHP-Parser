@@ -11,6 +11,6 @@ class Not_Identical extends Binary_Op
         return '!==';
     }
     public function get_type(): string {
-        return 'Expr_BinaryOp_NotIdentical';
+        return 'Expr_Binary_Op_Not_Identical';
     }
 }

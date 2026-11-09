@@ -15,21 +15,21 @@ Casts
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_Cast_Array(
+        expr: Expr_Cast_Array_(
             expr: Expr_Variable(
                 name: a
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_Cast_Bool(
+        expr: Expr_Cast_Bool_(
             expr: Expr_Variable(
                 name: a
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_Cast_Bool(
+        expr: Expr_Cast_Bool_(
             expr: Expr_Variable(
                 name: a
             )
@@ -57,35 +57,35 @@ array(
         )
     )
     6: Stmt_Expression(
-        expr: Expr_Cast_Int(
+        expr: Expr_Cast_Int_(
             expr: Expr_Variable(
                 name: a
             )
         )
     )
     7: Stmt_Expression(
-        expr: Expr_Cast_Int(
+        expr: Expr_Cast_Int_(
             expr: Expr_Variable(
                 name: a
             )
         )
     )
     8: Stmt_Expression(
-        expr: Expr_Cast_Object(
+        expr: Expr_Cast_Object_(
             expr: Expr_Variable(
                 name: a
             )
         )
     )
     9: Stmt_Expression(
-        expr: Expr_Cast_String(
+        expr: Expr_Cast_String_(
             expr: Expr_Variable(
                 name: a
             )
         )
     )
     10: Stmt_Expression(
-        expr: Expr_Cast_Unset(
+        expr: Expr_Cast_Unset_(
             expr: Expr_Variable(
                 name: a
             )

@@ -26,8 +26,8 @@ class Foreach_ extends Node\Stmt
      *     byRef?: bool,
      *     stmts?: Node\Stmt[],
      * } $subNodes Array of the following optional subnodes:
-     *             'keyVar' => null   : Variable to assign key to
-     *             'byRef'  => false  : Whether to assign value by reference
+     *             'key_var' => null   : Variable to assign key to
+     *             'by_ref'  => false  : Whether to assign value by reference
      *             'stmts'  => array(): Statements
      * @param array<string, mixed> $attributes Additional attributes
      */
@@ -35,16 +35,16 @@ class Foreach_ extends Node\Stmt
     {
         $this->attributes = $attributes;
         $this->expr = $expr;
-        $this->key_var = $sub_nodes['keyVar'] ?? null;
-        $this->by_ref = $sub_nodes['byRef'] ?? false;
+        $this->key_var = $sub_nodes['key_var'] ?? null;
+        $this->by_ref = $sub_nodes['by_ref'] ?? false;
         $this->value_var = $value_var;
         $this->stmts = $sub_nodes['stmts'] ?? [];
     }
     public function get_sub_node_names(): array
     {
-        return ['expr', 'keyVar', 'byRef', 'valueVar', 'stmts'];
+        return ['expr', 'key_var', 'by_ref', 'value_var', 'stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_Foreach';
+        return 'Stmt_Foreach_';
     }
 }

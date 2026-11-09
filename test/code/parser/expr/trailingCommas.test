@@ -11,7 +11,7 @@ isset($a, $b, );
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: foo
             )
@@ -21,7 +21,7 @@ array(
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
@@ -29,14 +29,14 @@ array(
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_MethodCall(
+        expr: Expr_Method_Call(
             var: Expr_Variable(
                 name: foo
             )
@@ -49,7 +49,7 @@ array(
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
@@ -57,14 +57,14 @@ array(
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_StaticCall(
+        expr: Expr_Static_Call(
             class: Name(
                 name: Foo
             )
@@ -77,7 +77,7 @@ array(
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
@@ -85,14 +85,14 @@ array(
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_New(
+        expr: Expr_New_(
             class: Name(
                 name: Foo
             )
@@ -102,7 +102,7 @@ array(
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
@@ -110,13 +110,13 @@ array(
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
-    4: Stmt_Unset(
+    4: Stmt_Unset_(
         vars: array(
             0: Expr_Variable(
                 name: a
@@ -127,7 +127,7 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Expr_Isset(
+        expr: Expr_Isset_(
             vars: array(
                 0: Expr_Variable(
                     name: a

@@ -11,6 +11,6 @@ class Bitwise_Xor extends Binary_Op
         return '^';
     }
     public function get_type(): string {
-        return 'Expr_BinaryOp_BitwiseXor';
+        return 'Expr_Binary_Op_Bitwise_Xor';
     }
 }

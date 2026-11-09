@@ -25,9 +25,9 @@ class Const_ extends Node\Stmt
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'consts'];
+        return ['attr_groups', 'consts'];
     }
     public function get_type(): string {
-        return 'Stmt_Const';
+        return 'Stmt_Const_';
     }
 }

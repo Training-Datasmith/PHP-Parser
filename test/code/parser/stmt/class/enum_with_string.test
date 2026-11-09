@@ -11,53 +11,53 @@ enum Suit: string
 }
 -----
 array(
-    0: Stmt_Enum(
-        attrGroups: array(
+    0: Stmt_Enum_(
+        attr_groups: array(
         )
         name: Identifier(
             name: Suit
         )
-        scalarType: Identifier(
+        scalar_type: Identifier(
             name: string
         )
         implements: array(
         )
         stmts: array(
-            0: Stmt_EnumCase(
-                attrGroups: array(
+            0: Stmt_Enum_Case(
+                attr_groups: array(
                 )
                 name: Identifier(
                     name: Hearts
                 )
-                expr: Scalar_String(
+                expr: Scalar_String_(
                     value: H
                 )
             )
-            1: Stmt_EnumCase(
-                attrGroups: array(
+            1: Stmt_Enum_Case(
+                attr_groups: array(
                 )
                 name: Identifier(
                     name: Diamonds
                 )
                 expr: null
             )
-            2: Stmt_EnumCase(
-                attrGroups: array(
+            2: Stmt_Enum_Case(
+                attr_groups: array(
                 )
                 name: Identifier(
                     name: Clubs
                 )
-                expr: Scalar_String(
+                expr: Scalar_String_(
                     value: C
                 )
             )
-            3: Stmt_EnumCase(
-                attrGroups: array(
+            3: Stmt_Enum_Case(
+                attr_groups: array(
                 )
                 name: Identifier(
                     name: Spades
                 )
-                expr: Scalar_String(
+                expr: Scalar_String_(
                     value: S
                 )
             )

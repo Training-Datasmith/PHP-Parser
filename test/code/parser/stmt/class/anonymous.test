@@ -23,9 +23,9 @@ class A {
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_New(
-            class: Stmt_Class(
-                attrGroups: array(
+        expr: Expr_New_(
+            class: Stmt_Class_(
+                attr_groups: array(
                 )
                 flags: 0
                 name: null
@@ -34,16 +34,16 @@ array(
                 )
                 stmts: array(
                     0: Stmt_Class_Method(
-                        attrGroups: array(
+                        attr_groups: array(
                         )
                         flags: PUBLIC (1)
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: test
                         )
                         params: array(
                         )
-                        returnType: null
+                        return_type: null
                         stmts: array(
                         )
                     )
@@ -54,9 +54,9 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_New(
-            class: Stmt_Class(
-                attrGroups: array(
+        expr: Expr_New_(
+            class: Stmt_Class_(
+                attr_groups: array(
                 )
                 flags: 0
                 name: null
@@ -79,9 +79,9 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_New(
-            class: Stmt_Class(
-                attrGroups: array(
+        expr: Expr_New_(
+            class: Stmt_Class_(
+                attr_groups: array(
                 )
                 flags: 0
                 name: null
@@ -90,12 +90,12 @@ array(
                 )
                 stmts: array(
                     0: Stmt_Property(
-                        attrGroups: array(
+                        attr_groups: array(
                         )
                         flags: PUBLIC (1)
                         type: null
                         props: array(
-                            0: PropertyItem(
+                            0: Property_Item(
                                 name: Var_Like_Identifier(
                                     name: foo
                                 )
@@ -112,9 +112,9 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_New(
-            class: Stmt_Class(
-                attrGroups: array(
+        expr: Expr_New_(
+            class: Stmt_Class_(
+                attr_groups: array(
                 )
                 flags: 0
                 name: null
@@ -124,7 +124,7 @@ array(
                 implements: array(
                 )
                 stmts: array(
-                    0: Stmt_TraitUse(
+                    0: Stmt_Trait_Use(
                         traits: array(
                             0: Name(
                                 name: T
@@ -141,7 +141,7 @@ array(
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
@@ -149,14 +149,14 @@ array(
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
-    4: Stmt_Class(
-        attrGroups: array(
+    4: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -167,21 +167,21 @@ array(
         )
         stmts: array(
             0: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: test
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
-                    0: Stmt_Return(
-                        expr: Expr_New(
-                            class: Stmt_Class(
-                                attrGroups: array(
+                    0: Stmt_Return_(
+                        expr: Expr_New_(
+                            class: Stmt_Class_(
+                                attr_groups: array(
                                 )
                                 flags: 0
                                 name: null
@@ -191,17 +191,17 @@ array(
                                 implements: array(
                                 )
                                 stmts: array(
-                                    0: Stmt_ClassConst(
-                                        attrGroups: array(
+                                    0: Stmt_Class_Const(
+                                        attr_groups: array(
                                         )
                                         flags: 0
                                         type: null
                                         consts: array(
-                                            0: Const(
+                                            0: Const_(
                                                 name: Identifier(
                                                     name: A
                                                 )
-                                                value: Scalar_String(
+                                                value: Scalar_String_(
                                                     value: B
                                                 )
                                             )
@@ -215,7 +215,7 @@ array(
                                     value: Expr_Variable(
                                         name: this
                                     )
-                                    byRef: false
+                                    by_ref: false
                                     unpack: false
                                 )
                             )

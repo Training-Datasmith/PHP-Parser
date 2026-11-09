@@ -6,7 +6,7 @@ namespace Php_Parser\Node;
 
 class Name_Test extends \PHPUnit\Framework\TestCase
 {
-    public function testConstruct(): void
+    public function testConst_ruct(): void
     {
         $name = new Name(['foo', 'bar']);
         $this->assertSame('foo\bar', $name->name);

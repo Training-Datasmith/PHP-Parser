@@ -10,14 +10,14 @@ Array destructuring
 array(
     0: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_List(
+            var: Expr_List_(
                 items: array(
                     0: Array_Item(
                         key: null
                         value: Expr_Variable(
                             name: a
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     1: Array_Item(
@@ -25,19 +25,19 @@ array(
                         value: Expr_Variable(
                             name: b
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )
             )
-            expr: Expr_Array(
+            expr: Expr_Array_(
                 items: array(
                     0: Array_Item(
                         key: null
                         value: Expr_Variable(
                             name: c
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     1: Array_Item(
@@ -45,7 +45,7 @@ array(
                         value: Expr_Variable(
                             name: d
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )
@@ -54,7 +54,7 @@ array(
     )
     1: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_List(
+            var: Expr_List_(
                 items: array(
                     0: null
                     1: Array_Item(
@@ -62,7 +62,7 @@ array(
                         value: Expr_Variable(
                             name: a
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     2: null
@@ -72,7 +72,7 @@ array(
                         value: Expr_Variable(
                             name: b
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     5: null
@@ -85,23 +85,23 @@ array(
     )
     2: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_List(
+            var: Expr_List_(
                 items: array(
                     0: null
                     1: Array_Item(
                         key: null
-                        value: Expr_List(
+                        value: Expr_List_(
                             items: array(
                                 0: Array_Item(
                                     key: null
-                                    value: Expr_List(
+                                    value: Expr_List_(
                                         items: array(
                                             0: Array_Item(
                                                 key: null
                                                 value: Expr_Variable(
                                                     name: a
                                                 )
-                                                byRef: false
+                                                by_ref: false
                                                 unpack: false
                                             )
                                             1: null
@@ -110,17 +110,17 @@ array(
                                                 value: Expr_Variable(
                                                     name: x
                                                 )
-                                                byRef: false
+                                                by_ref: false
                                                 unpack: false
                                             )
                                         )
                                     )
-                                    byRef: false
+                                    by_ref: false
                                     unpack: false
                                 )
                             )
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     2: Array_Item(
@@ -128,7 +128,7 @@ array(
                         value: Expr_Variable(
                             name: b
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )
@@ -140,26 +140,26 @@ array(
     )
     3: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_List(
+            var: Expr_List_(
                 items: array(
                     0: Array_Item(
-                        key: Scalar_String(
+                        key: Scalar_String_(
                             value: a
                         )
                         value: Expr_Variable(
                             name: b
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     1: Array_Item(
-                        key: Scalar_String(
+                        key: Scalar_String_(
                             value: b
                         )
                         value: Expr_Variable(
                             name: a
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )

@@ -28,6 +28,6 @@ class Array_Dim_Fetch extends Expr
         return ['var', 'dim'];
     }
     public function get_type(): string {
-        return 'Expr_ArrayDimFetch';
+        return 'Expr_Array_Dim_Fetch';
     }
 }

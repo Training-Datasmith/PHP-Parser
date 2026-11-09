@@ -38,9 +38,9 @@ Parse some PHP code into an AST and dump the result in human-readable form:
 
 ```php
 <?php
-use PhpParser\Error;
-use PhpParser\NodeDumper;
-use PhpParser\ParserFactory;
+use Php_Parser\Error;
+use Php_Parser\Node_Dumper;
+use Php_Parser\Parser_Factory;
 
 $code = <<<'CODE'
 <?php
@@ -51,7 +51,7 @@ function test($foo)
 }
 CODE;
 
-$parser = (new ParserFactory())->createForNewestSupportedVersion();
+$parser = (new Parser_Factory())->create_for_newest_supported_version();
 try {
     $ast = $parser->parse($code);
 } catch (Error $error) {
@@ -59,7 +59,7 @@ try {
     return;
 }
 
-$dumper = new NodeDumper;
+$dumper = new Node_Dumper;
 echo $dumper->dump($ast) . "\n";
 ```
 
@@ -68,19 +68,19 @@ This dumps an AST looking something like this:
 ```
 array(
     0: Stmt_Function(
-        attrGroups: array(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: foo
@@ -88,7 +88,7 @@ array(
                 default: null
             )
         )
-        returnType: null
+        return_type: null
         stmts: array(
             0: Stmt_Expression(
                 expr: Expr_FuncCall(
@@ -101,7 +101,7 @@ array(
                             value: Expr_Variable(
                                 name: foo
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                     )
@@ -115,13 +115,13 @@ array(
 Let's traverse the AST and perform some kind of modification. For example, drop all function bodies:
 
 ```php
-use PhpParser\Node;
-use PhpParser\Node\Stmt\Function_;
-use PhpParser\NodeTraverser;
-use PhpParser\NodeVisitorAbstract;
+use Php_Parser\Node;
+use Php_Parser\Node\Stmt\Function_;
+use Php_Parser\Node_Traverser;
+use Php_Parser\Node_Visitor_Abstract;
 
-$traverser = new NodeTraverser();
-$traverser->addVisitor(new class extends NodeVisitorAbstract {
+$traverser = new Node_Traverser();
+$traverser->add_visitor(new class extends Node_Visitor_Abstract {
     public function enterNode(Node $node) {
         if ($node instanceof Function_) {
             // Clean out the function body
@@ -139,18 +139,18 @@ This gives us an AST where the `Function_::$stmts` are empty:
 ```
 array(
     0: Stmt_Function(
-        attrGroups: array(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: foo
@@ -158,7 +158,7 @@ array(
                 default: null
             )
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )
@@ -168,10 +168,10 @@ array(
 Finally, we can convert the new AST back to PHP code:
 
 ```php
-use PhpParser\PrettyPrinter;
+use Php_Parser\Pretty_Printer;
 
-$prettyPrinter = new PrettyPrinter\Standard;
-echo $prettyPrinter->prettyPrintFile($ast);
+$prettyPrinter = new Pretty_Printer\Standard;
+echo $prettyPrinter->pretty_print_file($ast);
 ```
 
 This gives us our original code, minus the `var_dump()` call inside the function:
@@ -185,6 +185,10 @@ function test($foo)
 ```
 
 For a more comprehensive introduction, see the documentation.
+
+### Node type identifiers (`get_type()`)
+
+Each AST node exposes a stable `get_type()` string derived from its renamed PHP class: take the class name under `Php_Parser\Node\`, join namespace segments with `_`, and keep reserved-word trailing underscores (for example `Php_Parser\Node\Stmt\Class_` → `Stmt_Class_`, `Php_Parser\Node\Expr\Binary_Op\Equal` → `Expr_Binary_Op_Equal`). The human-readable dumper, JSON `nodeType` values, and `Json_Decoder` all use this snake_case form exclusively.
 
 Documentation
 -------------

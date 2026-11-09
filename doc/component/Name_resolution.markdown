@@ -4,7 +4,7 @@ Name resolution
 Since the introduction of namespaces in PHP 5.3, literal names in PHP code are subject to a
 relatively complex name resolution process, which is based on the current namespace, the current
 import table state, as well the type of the referenced symbol. PHP-Parser implements name
-resolution and related functionality, both as reusable logic (NameContext), as well as a node
+resolution and related functionality, both as reusable logic (Name_Context), as well as a node
 visitor (NameResolver) based on it.
 
 The NameResolver visitor
@@ -14,9 +14,9 @@ The `NameResolver` visitor can (and for nearly all uses of the AST, should) be a
 to their fully-qualified form, to the degree that this is possible.
 
 ```php
-$nameResolver = new PhpParser\NodeVisitor\NameResolver;
-$nodeTraverser = new PhpParser\NodeTraverser;
-$nodeTraverser->addVisitor($nameResolver);
+$nameResolver = new Php_Parser\NodeVisitor\NameResolver;
+$nodeTraverser = new Php_Parser\Node_Traverser;
+$nodeTraverser->add_visitor($nameResolver);
 
 // Resolve names
 $stmts = $nodeTraverser->traverse($stmts);
@@ -38,7 +38,7 @@ In the default configuration, the name resolver will perform three actions:
 The name resolver accepts an option array as the second argument, with the following default values:
 
 ```php
-$nameResolver = new PhpParser\NodeVisitor\NameResolver(null, [
+$nameResolver = new Php_Parser\NodeVisitor\NameResolver(null, [
     'preserveOriginalNames' => false,
     'replaceNodes' => true,
 ]);
@@ -55,15 +55,15 @@ name. Once again, if an unqualified function or constant name cannot be resolved
 The `replaceNodes` attribute is useful if you wish to perform modifications on the AST, as you
 probably do not wish the resulting code to have fully resolved names as a side-effect.
 
-The NameContext
+The Name_Context
 ---------------
 
-The actual name resolution logic is implemented in the `NameContext` class, which has the following
+The actual name resolution logic is implemented in the `Name_Context` class, which has the following
 public API:
 
 ```php
-class NameContext {
-    public function __construct(ErrorHandler $errorHandler);
+class Name_Context {
+    public function __construct(Error_Handler $errorHandler);
     public function startNamespace(Name $namespace = null);
     public function addAlias(Name $name, string $aliasName, int $type, array $errorAttrs = []);
 
@@ -78,7 +78,7 @@ class NameContext {
 The `$type` parameters accept one of the `Stmt\Use_::TYPE_*` constants, which represent the three
 basic symbol types in PHP (functions, constants and everything else).
 
-Next to name resolution, the `NameContext` also supports the reverse operation of finding a short
+Next to name resolution, the `Name_Context` also supports the reverse operation of finding a short
 representation of a name given the current name resolution environment.
 
 The name context is intended to be used for name resolution operations outside the AST itself, such

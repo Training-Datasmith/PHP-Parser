@@ -6,7 +6,7 @@ $items = [
 ];
 -----
 $array = $stmts[0]->expr->expr;
-$array->items[] = new Expr\ArrayItem(new Expr\Variable('b'));
+$array->items[] = new Node\Array_Item(new Expr\Variable('b'));
 -----
 <?php
 $items = [
@@ -20,7 +20,7 @@ $items =
 ];
 -----
 $array = $stmts[0]->expr->expr;
-$array->items[] = new Expr\ArrayItem(new Expr\Variable('c'), null, false, [], true);
+$array->items[] = new Node\Array_Item(new Expr\Variable('c'), null, false, [], true);
 -----
 <?php
 $items =

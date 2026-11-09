@@ -19,14 +19,14 @@ use Php_Parser\Node\Stmt;
 
 class Class_Const_Test extends \PHPUnit\Framework\TestCase
 {
-    public function createClassConstBuilder($name, $value)
+    public function createClassConst_Builder($name, $value)
     {
         return new Class_Const($name, $value);
     }
 
     public function testModifiers(): void
     {
-        $node = $this->createClassConstBuilder('TEST', 1)
+        $node = $this->createClassConst_Builder('TEST', 1)
             ->make_private()
             ->get_node()
         ;
@@ -41,7 +41,7 @@ class Class_Const_Test extends \PHPUnit\Framework\TestCase
             $node
         );
 
-        $node = $this->createClassConstBuilder('TEST', 1)
+        $node = $this->createClassConst_Builder('TEST', 1)
             ->make_protected()
             ->get_node()
         ;
@@ -56,7 +56,7 @@ class Class_Const_Test extends \PHPUnit\Framework\TestCase
             $node
         );
 
-        $node = $this->createClassConstBuilder('TEST', 1)
+        $node = $this->createClassConst_Builder('TEST', 1)
             ->make_public()
             ->get_node()
         ;
@@ -71,7 +71,7 @@ class Class_Const_Test extends \PHPUnit\Framework\TestCase
             $node
         );
 
-        $node = $this->createClassConstBuilder('TEST', 1)
+        $node = $this->createClassConst_Builder('TEST', 1)
             ->make_final()
             ->get_node()
         ;
@@ -89,7 +89,7 @@ class Class_Const_Test extends \PHPUnit\Framework\TestCase
 
     public function testDocComment(): void
     {
-        $node = $this->createClassConstBuilder('TEST', 1)
+        $node = $this->createClassConst_Builder('TEST', 1)
             ->set_doc_comment('/** Test */')
             ->make_public()
             ->get_node();
@@ -108,9 +108,9 @@ class Class_Const_Test extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testAddConst(): void
+    public function testAddConst_(): void
     {
-        $node = $this->createClassConstBuilder('FIRST_TEST', 1)
+        $node = $this->createClassConst_Builder('FIRST_TEST', 1)
             ->add_const('SECOND_TEST', 2)
             ->get_node();
 
@@ -133,7 +133,7 @@ class Class_Const_Test extends \PHPUnit\Framework\TestCase
         );
         $attributeGroup = new Attribute_Group([$attribute]);
 
-        $node = $this->createClassConstBuilder('ATTR_GROUP', 1)
+        $node = $this->createClassConst_Builder('ATTR_GROUP', 1)
             ->add_attribute($attributeGroup)
             ->get_node();
 
@@ -152,7 +152,7 @@ class Class_Const_Test extends \PHPUnit\Framework\TestCase
 
     public function testType(): void
     {
-        $node = $this->createClassConstBuilder('TYPE', 1)
+        $node = $this->createClassConst_Builder('TYPE', 1)
             ->set_type('int')
             ->get_node();
         $this->assertEquals(
@@ -172,7 +172,7 @@ class Class_Const_Test extends \PHPUnit\Framework\TestCase
      */
     public function testValues($value, $expectedValueNode): void
     {
-        $node = $this->createClassConstBuilder('TEST', $value)
+        $node = $this->createClassConst_Builder('TEST', $value)
             ->get_node()
         ;
 

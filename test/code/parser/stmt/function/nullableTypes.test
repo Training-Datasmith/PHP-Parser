@@ -6,16 +6,16 @@ function test(?Foo $bar, ?string $foo) : ?Baz {
 }
 -----
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Nullable_Type(
@@ -23,7 +23,7 @@ array(
                         name: Foo
                     )
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: bar
@@ -33,7 +33,7 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Nullable_Type(
@@ -41,7 +41,7 @@ array(
                         name: string
                     )
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: foo
@@ -51,7 +51,7 @@ array(
                 )
             )
         )
-        returnType: Nullable_Type(
+        return_type: Nullable_Type(
             type: Name(
                 name: Baz
             )

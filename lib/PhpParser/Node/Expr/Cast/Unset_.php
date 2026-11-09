@@ -7,6 +7,6 @@ use Php_Parser\Node\Expr\Cast;
 class Unset_ extends Cast
 {
     public function get_type(): string {
-        return 'Expr_Cast_Unset';
+        return 'Expr_Cast_Unset_';
     }
 }

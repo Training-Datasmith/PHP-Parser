@@ -5,7 +5,7 @@ Error positions
 Syntax error, unexpected EOF from 1:10 to 1:10
 array(
     0: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: foo
             )
@@ -18,7 +18,7 @@ array(
 Syntax error, unexpected EOF from 1:20 to 1:20
 array(
     0: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: foo
             )

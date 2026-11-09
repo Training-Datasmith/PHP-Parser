@@ -10,7 +10,7 @@ class Lexer
      * Tokenize the provided source code.
      *
      * The token array is in the same format as provided by the PhpToken::tokenize() method in
-     * PHP 8.0. The tokens are instances of PhpParser\Token, to abstract over a polyfill
+     * PHP 8.0. The tokens are instances of Php_Parser\Token, to abstract over a polyfill
      * implementation in earlier PHP version.
      *
      * The token array is terminated by a sentinel token with token ID 0.

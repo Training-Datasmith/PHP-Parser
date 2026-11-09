@@ -57,7 +57,7 @@ class Trait_Test extends \PHPUnit\Framework\TestCase
     public function testInvalidStmtError(): void
     {
         $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('Unexpected node of type "Stmt_Echo"');
+        $this->expectExceptionMessage('Unexpected node of type "Stmt_Echo_"');
         $this->createTraitBuilder('Test')
             ->add_stmt(new Stmt\Echo_([]))
         ;
@@ -120,7 +120,7 @@ class Trait_Test extends \PHPUnit\Framework\TestCase
             new Stmt\Trait_(
                 'Attribute_Group',
                 [
-                    'attrGroups' => [$attributeGroup],
+                    'attr_groups' => [$attributeGroup],
                 ]
             ),
             $node

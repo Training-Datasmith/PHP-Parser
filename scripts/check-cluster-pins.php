@@ -110,19 +110,27 @@ if ($errors !== []) {
     exit(1);
 }
 
-// Wrong-SHA demo: installed.php reference (mutate first dev package if any expected, else phpunit)
+// Wrong-SHA demo: installed.php reference only (in-memory copy)
 $demoVersions = $versions;
 if (isset($demoVersions['phpunit/phpunit'])) {
+    $realReference = $versions['phpunit/phpunit']['reference'];
+    if (!is_string($realReference) || strlen($realReference) !== 40) {
+        fwrite(STDERR, "check-cluster-pins: phpunit/phpunit missing valid reference for wrong-SHA demo.\n");
+        exit(1);
+    }
     $demoVersions['phpunit/phpunit']['reference'] = str_repeat('0', 40);
-    $demoPhpErrors = assert_cluster_pins(['phpunit/phpunit' => ['reference' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa']], $demoVersions, $jsonPackages);
+    $demoPhpErrors = assert_cluster_pins(['phpunit/phpunit' => ['reference' => $realReference]], $demoVersions, $jsonPackages);
     $phpDemoFailed = false;
+  $jsonSideFailed = false;
     foreach ($demoPhpErrors as $error) {
         if (stripos($error, 'installed.php') !== false && stripos($error, 'reference') !== false) {
             $phpDemoFailed = true;
-            break;
+        }
+        if (stripos($error, 'installed.json') !== false) {
+            $jsonSideFailed = true;
         }
     }
-    if (!$phpDemoFailed) {
+    if (!$phpDemoFailed || $jsonSideFailed) {
         fwrite(STDERR, "check-cluster-pins: wrong-SHA demo for installed.php did not fail as expected.\n");
         exit(1);
     }
@@ -144,20 +152,24 @@ foreach ($mutatedJson as $i => $package) {
         break;
     }
 }
-$demoJsonErrors = assert_cluster_pins(
-    isset($versions['phpunit/phpunit']) ? ['phpunit/phpunit' => ['reference' => str_repeat('a', 40)]] : [],
-    $versions,
-    $mutatedJson
-);
 if (isset($versions['phpunit/phpunit'])) {
+    $realReference = $versions['phpunit/phpunit']['reference'];
+    $demoJsonErrors = assert_cluster_pins(
+        ['phpunit/phpunit' => ['reference' => $realReference]],
+        $versions,
+        $mutatedJson
+    );
     $jsonDemoFailed = false;
+    $phpSideFailed = false;
     foreach ($demoJsonErrors as $error) {
         if (stripos($error, 'installed.json') !== false && stripos($error, 'source.reference') !== false) {
             $jsonDemoFailed = true;
-            break;
+        }
+        if (stripos($error, 'installed.php') !== false) {
+            $phpSideFailed = true;
         }
     }
-    if (!$jsonDemoFailed) {
+    if (!$jsonDemoFailed || $phpSideFailed) {
         fwrite(STDERR, "check-cluster-pins: wrong-SHA demo for installed.json did not fail as expected.\n");
         exit(1);
     }

@@ -20,8 +20,8 @@ new class {}();
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_PropertyFetch(
-            var: Expr_New(
+        expr: Expr_Property_Fetch(
+            var: Expr_New_(
                 class: Name(
                     name: A
                 )
@@ -34,8 +34,8 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_MethodCall(
-            var: Expr_New(
+        expr: Expr_Method_Call(
+            var: Expr_New_(
                 class: Name(
                     name: A
                 )
@@ -50,8 +50,8 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_ClassConstFetch(
-            class: Expr_New(
+        expr: Expr_Class_Const_Fetch(
+            class: Expr_New_(
                 class: Name(
                     name: A
                 )
@@ -64,8 +64,8 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_StaticCall(
-            class: Expr_New(
+        expr: Expr_Static_Call(
+            class: Expr_New_(
                 class: Name(
                     name: A
                 )
@@ -80,8 +80,8 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Expr_StaticPropertyFetch(
-            class: Expr_New(
+        expr: Expr_Static_Property_Fetch(
+            class: Expr_New_(
                 class: Name(
                     name: A
                 )
@@ -94,22 +94,22 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_New(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_New_(
                 class: Name(
                     name: A
                 )
                 args: array(
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 0
             )
         )
     )
     6: Stmt_Expression(
-        expr: Expr_FuncCall(
-            name: Expr_New(
+        expr: Expr_Func_Call(
+            name: Expr_New_(
                 class: Name(
                     name: A
                 )
@@ -121,10 +121,10 @@ array(
         )
     )
     7: Stmt_Expression(
-        expr: Expr_PropertyFetch(
-            var: Expr_New(
-                class: Stmt_Class(
-                    attrGroups: array(
+        expr: Expr_Property_Fetch(
+            var: Expr_New_(
+                class: Stmt_Class_(
+                    attr_groups: array(
                     )
                     flags: 0
                     name: null
@@ -143,10 +143,10 @@ array(
         )
     )
     8: Stmt_Expression(
-        expr: Expr_MethodCall(
-            var: Expr_New(
-                class: Stmt_Class(
-                    attrGroups: array(
+        expr: Expr_Method_Call(
+            var: Expr_New_(
+                class: Stmt_Class_(
+                    attr_groups: array(
                     )
                     flags: 0
                     name: null
@@ -167,10 +167,10 @@ array(
         )
     )
     9: Stmt_Expression(
-        expr: Expr_ClassConstFetch(
-            class: Expr_New(
-                class: Stmt_Class(
-                    attrGroups: array(
+        expr: Expr_Class_Const_Fetch(
+            class: Expr_New_(
+                class: Stmt_Class_(
+                    attr_groups: array(
                     )
                     flags: 0
                     name: null
@@ -189,10 +189,10 @@ array(
         )
     )
     10: Stmt_Expression(
-        expr: Expr_StaticCall(
-            class: Expr_New(
-                class: Stmt_Class(
-                    attrGroups: array(
+        expr: Expr_Static_Call(
+            class: Expr_New_(
+                class: Stmt_Class_(
+                    attr_groups: array(
                     )
                     flags: 0
                     name: null
@@ -213,10 +213,10 @@ array(
         )
     )
     11: Stmt_Expression(
-        expr: Expr_StaticPropertyFetch(
-            class: Expr_New(
-                class: Stmt_Class(
-                    attrGroups: array(
+        expr: Expr_Static_Property_Fetch(
+            class: Expr_New_(
+                class: Stmt_Class_(
+                    attr_groups: array(
                     )
                     flags: 0
                     name: null
@@ -235,10 +235,10 @@ array(
         )
     )
     12: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_New(
-                class: Stmt_Class(
-                    attrGroups: array(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_New_(
+                class: Stmt_Class_(
+                    attr_groups: array(
                     )
                     flags: 0
                     name: null
@@ -251,16 +251,16 @@ array(
                 args: array(
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 0
             )
         )
     )
     13: Stmt_Expression(
-        expr: Expr_FuncCall(
-            name: Expr_New(
-                class: Stmt_Class(
-                    attrGroups: array(
+        expr: Expr_Func_Call(
+            name: Expr_New_(
+                class: Stmt_Class_(
+                    attr_groups: array(
                     )
                     flags: 0
                     name: null

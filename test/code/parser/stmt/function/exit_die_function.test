@@ -7,19 +7,19 @@ function exit(string|int $status = 0): never {}
 function die(string|int $status = 0): never {}
 -----
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: exit
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
-                type: UnionType(
+                type: Union_Type(
                     types: array(
                         0: Identifier(
                             name: string
@@ -29,37 +29,37 @@ array(
                         )
                     )
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: status
                 )
-                default: Scalar_Int(
+                default: Scalar_Int_(
                     value: 0
                 )
                 hooks: array(
                 )
             )
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: never
         )
         stmts: array(
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: die
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
-                type: UnionType(
+                type: Union_Type(
                     types: array(
                         0: Identifier(
                             name: string
@@ -69,19 +69,19 @@ array(
                         )
                     )
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: status
                 )
-                default: Scalar_Int(
+                default: Scalar_Int_(
                     value: 0
                 )
                 hooks: array(
                 )
             )
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: never
         )
         stmts: array(

@@ -213,25 +213,12 @@ abstract class Node_Abstract implements Node, \JsonSerializable
     public function jsonSerialize(): array
     {
         $data = ['nodeType' => $this->get_type()];
-        $camelBySnake = [];
-        foreach ($this->get_sub_node_names() as $camel) {
-            $snake = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $camel));
-            $camelBySnake[$snake] = $camel;
-            $camelBySnake[$camel] = $camel;
-        }
 
         foreach (get_object_vars($this) as $key => $value) {
             if ($key === 'attributes') {
                 continue;
             }
-            if ($key === 'namespaced_name') {
-                if ($value !== null) {
-                    $data['namespacedName'] = $value;
-                }
-                continue;
-            }
-
-            $data[$camelBySnake[$key] ?? $key] = $value;
+            $data[$key] = $value;
         }
 
         $data['attributes'] = $this->attributes;
@@ -242,46 +229,13 @@ abstract class Node_Abstract implements Node, \JsonSerializable
     /**
      * @return mixed
      */
-    public function &__get(string $name)
-    {
-        if (property_exists($this, $name)) {
-            return $this->{$name};
-        }
-
-        $snake = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $name));
-        if ($snake !== $name && property_exists($this, $snake)) {
-            return $this->{$snake};
-        }
-
-        trigger_error('Undefined property: ' . static::class . '::$' . $name);
-        $null = null;
-
-        return $null;
-    }
-
-    /**
-     * @param mixed $value
-     */
-    public function __set(string $name, $value): void
-    {
-        $this->set_sub_node($name, $value);
-    }
-
-    /**
-     * @return mixed
-     */
     public function get_sub_node(string $name)
     {
-        if (property_exists($this, $name)) {
-            return $this->{$name};
+        if (!property_exists($this, $name)) {
+            return null;
         }
 
-        $snake = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $name));
-        if ($snake !== $name && property_exists($this, $snake)) {
-            return $this->{$snake};
-        }
-
-        return null;
+        return $this->{$name};
     }
 
     /**
@@ -289,17 +243,10 @@ abstract class Node_Abstract implements Node, \JsonSerializable
      */
     public function set_sub_node(string $name, $value): void
     {
-        if (property_exists($this, $name)) {
-            $this->{$name} = $value;
-            return;
+        if (!property_exists($this, $name)) {
+            throw new \LogicException(sprintf('Unknown sub-node "%s"', $name));
         }
 
-        $snake = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $name));
-        if ($snake !== $name && property_exists($this, $snake)) {
-            $this->{$snake} = $value;
-            return;
-        }
-
-        throw new \LogicException(sprintf('Unknown sub-node "%s"', $name));
+        $this->{$name} = $value;
     }
 }

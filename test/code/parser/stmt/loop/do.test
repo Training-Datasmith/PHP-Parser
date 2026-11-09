@@ -7,7 +7,7 @@ do {
 } while ($a);
 -----
 array(
-    0: Stmt_Do(
+    0: Stmt_Do_(
         stmts: array(
         )
         cond: Expr_Variable(

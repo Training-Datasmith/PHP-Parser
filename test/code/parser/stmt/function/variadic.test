@@ -7,20 +7,20 @@ function test($a, Type ... $b) {}
 function test($a, Type &... $b) {}
 -----
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a
@@ -30,11 +30,11 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: true
                 var: Expr_Variable(
                     name: b
@@ -44,24 +44,24 @@ array(
                 )
             )
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a
@@ -71,11 +71,11 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: true
+                by_ref: true
                 variadic: true
                 var: Expr_Variable(
                     name: b
@@ -85,24 +85,24 @@ array(
                 )
             )
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )
-    2: Stmt_Function(
-        attrGroups: array(
+    2: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a
@@ -112,13 +112,13 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: Type
                 )
-                byRef: false
+                by_ref: false
                 variadic: true
                 var: Expr_Variable(
                     name: b
@@ -128,24 +128,24 @@ array(
                 )
             )
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )
-    3: Stmt_Function(
-        attrGroups: array(
+    3: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a
@@ -155,13 +155,13 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: Type
                 )
-                byRef: true
+                by_ref: true
                 variadic: true
                 var: Expr_Variable(
                     name: b
@@ -171,7 +171,7 @@ array(
                 )
             )
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )

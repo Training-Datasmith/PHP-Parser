@@ -29,5 +29,3 @@ class Interpolated_String extends Scalar
         return 'Scalar_Interpolated_String';
     }
 }
-// @deprecated compatibility alias
-class_alias(Interpolated_String::class, Encapsed::class);

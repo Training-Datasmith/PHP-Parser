@@ -17,32 +17,32 @@ label:
 goto label;
 -----
 array(
-    0: Stmt_Break(
+    0: Stmt_Break_(
         num: null
     )
-    1: Stmt_Break(
-        num: Scalar_Int(
+    1: Stmt_Break_(
+        num: Scalar_Int_(
             value: 2
         )
     )
-    2: Stmt_Continue(
+    2: Stmt_Continue_(
         num: null
     )
-    3: Stmt_Continue(
-        num: Scalar_Int(
+    3: Stmt_Continue_(
+        num: Scalar_Int_(
             value: 2
         )
     )
-    4: Stmt_Return(
+    4: Stmt_Return_(
         expr: null
     )
-    5: Stmt_Return(
+    5: Stmt_Return_(
         expr: Expr_Variable(
             name: a
         )
     )
     6: Stmt_Expression(
-        expr: Expr_Throw(
+        expr: Expr_Throw_(
             expr: Expr_Variable(
                 name: e
             )
@@ -53,7 +53,7 @@ array(
             name: label
         )
     )
-    8: Stmt_Goto(
+    8: Stmt_Goto_(
         name: Identifier(
             name: label
         )

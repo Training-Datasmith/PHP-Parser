@@ -15,70 +15,70 @@ array('a', &$b, 'c' => 'd', 'e' => &$f);
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
-                    value: Scalar_String(
+                    value: Scalar_String_(
                         value: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
-                    value: Scalar_String(
+                    value: Scalar_String_(
                         value: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
-                    value: Scalar_String(
+                    value: Scalar_String_(
                         value: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Array_Item(
                     key: null
-                    value: Scalar_String(
+                    value: Scalar_String_(
                         value: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     4: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
-                    value: Scalar_String(
+                    value: Scalar_String_(
                         value: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Array_Item(
@@ -86,34 +86,34 @@ array(
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: true
+                    by_ref: true
                     unpack: false
                 )
                 2: Array_Item(
-                    key: Scalar_String(
+                    key: Scalar_String_(
                         value: c
                     )
-                    value: Scalar_String(
+                    value: Scalar_String_(
                         value: d
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 3: Array_Item(
-                    key: Scalar_String(
+                    key: Scalar_String_(
                         value: e
                     )
                     value: Expr_Variable(
                         name: f
                     )
-                    byRef: true
+                    by_ref: true
                     unpack: false
                 )
             )
         )
     )
     5: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
             )
         )
@@ -122,46 +122,46 @@ array(
         )
     )
     6: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 1
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Array_Item(
                     key: null
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 2
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 2: Array_Item(
                     key: null
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 3
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     7: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
-                    key: Scalar_String(
+                    key: Scalar_String_(
                         value: a
                     )
-                    value: Scalar_String(
+                    value: Scalar_String_(
                         value: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )

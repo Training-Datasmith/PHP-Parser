@@ -216,7 +216,7 @@ final class Builder_Helpers
         throw new \LogicException('Invalid value');
     }
     /**
-     * Normalizes a doc comment: Converts plain strings to PhpParser\Comment\Doc.
+     * Normalizes a doc comment: Converts plain strings to Php_Parser\Comment\Doc.
      *
      * @param Comment\Doc|string $docComment The doc comment to normalize
      *

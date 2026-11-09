@@ -1,4 +1,4 @@
-Constant string syntaxes
+Const_ant string syntaxes
 -----
 <?php
 
@@ -18,68 +18,68 @@ B"Hi";
 -----
 array(
     0: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
         )
     )
     1: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
         )
     )
     2: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
         )
     )
     3: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
         )
     )
     4: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: Hi
         )
     )
     5: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: Hi
         )
     )
     6: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: Hi
         )
     )
     7: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: Hi
         )
     )
     8: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: Hi
         )
     )
     9: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: Hi
         )
     )
     10: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: !'!\!\a!
         )
     )
     11: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: !"!\!$!
             !@@{ "\r" }@@!@@{ "\t" }@@!@@{ "\f" }@@!@@{ "\v" }@@!@@{ chr(27) /* "\e" */ }@@!\a
         )
     )
     12: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: !@@{ chr(255) }@@!@@{ chr(255) }@@!@@{ chr(0) }@@!@@{ chr(0) }@@!
         )
     )

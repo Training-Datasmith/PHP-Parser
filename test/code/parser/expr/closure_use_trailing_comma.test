@@ -6,10 +6,10 @@ function() use($a,) {};
 array(
     0: Stmt_Expression(
         expr: Expr_Closure(
-            attrGroups: array(
+            attr_groups: array(
             )
             static: false
-            byRef: false
+            by_ref: false
             params: array(
             )
             uses: array(
@@ -17,10 +17,10 @@ array(
                     var: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                 )
             )
-            returnType: null
+            return_type: null
             stmts: array(
             )
         )

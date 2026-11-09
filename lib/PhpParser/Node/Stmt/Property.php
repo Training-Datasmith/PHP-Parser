@@ -42,7 +42,7 @@ class Property extends Node\Stmt
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'flags', 'type', 'props', 'hooks'];
+        return ['attr_groups', 'flags', 'type', 'props', 'hooks'];
     }
     /**
      * Whether the property is explicitly or implicitly public.

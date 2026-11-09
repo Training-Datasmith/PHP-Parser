@@ -66,8 +66,6 @@ class Int_ extends Scalar
         return new Int_(intval($str, 8), $attributes);
     }
     public function get_type(): string {
-        return 'Scalar_Int';
+        return 'Scalar_Int_';
     }
 }
-// @deprecated compatibility alias
-class_alias(Int_::class, LNumber::class);

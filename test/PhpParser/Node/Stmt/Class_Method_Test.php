@@ -111,9 +111,9 @@ class Class_Method_Test extends \PHPUnit\Framework\TestCase
         $type = new Name('Foo');
         $return = new Return_(new Variable('a'));
         $method = new Class_Method('test', [
-            'byRef' => false,
+            'by_ref' => false,
             'params' => [$param],
-            'returnType' => $type,
+            'return_type' => $type,
             'stmts' => [$return],
         ]);
 
@@ -123,7 +123,7 @@ class Class_Method_Test extends \PHPUnit\Framework\TestCase
         $this->assertSame([$return], $method->get_stmts());
 
         $method = new Class_Method('test', [
-            'byRef' => true,
+            'by_ref' => true,
             'stmts' => null,
         ]);
 

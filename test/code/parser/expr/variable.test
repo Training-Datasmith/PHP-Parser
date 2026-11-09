@@ -17,14 +17,14 @@ array(
     )
     1: Stmt_Expression(
         expr: Expr_Variable(
-            name: Scalar_String(
+            name: Scalar_String_(
                 value: a
             )
         )
     )
     2: Stmt_Expression(
         expr: Expr_Variable(
-            name: Expr_FuncCall(
+            name: Expr_Func_Call(
                 name: Name(
                     name: foo
                 )
@@ -50,13 +50,13 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
+        expr: Expr_Array_Dim_Fetch(
             var: Expr_Variable(
                 name: Expr_Variable(
                     name: a
                 )
             )
-            dim: Scalar_String(
+            dim: Scalar_String_(
                 value: b
             )
         )

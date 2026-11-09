@@ -24,6 +24,6 @@ class Throw_ extends Node\Expr
         return ['expr'];
     }
     public function get_type(): string {
-        return 'Expr_Throw';
+        return 'Expr_Throw_';
     }
 }

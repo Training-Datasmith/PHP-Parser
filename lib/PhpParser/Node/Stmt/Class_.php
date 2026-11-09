@@ -45,7 +45,7 @@ class Class_ extends Class_Like
      *             'extends'     => null   : Name of extended class
      *             'implements'  => array(): Names of implemented interfaces
      *             'stmts'       => array(): Statements
-     *             'attrGroups'  => array(): PHP attribute groups
+     *             'attr_groups'  => array(): PHP attribute groups
      * @param array<string, mixed> $attributes Additional attributes
      */
     public function __construct($name, array $sub_nodes = [], array $attributes = [])
@@ -56,11 +56,11 @@ class Class_ extends Class_Like
         $this->extends = $sub_nodes['extends'] ?? null;
         $this->implements = $sub_nodes['implements'] ?? [];
         $this->stmts = $sub_nodes['stmts'] ?? [];
-        $this->attr_groups = $sub_nodes['attrGroups'] ?? [];
+        $this->attr_groups = $sub_nodes['attr_groups'] ?? [];
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'flags', 'name', 'extends', 'implements', 'stmts'];
+        return ['attr_groups', 'flags', 'name', 'extends', 'implements', 'stmts'];
     }
     /**
      * Whether the class is explicitly abstract.
@@ -88,6 +88,6 @@ class Class_ extends Class_Like
         return null === $this->name;
     }
     public function get_type(): string {
-        return 'Stmt_Class';
+        return 'Stmt_Class_';
     }
 }

@@ -24,6 +24,6 @@ class Unset_ extends Node\Stmt
         return ['vars'];
     }
     public function get_type(): string {
-        return 'Stmt_Unset';
+        return 'Stmt_Unset_';
     }
 }

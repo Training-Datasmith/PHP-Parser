@@ -32,53 +32,64 @@ new #[A] class {};
 $attrGroup = new Node\Attribute_Group([
     new Node\Attribute(new Node\Name('B'), []),
 ]);
-$stmts[0]->attrGroups[] = $attrGroup;
-$stmts[0]->stmts[0]->attrGroups[] = $attrGroup;
-$stmts[0]->stmts[0]->params[0]->attrGroups[] = $attrGroup;
-$stmts[0]->stmts[1]->attrGroups[] = $attrGroup;
-$stmts[0]->stmts[2]->attrGroups[] = $attrGroup;
-$stmts[1]->attrGroups[] = $attrGroup;
-$stmts[2]->attrGroups[] = $attrGroup;
-$stmts[3]->attrGroups[] = $attrGroup;
-$stmts[4]->expr->class->attrGroups[] = $attrGroup;
-$stmts[5]->expr->attrGroups[] = $attrGroup;
-$stmts[6]->expr->attrGroups[] = $attrGroup;
+$stmts[0]->attr_groups[] = $attrGroup;
+$stmts[0]->stmts[0]->attr_groups[] = $attrGroup;
+$stmts[0]->stmts[0]->params[0]->attr_groups[] = $attrGroup;
+$stmts[0]->stmts[1]->attr_groups[] = $attrGroup;
+$stmts[0]->stmts[2]->attr_groups[] = $attrGroup;
+$stmts[1]->attr_groups[] = $attrGroup;
+$stmts[2]->attr_groups[] = $attrGroup;
+$stmts[3]->attr_groups[] = $attrGroup;
+$stmts[4]->expr->class->attr_groups[] = $attrGroup;
+$stmts[5]->expr->attr_groups[] = $attrGroup;
+$stmts[6]->expr->attr_groups[] = $attrGroup;
 -----
 <?php
 #[A]
 #[B]
-class X {
+class X
+{
     #[A]
     #[B]
-    public function m(#[A] #[B] & $p) {}
-
+    public function m(
+        #[A]
+        #[B]
+        &$p
+    )
+    {
+    }
     #[A]
     #[B]
-    public
-        $prop;
-
+    public $prop;
     #[A]
     #[B]
-    const
-        X = 42;
+    const X = 42;
 }
 
 #[A]
 #[B]
-trait X {}
+trait X
+{
+}
 
 #[A]
 #[B]
-interface X {}
+interface X
+{
+}
 
 #[A]
 #[B]
-function f() {}
+function f()
+{
+}
 
-new #[A] #[B] class {};
-#[A] #[B] function() {};
-#[A] #[B] fn()
-    => 42;
+new #[A] #[B] class
+{
+};
+#[A] #[B] function () {
+};
+#[A] #[B] fn() => 42;
 -----
 <?php
 class X {
@@ -108,49 +119,56 @@ $attrGroup = new Node\Attribute_Group([
 $attrGroup2 = new Node\Attribute_Group([
     new Node\Attribute(new Node\Name('B'), []),
 ]);
-$stmts[0]->attrGroups[] = $attrGroup;
-$stmts[0]->attrGroups[] = $attrGroup2;
-$stmts[0]->stmts[0]->attrGroups[] = $attrGroup;
-$stmts[0]->stmts[0]->attrGroups[] = $attrGroup2;
-$stmts[0]->stmts[1]->attrGroups[] = $attrGroup;
-$stmts[0]->stmts[2]->attrGroups[] = $attrGroup;
-$stmts[1]->attrGroups[] = $attrGroup;
-$stmts[2]->attrGroups[] = $attrGroup;
-$stmts[3]->attrGroups[] = $attrGroup;
-$stmts[4]->expr->class->attrGroups[] = $attrGroup;
-$stmts[5]->expr->attrGroups[] = $attrGroup;
-$stmts[6]->expr->attrGroups[] = $attrGroup;
+$stmts[0]->attr_groups[] = $attrGroup;
+$stmts[0]->attr_groups[] = $attrGroup2;
+$stmts[0]->stmts[0]->attr_groups[] = $attrGroup;
+$stmts[0]->stmts[0]->attr_groups[] = $attrGroup2;
+$stmts[0]->stmts[1]->attr_groups[] = $attrGroup;
+$stmts[0]->stmts[2]->attr_groups[] = $attrGroup;
+$stmts[1]->attr_groups[] = $attrGroup;
+$stmts[2]->attr_groups[] = $attrGroup;
+$stmts[3]->attr_groups[] = $attrGroup;
+$stmts[4]->expr->class->attr_groups[] = $attrGroup;
+$stmts[5]->expr->attr_groups[] = $attrGroup;
+$stmts[6]->expr->attr_groups[] = $attrGroup;
 -----
 <?php
 #[A]
 #[B]
-class X {
+class X
+{
     #[A]
     #[B]
-    public function m() {}
-
+    public function m()
+    {
+    }
     #[A]
-    public
-        $prop;
-
+    public $prop;
     #[A]
-    const
-        X = 42;
+    const X = 42;
 }
 
 #[A]
-trait X {}
+trait X
+{
+}
 
 #[A]
-interface X {}
+interface X
+{
+}
 
 #[A]
-function f() {}
+function f()
+{
+}
 
-new #[A] class {};
-#[A] function() {};
-#[A] fn()
-    => 42;
+new #[A] class
+{
+};
+#[A] function () {
+};
+#[A] fn() => 42;
 -----
 <?php
 
@@ -163,8 +181,8 @@ class X {};
 class X {};
 -----
 $attr = new Node\Attribute(new Node\Name('C'), []);
-$stmts[0]->attrGroups[0]->attrs[] = $attr;
-$stmts[1]->attrGroups[0]->attrs[] = $attr;
+$stmts[0]->attr_groups[0]->attrs[] = $attr;
+$stmts[1]->attr_groups[0]->attrs[] = $attr;
 -----
 <?php
 

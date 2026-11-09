@@ -11,6 +11,6 @@ class Property extends Magic_Const
         return '__PROPERTY__';
     }
     public function get_type(): string {
-        return 'Scalar_MagicConst_Property';
+        return 'Scalar_Magic_Const_Property';
     }
 }

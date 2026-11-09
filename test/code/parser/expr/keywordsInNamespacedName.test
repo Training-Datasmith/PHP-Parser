@@ -12,41 +12,41 @@ namespace\fn\use();
 private\protected\public\static\abstract\final();
 -----
 array(
-    0: Stmt_Namespace(
+    0: Stmt_Namespace_(
         name: Name(
             name: fn
         )
         stmts: array(
         )
     )
-    1: Stmt_Namespace(
+    1: Stmt_Namespace_(
         name: Name(
             name: fn\use
         )
         stmts: array(
         )
     )
-    2: Stmt_Namespace(
+    2: Stmt_Namespace_(
         name: Name(
             name: self
         )
         stmts: array(
         )
     )
-    3: Stmt_Namespace(
+    3: Stmt_Namespace_(
         name: Name(
             name: parent
         )
         stmts: array(
         )
     )
-    4: Stmt_Namespace(
+    4: Stmt_Namespace_(
         name: Name(
             name: static
         )
         stmts: array(
             0: Stmt_Expression(
-                expr: Expr_FuncCall(
+                expr: Expr_Func_Call(
                     name: Name(
                         name: fn\use
                     )
@@ -55,7 +55,7 @@ array(
                 )
             )
             1: Stmt_Expression(
-                expr: Expr_FuncCall(
+                expr: Expr_Func_Call(
                     name: Name_Fully_Qualified(
                         name: fn\use
                     )
@@ -64,7 +64,7 @@ array(
                 )
             )
             2: Stmt_Expression(
-                expr: Expr_FuncCall(
+                expr: Expr_Func_Call(
                     name: Name_Relative(
                         name: fn\use
                     )
@@ -73,7 +73,7 @@ array(
                 )
             )
             3: Stmt_Expression(
-                expr: Expr_FuncCall(
+                expr: Expr_Func_Call(
                     name: Name(
                         name: private\protected\public\static\abstract\final
                     )

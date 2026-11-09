@@ -23,6 +23,6 @@ class Intersection_Type extends Complex_Type
         return ['types'];
     }
     public function get_type(): string {
-        return 'IntersectionType';
+        return 'Intersection_Type';
     }
 }

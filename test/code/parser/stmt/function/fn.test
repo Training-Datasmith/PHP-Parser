@@ -5,16 +5,16 @@ function fn() {}
 -----
 !!version=7.3
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: fn
         )
         params: array(
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )

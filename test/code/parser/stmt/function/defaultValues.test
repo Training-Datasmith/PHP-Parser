@@ -15,25 +15,25 @@ function a(
 ) {}
 -----
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: a
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: b
                 )
-                default: Expr_ConstFetch(
+                default: Expr_Const_Fetch(
                     name: Name(
                         name: null
                     )
@@ -42,32 +42,32 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: c
                 )
-                default: Scalar_String(
+                default: Scalar_String_(
                     value: foo
                 )
                 hooks: array(
                 )
             )
             2: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: d
                 )
-                default: Expr_ClassConstFetch(
+                default: Expr_Class_Const_Fetch(
                     class: Name(
                         name: A
                     )
@@ -79,17 +79,17 @@ array(
                 )
             )
             3: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: f
                 )
-                default: Expr_UnaryPlus(
-                    expr: Scalar_Int(
+                default: Expr_Unary_Plus(
+                    expr: Scalar_Int_(
                         value: 1
                     )
                 )
@@ -97,17 +97,17 @@ array(
                 )
             )
             4: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: g
                 )
-                default: Expr_UnaryMinus(
-                    expr: Scalar_Float(
+                default: Expr_Unary_Minus(
+                    expr: Scalar_Float_(
                         value: 1
                     )
                 )
@@ -115,16 +115,16 @@ array(
                 )
             )
             5: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: h
                 )
-                default: Expr_Array(
+                default: Expr_Array_(
                     items: array(
                     )
                 )
@@ -132,16 +132,16 @@ array(
                 )
             )
             6: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: i
                 )
-                default: Expr_Array(
+                default: Expr_Array_(
                     items: array(
                     )
                 )
@@ -149,23 +149,23 @@ array(
                 )
             )
             7: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: j
                 )
-                default: Expr_Array(
+                default: Expr_Array_(
                     items: array(
                         0: Array_Item(
                             key: null
-                            value: Scalar_String(
+                            value: Scalar_String_(
                                 value: foo
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                     )
@@ -174,33 +174,33 @@ array(
                 )
             )
             8: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: k
                 )
-                default: Expr_Array(
+                default: Expr_Array_(
                     items: array(
                         0: Array_Item(
                             key: null
-                            value: Scalar_String(
+                            value: Scalar_String_(
                                 value: foo
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                         1: Array_Item(
-                            key: Scalar_String(
+                            key: Scalar_String_(
                                 value: bar
                             )
-                            value: Scalar_String(
+                            value: Scalar_String_(
                                 value: baz
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                     )
@@ -209,7 +209,7 @@ array(
                 )
             )
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )

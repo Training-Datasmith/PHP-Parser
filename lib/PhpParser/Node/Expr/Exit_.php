@@ -27,6 +27,6 @@ class Exit_ extends Expr
         return ['expr'];
     }
     public function get_type(): string {
-        return 'Expr_Exit';
+        return 'Expr_Exit_';
     }
 }

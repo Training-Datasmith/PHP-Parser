@@ -10,7 +10,7 @@ try {
 }
 -----
 array(
-    0: Stmt_TryCatch(
+    0: Stmt_Try_Catch(
         stmts: array(
             0: Stmt_Expression(
                 expr: Expr_Variable(
@@ -19,7 +19,7 @@ array(
             )
         )
         catches: array(
-            0: Stmt_Catch(
+            0: Stmt_Catch_(
                 types: array(
                     0: Name(
                         name: X
@@ -39,7 +39,7 @@ array(
                     )
                 )
             )
-            1: Stmt_Catch(
+            1: Stmt_Catch_(
                 types: array(
                     0: Name_Fully_Qualified(
                         name: A

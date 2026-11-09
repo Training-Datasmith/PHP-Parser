@@ -3,15 +3,15 @@ Error conditions for flexible doc strings
 <?php
 
 <<<A
- @@{ "\t" }@@A;
+ 	A;
 
 <<<A
     FooBar
- @@{ "\t" }@@A;
+ 	A;
 
 echo <<<END
-@@{ "\t" }@@   X
-@@{ "\t\t" }@@END;
+	   X
+		END;
 
 echo <<<END
       a
@@ -21,7 +21,7 @@ echo <<<END
 
 <<<END
 \ta
-@@{ "\t" }@@END;
+	END;
 
 <<<TEST
   Foo
@@ -47,25 +47,25 @@ Invalid body indentation level (expecting an indentation level of at least 1) fr
 Invalid body indentation level (expecting an indentation level of at least 1) from 34:1 to 35:0
 array(
     0: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
         )
     )
     1: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:     FooBar
         )
     )
-    2: Stmt_Echo(
+    2: Stmt_Echo_(
         exprs: array(
-            0: Scalar_String(
+            0: Scalar_String_(
                 value:   X
             )
         )
     )
-    3: Stmt_Echo(
+    3: Stmt_Echo_(
         exprs: array(
-            0: Scalar_String(
+            0: Scalar_String_(
                 value:  a
                 b
                 c
@@ -73,14 +73,14 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: 	a
         )
     )
     5: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: Foo
 
                 )
@@ -99,11 +99,11 @@ array(
             )
         )
     )
-    7: Stmt_Echo(
+    7: Stmt_Echo_(
         exprs: array(
             0: Scalar_Interpolated_String(
                 parts: array(
-                    0: Interpolated_StringPart(
+                    0: Interpolated_String_Part(
                         value: a
 
                     )

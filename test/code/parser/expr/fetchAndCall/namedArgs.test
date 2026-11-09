@@ -6,7 +6,7 @@ bar(class: 0);
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: foo
             )
@@ -18,7 +18,7 @@ array(
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
@@ -28,14 +28,14 @@ array(
                     value: Expr_Variable(
                         name: d
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: bar
             )
@@ -44,10 +44,10 @@ array(
                     name: Identifier(
                         name: class
                     )
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 0
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )

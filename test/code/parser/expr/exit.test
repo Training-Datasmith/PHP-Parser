@@ -17,41 +17,41 @@ DIE($a, $b);
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_Exit(
+        expr: Expr_Exit_(
             expr: null
         )
     )
     1: Stmt_Expression(
-        expr: Expr_Exit(
+        expr: Expr_Exit_(
             expr: null
         )
     )
     2: Stmt_Expression(
-        expr: Expr_Exit(
-            expr: Scalar_String(
+        expr: Expr_Exit_(
+            expr: Scalar_String_(
                 value: Die!
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_Exit(
+        expr: Expr_Exit_(
             expr: null
         )
     )
     4: Stmt_Expression(
-        expr: Expr_Exit(
+        expr: Expr_Exit_(
             expr: null
         )
     )
     5: Stmt_Expression(
-        expr: Expr_Exit(
-            expr: Scalar_String(
+        expr: Expr_Exit_(
+            expr: Scalar_String_(
                 value: Exit!
             )
         )
     )
     6: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: exit
             )
@@ -60,17 +60,17 @@ array(
                     name: Identifier(
                         name: status
                     )
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 42
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     7: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: exit
             )
@@ -80,14 +80,14 @@ array(
                     value: Expr_Variable(
                         name: args
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
             )
         )
     )
     8: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: exit
             )
@@ -97,7 +97,7 @@ array(
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
@@ -105,14 +105,14 @@ array(
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     9: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name_Fully_Qualified(
                 name: exit
             )
@@ -122,14 +122,14 @@ array(
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     10: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: exit
             )
@@ -140,7 +140,7 @@ array(
         )
     )
     11: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: DIE
             )
@@ -150,7 +150,7 @@ array(
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
@@ -158,7 +158,7 @@ array(
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )

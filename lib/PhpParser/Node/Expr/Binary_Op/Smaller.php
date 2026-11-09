@@ -11,6 +11,6 @@ class Smaller extends Binary_Op
         return '<';
     }
     public function get_type(): string {
-        return 'Expr_BinaryOp_Smaller';
+        return 'Expr_Binary_Op_Smaller';
     }
 }

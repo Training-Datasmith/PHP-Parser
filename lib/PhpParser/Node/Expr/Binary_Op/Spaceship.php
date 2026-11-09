@@ -11,6 +11,6 @@ class Spaceship extends Binary_Op
         return '<=>';
     }
     public function get_type(): string {
-        return 'Expr_BinaryOp_Spaceship';
+        return 'Expr_Binary_Op_Spaceship';
     }
 }

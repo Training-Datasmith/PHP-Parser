@@ -47,14 +47,14 @@ class Node_Dumper_Test extends \PHPUnit\Framework\TestCase
                 new Node\Expr\Array_([
                     new Node\Array_Item(new Node\Scalar\String_('Foo')),
                 ]),
-'Expr_Array(
+'Expr_Array_(
     items: array(
         0: Array_Item(
             key: null
-            value: Scalar_String(
+            value: Scalar_String_(
                 value: Foo
             )
-            byRef: false
+            by_ref: false
             unpack: false
         )
     )
@@ -76,12 +76,12 @@ array(
             var: Expr_Variable[2:1 - 2:2](
                 name: a
             )
-            expr: Scalar_Int[2:6 - 2:6](
+            expr: Scalar_Int_[2:6 - 2:6](
                 value: 1
             )
         )
     )
-    1: Stmt_Echo[3:1 - 3:8](
+    1: Stmt_Echo_[3:1 - 3:8](
         exprs: array(
             0: Expr_Variable[3:6 - 3:7](
                 name: a

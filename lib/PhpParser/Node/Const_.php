@@ -30,6 +30,6 @@ class Const_ extends Node_Abstract
         return ['name', 'value'];
     }
     public function get_type(): string {
-        return 'Const';
+        return 'Const_';
     }
 }

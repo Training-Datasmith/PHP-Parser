@@ -93,7 +93,7 @@ class Method extends Function_Like
     /**
      * Adds a statement.
      *
-     * @param Node|PhpParser\Builder $stmt The statement to add
+     * @param Node|Php_Parser\Builder $stmt The statement to add
      *
      * @return $this The builder instance (for fluid interface)
      */
@@ -120,10 +120,10 @@ class Method extends Function_Like
     /**
      * Returns the built method node.
      *
-     * @return Stmt\ClassMethod The built method node
+     * @return Stmt\Class_Method The built method node
      */
     public function get_node(): Node
     {
-        return new Stmt\Class_Method($this->name, ['flags' => $this->flags, 'byRef' => $this->return_by_ref, 'params' => $this->params, 'returnType' => $this->return_type, 'stmts' => $this->stmts, 'attrGroups' => $this->attribute_groups], $this->attributes);
+        return new Stmt\Class_Method($this->name, ['flags' => $this->flags, 'by_ref' => $this->return_by_ref, 'params' => $this->params, 'return_type' => $this->return_type, 'stmts' => $this->stmts, 'attr_groups' => $this->attribute_groups], $this->attributes);
     }
 }

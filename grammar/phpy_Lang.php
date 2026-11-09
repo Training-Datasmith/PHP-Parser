@@ -71,13 +71,13 @@ function resolveMacros($code)
 
             if ('attributes' === $name) {
                 assertArgs(0, $args, $name);
-                return '$this->getAttributes($this->tokenStartStack[#1], $this->tokenEndStack[$stackPos])';
+                return '$this->get_attributes($this->token_start_stack[#1], $this->token_end_stack[$stack_pos])';
             }
 
             if ('stackAttributes' === $name) {
                 assertArgs(1, $args, $name);
-                return '$this->getAttributes($this->tokenStartStack[' . $args[0] . '], '
-                       . ' $this->tokenEndStack[' . $args[0] . '])';
+                return '$this->get_attributes($this->token_start_stack[' . $args[0] . '], '
+                       . ' $this->token_end_stack[' . $args[0] . '])';
             }
 
             if ('init' === $name) {
@@ -113,20 +113,20 @@ function resolveMacros($code)
             if ('parseEncapsed' === $name) {
                 assertArgs(3, $args, $name);
 
-                return 'foreach (' . $args[0] . ' as $s) { if ($s instanceof Node\InterpolatedStringPart) {'
-                       . ' $s->value = Node\Scalar\String_::parseEscapeSequences($s->value, ' . $args[1] . ', ' . $args[2] . '); } }';
+                return 'foreach (' . $args[0] . ' as $s) { if ($s instanceof Node\Interpolated_String_Part) {'
+                       . ' $s->value = Node\Scalar\String_::parse_escape_sequences($s->value, ' . $args[1] . ', ' . $args[2] . '); } }';
             }
 
             if ('makeNop' === $name) {
                 assertArgs(1, $args, $name);
 
-                return $args[0] . ' = $this->maybeCreateNop($this->tokenStartStack[#1], $this->tokenEndStack[$stackPos])';
+                return $args[0] . ' = $this->maybe_create_nop($this->token_start_stack[#1], $this->token_end_stack[$stack_pos])';
             }
 
             if ('makeZeroLengthNop' == $name) {
                 assertArgs(1, $args, $name);
 
-                return $args[0] . ' = $this->maybeCreateZeroLengthNop($this->tokenPos);';
+                return $args[0] . ' = $this->maybe_create_zero_length_nop($this->token_pos);';
             }
 
             return $matches[0];
@@ -144,7 +144,7 @@ function assertArgs($num, $args, $name)
 
 function resolveStackAccess($code)
 {
-    $code = preg_replace('/\$\d+/', '$this->semStack[$0]', $code);
+    $code = preg_replace('/\$\d+/', '$this->sem_stack[$0]', $code);
     $code = preg_replace('/#(\d+)/', '$$1', $code);
     return $code;
 }

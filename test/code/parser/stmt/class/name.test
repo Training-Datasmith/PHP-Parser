@@ -4,8 +4,8 @@ Invalid class name
 -----
 Cannot use 'self' as class name as it is reserved from 1:13 to 1:16
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -23,8 +23,8 @@ array(
 -----
 Cannot use 'PARENT' as class name as it is reserved from 1:13 to 1:18
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -52,8 +52,8 @@ array(
 -----
 Cannot use 'self' as class name as it is reserved from 1:23 to 1:26
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -73,8 +73,8 @@ array(
 -----
 Cannot use 'PARENT' as class name as it is reserved from 1:23 to 1:28
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -94,8 +94,8 @@ array(
 -----
 Cannot use 'static' as class name as it is reserved from 1:23 to 1:28
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -115,8 +115,8 @@ array(
 -----
 Cannot use 'self' as interface name as it is reserved from 1:26 to 1:29
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -137,8 +137,8 @@ array(
 -----
 Cannot use 'PARENT' as interface name as it is reserved from 1:26 to 1:31
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -159,8 +159,8 @@ array(
 -----
 Cannot use 'static' as interface name as it is reserved from 1:26 to 1:31
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -181,8 +181,8 @@ array(
 -----
 Cannot use 'self' as class name as it is reserved from 1:17 to 1:20
 array(
-    0: Stmt_Interface(
-        attrGroups: array(
+    0: Stmt_Interface_(
+        attr_groups: array(
         )
         name: Identifier(
             name: self
@@ -198,8 +198,8 @@ array(
 -----
 Cannot use 'PARENT' as class name as it is reserved from 1:17 to 1:22
 array(
-    0: Stmt_Interface(
-        attrGroups: array(
+    0: Stmt_Interface_(
+        attr_groups: array(
         )
         name: Identifier(
             name: PARENT
@@ -225,8 +225,8 @@ array(
 -----
 Cannot use 'self' as interface name as it is reserved from 1:27 to 1:30
 array(
-    0: Stmt_Interface(
-        attrGroups: array(
+    0: Stmt_Interface_(
+        attr_groups: array(
         )
         name: Identifier(
             name: A
@@ -245,8 +245,8 @@ array(
 -----
 Cannot use 'PARENT' as interface name as it is reserved from 1:27 to 1:32
 array(
-    0: Stmt_Interface(
-        attrGroups: array(
+    0: Stmt_Interface_(
+        attr_groups: array(
         )
         name: Identifier(
             name: A
@@ -265,8 +265,8 @@ array(
 -----
 Cannot use 'static' as interface name as it is reserved from 1:27 to 1:32
 array(
-    0: Stmt_Interface(
-        attrGroups: array(
+    0: Stmt_Interface_(
+        attr_groups: array(
         )
         name: Identifier(
             name: A

@@ -58,7 +58,7 @@ class Node_Abstract_Test extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider provideNodes
      */
-    public function testConstruct(array $attributes, Node $node)
+    public function testConst_ruct(array $attributes, Node $node)
     {
         $this->assertSame('Dummy', $node->get_type());
         $this->assertSame(['subNode1', 'subNode2'], $node->get_sub_node_names());
@@ -228,8 +228,8 @@ PHP;
         $expected = <<<'JSON'
 [
     {
-        "nodeType": "Stmt_Function",
-        "byRef": false,
+        "nodeType": "Stmt_Function_",
+        "by_ref": false,
         "name": {
             "nodeType": "Identifier",
             "name": "functionName",
@@ -246,7 +246,7 @@ PHP;
             {
                 "nodeType": "Param",
                 "type": null,
-                "byRef": true,
+                "by_ref": true,
                 "variadic": false,
                 "var": {
                     "nodeType": "Expr_Variable",
@@ -261,7 +261,7 @@ PHP;
                     }
                 },
                 "default": {
-                    "nodeType": "Scalar_Int",
+                    "nodeType": "Scalar_Int_",
                     "value": 0,
                     "attributes": {
                         "startLine": 4,
@@ -275,7 +275,7 @@ PHP;
                     }
                 },
                 "flags": 0,
-                "attrGroups": [],
+                "attr_groups": [],
                 "hooks": [],
                 "attributes": {
                     "startLine": 4,
@@ -289,7 +289,7 @@ PHP;
             {
                 "nodeType": "Param",
                 "type": null,
-                "byRef": false,
+                "by_ref": false,
                 "variadic": false,
                 "var": {
                     "nodeType": "Expr_Variable",
@@ -304,7 +304,7 @@ PHP;
                     }
                 },
                 "default": {
-                    "nodeType": "Scalar_Float",
+                    "nodeType": "Scalar_Float_",
                     "value": 1,
                     "attributes": {
                         "startLine": 4,
@@ -317,7 +317,7 @@ PHP;
                     }
                 },
                 "flags": 0,
-                "attrGroups": [],
+                "attr_groups": [],
                 "hooks": [],
                 "attributes": {
                     "startLine": 4,
@@ -329,13 +329,13 @@ PHP;
                 }
             }
         ],
-        "returnType": null,
+        "return_type": null,
         "stmts": [
             {
-                "nodeType": "Stmt_Echo",
+                "nodeType": "Stmt_Echo_",
                 "exprs": [
                     {
-                        "nodeType": "Scalar_String",
+                        "nodeType": "Scalar_String_",
                         "value": "Foo",
                         "attributes": {
                             "startLine": 5,
@@ -359,7 +359,8 @@ PHP;
                 }
             }
         ],
-        "attrGroups": [],
+        "attr_groups": [],
+        "namespaced_name": null,
         "attributes": {
             "startLine": 4,
             "startTokenPos": 5,
@@ -396,7 +397,7 @@ JSON;
         $expected81 = <<<'JSON'
 [
     {
-        "nodeType": "Stmt_Function",
+        "nodeType": "Stmt_Function_",
         "attributes": {
             "startLine": 4,
             "startTokenPos": 5,
@@ -427,7 +428,7 @@ JSON;
                 }
             ]
         },
-        "byRef": false,
+        "by_ref": false,
         "name": {
             "nodeType": "Identifier",
             "attributes": {
@@ -452,7 +453,7 @@ JSON;
                     "endFilePos": 64
                 },
                 "type": null,
-                "byRef": true,
+                "by_ref": true,
                 "variadic": false,
                 "var": {
                     "nodeType": "Expr_Variable",
@@ -467,7 +468,7 @@ JSON;
                     "name": "a"
                 },
                 "default": {
-                    "nodeType": "Scalar_Int",
+                    "nodeType": "Scalar_Int_",
                     "attributes": {
                         "startLine": 4,
                         "startTokenPos": 14,
@@ -481,7 +482,7 @@ JSON;
                     "value": 0
                 },
                 "flags": 0,
-                "attrGroups": [],
+                "attr_groups": [],
                 "hooks": []
             },
             {
@@ -495,7 +496,7 @@ JSON;
                     "endFilePos": 74
                 },
                 "type": null,
-                "byRef": false,
+                "by_ref": false,
                 "variadic": false,
                 "var": {
                     "nodeType": "Expr_Variable",
@@ -510,7 +511,7 @@ JSON;
                     "name": "b"
                 },
                 "default": {
-                    "nodeType": "Scalar_Float",
+                    "nodeType": "Scalar_Float_",
                     "attributes": {
                         "startLine": 4,
                         "startTokenPos": 21,
@@ -523,14 +524,14 @@ JSON;
                     "value": 1
                 },
                 "flags": 0,
-                "attrGroups": [],
+                "attr_groups": [],
                 "hooks": []
             }
         ],
-        "returnType": null,
+        "return_type": null,
         "stmts": [
             {
-                "nodeType": "Stmt_Echo",
+                "nodeType": "Stmt_Echo_",
                 "attributes": {
                     "startLine": 5,
                     "startTokenPos": 26,
@@ -541,7 +542,7 @@ JSON;
                 },
                 "exprs": [
                     {
-                        "nodeType": "Scalar_String",
+                        "nodeType": "Scalar_String_",
                         "attributes": {
                             "startLine": 5,
                             "startTokenPos": 28,
@@ -557,7 +558,8 @@ JSON;
                 ]
             }
         ],
-        "attrGroups": []
+        "attr_groups": [],
+        "namespaced_name": null
     }
 ]
 JSON;

@@ -42,6 +42,6 @@ class For_ extends Node\Stmt
         return ['init', 'cond', 'loop', 'stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_For';
+        return 'Stmt_For_';
     }
 }

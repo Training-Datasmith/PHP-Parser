@@ -5,7 +5,7 @@ Error suppression
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_ErrorSuppress(
+        expr: Expr_Error_Suppress(
             expr: Expr_Variable(
                 name: a
             )

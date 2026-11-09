@@ -53,62 +53,62 @@ list($x) = $y;
 !!attributes
 array(
     0: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 12
             rawValue: 0b1100
             kind: KIND_BIN (2)
         )
     )
     1: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 12
             rawValue: 0o14
             kind: KIND_OCT (8)
         )
     )
     2: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 12
             rawValue: 12
             kind: KIND_DEC (10)
         )
     )
     3: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 12
             rawValue: 0xc
             kind: KIND_HEX (16)
         )
     )
     4: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 123456
             rawValue: 1_2_3_4_5_6
             kind: KIND_DEC (10)
         )
     )
     5: Stmt_Expression(
-        expr: Scalar_Float(
+        expr: Scalar_Float_(
             value: 3.141592653
             rawValue: 3.141_592_653
         )
     )
     6: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: foo
             kind: KIND_SINGLE_QUOTED (1)
             rawValue: 'foo'
         )
     )
     7: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: bar
             kind: KIND_DOUBLE_QUOTED (2)
             rawValue: "bar"
         )
     )
     8: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: foo
             bar
             kind: KIND_DOUBLE_QUOTED (2)
@@ -117,7 +117,7 @@ array(
         )
     )
     9: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: foo
             bar
             kind: KIND_DOUBLE_QUOTED (2)
@@ -127,7 +127,7 @@ array(
     10: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: foo
                     bar
                     rawValue: foo\nbar
@@ -140,9 +140,9 @@ array(
         )
     )
     11: Stmt_Expression(
-        expr: Expr_ShellExec(
+        expr: Expr_Shell_Exec(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: foo
                     bar
                     rawValue: foo\nbar
@@ -151,9 +151,9 @@ array(
         )
     )
     12: Stmt_Expression(
-        expr: Expr_ShellExec(
+        expr: Expr_Shell_Exec(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: foo
                     bar
                     rawValue: foo\nbar
@@ -165,7 +165,7 @@ array(
         )
     )
     13: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
             kind: KIND_NOWDOC (4)
             docLabel: ABC
@@ -174,7 +174,7 @@ array(
         )
     )
     14: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: foo bar
             kind: KIND_NOWDOC (4)
             docLabel: ABC
@@ -183,7 +183,7 @@ array(
         )
     )
     15: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: foo bar
             kind: KIND_NOWDOC (4)
             docLabel: ABC
@@ -192,7 +192,7 @@ array(
         )
     )
     16: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: foo
             bar
             kind: KIND_HEREDOC (3)
@@ -202,7 +202,7 @@ array(
         )
     )
     17: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: foo
             bar
             kind: KIND_HEREDOC (3)
@@ -214,7 +214,7 @@ array(
     18: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: foo
                     bar
                     rawValue: foo\nbar
@@ -222,7 +222,7 @@ array(
                 1: Expr_Variable(
                     name: x
                 )
-                2: Interpolated_StringPart(
+                2: Interpolated_String_Part(
                     value: baz
                     rawValue: baz
                 )
@@ -235,7 +235,7 @@ array(
     19: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: foo
                     bar
                     rawValue: foo\nbar
@@ -243,7 +243,7 @@ array(
                 1: Expr_Variable(
                     name: x
                 )
-                2: Interpolated_StringPart(
+                2: Interpolated_String_Part(
                     value: baz
                     rawValue: baz
                 )
@@ -254,14 +254,14 @@ array(
         )
     )
     20: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
             )
             kind: KIND_LONG (1)
         )
     )
     21: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
             )
             kind: KIND_SHORT (2)
@@ -269,14 +269,14 @@ array(
     )
     22: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_List(
+            var: Expr_List_(
                 items: array(
                     0: Array_Item(
                         key: null
                         value: Expr_Variable(
                             name: x
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )
@@ -289,14 +289,14 @@ array(
     )
     23: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_List(
+            var: Expr_List_(
                 items: array(
                     0: Array_Item(
                         key: null
                         value: Expr_Variable(
                             name: x
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )
@@ -308,7 +308,7 @@ array(
         )
     )
     24: Stmt_Expression(
-        expr: Expr_Cast_Int(
+        expr: Expr_Cast_Int_(
             expr: Expr_Variable(
                 name: int
             )
@@ -316,7 +316,7 @@ array(
         )
     )
     25: Stmt_Expression(
-        expr: Expr_Cast_Int(
+        expr: Expr_Cast_Int_(
             expr: Expr_Variable(
                 name: integer
             )
@@ -324,7 +324,7 @@ array(
         )
     )
     26: Stmt_Expression(
-        expr: Expr_Cast_Bool(
+        expr: Expr_Cast_Bool_(
             expr: Expr_Variable(
                 name: bool
             )
@@ -332,7 +332,7 @@ array(
         )
     )
     27: Stmt_Expression(
-        expr: Expr_Cast_Bool(
+        expr: Expr_Cast_Bool_(
             expr: Expr_Variable(
                 name: boolean
             )
@@ -340,7 +340,7 @@ array(
         )
     )
     28: Stmt_Expression(
-        expr: Expr_Cast_String(
+        expr: Expr_Cast_String_(
             expr: Expr_Variable(
                 name: string
             )
@@ -348,7 +348,7 @@ array(
         )
     )
     29: Stmt_Expression(
-        expr: Expr_Cast_String(
+        expr: Expr_Cast_String_(
             expr: Expr_Variable(
                 name: binary
             )

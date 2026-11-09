@@ -24,6 +24,6 @@ class Return_ extends Node\Stmt
         return ['expr'];
     }
     public function get_type(): string {
-        return 'Stmt_Return';
+        return 'Stmt_Return_';
     }
 }

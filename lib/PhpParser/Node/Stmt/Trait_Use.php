@@ -28,6 +28,6 @@ class Trait_Use extends Node\Stmt
         return ['traits', 'adaptations'];
     }
     public function get_type(): string {
-        return 'Stmt_TraitUse';
+        return 'Stmt_Trait_Use';
     }
 }

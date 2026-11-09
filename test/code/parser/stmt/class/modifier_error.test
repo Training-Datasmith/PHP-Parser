@@ -4,8 +4,8 @@ Invalid modifier combination
 -----
 Multiple access type modifiers are not allowed from 1:24 to 1:29
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -16,12 +16,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: a
                         )
@@ -39,8 +39,8 @@ array(
 -----
 Multiple access type modifiers are not allowed from 1:24 to 1:32
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -51,12 +51,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC | PROTECTED (3)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: a
                         )
@@ -74,8 +74,8 @@ array(
 -----
 Multiple readonly modifiers are not allowed from 1:26 to 1:33
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -86,12 +86,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: READONLY (64)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: a
                         )
@@ -109,8 +109,8 @@ array(
 -----
 Multiple abstract modifiers are not allowed from 1:26 to 1:33
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -121,16 +121,16 @@ array(
         )
         stmts: array(
             0: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: ABSTRACT (16)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: a
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: null
             )
         )
@@ -141,8 +141,8 @@ array(
 -----
 Multiple static modifiers are not allowed from 1:24 to 1:29
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -153,12 +153,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: STATIC (8)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: a
                         )
@@ -176,8 +176,8 @@ array(
 -----
 Multiple final modifiers are not allowed from 1:23 to 1:27
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -188,16 +188,16 @@ array(
         )
         stmts: array(
             0: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: FINAL (32)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: a
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
@@ -209,8 +209,8 @@ array(
 -----
 Cannot use the final modifier on an abstract class member from 1:26 to 1:30
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -221,16 +221,16 @@ array(
         )
         stmts: array(
             0: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: ABSTRACT | FINAL (48)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: a
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: null
             )
         )
@@ -241,8 +241,8 @@ array(
 -----
 Cannot use the final modifier on an abstract class from 1:16 to 1:20
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: ABSTRACT | FINAL (48)
         name: Identifier(

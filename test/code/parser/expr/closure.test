@@ -12,17 +12,17 @@ function() use($a) : \Foo\Bar {};
 array(
     0: Stmt_Expression(
         expr: Expr_Closure(
-            attrGroups: array(
+            attr_groups: array(
             )
             static: false
-            byRef: false
+            by_ref: false
             params: array(
                 0: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: false
+                    by_ref: false
                     variadic: false
                     var: Expr_Variable(
                         name: a
@@ -34,7 +34,7 @@ array(
             )
             uses: array(
             )
-            returnType: null
+            return_type: null
             stmts: array(
                 0: Stmt_Expression(
                     expr: Expr_Variable(
@@ -46,17 +46,17 @@ array(
     )
     1: Stmt_Expression(
         expr: Expr_Closure(
-            attrGroups: array(
+            attr_groups: array(
             )
             static: false
-            byRef: false
+            by_ref: false
             params: array(
                 0: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: false
+                    by_ref: false
                     variadic: false
                     var: Expr_Variable(
                         name: a
@@ -71,20 +71,20 @@ array(
                     var: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                 )
             )
-            returnType: null
+            return_type: null
             stmts: array(
             )
         )
     )
     2: Stmt_Expression(
         expr: Expr_Closure(
-            attrGroups: array(
+            attr_groups: array(
             )
             static: false
-            byRef: false
+            by_ref: false
             params: array(
             )
             uses: array(
@@ -92,33 +92,33 @@ array(
                     var: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                 )
                 1: Closure_Use(
                     var: Expr_Variable(
                         name: b
                     )
-                    byRef: true
+                    by_ref: true
                 )
             )
-            returnType: null
+            return_type: null
             stmts: array(
             )
         )
     )
     3: Stmt_Expression(
         expr: Expr_Closure(
-            attrGroups: array(
+            attr_groups: array(
             )
             static: false
-            byRef: true
+            by_ref: true
             params: array(
                 0: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: false
+                    by_ref: false
                     variadic: false
                     var: Expr_Variable(
                         name: a
@@ -130,39 +130,39 @@ array(
             )
             uses: array(
             )
-            returnType: null
+            return_type: null
             stmts: array(
             )
         )
     )
     4: Stmt_Expression(
         expr: Expr_Closure(
-            attrGroups: array(
+            attr_groups: array(
             )
             static: true
-            byRef: false
+            by_ref: false
             params: array(
             )
             uses: array(
             )
-            returnType: null
+            return_type: null
             stmts: array(
             )
         )
     )
     5: Stmt_Expression(
         expr: Expr_Closure(
-            attrGroups: array(
+            attr_groups: array(
             )
             static: false
-            byRef: false
+            by_ref: false
             params: array(
                 0: Param(
-                    attrGroups: array(
+                    attr_groups: array(
                     )
                     flags: 0
                     type: null
-                    byRef: false
+                    by_ref: false
                     variadic: false
                     var: Expr_Variable(
                         name: a
@@ -174,7 +174,7 @@ array(
             )
             uses: array(
             )
-            returnType: Identifier(
+            return_type: Identifier(
                 name: array
             )
             stmts: array(
@@ -183,10 +183,10 @@ array(
     )
     6: Stmt_Expression(
         expr: Expr_Closure(
-            attrGroups: array(
+            attr_groups: array(
             )
             static: false
-            byRef: false
+            by_ref: false
             params: array(
             )
             uses: array(
@@ -194,10 +194,10 @@ array(
                     var: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                 )
             )
-            returnType: Name_Fully_Qualified(
+            return_type: Name_Fully_Qualified(
                 name: Foo\Bar
             )
             stmts: array(

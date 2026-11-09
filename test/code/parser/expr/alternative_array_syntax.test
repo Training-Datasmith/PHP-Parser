@@ -15,22 +15,22 @@ new $a->b{'c'}();
 !!version=7.4
 array(
     0: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
+        expr: Expr_Array_Dim_Fetch(
             var: Expr_Variable(
                 name: a
             )
-            dim: Scalar_String(
+            dim: Scalar_String_(
                 value: b
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_FuncCall(
-            name: Expr_ArrayDimFetch(
+        expr: Expr_Func_Call(
+            name: Expr_Array_Dim_Fetch(
                 var: Expr_Variable(
                     name: a
                 )
-                dim: Scalar_String(
+                dim: Scalar_String_(
                     value: b
                 )
             )
@@ -39,8 +39,8 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_PropertyFetch(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Property_Fetch(
                 var: Expr_Variable(
                     name: a
                 )
@@ -48,14 +48,14 @@ array(
                     name: b
                 )
             )
-            dim: Scalar_String(
+            dim: Scalar_String_(
                 value: c
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_MethodCall(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Method_Call(
                 var: Expr_Variable(
                     name: a
                 )
@@ -65,14 +65,14 @@ array(
                 args: array(
                 )
             )
-            dim: Scalar_String(
+            dim: Scalar_String_(
                 value: c
             )
         )
     )
     4: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_StaticPropertyFetch(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Static_Property_Fetch(
                 class: Name(
                     name: A
                 )
@@ -80,26 +80,26 @@ array(
                     name: b
                 )
             )
-            dim: Scalar_String(
+            dim: Scalar_String_(
                 value: c
             )
         )
     )
     5: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_ConstFetch(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Const_Fetch(
                 name: Name(
                     name: A
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 0
             )
         )
     )
     6: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_ClassConstFetch(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Class_Const_Fetch(
                 class: Name(
                     name: A
                 )
@@ -107,18 +107,18 @@ array(
                     name: B
                 )
             )
-            dim: Scalar_Int(
+            dim: Scalar_Int_(
                 value: 0
             )
         )
     )
     7: Stmt_Expression(
-        expr: Expr_New(
-            class: Expr_ArrayDimFetch(
+        expr: Expr_New_(
+            class: Expr_Array_Dim_Fetch(
                 var: Expr_Variable(
                     name: array
                 )
-                dim: Scalar_String(
+                dim: Scalar_String_(
                     value: className
                 )
             )
@@ -127,9 +127,9 @@ array(
         )
     )
     8: Stmt_Expression(
-        expr: Expr_New(
-            class: Expr_ArrayDimFetch(
-                var: Expr_PropertyFetch(
+        expr: Expr_New_(
+            class: Expr_Array_Dim_Fetch(
+                var: Expr_Property_Fetch(
                     var: Expr_Variable(
                         name: a
                     )
@@ -137,7 +137,7 @@ array(
                         name: b
                     )
                 )
-                dim: Scalar_String(
+                dim: Scalar_String_(
                     value: c
                 )
             )
@@ -177,7 +177,7 @@ array(
     1: Stmt_Block(
         stmts: array(
             0: Stmt_Expression(
-                expr: Scalar_String(
+                expr: Scalar_String_(
                     value: b
                 )
             )
@@ -191,14 +191,14 @@ array(
     3: Stmt_Block(
         stmts: array(
             0: Stmt_Expression(
-                expr: Scalar_String(
+                expr: Scalar_String_(
                     value: b
                 )
             )
         )
     )
     4: Stmt_Expression(
-        expr: Expr_PropertyFetch(
+        expr: Expr_Property_Fetch(
             var: Expr_Variable(
                 name: a
             )
@@ -210,14 +210,14 @@ array(
     5: Stmt_Block(
         stmts: array(
             0: Stmt_Expression(
-                expr: Scalar_String(
+                expr: Scalar_String_(
                     value: c
                 )
             )
         )
     )
     6: Stmt_Expression(
-        expr: Expr_MethodCall(
+        expr: Expr_Method_Call(
             var: Expr_Variable(
                 name: a
             )
@@ -231,14 +231,14 @@ array(
     7: Stmt_Block(
         stmts: array(
             0: Stmt_Expression(
-                expr: Scalar_String(
+                expr: Scalar_String_(
                     value: c
                 )
             )
         )
     )
     8: Stmt_Expression(
-        expr: Expr_StaticPropertyFetch(
+        expr: Expr_Static_Property_Fetch(
             class: Name(
                 name: A
             )
@@ -250,14 +250,14 @@ array(
     9: Stmt_Block(
         stmts: array(
             0: Stmt_Expression(
-                expr: Scalar_String(
+                expr: Scalar_String_(
                     value: c
                 )
             )
         )
     )
     10: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: A
             )
@@ -266,14 +266,14 @@ array(
     11: Stmt_Block(
         stmts: array(
             0: Stmt_Expression(
-                expr: Scalar_Int(
+                expr: Scalar_Int_(
                     value: 0
                 )
             )
         )
     )
     12: Stmt_Expression(
-        expr: Expr_ClassConstFetch(
+        expr: Expr_Class_Const_Fetch(
             class: Name(
                 name: A
             )
@@ -285,14 +285,14 @@ array(
     13: Stmt_Block(
         stmts: array(
             0: Stmt_Expression(
-                expr: Scalar_Int(
+                expr: Scalar_Int_(
                     value: 0
                 )
             )
         )
     )
     14: Stmt_Expression(
-        expr: Expr_New(
+        expr: Expr_New_(
             class: Expr_Variable(
                 name: array
             )
@@ -303,15 +303,15 @@ array(
     15: Stmt_Block(
         stmts: array(
             0: Stmt_Expression(
-                expr: Scalar_String(
+                expr: Scalar_String_(
                     value: className
                 )
             )
         )
     )
     16: Stmt_Expression(
-        expr: Expr_New(
-            class: Expr_PropertyFetch(
+        expr: Expr_New_(
+            class: Expr_Property_Fetch(
                 var: Expr_Variable(
                     name: a
                 )
@@ -326,7 +326,7 @@ array(
     17: Stmt_Block(
         stmts: array(
             0: Stmt_Expression(
-                expr: Scalar_String(
+                expr: Scalar_String_(
                     value: c
                 )
             )

@@ -24,6 +24,6 @@ class Error_Suppress extends Expr
         return ['expr'];
     }
     public function get_type(): string {
-        return 'Expr_ErrorSuppress';
+        return 'Expr_Error_Suppress';
     }
 }

@@ -9,8 +9,8 @@ New expression dereferencing
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_PropertyFetch(
-            var: Expr_New(
+        expr: Expr_Property_Fetch(
+            var: Expr_New_(
                 class: Name(
                     name: A
                 )
@@ -23,8 +23,8 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_MethodCall(
-            var: Expr_New(
+        expr: Expr_Method_Call(
+            var: Expr_New_(
                 class: Name(
                     name: A
                 )
@@ -39,34 +39,34 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_New(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_New_(
                 class: Name(
                     name: A
                 )
                 args: array(
                 )
             )
-            dim: Scalar_String(
+            dim: Scalar_String_(
                 value: b
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_ArrayDimFetch(
-                var: Expr_New(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Array_Dim_Fetch(
+                var: Expr_New_(
                     class: Name(
                         name: A
                     )
                     args: array(
                     )
                 )
-                dim: Scalar_String(
+                dim: Scalar_String_(
                     value: b
                 )
             )
-            dim: Scalar_String(
+            dim: Scalar_String_(
                 value: c
             )
         )

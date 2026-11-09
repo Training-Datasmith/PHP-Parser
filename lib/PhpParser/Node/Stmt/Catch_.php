@@ -33,6 +33,6 @@ class Catch_ extends Node\Stmt
         return ['types', 'var', 'stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_Catch';
+        return 'Stmt_Catch_';
     }
 }

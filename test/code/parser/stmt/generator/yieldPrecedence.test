@@ -15,125 +15,125 @@ function gen() {
 }
 -----
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: gen
         )
         params: array(
         )
-        returnType: null
+        return_type: null
         stmts: array(
             0: Stmt_Expression(
-                expr: Expr_Yield(
+                expr: Expr_Yield_(
                     key: null
-                    value: Expr_BinaryOp_Concat(
-                        left: Scalar_String(
+                    value: Expr_Binary_Op_Concat(
+                        left: Scalar_String_(
                             value: a
                         )
-                        right: Scalar_String(
+                        right: Scalar_String_(
                             value: b
                         )
                     )
                 )
             )
             1: Stmt_Expression(
-                expr: Expr_BinaryOp_LogicalOr(
-                    left: Expr_Yield(
+                expr: Expr_Binary_Op_Logical_Or(
+                    left: Expr_Yield_(
                         key: null
-                        value: Scalar_String(
+                        value: Scalar_String_(
                             value: a
                         )
                     )
-                    right: Expr_Exit(
+                    right: Expr_Exit_(
                         expr: null
                     )
                 )
             )
             2: Stmt_Expression(
-                expr: Expr_Yield(
-                    key: Scalar_String(
+                expr: Expr_Yield_(
+                    key: Scalar_String_(
                         value: k
                     )
-                    value: Expr_BinaryOp_Concat(
-                        left: Scalar_String(
+                    value: Expr_Binary_Op_Concat(
+                        left: Scalar_String_(
                             value: a
                         )
-                        right: Scalar_String(
+                        right: Scalar_String_(
                             value: b
                         )
                     )
                 )
             )
             3: Stmt_Expression(
-                expr: Expr_BinaryOp_LogicalOr(
-                    left: Expr_Yield(
-                        key: Scalar_String(
+                expr: Expr_Binary_Op_Logical_Or(
+                    left: Expr_Yield_(
+                        key: Scalar_String_(
                             value: k
                         )
-                        value: Scalar_String(
+                        value: Scalar_String_(
                             value: a
                         )
                     )
-                    right: Expr_Exit(
+                    right: Expr_Exit_(
                         expr: null
                     )
                 )
             )
             4: Stmt_Expression(
-                expr: Expr_FuncCall(
+                expr: Expr_Func_Call(
                     name: Name(
                         name: var_dump
                     )
                     args: array(
                         0: Arg(
                             name: null
-                            value: Expr_Array(
+                            value: Expr_Array_(
                                 items: array(
                                     0: Array_Item(
                                         key: null
-                                        value: Expr_Yield(
-                                            key: Scalar_String(
+                                        value: Expr_Yield_(
+                                            key: Scalar_String_(
                                                 value: k
                                             )
-                                            value: Expr_BinaryOp_Concat(
-                                                left: Scalar_String(
+                                            value: Expr_Binary_Op_Concat(
+                                                left: Scalar_String_(
                                                     value: a
                                                 )
-                                                right: Scalar_String(
+                                                right: Scalar_String_(
                                                     value: b
                                                 )
                                             )
                                         )
-                                        byRef: false
+                                        by_ref: false
                                         unpack: false
                                     )
                                 )
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                     )
                 )
             )
             5: Stmt_Expression(
-                expr: Expr_Yield(
+                expr: Expr_Yield_(
                     key: null
-                    value: Expr_Yield(
-                        key: Scalar_String(
+                    value: Expr_Yield_(
+                        key: Scalar_String_(
                             value: k1
                         )
-                        value: Expr_Yield(
-                            key: Scalar_String(
+                        value: Expr_Yield_(
+                            key: Scalar_String_(
                                 value: k2
                             )
-                            value: Expr_BinaryOp_Concat(
-                                left: Scalar_String(
+                            value: Expr_Binary_Op_Concat(
+                                left: Scalar_String_(
                                     value: a
                                 )
-                                right: Scalar_String(
+                                right: Scalar_String_(
                                     value: b
                                 )
                             )
@@ -142,105 +142,105 @@ array(
                 )
             )
             6: Stmt_Expression(
-                expr: Expr_Yield(
-                    key: Expr_Yield(
-                        key: Scalar_String(
+                expr: Expr_Yield_(
+                    key: Expr_Yield_(
+                        key: Scalar_String_(
                             value: k1
                         )
-                        value: Expr_Yield(
+                        value: Expr_Yield_(
                             key: null
-                            value: Scalar_String(
+                            value: Scalar_String_(
                                 value: k2
                             )
                         )
                     )
-                    value: Expr_BinaryOp_Concat(
-                        left: Scalar_String(
+                    value: Expr_Binary_Op_Concat(
+                        left: Scalar_String_(
                             value: a
                         )
-                        right: Scalar_String(
+                        right: Scalar_String_(
                             value: b
                         )
                     )
                 )
             )
             7: Stmt_Expression(
-                expr: Expr_FuncCall(
+                expr: Expr_Func_Call(
                     name: Name(
                         name: var_dump
                     )
                     args: array(
                         0: Arg(
                             name: null
-                            value: Expr_Array(
+                            value: Expr_Array_(
                                 items: array(
                                     0: Array_Item(
                                         key: null
-                                        value: Expr_Yield(
-                                            key: Scalar_String(
+                                        value: Expr_Yield_(
+                                            key: Scalar_String_(
                                                 value: k1
                                             )
-                                            value: Expr_Yield(
-                                                key: Scalar_String(
+                                            value: Expr_Yield_(
+                                                key: Scalar_String_(
                                                     value: k2
                                                 )
-                                                value: Expr_BinaryOp_Concat(
-                                                    left: Scalar_String(
+                                                value: Expr_Binary_Op_Concat(
+                                                    left: Scalar_String_(
                                                         value: a
                                                     )
-                                                    right: Scalar_String(
+                                                    right: Scalar_String_(
                                                         value: b
                                                     )
                                                 )
                                             )
                                         )
-                                        byRef: false
+                                        by_ref: false
                                         unpack: false
                                     )
                                 )
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                     )
                 )
             )
             8: Stmt_Expression(
-                expr: Expr_FuncCall(
+                expr: Expr_Func_Call(
                     name: Name(
                         name: var_dump
                     )
                     args: array(
                         0: Arg(
                             name: null
-                            value: Expr_Array(
+                            value: Expr_Array_(
                                 items: array(
                                     0: Array_Item(
-                                        key: Expr_Yield(
-                                            key: Scalar_String(
+                                        key: Expr_Yield_(
+                                            key: Scalar_String_(
                                                 value: k1
                                             )
-                                            value: Expr_Yield(
+                                            value: Expr_Yield_(
                                                 key: null
-                                                value: Scalar_String(
+                                                value: Scalar_String_(
                                                     value: k2
                                                 )
                                             )
                                         )
-                                        value: Expr_BinaryOp_Concat(
-                                            left: Scalar_String(
+                                        value: Expr_Binary_Op_Concat(
+                                            left: Scalar_String_(
                                                 value: a
                                             )
-                                            right: Scalar_String(
+                                            right: Scalar_String_(
                                                 value: b
                                             )
                                         )
-                                        byRef: false
+                                        by_ref: false
                                         unpack: false
                                     )
                                 )
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                     )

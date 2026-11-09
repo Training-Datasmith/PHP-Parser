@@ -15,7 +15,7 @@ class Trait_ extends Class_Like
      *     attrGroups?: Node\AttributeGroup[],
      * } $subNodes Array of the following optional subnodes:
      *             'stmts'      => array(): Statements
-     *             'attrGroups' => array(): PHP attribute groups
+     *             'attr_groups' => array(): PHP attribute groups
      * @param array<string, mixed> $attributes Additional attributes
      */
     public function __construct($name, array $sub_nodes = [], array $attributes = [])
@@ -23,13 +23,13 @@ class Trait_ extends Class_Like
         $this->attributes = $attributes;
         $this->name = \is_string($name) ? new Node\Identifier($name) : $name;
         $this->stmts = $sub_nodes['stmts'] ?? [];
-        $this->attr_groups = $sub_nodes['attrGroups'] ?? [];
+        $this->attr_groups = $sub_nodes['attr_groups'] ?? [];
     }
     public function get_sub_node_names(): array
     {
-        return ['attrGroups', 'name', 'stmts'];
+        return ['attr_groups', 'name', 'stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_Trait';
+        return 'Stmt_Trait_';
     }
 }

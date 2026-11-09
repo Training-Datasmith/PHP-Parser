@@ -1,4 +1,4 @@
-Constants
+Const_ants
 -----
 <?php
 
@@ -10,8 +10,8 @@ const BAR = true;
 $attrGroup = new Node\Attribute_Group([
     new Node\Attribute(new Node\Name('B'), []),
 ]);
-$stmts[0]->attrGroups[] = $attrGroup;
-$stmts[1]->attrGroups[] = $attrGroup;
+$stmts[0]->attr_groups[] = $attrGroup;
+$stmts[1]->attr_groups[] = $attrGroup;
 -----
 <?php
 
@@ -34,8 +34,8 @@ const FOO = true;
 const BAR = true;
 -----
 $attr = new Node\Attribute(new Node\Name('C'), []);
-$stmts[0]->attrGroups[0]->attrs[] = $attr;
-$stmts[1]->attrGroups[0]->attrs[] = $attr;
+$stmts[0]->attr_groups[0]->attrs[] = $attr;
+$stmts[1]->attr_groups[0]->attrs[] = $attr;
 -----
 <?php
 

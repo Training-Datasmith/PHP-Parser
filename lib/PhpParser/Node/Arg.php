@@ -33,7 +33,7 @@ class Arg extends Node_Abstract
     }
     public function get_sub_node_names(): array
     {
-        return ['name', 'value', 'byRef', 'unpack'];
+        return ['name', 'value', 'by_ref', 'unpack'];
     }
     public function get_type(): string {
         return 'Arg';

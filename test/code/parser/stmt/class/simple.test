@@ -17,8 +17,8 @@ class A extends B implements C, D {
 }
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -36,49 +36,49 @@ array(
             )
         )
         stmts: array(
-            0: Stmt_ClassConst(
-                attrGroups: array(
+            0: Stmt_Class_Const(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
                 consts: array(
-                    0: Const(
+                    0: Const_(
                         name: Identifier(
                             name: A
                         )
-                        value: Scalar_String(
+                        value: Scalar_String_(
                             value: B
                         )
                     )
-                    1: Const(
+                    1: Const_(
                         name: Identifier(
                             name: C
                         )
-                        value: Scalar_String(
+                        value: Scalar_String_(
                             value: D
                         )
                     )
                 )
             )
             1: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: a
                         )
-                        default: Scalar_String(
+                        default: Scalar_String_(
                             value: b
                         )
                     )
-                    1: PropertyItem(
+                    1: Property_Item(
                         name: Var_Like_Identifier(
                             name: c
                         )
-                        default: Scalar_String(
+                        default: Scalar_String_(
                             value: d
                         )
                     )
@@ -87,12 +87,12 @@ array(
                 )
             )
             2: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PROTECTED (2)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: e
                         )
@@ -103,12 +103,12 @@ array(
                 )
             )
             3: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PRIVATE (4)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: f
                         )
@@ -119,34 +119,34 @@ array(
                 )
             )
             4: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: a
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
             5: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC | STATIC (9)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: b
                 )
                 params: array(
                     0: Param(
-                        attrGroups: array(
+                        attr_groups: array(
                         )
                         flags: 0
                         type: null
-                        byRef: false
+                        by_ref: false
                         variadic: false
                         var: Expr_Variable(
                             name: a
@@ -156,51 +156,51 @@ array(
                         )
                     )
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
             6: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC | FINAL (33)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: c
                 )
                 params: array(
                 )
-                returnType: Name(
+                return_type: Name(
                     name: B
                 )
                 stmts: array(
                 )
             )
             7: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PROTECTED (2)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: d
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
             8: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PRIVATE (4)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: e
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )

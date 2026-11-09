@@ -42,7 +42,7 @@ fn($a)
 : int
 => $a;
 -----
-$stmts[0]->expr->returnType = new Node\Identifier('bool');
+$stmts[0]->expr->return_type = new Node\Identifier('bool');
 -----
 <?php
 fn($a)
@@ -54,11 +54,10 @@ fn($a)
 : int
 => $a;
 -----
-$stmts[0]->expr->returnType = null;
+$stmts[0]->expr->return_type = null;
 -----
 <?php
-fn($a)
-=> $a;
+fn($a) => $a;
 -----
 <?php
 fn($a)
@@ -91,8 +90,8 @@ fn&($a)
 => $a;
 -----
 // TODO: Format preserving currently not supported
-$stmts[0]->expr->byRef = true;
-$stmts[1]->expr->byRef = false;
+$stmts[0]->expr->by_ref = true;
+$stmts[1]->expr->by_ref = false;
 -----
 <?php
 fn&($a): int => $a;

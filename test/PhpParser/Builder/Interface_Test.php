@@ -57,7 +57,7 @@ class Interface_Test extends \PHPUnit\Framework\TestCase
         $this->assertSame([$method], $contract->stmts);
     }
 
-    public function testAddConst(): void
+    public function testAddConst_(): void
     {
         $const = new Stmt\Class_Const([
             new Node\Const_('SPEED_OF_LIGHT', new Float_(299792458.0)),
@@ -106,14 +106,14 @@ class Interface_Test extends \PHPUnit\Framework\TestCase
             ->get_node();
 
         $this->assertEquals(new Stmt\Interface_('Contract', [
-            'attrGroups' => [$attributeGroup],
+            'attr_groups' => [$attributeGroup],
         ], []), $node);
     }
 
     public function testInvalidStmtError(): void
     {
         $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('Unexpected node of type "PropertyItem"');
+        $this->expectExceptionMessage('Unexpected node of type "Property_Item"');
         $this->createInterfaceBuilder()->add_stmt(new Node\Property_Item('invalid'));
     }
 

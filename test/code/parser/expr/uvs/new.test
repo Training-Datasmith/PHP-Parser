@@ -10,7 +10,7 @@ new $weird[0]->foo::$className;
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_New(
+        expr: Expr_New_(
             class: Expr_Variable(
                 name: className
             )
@@ -19,12 +19,12 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_New(
-            class: Expr_ArrayDimFetch(
+        expr: Expr_New_(
+            class: Expr_Array_Dim_Fetch(
                 var: Expr_Variable(
                     name: array
                 )
-                dim: Scalar_String(
+                dim: Scalar_String_(
                     value: className
                 )
             )
@@ -33,8 +33,8 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_New(
-            class: Expr_PropertyFetch(
+        expr: Expr_New_(
+            class: Expr_Property_Fetch(
                 var: Expr_Variable(
                     name: obj
                 )
@@ -47,8 +47,8 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_New(
-            class: Expr_StaticPropertyFetch(
+        expr: Expr_New_(
+            class: Expr_Static_Property_Fetch(
                 class: Name(
                     name: Test
                 )
@@ -61,8 +61,8 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Expr_New(
-            class: Expr_StaticPropertyFetch(
+        expr: Expr_New_(
+            class: Expr_Static_Property_Fetch(
                 class: Expr_Variable(
                     name: test
                 )
@@ -75,14 +75,14 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Expr_New(
-            class: Expr_StaticPropertyFetch(
-                class: Expr_PropertyFetch(
-                    var: Expr_ArrayDimFetch(
+        expr: Expr_New_(
+            class: Expr_Static_Property_Fetch(
+                class: Expr_Property_Fetch(
+                    var: Expr_Array_Dim_Fetch(
                         var: Expr_Variable(
                             name: weird
                         )
-                        dim: Scalar_Int(
+                        dim: Scalar_Int_(
                             value: 0
                         )
                     )

@@ -29,6 +29,6 @@ class Declare_ extends Node\Stmt
         return ['declares', 'stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_Declare';
+        return 'Stmt_Declare_';
     }
 }

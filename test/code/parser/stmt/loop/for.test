@@ -16,19 +16,19 @@ for (;;):
 endfor;
 -----
 array(
-    0: Stmt_For(
+    0: Stmt_For_(
         init: array(
             0: Expr_Assign(
                 var: Expr_Variable(
                     name: i
                 )
-                expr: Scalar_Int(
+                expr: Scalar_Int_(
                     value: 0
                 )
             )
         )
         cond: array(
-            0: Expr_BinaryOp_Smaller(
+            0: Expr_Binary_Op_Smaller(
                 left: Expr_Variable(
                     name: i
                 )
@@ -38,7 +38,7 @@ array(
             )
         )
         loop: array(
-            0: Expr_PreInc(
+            0: Expr_Pre_Inc(
                 var: Expr_Variable(
                     name: i
                 )
@@ -50,7 +50,7 @@ array(
             0: // "classical" loop
         )
     )
-    1: Stmt_For(
+    1: Stmt_For_(
         init: array(
             0: Expr_Variable(
                 name: a
@@ -81,7 +81,7 @@ array(
             0: // multiple expressions
         )
     )
-    2: Stmt_For(
+    2: Stmt_For_(
         init: array(
         )
         cond: array(
@@ -94,7 +94,7 @@ array(
             0: // infinite loop
         )
     )
-    3: Stmt_For(
+    3: Stmt_For_(
         init: array(
         )
         cond: array(

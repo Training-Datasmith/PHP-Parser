@@ -31,32 +31,32 @@ Syntax error, unexpected T_STRING from 19:2 to 19:4
 Syntax error, unexpected T_STRING from 20:2 to 20:4
 array(
     0: Stmt_Expression(
-        expr: Scalar_Float(
+        expr: Scalar_Float_(
             value: 6.674083E-11
         )
     )
     1: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 299792458
         )
     )
     2: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 2063527949
         )
     )
     3: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 95
         )
     )
     4: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 48673
         )
     )
     5: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: _100
             )
@@ -66,7 +66,7 @@ array(
         )
     )
     6: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 100
         )
         comments: array(
@@ -74,96 +74,96 @@ array(
         )
     )
     7: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: _
             )
         )
     )
     8: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 1
         )
     )
     9: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: __1
             )
         )
     )
     10: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 1
         )
     )
     11: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: _
             )
         )
     )
     12: Stmt_Expression(
-        expr: Scalar_Float(
+        expr: Scalar_Float_(
             value: 0
         )
     )
     13: Stmt_Expression(
-        expr: Scalar_Float(
+        expr: Scalar_Float_(
             value: 1
         )
     )
     14: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: _0
             )
         )
     )
     15: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 0
         )
     )
     16: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: x_123
             )
         )
     )
     17: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 0
         )
     )
     18: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: b_101
             )
         )
     )
     19: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 1
         )
     )
     20: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: _e2
             )
         )
     )
     21: Stmt_Expression(
-        expr: Scalar_Int(
+        expr: Scalar_Int_(
             value: 1
         )
     )
     22: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: e_2
             )

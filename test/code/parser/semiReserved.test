@@ -53,8 +53,8 @@ class Foo {
 }
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -65,68 +65,68 @@ array(
         )
         stmts: array(
             0: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: array
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
             1: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: public
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
             2: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: STATIC (8)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: list
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
             3: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: STATIC (8)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: protected
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
             4: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: class
                         )
@@ -137,12 +137,12 @@ array(
                 )
             )
             5: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: private
                         )
@@ -152,97 +152,97 @@ array(
                 hooks: array(
                 )
             )
-            6: Stmt_ClassConst(
-                attrGroups: array(
+            6: Stmt_Class_Const(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
                 consts: array(
-                    0: Const(
+                    0: Const_(
                         name: Identifier(
                             name: TRAIT
                         )
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 3
                         )
                     )
-                    1: Const(
+                    1: Const_(
                         name: Identifier(
                             name: FINAL
                         )
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 4
                         )
                     )
                 )
             )
-            7: Stmt_ClassConst(
-                attrGroups: array(
+            7: Stmt_Class_Const(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
                 consts: array(
-                    0: Const(
+                    0: Const_(
                         name: Identifier(
                             name: __CLASS__
                         )
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 1
                         )
                     )
-                    1: Const(
+                    1: Const_(
                         name: Identifier(
                             name: __TRAIT__
                         )
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 2
                         )
                     )
-                    2: Const(
+                    2: Const_(
                         name: Identifier(
                             name: __FUNCTION__
                         )
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 3
                         )
                     )
-                    3: Const(
+                    3: Const_(
                         name: Identifier(
                             name: __METHOD__
                         )
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 4
                         )
                     )
-                    4: Const(
+                    4: Const_(
                         name: Identifier(
                             name: __LINE__
                         )
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 5
                         )
                     )
-                    5: Const(
+                    5: Const_(
                         name: Identifier(
                             name: __FILE__
                         )
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 6
                         )
                     )
-                    6: Const(
+                    6: Const_(
                         name: Identifier(
                             name: __DIR__
                         )
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 7
                         )
                     )
-                    7: Const(
+                    7: Const_(
                         name: Identifier(
                             name: __NAMESPACE__
                         )
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 8
                         )
                     )
@@ -260,7 +260,7 @@ array(
             var: Expr_Variable(
                 name: t
             )
-            expr: Expr_New(
+            expr: Expr_New_(
                 class: Name(
                     name: Test
                 )
@@ -270,7 +270,7 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_MethodCall(
+        expr: Expr_Method_Call(
             var: Expr_Variable(
                 name: t
             )
@@ -282,7 +282,7 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_MethodCall(
+        expr: Expr_Method_Call(
             var: Expr_Variable(
                 name: t
             )
@@ -294,7 +294,7 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Expr_StaticCall(
+        expr: Expr_Static_Call(
             class: Name(
                 name: Test
             )
@@ -306,7 +306,7 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Expr_StaticCall(
+        expr: Expr_Static_Call(
             class: Name(
                 name: Test
             )
@@ -318,7 +318,7 @@ array(
         )
     )
     6: Stmt_Expression(
-        expr: Expr_PropertyFetch(
+        expr: Expr_Property_Fetch(
             var: Expr_Variable(
                 name: t
             )
@@ -328,7 +328,7 @@ array(
         )
     )
     7: Stmt_Expression(
-        expr: Expr_PropertyFetch(
+        expr: Expr_Property_Fetch(
             var: Expr_Variable(
                 name: t
             )
@@ -338,7 +338,7 @@ array(
         )
     )
     8: Stmt_Expression(
-        expr: Expr_ClassConstFetch(
+        expr: Expr_Class_Const_Fetch(
             class: Name(
                 name: Test
             )
@@ -348,7 +348,7 @@ array(
         )
     )
     9: Stmt_Expression(
-        expr: Expr_ClassConstFetch(
+        expr: Expr_Class_Const_Fetch(
             class: Name(
                 name: Test
             )
@@ -357,8 +357,8 @@ array(
             )
         )
     )
-    10: Stmt_Class(
-        attrGroups: array(
+    10: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -368,7 +368,7 @@ array(
         implements: array(
         )
         stmts: array(
-            0: Stmt_TraitUse(
+            0: Stmt_Trait_Use(
                 traits: array(
                     0: Name(
                         name: TraitA
@@ -399,9 +399,7 @@ array(
                             name: list
                         )
                         newModifier: null
-                        newName: Identifier(
-                            name: foreach
-                        )
+                        newName: null
                     )
                     2: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name(
@@ -410,10 +408,8 @@ array(
                         method: Identifier(
                             name: throw
                         )
-                        newModifier: PROTECTED (2)
-                        newName: Identifier(
-                            name: public
-                        )
+                        newModifier: null
+                        newName: null
                     )
                     3: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name(
@@ -422,7 +418,7 @@ array(
                         method: Identifier(
                             name: self
                         )
-                        newModifier: PROTECTED (2)
+                        newModifier: null
                         newName: null
                     )
                     4: Stmt_Trait_Use_Adaptation_Alias(
@@ -431,9 +427,7 @@ array(
                             name: exit
                         )
                         newModifier: null
-                        newName: Identifier(
-                            name: die
-                        )
+                        newName: null
                     )
                     5: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name_Fully_Qualified(
@@ -443,9 +437,7 @@ array(
                             name: exit
                         )
                         newModifier: null
-                        newName: Identifier(
-                            name: bye
-                        )
+                        newName: null
                     )
                     6: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name_Relative(
@@ -455,9 +447,7 @@ array(
                             name: exit
                         )
                         newModifier: null
-                        newName: Identifier(
-                            name: byebye
-                        )
+                        newName: null
                     )
                     7: Stmt_Trait_Use_Adaptation_Precedence(
                         trait: Name(

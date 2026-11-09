@@ -28,6 +28,6 @@ class Case_ extends Node\Stmt
         return ['cond', 'stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_Case';
+        return 'Stmt_Case_';
     }
 }

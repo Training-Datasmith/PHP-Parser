@@ -32,11 +32,9 @@ class Array_Item extends Node_Abstract
     }
     public function get_sub_node_names(): array
     {
-        return ['key', 'value', 'byRef', 'unpack'];
+        return ['key', 'value', 'by_ref', 'unpack'];
     }
     public function get_type(): string {
         return 'Array_Item';
     }
 }
-// @deprecated compatibility alias
-class_alias(Array_Item::class, 'Php_Parser\\Node\\Expr\\ArrayItem');

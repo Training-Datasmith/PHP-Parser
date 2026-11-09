@@ -11,6 +11,6 @@ class Logical_Or extends Binary_Op
         return 'or';
     }
     public function get_type(): string {
-        return 'Expr_BinaryOp_LogicalOr';
+        return 'Expr_Binary_Op_Logical_Or';
     }
 }

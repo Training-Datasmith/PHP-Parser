@@ -24,6 +24,6 @@ class Pre_Inc extends Expr
         return ['var'];
     }
     public function get_type(): string {
-        return 'Expr_PreInc';
+        return 'Expr_Pre_Inc';
     }
 }

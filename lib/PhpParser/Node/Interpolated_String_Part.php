@@ -24,8 +24,6 @@ class Interpolated_String_Part extends Node_Abstract
         return ['value'];
     }
     public function get_type(): string {
-        return 'Interpolated_StringPart';
+        return 'Interpolated_String_Part';
     }
 }
-// @deprecated compatibility alias
-class_alias(Interpolated_String_Part::class, Scalar\EncapsedStringPart::class);

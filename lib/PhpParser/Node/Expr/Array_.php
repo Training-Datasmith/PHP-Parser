@@ -30,6 +30,6 @@ class Array_ extends Expr
         return ['items'];
     }
     public function get_type(): string {
-        return 'Expr_Array';
+        return 'Expr_Array_';
     }
 }

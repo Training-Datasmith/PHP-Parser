@@ -28,6 +28,6 @@ class Assign_Ref extends Expr
         return ['var', 'expr'];
     }
     public function get_type(): string {
-        return 'Expr_AssignRef';
+        return 'Expr_Assign_Ref';
     }
 }

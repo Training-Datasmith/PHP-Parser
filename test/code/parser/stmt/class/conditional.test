@@ -7,15 +7,15 @@ if (true) {
 }
 -----
 array(
-    0: Stmt_If(
-        cond: Expr_ConstFetch(
+    0: Stmt_If_(
+        cond: Expr_Const_Fetch(
             name: Name(
                 name: true
             )
         )
         stmts: array(
-            0: Stmt_Class(
-                attrGroups: array(
+            0: Stmt_Class_(
+                attr_groups: array(
                 )
                 flags: 0
                 name: Identifier(

@@ -5,25 +5,25 @@ function foo(...$foo = []) {}
 -----
 Variadic parameter cannot have a default value from 2:24 to 2:25
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: foo
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: true
                 var: Expr_Variable(
                     name: foo
                 )
-                default: Expr_Array(
+                default: Expr_Array_(
                     items: array(
                     )
                 )
@@ -31,7 +31,7 @@ array(
                 )
             )
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )

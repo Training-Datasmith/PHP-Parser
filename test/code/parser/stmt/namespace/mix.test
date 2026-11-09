@@ -10,37 +10,37 @@ echo 3;
 -----
 Cannot mix bracketed namespace declarations with unbracketed namespace declarations from 4:1 to 4:9
 array(
-    0: Stmt_Namespace(
+    0: Stmt_Namespace_(
         name: Name(
             name: A
         )
         stmts: array(
-            0: Stmt_Echo(
+            0: Stmt_Echo_(
                 exprs: array(
-                    0: Scalar_Int(
+                    0: Scalar_Int_(
                         value: 1
                     )
                 )
             )
         )
     )
-    1: Stmt_Namespace(
+    1: Stmt_Namespace_(
         name: Name(
             name: B
         )
         stmts: array(
-            0: Stmt_Echo(
+            0: Stmt_Echo_(
                 exprs: array(
-                    0: Scalar_Int(
+                    0: Scalar_Int_(
                         value: 2
                     )
                 )
             )
         )
     )
-    2: Stmt_Echo(
+    2: Stmt_Echo_(
         exprs: array(
-            0: Scalar_Int(
+            0: Scalar_Int_(
                 value: 3
             )
         )
@@ -57,35 +57,35 @@ echo 3;
 -----
 Cannot mix bracketed namespace declarations with unbracketed namespace declarations from 6:1 to 6:9
 array(
-    0: Stmt_Namespace(
+    0: Stmt_Namespace_(
         name: Name(
             name: A
         )
         stmts: array(
-            0: Stmt_Echo(
+            0: Stmt_Echo_(
                 exprs: array(
-                    0: Scalar_Int(
+                    0: Scalar_Int_(
                         value: 1
                     )
                 )
             )
         )
     )
-    1: Stmt_Echo(
+    1: Stmt_Echo_(
         exprs: array(
-            0: Scalar_Int(
+            0: Scalar_Int_(
                 value: 2
             )
         )
     )
-    2: Stmt_Namespace(
+    2: Stmt_Namespace_(
         name: Name(
             name: B
         )
         stmts: array(
-            0: Stmt_Echo(
+            0: Stmt_Echo_(
                 exprs: array(
-                    0: Scalar_Int(
+                    0: Scalar_Int_(
                         value: 3
                     )
                 )

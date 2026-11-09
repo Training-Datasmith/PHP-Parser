@@ -21,8 +21,8 @@ class Test {
 }
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -33,12 +33,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop
                         )
@@ -46,36 +46,36 @@ array(
                     )
                 )
                 hooks: array(
-                    0: PropertyHook(
-                        attrGroups: array(
+                    0: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: 0
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: get
                         )
                         params: array(
                         )
                         body: array(
-                            0: Stmt_Return(
-                                expr: Scalar_Int(
+                            0: Stmt_Return_(
+                                expr: Scalar_Int_(
                                     value: 42
                                 )
                             )
                         )
                     )
-                    1: PropertyHook(
-                        attrGroups: array(
+                    1: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: 0
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: set
                         )
                         params: array(
                         )
                         body: array(
-                            0: Stmt_Echo(
+                            0: Stmt_Echo_(
                                 exprs: array(
                                     0: Expr_Variable(
                                         name: value
@@ -87,12 +87,12 @@ array(
                 )
             )
             1: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PRIVATE (4)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop2
                         )
@@ -100,25 +100,25 @@ array(
                     )
                 )
                 hooks: array(
-                    0: PropertyHook(
-                        attrGroups: array(
+                    0: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: 0
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: get
                         )
                         params: array(
                         )
-                        body: Scalar_Int(
+                        body: Scalar_Int_(
                             value: 42
                         )
                     )
-                    1: PropertyHook(
-                        attrGroups: array(
+                    1: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: 0
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: set
                         )
@@ -131,12 +131,12 @@ array(
                 )
             )
             2: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: ABSTRACT (16)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop3
                         )
@@ -144,11 +144,11 @@ array(
                     )
                 )
                 hooks: array(
-                    0: PropertyHook(
-                        attrGroups: array(
+                    0: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: 0
-                        byRef: true
+                        by_ref: true
                         name: Identifier(
                             name: get
                         )
@@ -156,11 +156,11 @@ array(
                         )
                         body: null
                     )
-                    1: PropertyHook(
-                        attrGroups: array(
+                    1: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: 0
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: set
                         )
@@ -171,12 +171,12 @@ array(
                 )
             )
             3: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop4
                         )
@@ -184,41 +184,41 @@ array(
                     )
                 )
                 hooks: array(
-                    0: PropertyHook(
-                        attrGroups: array(
+                    0: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: FINAL (32)
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: get
                         )
                         params: array(
                         )
                         body: array(
-                            0: Stmt_Return(
-                                expr: Scalar_Int(
+                            0: Stmt_Return_(
+                                expr: Scalar_Int_(
                                     value: 42
                                 )
                             )
                         )
                     )
-                    1: PropertyHook(
-                        attrGroups: array(
+                    1: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: 0
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: set
                         )
                         params: array(
                             0: Param(
-                                attrGroups: array(
+                                attr_groups: array(
                                 )
                                 flags: 0
                                 type: Identifier(
                                     name: string
                                 )
-                                byRef: false
+                                by_ref: false
                                 variadic: false
                                 var: Expr_Variable(
                                     name: value
@@ -246,8 +246,8 @@ class Test {
 Property hook list cannot be empty from 3:18 to 3:18
 Property hook list cannot be empty from 4:47 to 4:47
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -258,12 +258,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop
                         )
@@ -274,20 +274,20 @@ array(
                 )
             )
             1: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: __construct
                 )
                 params: array(
                     0: Param(
-                        attrGroups: array(
+                        attr_groups: array(
                         )
                         flags: PUBLIC (1)
                         type: null
-                        byRef: false
+                        by_ref: false
                         variadic: false
                         var: Expr_Variable(
                             name: prop2
@@ -297,7 +297,7 @@ array(
                         )
                     )
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
@@ -314,8 +314,8 @@ class Test {
 -----
 get hook must not have a parameter list from 4:12 to 4:12
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -326,12 +326,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop
                         )
@@ -339,17 +339,17 @@ array(
                     )
                 )
                 hooks: array(
-                    0: PropertyHook(
-                        attrGroups: array(
+                    0: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: 0
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: get
                         )
                         params: array(
                         )
-                        body: Scalar_Int(
+                        body: Scalar_Int_(
                             value: 42
                         )
                     )
@@ -366,8 +366,8 @@ class Test {
 -----
 Unknown hook "FOO", expected "get" or "set" from 3:20 to 3:22
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -378,12 +378,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop
                         )
@@ -391,17 +391,17 @@ array(
                     )
                 )
                 hooks: array(
-                    0: PropertyHook(
-                        attrGroups: array(
+                    0: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: 0
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: FOO
                         )
                         params: array(
                         )
-                        body: Expr_ConstFetch(
+                        body: Expr_Const_Fetch(
                             name: Name(
                                 name: bar
                             )
@@ -433,8 +433,8 @@ Cannot use the abstract modifier on a property hook from 7:9 to 7:16
 Cannot use the static modifier on a property hook from 7:18 to 7:23
 Cannot use the readonly modifier on a property hook from 8:9 to 8:16
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -445,12 +445,12 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop
                         )
@@ -458,11 +458,11 @@ array(
                     )
                 )
                 hooks: array(
-                    0: PropertyHook(
-                        attrGroups: array(
+                    0: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: PUBLIC (1)
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: get
                         )
@@ -470,11 +470,11 @@ array(
                         )
                         body: null
                     )
-                    1: PropertyHook(
-                        attrGroups: array(
+                    1: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: PROTECTED (2)
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: get
                         )
@@ -482,11 +482,11 @@ array(
                         )
                         body: null
                     )
-                    2: PropertyHook(
-                        attrGroups: array(
+                    2: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: PRIVATE (4)
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: get
                         )
@@ -494,11 +494,11 @@ array(
                         )
                         body: null
                     )
-                    3: PropertyHook(
-                        attrGroups: array(
+                    3: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: ABSTRACT | STATIC (24)
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: get
                         )
@@ -506,11 +506,11 @@ array(
                         )
                         body: null
                     )
-                    4: PropertyHook(
-                        attrGroups: array(
+                    4: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: READONLY (64)
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: get
                         )
@@ -534,8 +534,8 @@ class Test
 -----
 Cannot use hooks when declaring multiple properties from 5:23 to 5:23
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -546,18 +546,18 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: foo
                         )
                         default: null
                     )
-                    1: PropertyItem(
+                    1: Property_Item(
                         name: Var_Like_Identifier(
                             name: bar
                         )
@@ -565,19 +565,19 @@ array(
                     )
                 )
                 hooks: array(
-                    0: PropertyHook(
-                        attrGroups: array(
+                    0: Property_Hook(
+                        attr_groups: array(
                         )
                         flags: 0
-                        byRef: false
+                        by_ref: false
                         name: Identifier(
                             name: get
                         )
                         params: array(
                         )
                         body: array(
-                            0: Stmt_Return(
-                                expr: Scalar_Int(
+                            0: Stmt_Return_(
+                                expr: Scalar_Int_(
                                     value: 42
                                 )
                             )
@@ -600,8 +600,8 @@ class Test
 Cannot use hooks when declaring multiple properties from 5:23 to 5:23
 Property hook list cannot be empty from 5:23 to 5:23
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -612,18 +612,18 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: foo
                         )
                         default: null
                     )
-                    1: PropertyItem(
+                    1: Property_Item(
                         name: Var_Like_Identifier(
                             name: bar
                         )

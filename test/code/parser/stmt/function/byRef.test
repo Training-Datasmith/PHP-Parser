@@ -6,20 +6,20 @@ function a(&$b) {}
 function &a($b) {}
 -----
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: a
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: true
+                by_ref: true
                 variadic: false
                 var: Expr_Variable(
                     name: b
@@ -29,24 +29,24 @@ array(
                 )
             )
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: true
+        by_ref: true
         name: Identifier(
             name: a
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: b
@@ -56,7 +56,7 @@ array(
                 )
             )
         )
-        returnType: null
+        return_type: null
         stmts: array(
         )
     )

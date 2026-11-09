@@ -6,7 +6,7 @@ namespace Php_Parser;
 
 class Php_Version_Test extends \PHPUnit\Framework\TestCase
 {
-    public function testConstruction(): void
+    public function testConst_ruction(): void
     {
         $version = Php_Version::from_components(8, 2);
         $this->assertSame(80200, $version->id);

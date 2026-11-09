@@ -10,7 +10,7 @@ f($a, ...$b);
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: f
             )
@@ -19,7 +19,7 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: f
             )
@@ -29,14 +29,14 @@ array(
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: f
             )
@@ -46,7 +46,7 @@ array(
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
@@ -54,14 +54,14 @@ array(
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: f
             )
@@ -71,14 +71,14 @@ array(
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: true
+                    by_ref: true
                     unpack: false
                 )
             )
         )
     )
     4: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: f
             )
@@ -88,7 +88,7 @@ array(
                     value: Expr_Variable(
                         name: a
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
@@ -96,7 +96,7 @@ array(
                     value: Expr_Variable(
                         name: b
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
             )

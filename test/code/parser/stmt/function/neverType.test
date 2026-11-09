@@ -4,16 +4,16 @@ Never type
 function test(): never {}
 -----
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: never
         )
         stmts: array(

@@ -8,46 +8,46 @@ function test(): true {}
 -----
 !!version=8.1
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: null
         )
         stmts: array(
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: false
         )
         stmts: array(
         )
     )
-    2: Stmt_Function(
-        attrGroups: array(
+    2: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
         )
-        returnType: Name(
+        return_type: Name(
             name: true
         )
         stmts: array(
@@ -63,46 +63,46 @@ function test(): true {}
 -----
 !!version=8.2
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: null
         )
         stmts: array(
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: false
         )
         stmts: array(
         )
     )
-    2: Stmt_Function(
-        attrGroups: array(
+    2: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: true
         )
         stmts: array(

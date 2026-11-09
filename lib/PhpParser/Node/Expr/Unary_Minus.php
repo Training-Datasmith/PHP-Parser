@@ -24,6 +24,6 @@ class Unary_Minus extends Expr
         return ['expr'];
     }
     public function get_type(): string {
-        return 'Expr_UnaryMinus';
+        return 'Expr_Unary_Minus';
     }
 }

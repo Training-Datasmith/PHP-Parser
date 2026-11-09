@@ -24,6 +24,6 @@ class Else_ extends Node\Stmt
         return ['stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_Else';
+        return 'Stmt_Else_';
     }
 }

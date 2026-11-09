@@ -282,8 +282,8 @@ $array = [
     3,
 ];
 -----
-array_unshift($stmts[0]->expr->expr->items, new Expr\ArrayItem(new Scalar\LNumber(42)));
-$stmts[0]->expr->expr->items[] = new Expr\ArrayItem(new Scalar\LNumber(24));
+array_unshift($stmts[0]->expr->expr->items, new Node\Array_Item(new Scalar\Int_(42)));
+$stmts[0]->expr->expr->items[] = new Node\Array_Item(new Scalar\Int_(24));
 -----
 <?php
 $array = [
@@ -300,7 +300,7 @@ $array = [
     3,
 ];
 -----
-$stmts[0]->expr->expr->items[] = new Expr\ArrayItem(new Scalar\LNumber(24));
+$stmts[0]->expr->expr->items[] = new Node\Array_Item(new Scalar\Int_(24));
 -----
 <?php
 $array = [
@@ -312,7 +312,7 @@ $array = [
 function test(): A
 |B {}
 -----
-$stmts[0]->returnType->types[] = new Node\Name('C');
+$stmts[0]->return_type->types[] = new Node\Name('C');
 -----
 <?php
 function test(): A
@@ -322,7 +322,7 @@ function test(): A
 function test(): A
 &B {}
 -----
-$stmts[0]->returnType->types[] = new Node\Name('C');
+$stmts[0]->return_type->types[] = new Node\Name('C');
 -----
 <?php
 function test(): A

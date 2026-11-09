@@ -25,12 +25,9 @@ class Closure_Use extends Node_Abstract
     }
     public function get_sub_node_names(): array
     {
-        return ['var', 'byRef'];
+        return ['var', 'by_ref'];
     }
     public function get_type(): string {
         return 'Closure_Use';
     }
 }
-// @deprecated compatibility alias
-class_alias(Closure_Use::class, 'Php_Parser\\Node\\Expr\\ClosureUse');
-class_alias(Closure_Use::class, 'Php_Parser\\Node\\ClosureUse');

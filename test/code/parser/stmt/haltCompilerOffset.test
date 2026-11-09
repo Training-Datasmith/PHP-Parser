@@ -8,25 +8,25 @@ Foo
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: var_dump
             )
             args: array(
                 0: Arg(
                     name: null
-                    value: Expr_ConstFetch(
+                    value: Expr_Const_Fetch(
                         name: Name(
                             name: __HALT_COMPILER_OFFSET__
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
-    1: Stmt_HaltCompiler(
+    1: Stmt_Halt_Compiler(
         remaining:
         Foo
     )

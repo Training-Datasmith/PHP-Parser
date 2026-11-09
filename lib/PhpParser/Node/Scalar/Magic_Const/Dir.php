@@ -11,6 +11,6 @@ class Dir extends Magic_Const
         return '__DIR__';
     }
     public function get_type(): string {
-        return 'Scalar_MagicConst_Dir';
+        return 'Scalar_Magic_Const_Dir';
     }
 }

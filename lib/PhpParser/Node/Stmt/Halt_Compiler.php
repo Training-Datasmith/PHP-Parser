@@ -24,6 +24,6 @@ class Halt_Compiler extends Stmt
         return ['remaining'];
     }
     public function get_type(): string {
-        return 'Stmt_HaltCompiler';
+        return 'Stmt_Halt_Compiler';
     }
 }

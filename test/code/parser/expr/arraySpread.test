@@ -28,64 +28,64 @@ array(
             var: Expr_Variable(
                 name: array
             )
-            expr: Expr_Array(
+            expr: Expr_Array_(
                 items: array(
                     0: Array_Item(
                         key: null
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 1
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     1: Array_Item(
                         key: null
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 2
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     2: Array_Item(
                         key: null
-                        value: Scalar_Int(
+                        value: Scalar_Int_(
                             value: 3
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )
             )
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: getArr
         )
         params: array(
         )
-        returnType: null
+        return_type: null
         stmts: array(
-            0: Stmt_Return(
-                expr: Expr_Array(
+            0: Stmt_Return_(
+                expr: Expr_Array_(
                     items: array(
                         0: Array_Item(
                             key: null
-                            value: Scalar_Int(
+                            value: Scalar_Int_(
                                 value: 4
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                         1: Array_Item(
                             key: null
-                            value: Scalar_Int(
+                            value: Scalar_Int_(
                                 value: 5
                             )
-                            byRef: false
+                            by_ref: false
                             unpack: false
                         )
                     )
@@ -93,40 +93,40 @@ array(
             )
         )
     )
-    2: Stmt_Function(
-        attrGroups: array(
+    2: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: arrGen
         )
         params: array(
         )
-        returnType: null
+        return_type: null
         stmts: array(
-            0: Stmt_For(
+            0: Stmt_For_(
                 init: array(
                     0: Expr_Assign(
                         var: Expr_Variable(
                             name: i
                         )
-                        expr: Scalar_Int(
+                        expr: Scalar_Int_(
                             value: 11
                         )
                     )
                 )
                 cond: array(
-                    0: Expr_BinaryOp_Smaller(
+                    0: Expr_Binary_Op_Smaller(
                         left: Expr_Variable(
                             name: i
                         )
-                        right: Scalar_Int(
+                        right: Scalar_Int_(
                             value: 15
                         )
                     )
                 )
                 loop: array(
-                    0: Expr_PostInc(
+                    0: Expr_Post_Inc(
                         var: Expr_Variable(
                             name: i
                         )
@@ -134,7 +134,7 @@ array(
                 )
                 stmts: array(
                     0: Stmt_Expression(
-                        expr: Expr_Yield(
+                        expr: Expr_Yield_(
                             key: null
                             value: Expr_Variable(
                                 name: i
@@ -146,169 +146,169 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
-                    value: Expr_Array(
+                    value: Expr_Array_(
                         items: array(
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
             )
         )
     )
     4: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
-                    value: Expr_Array(
+                    value: Expr_Array_(
                         items: array(
                             0: Array_Item(
                                 key: null
-                                value: Scalar_Int(
+                                value: Scalar_Int_(
                                     value: 1
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                             1: Array_Item(
                                 key: null
-                                value: Scalar_Int(
+                                value: Scalar_Int_(
                                     value: 2
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                             2: Array_Item(
                                 key: null
-                                value: Scalar_Int(
+                                value: Scalar_Int_(
                                     value: 3
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
             )
         )
     )
     5: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
                     value: Expr_Variable(
                         name: array
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
             )
         )
     )
     6: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
-                    value: Expr_FuncCall(
+                    value: Expr_Func_Call(
                         name: Name(
                             name: getArr
                         )
                         args: array(
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
             )
         )
     )
     7: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
-                    value: Expr_FuncCall(
+                    value: Expr_Func_Call(
                         name: Name(
                             name: arrGen
                         )
                         args: array(
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
             )
         )
     )
     8: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
-                    value: Expr_New(
+                    value: Expr_New_(
                         class: Name(
                             name: ArrayIterator
                         )
                         args: array(
                             0: Arg(
                                 name: null
-                                value: Expr_Array(
+                                value: Expr_Array_(
                                     items: array(
                                         0: Array_Item(
                                             key: null
-                                            value: Scalar_String(
+                                            value: Scalar_String_(
                                                 value: a
                                             )
-                                            byRef: false
+                                            by_ref: false
                                             unpack: false
                                         )
                                         1: Array_Item(
                                             key: null
-                                            value: Scalar_String(
+                                            value: Scalar_String_(
                                                 value: b
                                             )
-                                            byRef: false
+                                            by_ref: false
                                             unpack: false
                                         )
                                         2: Array_Item(
                                             key: null
-                                            value: Scalar_String(
+                                            value: Scalar_String_(
                                                 value: c
                                             )
-                                            byRef: false
+                                            by_ref: false
                                             unpack: false
                                         )
                                     )
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
             )
         )
     )
     9: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 0
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Array_Item(
@@ -316,85 +316,85 @@ array(
                     value: Expr_Variable(
                         name: array
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
                 2: Array_Item(
                     key: null
-                    value: Expr_FuncCall(
+                    value: Expr_Func_Call(
                         name: Name(
                             name: getArr
                         )
                         args: array(
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
                 3: Array_Item(
                     key: null
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 6
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 4: Array_Item(
                     key: null
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 7
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 5: Array_Item(
                     key: null
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 8
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 6: Array_Item(
                     key: null
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 9
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 7: Array_Item(
                     key: null
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 10
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 8: Array_Item(
                     key: null
-                    value: Expr_FuncCall(
+                    value: Expr_Func_Call(
                         name: Name(
                             name: arrGen
                         )
                         args: array(
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
             )
         )
     )
     10: Stmt_Expression(
-        expr: Expr_Array(
+        expr: Expr_Array_(
             items: array(
                 0: Array_Item(
                     key: null
-                    value: Scalar_Int(
+                    value: Scalar_Int_(
                         value: 0
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Array_Item(
@@ -402,7 +402,7 @@ array(
                     value: Expr_Variable(
                         name: array
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
                 2: Array_Item(
@@ -410,15 +410,15 @@ array(
                     value: Expr_Variable(
                         name: array
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
                 3: Array_Item(
                     key: null
-                    value: Scalar_String(
+                    value: Scalar_String_(
                         value: end
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )

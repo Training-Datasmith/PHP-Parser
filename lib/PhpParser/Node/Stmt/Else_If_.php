@@ -28,6 +28,6 @@ class Else_If_ extends Node\Stmt
         return ['cond', 'stmts'];
     }
     public function get_type(): string {
-        return 'Stmt_ElseIf';
+        return 'Stmt_Else_If_';
     }
 }

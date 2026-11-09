@@ -13,22 +13,22 @@ function test2(): never {} // PHP 8.1
 -----
 !!version=5.6
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: bool
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a1
@@ -38,13 +38,13 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: int
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a2
@@ -54,13 +54,13 @@ array(
                 )
             )
             2: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: float
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a3
@@ -70,13 +70,13 @@ array(
                 )
             )
             3: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: string
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a4
@@ -86,13 +86,13 @@ array(
                 )
             )
             4: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: iterable
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a5
@@ -105,13 +105,13 @@ array(
                 )
             )
             5: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: object
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a6
@@ -124,13 +124,13 @@ array(
                 )
             )
             6: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: mixed
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a7
@@ -143,13 +143,13 @@ array(
                 )
             )
             7: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: null
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a8
@@ -162,13 +162,13 @@ array(
                 )
             )
             8: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: false
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a9
@@ -181,22 +181,22 @@ array(
                 )
             )
         )
-        returnType: Name(
+        return_type: Name(
             name: void
         )
         stmts: array(
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test2
         )
         params: array(
         )
-        returnType: Name(
+        return_type: Name(
             name: never
         )
         stmts: array(
@@ -225,22 +225,22 @@ function test2(): never {} // PHP 8.1
 -----
 !!version=7.0
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: bool
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a1
@@ -250,13 +250,13 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: int
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a2
@@ -266,13 +266,13 @@ array(
                 )
             )
             2: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: float
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a3
@@ -282,13 +282,13 @@ array(
                 )
             )
             3: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: string
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a4
@@ -298,13 +298,13 @@ array(
                 )
             )
             4: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: iterable
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a5
@@ -317,13 +317,13 @@ array(
                 )
             )
             5: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: object
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a6
@@ -336,13 +336,13 @@ array(
                 )
             )
             6: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: mixed
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a7
@@ -355,13 +355,13 @@ array(
                 )
             )
             7: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: null
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a8
@@ -374,13 +374,13 @@ array(
                 )
             )
             8: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: false
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a9
@@ -393,22 +393,22 @@ array(
                 )
             )
         )
-        returnType: Name(
+        return_type: Name(
             name: void
         )
         stmts: array(
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test2
         )
         params: array(
         )
-        returnType: Name(
+        return_type: Name(
             name: never
         )
         stmts: array(
@@ -437,22 +437,22 @@ function test2(): never {} // PHP 8.1
 -----
 !!version=7.1
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: bool
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a1
@@ -462,13 +462,13 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: int
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a2
@@ -478,13 +478,13 @@ array(
                 )
             )
             2: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: float
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a3
@@ -494,13 +494,13 @@ array(
                 )
             )
             3: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: string
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a4
@@ -510,13 +510,13 @@ array(
                 )
             )
             4: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: iterable
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a5
@@ -529,13 +529,13 @@ array(
                 )
             )
             5: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: object
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a6
@@ -548,13 +548,13 @@ array(
                 )
             )
             6: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: mixed
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a7
@@ -567,13 +567,13 @@ array(
                 )
             )
             7: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: null
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a8
@@ -586,13 +586,13 @@ array(
                 )
             )
             8: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: false
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a9
@@ -605,22 +605,22 @@ array(
                 )
             )
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: void
         )
         stmts: array(
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test2
         )
         params: array(
         )
-        returnType: Name(
+        return_type: Name(
             name: never
         )
         stmts: array(
@@ -649,22 +649,22 @@ function test2(): never {} // PHP 8.1
 -----
 !!version=7.2
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: bool
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a1
@@ -674,13 +674,13 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: int
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a2
@@ -690,13 +690,13 @@ array(
                 )
             )
             2: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: float
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a3
@@ -706,13 +706,13 @@ array(
                 )
             )
             3: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: string
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a4
@@ -722,13 +722,13 @@ array(
                 )
             )
             4: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: iterable
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a5
@@ -741,13 +741,13 @@ array(
                 )
             )
             5: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: object
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a6
@@ -760,13 +760,13 @@ array(
                 )
             )
             6: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: mixed
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a7
@@ -779,13 +779,13 @@ array(
                 )
             )
             7: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: null
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a8
@@ -798,13 +798,13 @@ array(
                 )
             )
             8: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Name(
                     name: false
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a9
@@ -817,22 +817,22 @@ array(
                 )
             )
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: void
         )
         stmts: array(
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test2
         )
         params: array(
         )
-        returnType: Name(
+        return_type: Name(
             name: never
         )
         stmts: array(
@@ -861,22 +861,22 @@ function test2(): never {} // PHP 8.1
 -----
 !!version=8.0
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: bool
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a1
@@ -886,13 +886,13 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: int
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a2
@@ -902,13 +902,13 @@ array(
                 )
             )
             2: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: float
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a3
@@ -918,13 +918,13 @@ array(
                 )
             )
             3: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: string
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a4
@@ -934,13 +934,13 @@ array(
                 )
             )
             4: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: iterable
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a5
@@ -953,13 +953,13 @@ array(
                 )
             )
             5: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: object
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a6
@@ -972,13 +972,13 @@ array(
                 )
             )
             6: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: mixed
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a7
@@ -991,13 +991,13 @@ array(
                 )
             )
             7: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: null
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a8
@@ -1010,13 +1010,13 @@ array(
                 )
             )
             8: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: false
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a9
@@ -1029,22 +1029,22 @@ array(
                 )
             )
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: void
         )
         stmts: array(
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test2
         )
         params: array(
         )
-        returnType: Name(
+        return_type: Name(
             name: never
         )
         stmts: array(
@@ -1073,22 +1073,22 @@ function test2(): never {} // PHP 8.1
 -----
 !!version=8.1
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: bool
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a1
@@ -1098,13 +1098,13 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: int
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a2
@@ -1114,13 +1114,13 @@ array(
                 )
             )
             2: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: float
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a3
@@ -1130,13 +1130,13 @@ array(
                 )
             )
             3: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: string
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a4
@@ -1146,13 +1146,13 @@ array(
                 )
             )
             4: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: iterable
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a5
@@ -1165,13 +1165,13 @@ array(
                 )
             )
             5: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: object
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a6
@@ -1184,13 +1184,13 @@ array(
                 )
             )
             6: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: mixed
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a7
@@ -1203,13 +1203,13 @@ array(
                 )
             )
             7: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: null
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a8
@@ -1222,13 +1222,13 @@ array(
                 )
             )
             8: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: false
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a9
@@ -1241,22 +1241,22 @@ array(
                 )
             )
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: void
         )
         stmts: array(
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test2
         )
         params: array(
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: never
         )
         stmts: array(

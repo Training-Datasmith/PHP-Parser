@@ -90,7 +90,7 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Expr_BinaryOp_Coalesce(
+        expr: Expr_Binary_Op_Coalesce(
             left: Expr_Variable(
                 name: a
             )
@@ -103,11 +103,11 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Expr_BinaryOp_Coalesce(
+        expr: Expr_Binary_Op_Coalesce(
             left: Expr_Variable(
                 name: a
             )
-            right: Expr_BinaryOp_Coalesce(
+            right: Expr_Binary_Op_Coalesce(
                 left: Expr_Variable(
                     name: b
                 )
@@ -119,7 +119,7 @@ array(
     )
     6: Stmt_Expression(
         expr: Expr_Ternary(
-            cond: Expr_BinaryOp_Coalesce(
+            cond: Expr_Binary_Op_Coalesce(
                 left: Expr_Variable(
                     name: a
                 )
@@ -136,8 +136,8 @@ array(
         )
     )
     7: Stmt_Expression(
-        expr: Expr_BinaryOp_Coalesce(
-            left: Expr_BinaryOp_BooleanAnd(
+        expr: Expr_Binary_Op_Coalesce(
+            left: Expr_Binary_Op_Boolean_And(
                 left: Expr_Variable(
                     name: a
                 )

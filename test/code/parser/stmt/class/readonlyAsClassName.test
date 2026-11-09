@@ -16,8 +16,8 @@ class ReadOnly {}
 -----
 !!version=7.4
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(

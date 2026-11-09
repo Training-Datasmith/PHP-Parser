@@ -13,8 +13,17 @@ $scanPhpPaths = [
 ];
 
 /** @var list<string> */
-$scanDocPaths = [
-    $root . '/composer.json',
+$scanTextPaths = [
+    $root . '/README.md',
+    $root . '/CHANGELOG.md',
+    $root . '/doc',
+    $root . '/grammar/php.y',
+    $root . '/grammar/parser.template',
+];
+
+/** @var list<string> */
+$scanTestDumpPaths = [
+    $root . '/test/code',
 ];
 
 $failures = [];
@@ -22,11 +31,14 @@ $failures = [];
 /**
  * @return iterable<string>
  */
-function php_files_to_scan(array $scanPaths): iterable
+function files_to_scan(array $scanPaths, array $extensions): iterable
 {
     foreach ($scanPaths as $path) {
-        if (is_file($path) && substr($path, -4) === '.php') {
-            yield $path;
+        if (is_file($path)) {
+            $ext = pathinfo($path, PATHINFO_EXTENSION);
+            if (in_array($ext, $extensions, true) || in_array(basename($path), $extensions, true)) {
+                yield $path;
+            }
             continue;
         }
         if (!is_dir($path)) {
@@ -36,75 +48,144 @@ function php_files_to_scan(array $scanPaths): iterable
             new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)
         );
         foreach ($iterator as $file) {
-            if ($file->isFile() && substr($file->getPathname(), -4) === '.php') {
-                yield $file->getPathname();
+            if (!$file->isFile()) {
+                continue;
+            }
+            $name = $file->getFilename();
+            foreach ($extensions as $ext) {
+                $suffix = '.' . $ext;
+                if ($ext === $name
+                    || (strlen($name) >= strlen($suffix) && substr($name, -strlen($suffix)) === $suffix)
+                    || ($ext === 'test' && strlen($name) > 5 && substr($name, -5) === '.test')) {
+                    yield $file->getPathname();
+                    break;
+                }
             }
         }
     }
 }
 
 /**
+ * Upstream names that must remain in docs or code references.
+ *
+ * @return bool
+ */
+function is_allowlisted_line(string $line): bool
+{
+    $allowPatterns = [
+        '/\bPHPUnit\\\\/',
+        '/\bT_[A-Z0-9_]+\b/',
+        '/\b(startLine|endLine|startTokenPos|endTokenPos|startFilePos|endFilePos)\b/',
+        '/\bdumpComments\b/',
+        '/\bdumpPositions\b/',
+        '/\bdumpOtherAttributes\b/',
+        '/\bphpVersion\b/',
+        '/\bshortArraySyntax\b/',
+        '/\bnodeType\b/',
+        '/\bPHP_VERSION\b/',
+        '/\bJSON_/',
+        '/\b__LINE__\b/',
+        '/\b__FILE__\b/',
+        '/\b__DIR__\b/',
+        '/\b__CLASS__\b/',
+        '/\b__METHOD__\b/',
+        '/\b__FUNCTION__\b/',
+        '/\bnikic\/php-parser\b/',
+        '/\bPackagist\b/',
+        '/\bcomposer\.json\b.*PhpParser\\\\"Psr/', // psr in composer examples elsewhere
+    ];
+    foreach ($allowPatterns as $pattern) {
+        if (preg_match($pattern, $line)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
  * @param list<string> $failures
  */
-function scan_php_for_old_names(string $relative, string $contents, array &$failures): void
+function scan_for_old_names(string $relative, string $contents, array &$failures): void
 {
     $lines = explode("\n", $contents);
-    $filtered = [];
-    foreach ($lines as $line) {
-        if (preg_match('/^\s*(\*\/|\*|\/\/|\/\*)/', $line)) {
+    foreach ($lines as $i => $line) {
+        if (is_allowlisted_line($line)) {
             continue;
         }
-        if (stripos($line, '@deprecated') !== false || stripos($line, '@param') !== false || stripos($line, '@return') !== false) {
-            continue;
-        }
-        $filtered[] = $line;
-    }
-    $contents = implode("\n", $filtered);
 
-    $patterns = [
-        '/^\s*namespace\s+PhpParser\b/m',
-        '/^\s*use\s+PhpParser\\\\/m',
-        '/(?<!Php_)PhpParser\\\\[A-Za-z_]/',
-        '/\bclass\s+BuilderFactory\b/',
-        '/\bclass\s+ParserFactory\b/',
-        '/\bclass\s+NodeAbstract\b/',
-        '/\bclass\s+NodeVisitor\b/',
-        '/\bclass\s+PrettyPrinter\b/',
-        '/\bclass\s+ErrorHandler\b/',
-        '/\bfunction\s+createForNewestSupportedVersion\b/',
-        '/\bfunction\s+createForVersion\b/',
-        '/\bphpyLang\.php\b/',
-    ];
+        $patterns = [
+            '/^\s*namespace\s+PhpParser\b/',
+            '/^\s*use\s+PhpParser\\\\/',
+            '/(?<!Php_)PhpParser\\\\[A-Za-z_]/',
+            '/\bclass\s+BuilderFactory\b/',
+            '/\bclass\s+ParserFactory\b/',
+            '/\bclass\s+NodeAbstract\b/',
+            '/\bclass\s+NodeVisitor\b/',
+            '/\bclass\s+PrettyPrinter\b/',
+            '/\bclass\s+ErrorHandler\b/',
+            '/\bfunction\s+createForNewestSupportedVersion\b/',
+            '/\bfunction\s+createForVersion\b/',
+            '/\bfunction\s+getSubNodeNames\b/',
+            '/\bfunction\s+getType\b/',
+            '/\b->getSubNodeNames\s*\(/',
+            '/\b->getType\s*\(/',
+            '/\b->createForNewestSupportedVersion\s*\(/',
+            '/\b->createForVersion\s*\(/',
+            '/\bphpyLang\.php\b/',
+            '/\brebuildParsers\.php\b/',
+            '/\bStmt\\\\ClassMethod\b/',
+            '/\bNode\\\\UseItem\b/',
+            '/\bbyRef\s*:/',
+            '/\battrGroups\s*:/',
+            '/\breturnType\s*:/',
+            '/\bkeyVar\s*:/',
+            '/\bvalueVar\s*:/',
+            '/\bscalarType\s*:/',
+        ];
 
-    foreach ($patterns as $pattern) {
-        if (preg_match($pattern, $contents)) {
-            $failures[] = "{$relative}: matched forbidden pattern {$pattern}";
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $line)) {
+                $failures[] = "{$relative}:" . ($i + 1) . ": matched {$pattern}";
+            }
         }
     }
 }
 
-foreach (php_files_to_scan($scanPhpPaths) as $file) {
+foreach (files_to_scan($scanPhpPaths, ['php']) as $file) {
     $contents = file_get_contents($file);
     if ($contents === false) {
         $failures[] = "Could not read {$file}";
         continue;
     }
     $relative = strpos($file, $root) === 0 ? substr($file, strlen($root) + 1) : $file;
-    scan_php_for_old_names($relative, $contents, $failures);
+    scan_for_old_names($relative, $contents, $failures);
 }
 
-foreach ($scanDocPaths as $docPath) {
-    if (!is_readable($docPath)) {
-        continue;
-    }
-    $contents = file_get_contents($docPath);
+foreach (files_to_scan($scanTextPaths, ['md', 'markdown', 'y', 'template']) as $file) {
+    $contents = file_get_contents($file);
     if ($contents === false) {
-        $failures[] = "Could not read {$docPath}";
+        $failures[] = "Could not read {$file}";
         continue;
     }
-    $relative = substr($docPath, strlen($root) + 1);
-    if (strpos($contents, '"PhpParser\\\\"') !== false) {
-        $failures[] = "{$relative}: forbidden PSR-4 namespace PhpParser";
+    $relative = strpos($file, $root) === 0 ? substr($file, strlen($root) + 1) : $file;
+    scan_for_old_names($relative, $contents, $failures);
+}
+
+foreach (files_to_scan($scanTestDumpPaths, ['test']) as $file) {
+    $contents = file_get_contents($file);
+    if ($contents === false) {
+        $failures[] = "Could not read {$file}";
+        continue;
+    }
+    $relative = strpos($file, $root) === 0 ? substr($file, strlen($root) + 1) : $file;
+    scan_for_old_names($relative, $contents, $failures);
+}
+
+if (is_readable($root . '/composer.json')) {
+    $contents = file_get_contents($root . '/composer.json');
+    if ($contents !== false && strpos($contents, '"PhpParser\\\\"') !== false) {
+        $failures[] = 'composer.json: forbidden PSR-4 namespace PhpParser';
     }
 }
 
@@ -126,7 +207,7 @@ if ($failures !== []) {
 }
 
 $demoFailures = [];
-scan_php_for_old_names('demo-injection', "namespace PhpParser;\nclass BuilderFactory {}\n", $demoFailures);
+scan_for_old_names('demo-injection', "namespace PhpParser;\nclass BuilderFactory {}\n", $demoFailures);
 if ($demoFailures === []) {
     fwrite(STDERR, "check-rename-complete: demo injection of old name did not fail as expected.\n");
     exit(1);

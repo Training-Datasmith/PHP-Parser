@@ -77,7 +77,7 @@ class Method_Test extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals(
             new Stmt\Class_Method('test', [
-                'byRef' => true,
+                'by_ref' => true,
             ]),
             $node
         );
@@ -150,7 +150,7 @@ class Method_Test extends \PHPUnit\Framework\TestCase
             ->get_node();
 
         $this->assertEquals(new Stmt\Class_Method('attributeGroup', [
-            'attrGroups' => [$attributeGroup],
+            'attr_groups' => [$attributeGroup],
         ], []), $node);
     }
 
@@ -160,7 +160,7 @@ class Method_Test extends \PHPUnit\Framework\TestCase
             ->set_return_type('bool')
             ->get_node();
         $this->assertEquals(new Stmt\Class_Method('test', [
-            'returnType' => new Identifier('bool'),
+            'return_type' => new Identifier('bool'),
         ], []), $node);
     }
 

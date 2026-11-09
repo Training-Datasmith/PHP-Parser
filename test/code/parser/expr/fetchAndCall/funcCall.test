@@ -16,7 +16,7 @@ a()['b'];
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: a
             )
@@ -28,7 +28,7 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Expr_Variable(
                 name: a
             )
@@ -37,9 +37,9 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Expr_Variable(
-                name: Scalar_String(
+                name: Scalar_String_(
                     value: a
                 )
             )
@@ -48,7 +48,7 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Expr_Variable(
                 name: Expr_Variable(
                     name: a
@@ -59,7 +59,7 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Expr_Variable(
                 name: Expr_Variable(
                     name: Expr_Variable(
@@ -72,12 +72,12 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Expr_FuncCall(
-            name: Expr_ArrayDimFetch(
+        expr: Expr_Func_Call(
+            name: Expr_Array_Dim_Fetch(
                 var: Expr_Variable(
                     name: a
                 )
-                dim: Scalar_String(
+                dim: Scalar_String_(
                     value: b
                 )
             )
@@ -86,9 +86,9 @@ array(
         )
     )
     6: Stmt_Expression(
-        expr: Expr_FuncCall(
-            name: Expr_ArrayDimFetch(
-                var: Expr_PropertyFetch(
+        expr: Expr_Func_Call(
+            name: Expr_Array_Dim_Fetch(
+                var: Expr_Property_Fetch(
                     var: Expr_Variable(
                         name: a
                     )
@@ -96,7 +96,7 @@ array(
                         name: b
                     )
                 )
-                dim: Scalar_String(
+                dim: Scalar_String_(
                     value: c
                 )
             )
@@ -105,15 +105,15 @@ array(
         )
     )
     7: Stmt_Expression(
-        expr: Expr_ArrayDimFetch(
-            var: Expr_FuncCall(
+        expr: Expr_Array_Dim_Fetch(
+            var: Expr_Func_Call(
                 name: Name(
                     name: a
                 )
                 args: array(
                 )
             )
-            dim: Scalar_String(
+            dim: Scalar_String_(
                 value: b
             )
         )

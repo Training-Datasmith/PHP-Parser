@@ -17,22 +17,22 @@ clone(...["object" => $x, "withProperties" => [ "foo" => $foo, "bar" => $bar ]])
 clone(...);
 -----
 array(
-    0: Stmt_Function(
-        attrGroups: array(
+    0: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: clone
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: object
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: object
@@ -42,18 +42,18 @@ array(
                 )
             )
             1: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: Identifier(
                     name: array
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: withProperties
                 )
-                default: Expr_Array(
+                default: Expr_Array_(
                     items: array(
                     )
                 )
@@ -61,28 +61,28 @@ array(
                 )
             )
         )
-        returnType: Identifier(
+        return_type: Identifier(
             name: object
         )
         stmts: array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_Clone(
+        expr: Expr_Clone_(
             expr: Expr_Variable(
                 name: x
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_Clone(
+        expr: Expr_Clone_(
             expr: Expr_Variable(
                 name: x
             )
         )
     )
     3: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: clone
             )
@@ -92,14 +92,14 @@ array(
                     value: Expr_Variable(
                         name: x
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     4: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: clone
             )
@@ -109,43 +109,43 @@ array(
                     value: Expr_Variable(
                         name: x
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
                     name: null
-                    value: Expr_Array(
+                    value: Expr_Array_(
                         items: array(
                             0: Array_Item(
-                                key: Scalar_String(
+                                key: Scalar_String_(
                                     value: foo
                                 )
                                 value: Expr_Variable(
                                     name: foo
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                             1: Array_Item(
-                                key: Scalar_String(
+                                key: Scalar_String_(
                                     value: bar
                                 )
                                 value: Expr_Variable(
                                     name: bar
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     5: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: clone
             )
@@ -155,7 +155,7 @@ array(
                     value: Expr_Variable(
                         name: x
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
@@ -163,14 +163,14 @@ array(
                     value: Expr_Variable(
                         name: array
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     6: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: clone
             )
@@ -180,7 +180,7 @@ array(
                     value: Expr_Variable(
                         name: x
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
@@ -188,7 +188,7 @@ array(
                     value: Expr_Variable(
                         name: array
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 2: Arg(
@@ -196,7 +196,7 @@ array(
                     value: Expr_Variable(
                         name: extraParameter
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 3: Arg(
@@ -204,14 +204,14 @@ array(
                     value: Expr_Variable(
                         name: trailingComma
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     7: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: clone
             )
@@ -223,45 +223,45 @@ array(
                     value: Expr_Variable(
                         name: x
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
                     name: Identifier(
                         name: withProperties
                     )
-                    value: Expr_Array(
+                    value: Expr_Array_(
                         items: array(
                             0: Array_Item(
-                                key: Scalar_String(
+                                key: Scalar_String_(
                                     value: foo
                                 )
                                 value: Expr_Variable(
                                     name: foo
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                             1: Array_Item(
-                                key: Scalar_String(
+                                key: Scalar_String_(
                                     value: bar
                                 )
                                 value: Expr_Variable(
                                     name: bar
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     8: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: clone
             )
@@ -271,45 +271,45 @@ array(
                     value: Expr_Variable(
                         name: x
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
                     name: Identifier(
                         name: withProperties
                     )
-                    value: Expr_Array(
+                    value: Expr_Array_(
                         items: array(
                             0: Array_Item(
-                                key: Scalar_String(
+                                key: Scalar_String_(
                                     value: foo
                                 )
                                 value: Expr_Variable(
                                     name: foo
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                             1: Array_Item(
-                                key: Scalar_String(
+                                key: Scalar_String_(
                                     value: bar
                                 )
                                 value: Expr_Variable(
                                     name: bar
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     9: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: clone
             )
@@ -321,14 +321,14 @@ array(
                     value: Expr_Variable(
                         name: x
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     10: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: clone
             )
@@ -340,102 +340,102 @@ array(
                     value: Expr_Variable(
                         name: x
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
                 1: Arg(
                     name: null
-                    value: Expr_Array(
+                    value: Expr_Array_(
                         items: array(
                             0: Array_Item(
-                                key: Scalar_String(
+                                key: Scalar_String_(
                                     value: foo
                                 )
                                 value: Expr_Variable(
                                     name: foo
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                             1: Array_Item(
-                                key: Scalar_String(
+                                key: Scalar_String_(
                                     value: bar
                                 )
                                 value: Expr_Variable(
                                     name: bar
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     11: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: clone
             )
             args: array(
                 0: Arg(
                     name: null
-                    value: Expr_Array(
+                    value: Expr_Array_(
                         items: array(
                             0: Array_Item(
-                                key: Scalar_String(
+                                key: Scalar_String_(
                                     value: object
                                 )
                                 value: Expr_Variable(
                                     name: x
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                             1: Array_Item(
-                                key: Scalar_String(
+                                key: Scalar_String_(
                                     value: withProperties
                                 )
-                                value: Expr_Array(
+                                value: Expr_Array_(
                                     items: array(
                                         0: Array_Item(
-                                            key: Scalar_String(
+                                            key: Scalar_String_(
                                                 value: foo
                                             )
                                             value: Expr_Variable(
                                                 name: foo
                                             )
-                                            byRef: false
+                                            by_ref: false
                                             unpack: false
                                         )
                                         1: Array_Item(
-                                            key: Scalar_String(
+                                            key: Scalar_String_(
                                                 value: bar
                                             )
                                             value: Expr_Variable(
                                                 name: bar
                                             )
-                                            byRef: false
+                                            by_ref: false
                                             unpack: false
                                         )
                                     )
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: true
                 )
             )
         )
     )
     12: Stmt_Expression(
-        expr: Expr_FuncCall(
+        expr: Expr_Func_Call(
             name: Name(
                 name: clone
             )

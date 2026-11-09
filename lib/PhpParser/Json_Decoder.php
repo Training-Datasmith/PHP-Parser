@@ -90,20 +90,14 @@ class Json_Decoder
     /** @return class-string<Node> */
     private function class_name_from_node_type(string $node_type): string
     {
-        $studly_snake = preg_replace('/([a-z])([A-Z])/', '$1_$2', $node_type) ?? $node_type;
-        $candidates = [
-            'Php_Parser\\Node\\' . strtr($node_type, '_', '\\'),
-            'Php_Parser\\Node\\' . strtr($studly_snake, '_', '\\'),
-        ];
-        foreach ($candidates as $class_name) {
-            if (class_exists($class_name)) {
-                return $class_name;
-            }
-            $class_name_with_underscore = $class_name . '_';
-            if (class_exists($class_name_with_underscore)) {
-                return $class_name_with_underscore;
-            }
+        static $map = null;
+        if ($map === null) {
+            $map = require __DIR__ . '/node_type_map.php';
         }
-        throw new \RuntimeException("Unknown node type \"{$node_type}\"");
+        if (!isset($map[$node_type])) {
+            throw new \RuntimeException("Unknown node type \"{$node_type}\"");
+        }
+
+        return $map[$node_type];
     }
 }

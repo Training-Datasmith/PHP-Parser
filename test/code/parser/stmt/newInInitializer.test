@@ -15,15 +15,15 @@ class Bar {
 }
 -----
 array(
-    0: Stmt_Const(
-        attrGroups: array(
+    0: Stmt_Const_(
+        attr_groups: array(
         )
         consts: array(
-            0: Const(
+            0: Const_(
                 name: Identifier(
                     name: C
                 )
-                value: Expr_New(
+                value: Expr_New_(
                     class: Name(
                         name: Foo
                     )
@@ -33,25 +33,25 @@ array(
             )
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: a
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: x
                 )
-                default: Expr_New(
+                default: Expr_New_(
                     class: Name(
                         name: Foo
                     )
@@ -62,15 +62,15 @@ array(
                 )
             )
         )
-        returnType: null
+        return_type: null
         stmts: array(
-            0: Stmt_Static(
+            0: Stmt_Static_(
                 vars: array(
-                    0: StaticVar(
+                    0: Static_Var(
                         var: Expr_Variable(
                             name: y
                         )
-                        default: Expr_New(
+                        default: Expr_New_(
                             class: Name(
                                 name: Foo
                             )
@@ -82,9 +82,9 @@ array(
             )
         )
     )
-    2: Stmt_Class(
-        attrGroups: array(
-            0: AttributeGroup(
+    2: Stmt_Class_(
+        attr_groups: array(
+            0: Attribute_Group(
                 attrs: array(
                     0: Attribute(
                         name: Name(
@@ -93,14 +93,14 @@ array(
                         args: array(
                             0: Arg(
                                 name: null
-                                value: Expr_New(
+                                value: Expr_New_(
                                     class: Name(
                                         name: Foo
                                     )
                                     args: array(
                                     )
                                 )
-                                byRef: false
+                                by_ref: false
                                 unpack: false
                             )
                         )
@@ -116,17 +116,17 @@ array(
         implements: array(
         )
         stmts: array(
-            0: Stmt_ClassConst(
-                attrGroups: array(
+            0: Stmt_Class_Const(
+                attr_groups: array(
                 )
                 flags: 0
                 type: null
                 consts: array(
-                    0: Const(
+                    0: Const_(
                         name: Identifier(
                             name: C
                         )
-                        value: Expr_New(
+                        value: Expr_New_(
                             class: Name(
                                 name: Foo
                             )
@@ -137,16 +137,16 @@ array(
                 )
             )
             1: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
                 type: null
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop
                         )
-                        default: Expr_New(
+                        default: Expr_New_(
                             class: Name(
                                 name: Foo
                             )

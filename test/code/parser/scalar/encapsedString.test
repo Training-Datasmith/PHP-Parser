@@ -40,7 +40,7 @@ array(
     1: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_PropertyFetch(
+                0: Expr_Property_Fetch(
                     var: Expr_Variable(
                         name: A
                     )
@@ -54,11 +54,11 @@ array(
     2: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: A
                     )
-                    dim: Scalar_String(
+                    dim: Scalar_String_(
                         value: B
                     )
                 )
@@ -68,11 +68,11 @@ array(
     3: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: A
                     )
-                    dim: Scalar_Int(
+                    dim: Scalar_Int_(
                         value: 0
                     )
                 )
@@ -82,11 +82,11 @@ array(
     4: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: A
                     )
-                    dim: Scalar_Int(
+                    dim: Scalar_Int_(
                         value: 1234
                     )
                 )
@@ -96,11 +96,11 @@ array(
     5: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: A
                     )
-                    dim: Scalar_String(
+                    dim: Scalar_String_(
                         value: 9223372036854775808
                     )
                 )
@@ -110,11 +110,11 @@ array(
     6: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: A
                     )
-                    dim: Scalar_String(
+                    dim: Scalar_String_(
                         value: 000
                     )
                 )
@@ -124,11 +124,11 @@ array(
     7: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: A
                     )
-                    dim: Scalar_String(
+                    dim: Scalar_String_(
                         value: 0x0
                     )
                 )
@@ -138,11 +138,11 @@ array(
     8: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: A
                     )
-                    dim: Scalar_String(
+                    dim: Scalar_String_(
                         value: 0b0
                     )
                 )
@@ -152,7 +152,7 @@ array(
     9: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: A
                     )
@@ -175,11 +175,11 @@ array(
     11: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: A
                     )
-                    dim: Scalar_String(
+                    dim: Scalar_String_(
                         value: B
                     )
                 )
@@ -198,11 +198,11 @@ array(
     13: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_ArrayDimFetch(
+                0: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: A
                     )
-                    dim: Scalar_String(
+                    dim: Scalar_String_(
                         value: B
                     )
                 )
@@ -223,13 +223,13 @@ array(
     15: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: \{
                 )
                 1: Expr_Variable(
                     name: A
                 )
-                2: Interpolated_StringPart(
+                2: Interpolated_String_Part(
                     value: }
                 )
             )
@@ -238,13 +238,13 @@ array(
     16: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: \{
                 )
                 1: Expr_Variable(
                     name: A
                 )
-                2: Interpolated_StringPart(
+                2: Interpolated_String_Part(
                     value:  }
                 )
             )
@@ -253,7 +253,7 @@ array(
     17: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: \
                 )
                 1: Expr_Variable(
@@ -265,13 +265,13 @@ array(
     18: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: \{
                 )
                 1: Expr_Variable(
                     name: A
                 )
-                2: Interpolated_StringPart(
+                2: Interpolated_String_Part(
                     value:  }
                 )
             )
@@ -285,7 +285,7 @@ array(
                         name: A
                     )
                 )
-                1: Interpolated_StringPart(
+                1: Interpolated_String_Part(
                     value: [B]
                 )
             )
@@ -294,14 +294,14 @@ array(
     20: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: $
                 )
-                1: Expr_ArrayDimFetch(
+                1: Expr_Array_Dim_Fetch(
                     var: Expr_Variable(
                         name: A
                     )
-                    dim: Scalar_String(
+                    dim: Scalar_String_(
                         value: B
                     )
                 )
@@ -311,13 +311,13 @@ array(
     21: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: A
                 )
                 1: Expr_Variable(
                     name: B
                 )
-                2: Interpolated_StringPart(
+                2: Interpolated_String_Part(
                     value:  C
                 )
             )

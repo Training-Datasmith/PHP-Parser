@@ -165,7 +165,7 @@ DOC;
 
         $this->assertEquals(
             new Stmt\Class_('ATTR_GROUP', [
-                'attrGroups' => [
+                'attr_groups' => [
                     $attributeGroup,
                 ],
             ], []),
@@ -176,7 +176,7 @@ DOC;
     public function testInvalidStmtError(): void
     {
         $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('Unexpected node of type "Stmt_Echo"');
+        $this->expectExceptionMessage('Unexpected node of type "Stmt_Echo_"');
         $this->createClassBuilder('Test')
             ->add_stmt(new Stmt\Echo_([]))
         ;

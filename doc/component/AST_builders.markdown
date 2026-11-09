@@ -10,7 +10,7 @@ Fluent builders
 ---------------
 
 The library comes with a number of builders, which allow creating node trees using a fluent
-interface. Builders are created using the `BuilderFactory` and the final constructed node is
+interface. Builders are created using the `Builder_Factory` and the final constructed node is
 accessed through `getNode()`. Fluent builders are available for
 the following syntactic elements:
 
@@ -23,11 +23,11 @@ the following syntactic elements:
 Here is an example:
 
 ```php
-use PhpParser\BuilderFactory;
-use PhpParser\PrettyPrinter;
-use PhpParser\Node;
+use Php_Parser\Builder_Factory;
+use Php_Parser\Pretty_Printer;
+use Php_Parser\Node;
 
-$factory = new BuilderFactory;
+$factory = new Builder_Factory;
 $node = $factory->namespace('Name\Space')
     ->addStmt($factory->use('Some\Other\Thingy')->as('SomeClass'))
     ->addStmt($factory->useFunction('strlen'))
@@ -73,8 +73,8 @@ $node = $factory->namespace('Name\Space')
 ;
 
 $stmts = array($node);
-$prettyPrinter = new PrettyPrinter\Standard();
-echo $prettyPrinter->prettyPrintFile($stmts);
+$prettyPrinter = new Pretty_Printer\Standard();
+echo $prettyPrinter->pretty_print_file($stmts);
 ```
 
 This will produce the following output with the standard pretty printer:
@@ -113,7 +113,7 @@ abstract class SomeOtherClass extends SomeClass implements A\Few, \Interfaces
 Additional helper methods
 -------------------------
 
-The `BuilderFactory` also provides a number of additional helper methods, which directly return
+The `Builder_Factory` also provides a number of additional helper methods, which directly return
 nodes. The following methods are currently available:
 
  * `val($value)`: Creates an AST node for a literal value like `42` or `[1, 2, 3]`.

@@ -23,6 +23,6 @@ class Union_Type extends Complex_Type
         return ['types'];
     }
     public function get_type(): string {
-        return 'UnionType';
+        return 'Union_Type';
     }
 }

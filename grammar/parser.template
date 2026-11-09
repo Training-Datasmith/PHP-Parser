@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 $meta #
-#semval($) $self->semValue
-#semval($,%t) $self->semValue
-#semval(%n) $stackPos-(%l-%n)
-#semval(%n,%t) $stackPos-(%l-%n)
+#semval($) $self->sem_value
+#semval($,%t) $self->sem_value
+#semval(%n) $stack_pos-(%l-%n)
+#semval(%n,%t) $stack_pos-(%l-%n)
 
 namespace Php_Parser\Parser;
 
@@ -20,7 +20,7 @@ use Php_Parser\Node\Stmt;
  * Instead edit one of the following:
  *  * the grammar file grammar/php.y
  *  * the skeleton file grammar/parser.template
- *  * the preprocessing script grammar/rebuildParsers.php
+ *  * the preprocessing script grammar/rebuild_Parsers.php
  */
 class #(-p) extends \Php_Parser\Parser_Abstract
 {
@@ -28,23 +28,23 @@ class #(-p) extends \Php_Parser\Parser_Abstract
     public const %s = %n;
 #endtokenval
 
-    protected int $tokenToSymbolMapSize = #(YYMAXLEX);
-    protected int $actionTableSize = #(YYLAST);
-    protected int $gotoTableSize = #(YYGLAST);
+    protected int $token_to_symbol_map_size = #(YYMAXLEX);
+    protected int $action_table_size = #(YYLAST);
+    protected int $goto_table_size = #(YYGLAST);
 
-    protected int $invalidSymbol = #(YYBADCH);
-    protected int $errorSymbol = #(YYINTERRTOK);
-    protected int $defaultAction = #(YYDEFAULT);
-    protected int $unexpectedTokenRule = #(YYUNEXPECTED);
+    protected int $invalid_symbol = #(YYBADCH);
+    protected int $error_symbol = #(YYINTERRTOK);
+    protected int $default_action = #(YYDEFAULT);
+    protected int $unexpected_token_rule = #(YYUNEXPECTED);
 
     protected int $YY2TBLSTATE = #(YY2TBLSTATE);
-    protected int $numNonLeafStates = #(YYNLSTATES);
+    protected int $num_non_leaf_states = #(YYNLSTATES);
 
-    protected array $symbolToName = array(
+    protected array $symbol_to_name = array(
         #listvar terminals
     );
 
-    protected array $tokenToSymbol = array(
+    protected array $token_to_symbol = array(
         #listvar yytranslate
     );
 
@@ -52,15 +52,15 @@ class #(-p) extends \Php_Parser\Parser_Abstract
         #listvar yyaction
     );
 
-    protected array $actionCheck = array(
+    protected array $action_check = array(
         #listvar yycheck
     );
 
-    protected array $actionBase = array(
+    protected array $action_base = array(
         #listvar yybase
     );
 
-    protected array $actionDefault = array(
+    protected array $action_default = array(
         #listvar yydefault
     );
 
@@ -68,23 +68,23 @@ class #(-p) extends \Php_Parser\Parser_Abstract
         #listvar yygoto
     );
 
-    protected array $gotoCheck = array(
+    protected array $goto_check = array(
         #listvar yygcheck
     );
 
-    protected array $gotoBase = array(
+    protected array $goto_base = array(
         #listvar yygbase
     );
 
-    protected array $gotoDefault = array(
+    protected array $goto_default = array(
         #listvar yygdefault
     );
 
-    protected array $ruleToNonTerminal = array(
+    protected array $rule_to_non_terminal = array(
         #listvar yylhs
     );
 
-    protected array $ruleToLength = array(
+    protected array $rule_to_length = array(
         #listvar yylen
     );
 #if -t
@@ -95,9 +95,9 @@ class #(-p) extends \Php_Parser\Parser_Abstract
 #endif
 
     protected function init_reduce_callbacks(): void {
-        $this->reduceCallbacks = [
+        $this->reduce_callbacks = [
 #reduce
-            %n => static function ($self, $stackPos) {
+            %n => static function ($self, $stack_pos) {
                 %b
             },
 #noact

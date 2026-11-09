@@ -7,6 +7,6 @@ use Php_Parser\Node\Expr\Assign_Op;
 class Bitwise_Xor extends Assign_Op
 {
     public function get_type(): string {
-        return 'Expr_AssignOp_BitwiseXor';
+        return 'Expr_Assign_Op_Bitwise_Xor';
     }
 }

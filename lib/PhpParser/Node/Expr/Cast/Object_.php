@@ -7,6 +7,6 @@ use Php_Parser\Node\Expr\Cast;
 class Object_ extends Cast
 {
     public function get_type(): string {
-        return 'Expr_Cast_Object';
+        return 'Expr_Cast_Object_';
     }
 }

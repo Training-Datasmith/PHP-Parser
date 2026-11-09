@@ -123,6 +123,6 @@ class String_ extends Scalar
         throw new Error('Invalid UTF-8 codepoint escape sequence: Codepoint too large');
     }
     public function get_type(): string {
-        return 'Scalar_String';
+        return 'Scalar_String_';
     }
 }

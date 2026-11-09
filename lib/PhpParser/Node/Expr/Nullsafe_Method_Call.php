@@ -36,7 +36,7 @@ class Nullsafe_Method_Call extends Call_Like
         return ['var', 'name', 'args'];
     }
     public function get_type(): string {
-        return 'Expr_NullsafeMethodCall';
+        return 'Expr_Nullsafe_Method_Call';
     }
     public function get_raw_args(): array
     {

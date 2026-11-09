@@ -2,31 +2,53 @@ Trailing newlines in doc strings
 -----
 <?php
 
-<<<'EOF'@@{ "\n\n" }@@EOF;
-<<<'EOF'@@{ "\n\n\n" }@@EOF;
-<<<'EOF'@@{ "\nFoo\n\n" }@@EOF;
-<<<EOF@@{ "\n\$var\n\n" }@@EOF;
+<<<'EOF'
 
-<<<'EOF'@@{ "\r\n\r\n" }@@EOF;
-<<<'EOF'@@{ "\r\n\r\n\r\n" }@@EOF;
-<<<'EOF'@@{ "\r\nFoo\r\n\r\n" }@@EOF;
-<<<EOF@@{ "\r\n\$var\r\n\r\n" }@@EOF;
+EOF;
+<<<'EOF'
+
+
+EOF;
+<<<'EOF'
+Foo
+
+EOF;
+<<<EOF
+$var
+
+EOF;
+
+<<<'EOF'
+
+EOF;
+<<<'EOF'
+
+
+EOF;
+<<<'EOF'
+Foo
+
+EOF;
+<<<EOF
+$var
+
+EOF;
 
 -----
 array(
     0: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
         )
     )
     1: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
 
         )
     )
     2: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: Foo
 
         )
@@ -37,7 +59,7 @@ array(
                 0: Expr_Variable(
                     name: var
                 )
-                1: Interpolated_StringPart(
+                1: Interpolated_String_Part(
                     value:
 
                 )
@@ -45,18 +67,18 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
         )
     )
     5: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
 
         )
     )
     6: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: Foo
 
         )
@@ -67,7 +89,7 @@ array(
                 0: Expr_Variable(
                     name: var
                 )
-                1: Interpolated_StringPart(
+                1: Interpolated_String_Part(
                     value:
 
                 )

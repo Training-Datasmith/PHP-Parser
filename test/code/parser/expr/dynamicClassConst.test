@@ -6,11 +6,11 @@ $foo::{bar()};
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_ClassConstFetch(
+        expr: Expr_Class_Const_Fetch(
             class: Name(
                 name: Foo
             )
-            name: Expr_FuncCall(
+            name: Expr_Func_Call(
                 name: Name(
                     name: bar
                 )
@@ -20,11 +20,11 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_ClassConstFetch(
+        expr: Expr_Class_Const_Fetch(
             class: Expr_Variable(
                 name: foo
             )
-            name: Expr_FuncCall(
+            name: Expr_Func_Call(
                 name: Name(
                     name: bar
                 )

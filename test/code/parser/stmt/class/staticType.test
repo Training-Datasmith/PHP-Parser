@@ -6,8 +6,8 @@ class Test {
 }
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -18,16 +18,16 @@ array(
         )
         stmts: array(
             0: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC | STATIC (9)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: create
                 )
                 params: array(
                 )
-                returnType: Name(
+                return_type: Name(
                     name: static
                 )
                 stmts: array(

@@ -10,14 +10,14 @@ list(1 + 1) = $x;
 array(
     0: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_List(
+            var: Expr_List_(
                 items: array(
                     0: Array_Item(
                         key: null
                         value: Expr_Variable(
                             name: a
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     1: Array_Item(
@@ -25,7 +25,7 @@ array(
                         value: Expr_Variable(
                             name: b
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )
@@ -40,19 +40,19 @@ array(
     )
     1: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_List(
+            var: Expr_List_(
                 items: array(
                     0: Array_Item(
                         key: null
-                        value: Expr_BinaryOp_Plus(
-                            left: Scalar_Int(
+                        value: Expr_Binary_Op_Plus(
+                            left: Scalar_Int_(
                                 value: 1
                             )
-                            right: Scalar_Int(
+                            right: Scalar_Int_(
                                 value: 1
                             )
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )

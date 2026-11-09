@@ -41,6 +41,6 @@ class If_ extends Node\Stmt
         return ['cond', 'stmts', 'elseifs', 'else'];
     }
     public function get_type(): string {
-        return 'Stmt_If';
+        return 'Stmt_If_';
     }
 }

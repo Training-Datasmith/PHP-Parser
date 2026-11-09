@@ -1,4 +1,4 @@
-Constant fetches
+Const_ant fetches
 -----
 <?php
 
@@ -10,14 +10,14 @@ $a::class;
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_ConstFetch(
+        expr: Expr_Const_Fetch(
             name: Name(
                 name: A
             )
         )
     )
     1: Stmt_Expression(
-        expr: Expr_ClassConstFetch(
+        expr: Expr_Class_Const_Fetch(
             class: Name(
                 name: A
             )
@@ -27,7 +27,7 @@ array(
         )
     )
     2: Stmt_Expression(
-        expr: Expr_ClassConstFetch(
+        expr: Expr_Class_Const_Fetch(
             class: Name(
                 name: A
             )
@@ -37,7 +37,7 @@ array(
         )
     )
     3: Stmt_Expression(
-        expr: Expr_ClassConstFetch(
+        expr: Expr_Class_Const_Fetch(
             class: Expr_Variable(
                 name: a
             )
@@ -47,7 +47,7 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Expr_ClassConstFetch(
+        expr: Expr_Class_Const_Fetch(
             class: Expr_Variable(
                 name: a
             )

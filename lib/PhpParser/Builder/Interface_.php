@@ -15,7 +15,7 @@ class Interface_ extends Declaration
     protected array $extends = [];
     /** @var list<Stmt\ClassConst> */
     protected array $constants = [];
-    /** @var list<Stmt\ClassMethod> */
+    /** @var list<Stmt\Class_Method> */
     protected array $methods = [];
     /** @var list<Node\AttributeGroup> */
     protected array $attribute_groups = [];
@@ -45,7 +45,7 @@ class Interface_ extends Declaration
     /**
      * Adds a statement.
      *
-     * @param Stmt|PhpParser\Builder $stmt The statement to add
+     * @param Stmt|Php_Parser\Builder $stmt The statement to add
      *
      * @return $this The builder instance (for fluid interface)
      */
@@ -82,6 +82,6 @@ class Interface_ extends Declaration
      */
     public function get_node(): Php_Parser\Node
     {
-        return new Stmt\Interface_($this->name, ['extends' => $this->extends, 'stmts' => array_merge($this->constants, $this->methods), 'attrGroups' => $this->attribute_groups], $this->attributes);
+        return new Stmt\Interface_($this->name, ['extends' => $this->extends, 'stmts' => array_merge($this->constants, $this->methods), 'attr_groups' => $this->attribute_groups], $this->attributes);
     }
 }

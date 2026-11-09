@@ -11,6 +11,6 @@ class Shift_Left extends Binary_Op
         return '<<';
     }
     public function get_type(): string {
-        return 'Expr_BinaryOp_ShiftLeft';
+        return 'Expr_Binary_Op_Shift_Left';
     }
 }

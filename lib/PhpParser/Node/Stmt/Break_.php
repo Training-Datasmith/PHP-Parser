@@ -24,6 +24,6 @@ class Break_ extends Node\Stmt
         return ['num'];
     }
     public function get_type(): string {
-        return 'Stmt_Break';
+        return 'Stmt_Break_';
     }
 }

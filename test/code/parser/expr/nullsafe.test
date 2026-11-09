@@ -10,7 +10,7 @@ new $a?->b;
 -----
 array(
     0: Stmt_Expression(
-        expr: Expr_NullsafePropertyFetch(
+        expr: Expr_Nullsafe_Property_Fetch(
             var: Expr_Variable(
                 name: a
             )
@@ -20,7 +20,7 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Expr_NullsafeMethodCall(
+        expr: Expr_Nullsafe_Method_Call(
             var: Expr_Variable(
                 name: a
             )
@@ -33,15 +33,15 @@ array(
                     value: Expr_Variable(
                         name: c
                     )
-                    byRef: false
+                    by_ref: false
                     unpack: false
                 )
             )
         )
     )
     2: Stmt_Expression(
-        expr: Expr_New(
-            class: Expr_NullsafePropertyFetch(
+        expr: Expr_New_(
+            class: Expr_Nullsafe_Property_Fetch(
                 var: Expr_Variable(
                     name: a
                 )
@@ -56,7 +56,7 @@ array(
     3: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_NullsafePropertyFetch(
+                0: Expr_Nullsafe_Property_Fetch(
                     var: Expr_Variable(
                         name: a
                     )
@@ -70,7 +70,7 @@ array(
     4: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Expr_NullsafePropertyFetch(
+                0: Expr_Nullsafe_Property_Fetch(
                     var: Expr_Variable(
                         name: a
                     )

@@ -19,7 +19,7 @@ FOO,
   END;
 
 <<<END
-@@{ " " }@@
+ 
   END;
 
 <<<'END'
@@ -115,22 +115,22 @@ array(
             var: Expr_Variable(
                 name: ary
             )
-            expr: Expr_Array(
+            expr: Expr_Array_(
                 items: array(
                     0: Array_Item(
                         key: null
-                        value: Scalar_String(
+                        value: Scalar_String_(
                             value: Test
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                     1: Array_Item(
                         key: null
-                        value: Scalar_String(
+                        value: Scalar_String_(
                             value: Test
                         )
-                        byRef: false
+                        by_ref: false
                         unpack: false
                     )
                 )
@@ -138,22 +138,22 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
         )
     )
     2: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
         )
     )
     3: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
         )
     )
     4: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:     a
                b
 
@@ -166,7 +166,7 @@ array(
     5: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value:     a
                        b
 
@@ -174,7 +174,7 @@ array(
                 1: Expr_Variable(
                     name: test
                 )
-                2: Interpolated_StringPart(
+                2: Interpolated_String_Part(
                     value:
                      d
                     e
@@ -183,7 +183,7 @@ array(
         )
     )
     6: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:
                 a
 
@@ -200,10 +200,10 @@ array(
     7: Stmt_Expression(
         expr: Scalar_Interpolated_String(
             parts: array(
-                0: Interpolated_StringPart(
+                0: Interpolated_String_Part(
                     value: 	a
 
-                    @@{ "\t" }@@a
+                    	a
 
                        b
 
@@ -212,7 +212,7 @@ array(
                 1: Expr_Variable(
                     name: test
                 )
-                2: Interpolated_StringPart(
+                2: Interpolated_String_Part(
                     value:
 
                      d
@@ -229,7 +229,7 @@ array(
                 0: Expr_Variable(
                     name: one
                 )
-                1: Interpolated_StringPart(
+                1: Interpolated_String_Part(
                     value: -
                 )
             )
@@ -241,7 +241,7 @@ array(
                 0: Expr_Variable(
                     name: two
                 )
-                1: Interpolated_StringPart(
+                1: Interpolated_String_Part(
                     value:  -
                 )
             )
@@ -253,7 +253,7 @@ array(
                 0: Expr_Variable(
                     name: three
                 )
-                1: Interpolated_StringPart(
+                1: Interpolated_String_Part(
                     value: 	-
                 )
             )
@@ -265,7 +265,7 @@ array(
                 0: Expr_Variable(
                     name: four
                 )
-                1: Interpolated_StringPart(
+                1: Interpolated_String_Part(
                     value: -
                 )
                 2: Expr_Variable(
@@ -280,13 +280,13 @@ array(
                 0: Expr_Variable(
                     name: five
                 )
-                1: Interpolated_StringPart(
+                1: Interpolated_String_Part(
                     value: -
                 )
                 2: Expr_Variable(
                     name: five
                 )
-                3: Interpolated_StringPart(
+                3: Interpolated_String_Part(
                     value: -
                 )
             )
@@ -298,13 +298,13 @@ array(
                 0: Expr_Variable(
                     name: six
                 )
-                1: Interpolated_StringPart(
+                1: Interpolated_String_Part(
                     value: -
                 )
                 2: Expr_Variable(
                     name: six
                 )
-                3: Interpolated_StringPart(
+                3: Interpolated_String_Part(
                     value: -
                 )
                 4: Expr_Variable(
@@ -319,7 +319,7 @@ array(
                 0: Expr_Variable(
                     name: seven
                 )
-                1: Interpolated_StringPart(
+                1: Interpolated_String_Part(
                     value:
                     -
                 )
@@ -332,7 +332,7 @@ array(
                 0: Expr_Variable(
                     name: eight
                 )
-                1: Interpolated_StringPart(
+                1: Interpolated_String_Part(
                     value:
                      -
                 )
@@ -349,12 +349,12 @@ array(
         )
     )
     17: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value: -
         )
     )
     18: Stmt_Expression(
-        expr: Scalar_String(
+        expr: Scalar_String_(
             value:  -
         )
     )

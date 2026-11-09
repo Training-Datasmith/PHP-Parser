@@ -24,6 +24,6 @@ class Pre_Dec extends Expr
         return ['var'];
     }
     public function get_type(): string {
-        return 'Expr_PreDec';
+        return 'Expr_Pre_Dec';
     }
 }

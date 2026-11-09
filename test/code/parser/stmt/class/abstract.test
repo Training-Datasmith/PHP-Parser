@@ -8,8 +8,8 @@ abstract class A {
 }
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: ABSTRACT (16)
         name: Identifier(
@@ -20,30 +20,30 @@ array(
         )
         stmts: array(
             0: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: a
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: array(
                 )
             )
             1: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC | ABSTRACT (17)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: b
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: null
             )
         )

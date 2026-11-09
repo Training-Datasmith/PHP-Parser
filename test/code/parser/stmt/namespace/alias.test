@@ -17,7 +17,7 @@ use const foo\BAR;
 use const foo\BAR as BAZ;
 -----
 array(
-    0: Stmt_Use(
+    0: Stmt_Use_(
         type: TYPE_NORMAL (1)
         uses: array(
             0: Use_Item(
@@ -29,7 +29,7 @@ array(
             )
         )
     )
-    1: Stmt_Use(
+    1: Stmt_Use_(
         type: TYPE_NORMAL (1)
         uses: array(
             0: Use_Item(
@@ -43,7 +43,7 @@ array(
             )
         )
     )
-    2: Stmt_Use(
+    2: Stmt_Use_(
         type: TYPE_NORMAL (1)
         uses: array(
             0: Use_Item(
@@ -64,7 +64,7 @@ array(
             )
         )
     )
-    3: Stmt_Use(
+    3: Stmt_Use_(
         type: TYPE_NORMAL (1)
         uses: array(
             0: Use_Item(
@@ -79,7 +79,7 @@ array(
             0: // evil alias notation - Do Not Use!
         )
     )
-    4: Stmt_Use(
+    4: Stmt_Use_(
         type: TYPE_NORMAL (1)
         uses: array(
             0: Use_Item(
@@ -93,7 +93,7 @@ array(
             )
         )
     )
-    5: Stmt_Use(
+    5: Stmt_Use_(
         type: TYPE_FUNCTION (2)
         uses: array(
             0: Use_Item(
@@ -108,7 +108,7 @@ array(
             0: // function and constant aliases
         )
     )
-    6: Stmt_Use(
+    6: Stmt_Use_(
         type: TYPE_FUNCTION (2)
         uses: array(
             0: Use_Item(
@@ -122,7 +122,7 @@ array(
             )
         )
     )
-    7: Stmt_Use(
+    7: Stmt_Use_(
         type: TYPE_CONSTANT (3)
         uses: array(
             0: Use_Item(
@@ -134,7 +134,7 @@ array(
             )
         )
     )
-    8: Stmt_Use(
+    8: Stmt_Use_(
         type: TYPE_CONSTANT (3)
         uses: array(
             0: Use_Item(

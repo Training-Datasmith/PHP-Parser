@@ -7,6 +7,6 @@ use Php_Parser\Node\Expr\Assign_Op;
 class Mul extends Assign_Op
 {
     public function get_type(): string {
-        return 'Expr_AssignOp_Mul';
+        return 'Expr_Assign_Op_Mul';
     }
 }

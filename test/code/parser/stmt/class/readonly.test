@@ -6,8 +6,8 @@ readonly class A {
 }
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: READONLY (64)
         name: Identifier(
@@ -27,8 +27,8 @@ final readonly class A {
 }
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: FINAL | READONLY (96)
         name: Identifier(

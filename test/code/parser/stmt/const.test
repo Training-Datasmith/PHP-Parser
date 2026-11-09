@@ -16,43 +16,43 @@ const WithGroupAttributes = 3;
 
 #[Example]
 const ThisIsInvalid = 4,
-    AttributesOnMultipleConstants = 5;
+    AttributesOnMultipleConst_ants = 5;
 -----
-Cannot use attributes on multiple constants at once from 15:1 to 17:38
+Cannot use attributes on multiple constants at once from 15:1 to 17:39
 array(
-    0: Stmt_Const(
-        attrGroups: array(
+    0: Stmt_Const_(
+        attr_groups: array(
         )
         consts: array(
-            0: Const(
+            0: Const_(
                 name: Identifier(
                     name: A
                 )
-                value: Scalar_Int(
+                value: Scalar_Int_(
                     value: 0
                 )
             )
-            1: Const(
+            1: Const_(
                 name: Identifier(
                     name: B
                 )
-                value: Scalar_Float(
+                value: Scalar_Float_(
                     value: 1
                 )
             )
-            2: Const(
+            2: Const_(
                 name: Identifier(
                     name: C
                 )
-                value: Scalar_String(
+                value: Scalar_String_(
                     value: A
                 )
             )
-            3: Const(
+            3: Const_(
                 name: Identifier(
                     name: D
                 )
-                value: Expr_ConstFetch(
+                value: Expr_Const_Fetch(
                     name: Name(
                         name: E
                     )
@@ -60,9 +60,9 @@ array(
             )
         )
     )
-    1: Stmt_Const(
-        attrGroups: array(
-            0: AttributeGroup(
+    1: Stmt_Const_(
+        attr_groups: array(
+            0: Attribute_Group(
                 attrs: array(
                     0: Attribute(
                         name: Name(
@@ -75,19 +75,19 @@ array(
             )
         )
         consts: array(
-            0: Const(
+            0: Const_(
                 name: Identifier(
                     name: WithOneAttribute
                 )
-                value: Scalar_Int(
+                value: Scalar_Int_(
                     value: 1
                 )
             )
         )
     )
-    2: Stmt_Const(
-        attrGroups: array(
-            0: AttributeGroup(
+    2: Stmt_Const_(
+        attr_groups: array(
+            0: Attribute_Group(
                 attrs: array(
                     0: Attribute(
                         name: Name(
@@ -98,7 +98,7 @@ array(
                     )
                 )
             )
-            1: AttributeGroup(
+            1: Attribute_Group(
                 attrs: array(
                     0: Attribute(
                         name: Name(
@@ -111,19 +111,19 @@ array(
             )
         )
         consts: array(
-            0: Const(
+            0: Const_(
                 name: Identifier(
                     name: WithUngroupedAttriutes
                 )
-                value: Scalar_Int(
+                value: Scalar_Int_(
                     value: 2
                 )
             )
         )
     )
-    3: Stmt_Const(
-        attrGroups: array(
-            0: AttributeGroup(
+    3: Stmt_Const_(
+        attr_groups: array(
+            0: Attribute_Group(
                 attrs: array(
                     0: Attribute(
                         name: Name(
@@ -143,19 +143,19 @@ array(
             )
         )
         consts: array(
-            0: Const(
+            0: Const_(
                 name: Identifier(
                     name: WithGroupAttributes
                 )
-                value: Scalar_Int(
+                value: Scalar_Int_(
                     value: 3
                 )
             )
         )
     )
-    4: Stmt_Const(
-        attrGroups: array(
-            0: AttributeGroup(
+    4: Stmt_Const_(
+        attr_groups: array(
+            0: Attribute_Group(
                 attrs: array(
                     0: Attribute(
                         name: Name(
@@ -168,19 +168,19 @@ array(
             )
         )
         consts: array(
-            0: Const(
+            0: Const_(
                 name: Identifier(
                     name: ThisIsInvalid
                 )
-                value: Scalar_Int(
+                value: Scalar_Int_(
                     value: 4
                 )
             )
-            1: Const(
+            1: Const_(
                 name: Identifier(
-                    name: AttributesOnMultipleConstants
+                    name: AttributesOnMultipleConst_ants
                 )
-                value: Scalar_Int(
+                value: Scalar_Int_(
                     value: 5
                 )
             )

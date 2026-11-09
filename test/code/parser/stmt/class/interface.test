@@ -7,8 +7,8 @@ interface A extends C, D {
 }
 -----
 array(
-    0: Stmt_Interface(
-        attrGroups: array(
+    0: Stmt_Interface_(
+        attr_groups: array(
         )
         name: Identifier(
             name: A
@@ -23,16 +23,16 @@ array(
         )
         stmts: array(
             0: Stmt_Class_Method(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
-                byRef: false
+                by_ref: false
                 name: Identifier(
                     name: a
                 )
                 params: array(
                 )
-                returnType: null
+                return_type: null
                 stmts: null
             )
         )

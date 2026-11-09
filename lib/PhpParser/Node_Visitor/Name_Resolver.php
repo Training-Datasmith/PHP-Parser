@@ -160,7 +160,7 @@ class Name_Resolver extends Node_Visitor_Abstract
         $type |= $use->type;
         $this->name_context->add_alias($name, (string) $use->get_alias(), $type, $use->get_attributes());
     }
-    /** @param Stmt\Function_|Stmt\ClassMethod|Expr\Closure|Expr\ArrowFunction $node */
+    /** @param Stmt\Function_|Stmt\Class_Method|Expr\Closure|Expr\ArrowFunction $node */
     private function resolve_signature($node): void
     {
         foreach ($node->params as $param) {
@@ -206,7 +206,7 @@ class Name_Resolver extends Node_Visitor_Abstract
             if (null !== $resolved_name) {
                 $name->set_attribute('resolvedName', $resolved_name);
             } else {
-                $name->set_attribute('namespacedName', Fully_Qualified::concat($this->name_context->get_namespace(), $name, $name->get_attributes()));
+                $name->set_attribute('namespaced_name', Fully_Qualified::concat($this->name_context->get_namespace(), $name, $name->get_attributes()));
             }
             return $name;
         }
@@ -222,7 +222,7 @@ class Name_Resolver extends Node_Visitor_Abstract
         }
         // unqualified names inside a namespace cannot be resolved at compile-time
         // add the namespaced version of the name as an attribute
-        $name->set_attribute('namespacedName', Fully_Qualified::concat($this->name_context->get_namespace(), $name, $name->get_attributes()));
+        $name->set_attribute('namespaced_name', Fully_Qualified::concat($this->name_context->get_namespace(), $name, $name->get_attributes()));
         return $name;
     }
     protected function resolve_class_name(Name $name): Name

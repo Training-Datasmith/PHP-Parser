@@ -11,6 +11,6 @@ class Namespace_ extends Magic_Const
         return '__NAMESPACE__';
     }
     public function get_type(): string {
-        return 'Scalar_MagicConst_Namespace';
+        return 'Scalar_Magic_Const_Namespace_';
     }
 }

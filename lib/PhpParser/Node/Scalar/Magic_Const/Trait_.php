@@ -11,6 +11,6 @@ class Trait_ extends Magic_Const
         return '__TRAIT__';
     }
     public function get_type(): string {
-        return 'Scalar_MagicConst_Trait';
+        return 'Scalar_Magic_Const_Trait_';
     }
 }

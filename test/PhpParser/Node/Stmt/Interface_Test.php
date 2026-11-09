@@ -28,7 +28,7 @@ class Interface_Test extends \PHPUnit\Framework\TestCase
         $this->assertSame($methods, $interface->get_methods());
     }
 
-    public function testGetConstants(): void
+    public function testGetConst_ants(): void
     {
         $constants = [
             new Class_Const([new \Php_Parser\Node\Const_('foo', new String_('foo_value'))]),

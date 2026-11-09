@@ -24,6 +24,6 @@ class Empty_ extends Expr
         return ['expr'];
     }
     public function get_type(): string {
-        return 'Expr_Empty';
+        return 'Expr_Empty_';
     }
 }

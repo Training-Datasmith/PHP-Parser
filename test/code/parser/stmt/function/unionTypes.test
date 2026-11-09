@@ -9,8 +9,8 @@ class Test {
 function test(A|B $a): int|false {}
 -----
 array(
-    0: Stmt_Class(
-        attrGroups: array(
+    0: Stmt_Class_(
+        attr_groups: array(
         )
         flags: 0
         name: Identifier(
@@ -21,10 +21,10 @@ array(
         )
         stmts: array(
             0: Stmt_Property(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: PUBLIC (1)
-                type: UnionType(
+                type: Union_Type(
                     types: array(
                         0: Name(
                             name: A
@@ -38,7 +38,7 @@ array(
                     )
                 )
                 props: array(
-                    0: PropertyItem(
+                    0: Property_Item(
                         name: Var_Like_Identifier(
                             name: prop
                         )
@@ -50,19 +50,19 @@ array(
             )
         )
     )
-    1: Stmt_Function(
-        attrGroups: array(
+    1: Stmt_Function_(
+        attr_groups: array(
         )
-        byRef: false
+        by_ref: false
         name: Identifier(
             name: test
         )
         params: array(
             0: Param(
-                attrGroups: array(
+                attr_groups: array(
                 )
                 flags: 0
-                type: UnionType(
+                type: Union_Type(
                     types: array(
                         0: Name(
                             name: A
@@ -72,7 +72,7 @@ array(
                         )
                     )
                 )
-                byRef: false
+                by_ref: false
                 variadic: false
                 var: Expr_Variable(
                     name: a
@@ -82,7 +82,7 @@ array(
                 )
             )
         )
-        returnType: UnionType(
+        return_type: Union_Type(
             types: array(
                 0: Identifier(
                     name: int

@@ -12,14 +12,14 @@ class Test {
 }
 ```
 
-PHP-Parser supports evaluation of such constant expressions through the `ConstExprEvaluator` class:
+PHP-Parser supports evaluation of such constant expressions through the `Const_Expr_Evaluator` class:
 
 ```php
 <?php
 
-use PhpParser\{ConstExprEvaluator, ConstExprEvaluationException};
+use Php_Parser\{Const_Expr_Evaluator, ConstExprEvaluationException};
 
-$evaluator = new ConstExprEvaluator();
+$evaluator = new Const_Expr_Evaluator();
 try {
     $value = $evaluator->evaluateSilently($someExpr);
 } catch (ConstExprEvaluationException $e) {
@@ -39,10 +39,10 @@ a `ConstExprEvaluationException`. For example:
 ```php
 <?php
 
-use PhpParser\{ConstExprEvaluator, ConstExprEvaluationException};
-use PhpParser\Node\{Expr, Scalar};
+use Php_Parser\{Const_Expr_Evaluator, ConstExprEvaluationException};
+use Php_Parser\Node\{Expr, Scalar};
 
-$evaluator = new ConstExprEvaluator();
+$evaluator = new Const_Expr_Evaluator();
 
 // 10 / 0
 $expr = new Expr\BinaryOp\Div(new Scalar\Int_(10), new Scalar\Int_(0));
@@ -82,10 +82,10 @@ specifying an evaluation fallback function:
 ```php
 <?php
 
-use PhpParser\{ConstExprEvaluator, ConstExprEvaluationException};
-use PhpParser\Node\Expr;
+use Php_Parser\{Const_Expr_Evaluator, ConstExprEvaluationException};
+use Php_Parser\Node\Expr;
 
-$evaluator = new ConstExprEvaluator(function(Expr $expr) {
+$evaluator = new Const_Expr_Evaluator(function(Expr $expr) {
     if ($expr instanceof Expr\ConstFetch) {
         return fetchConstantSomehow($expr);
     }
@@ -94,7 +94,7 @@ $evaluator = new ConstExprEvaluator(function(Expr $expr) {
     }
     // etc.
     throw new ConstExprEvaluationException(
-        "Expression of type {$expr->getType()} cannot be evaluated");
+        "Expression of type {$expr->get_type()} cannot be evaluated");
 });
 
 try {

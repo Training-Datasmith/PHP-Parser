@@ -24,6 +24,6 @@ class Print_ extends Expr
         return ['expr'];
     }
     public function get_type(): string {
-        return 'Expr_Print';
+        return 'Expr_Print_';
     }
 }

@@ -11,6 +11,6 @@ class Logical_Xor extends Binary_Op
         return 'xor';
     }
     public function get_type(): string {
-        return 'Expr_BinaryOp_LogicalXor';
+        return 'Expr_Binary_Op_Logical_Xor';
     }
 }

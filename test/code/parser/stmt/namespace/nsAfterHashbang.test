@@ -10,7 +10,7 @@ array(
         value: #!/usr/bin/env php
 
     )
-    1: Stmt_Namespace(
+    1: Stmt_Namespace_(
         name: Name(
             name: A
         )

@@ -31,6 +31,6 @@ class Class_Const_Fetch extends Expr
         return ['class', 'name'];
     }
     public function get_type(): string {
-        return 'Expr_ClassConstFetch';
+        return 'Expr_Class_Const_Fetch';
     }
 }

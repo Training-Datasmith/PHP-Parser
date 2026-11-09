@@ -16,8 +16,8 @@ use Php_Parser\Node\Scalar;
  * following node types:
  *
  *  * All Scalar\MagicConst\* nodes.
- *  * Expr\ConstFetch nodes. Only null/false/true are already handled by this class.
- *  * Expr\ClassConstFetch nodes.
+ *  * Expr\Const_Fetch nodes. Only null/false/true are already handled by this class.
+ *  * Expr\ClassConst_Fetch nodes.
  *
  * The fallback evaluator should throw ConstExprEvaluationException for nodes it cannot evaluate.
  *

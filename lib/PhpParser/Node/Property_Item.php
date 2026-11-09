@@ -29,8 +29,6 @@ class Property_Item extends Node_Abstract
         return ['name', 'default'];
     }
     public function get_type(): string {
-        return 'PropertyItem';
+        return 'Property_Item';
     }
 }
-// @deprecated compatibility alias
-class_alias(Property_Item::class, Stmt\PropertyProperty::class);

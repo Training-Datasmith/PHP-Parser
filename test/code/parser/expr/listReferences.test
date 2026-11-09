@@ -10,14 +10,14 @@ list('k' => &$v) = $x;
 array(
     0: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_List(
+            var: Expr_List_(
                 items: array(
                     0: Array_Item(
                         key: null
                         value: Expr_Variable(
                             name: v
                         )
-                        byRef: true
+                        by_ref: true
                         unpack: false
                     )
                 )
@@ -29,16 +29,16 @@ array(
     )
     1: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_List(
+            var: Expr_List_(
                 items: array(
                     0: Array_Item(
-                        key: Scalar_String(
+                        key: Scalar_String_(
                             value: k
                         )
                         value: Expr_Variable(
                             name: v
                         )
-                        byRef: true
+                        by_ref: true
                         unpack: false
                     )
                 )
@@ -50,14 +50,14 @@ array(
     )
     2: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_List(
+            var: Expr_List_(
                 items: array(
                     0: Array_Item(
                         key: null
                         value: Expr_Variable(
                             name: v
                         )
-                        byRef: true
+                        by_ref: true
                         unpack: false
                     )
                 )
@@ -69,16 +69,16 @@ array(
     )
     3: Stmt_Expression(
         expr: Expr_Assign(
-            var: Expr_List(
+            var: Expr_List_(
                 items: array(
                     0: Array_Item(
-                        key: Scalar_String(
+                        key: Scalar_String_(
                             value: k
                         )
                         value: Expr_Variable(
                             name: v
                         )
-                        byRef: true
+                        by_ref: true
                         unpack: false
                     )
                 )

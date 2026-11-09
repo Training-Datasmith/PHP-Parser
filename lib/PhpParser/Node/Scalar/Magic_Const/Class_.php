@@ -11,6 +11,6 @@ class Class_ extends Magic_Const
         return '__CLASS__';
     }
     public function get_type(): string {
-        return 'Scalar_MagicConst_Class';
+        return 'Scalar_Magic_Const_Class_';
     }
 }

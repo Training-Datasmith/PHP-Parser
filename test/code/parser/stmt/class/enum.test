@@ -12,18 +12,18 @@ enum C: int implements Bar {
 }
 -----
 array(
-    0: Stmt_Enum(
-        attrGroups: array(
+    0: Stmt_Enum_(
+        attr_groups: array(
         )
         name: Identifier(
             name: A
         )
-        scalarType: null
+        scalar_type: null
         implements: array(
         )
         stmts: array(
-            0: Stmt_EnumCase(
-                attrGroups: array(
+            0: Stmt_Enum_Case(
+                attr_groups: array(
                 )
                 name: Identifier(
                     name: class
@@ -32,13 +32,13 @@ array(
             )
         )
     )
-    1: Stmt_Enum(
-        attrGroups: array(
+    1: Stmt_Enum_(
+        attr_groups: array(
         )
         name: Identifier(
             name: B
         )
-        scalarType: null
+        scalar_type: null
         implements: array(
             0: Name(
                 name: Bar
@@ -50,13 +50,13 @@ array(
         stmts: array(
         )
     )
-    2: Stmt_Enum(
-        attrGroups: array(
+    2: Stmt_Enum_(
+        attr_groups: array(
         )
         name: Identifier(
             name: C
         )
-        scalarType: Identifier(
+        scalar_type: Identifier(
             name: int
         )
         implements: array(
@@ -65,13 +65,13 @@ array(
             )
         )
         stmts: array(
-            0: Stmt_EnumCase(
-                attrGroups: array(
+            0: Stmt_Enum_Case(
+                attr_groups: array(
                 )
                 name: Identifier(
                     name: Foo
                 )
-                expr: Scalar_Int(
+                expr: Scalar_Int_(
                     value: 1
                 )
             )
