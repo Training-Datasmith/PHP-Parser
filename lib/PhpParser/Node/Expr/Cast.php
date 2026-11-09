@@ -1,25 +1,26 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Expr;
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-use PhpParser\Node\Expr;
-
-abstract class Cast extends Expr {
+use Php_Parser\Node\Expr;
+abstract class Cast extends Expr
+{
     /** @var Expr Expression */
     public Expr $expr;
-
     /**
      * Constructs a cast node.
      *
      * @param Expr $expr Expression
      * @param array<string, mixed> $attributes Additional attributes
      */
-    public function __construct(Expr $expr, array $attributes = []) {
+    public function __construct(Expr $expr, array $attributes = [])
+    {
         $this->attributes = $attributes;
         $this->expr = $expr;
     }
-
-    public function getSubNodeNames(): array {
+    public function get_sub_node_names(): array
+    {
         return ['expr'];
     }
 }

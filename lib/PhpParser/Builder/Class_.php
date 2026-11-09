@@ -1,15 +1,16 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Builder;
+declare (strict_types=1);
+namespace Php_Parser\Builder;
 
-use PhpParser;
-use PhpParser\BuilderHelpers;
-use PhpParser\Modifiers;
-use PhpParser\Node;
-use PhpParser\Node\Name;
-use PhpParser\Node\Stmt;
-
-class Class_ extends Declaration {
+use Php_Parser;
+use Php_Parser\Builder_Helpers;
+use Php_Parser\Modifiers;
+use Php_Parser\Node;
+use Php_Parser\Node\Name;
+use Php_Parser\Node\Stmt;
+class Class_ extends Declaration
+{
     protected string $name;
     protected ?Name $extends = null;
     /** @var list<Name> */
@@ -24,17 +25,16 @@ class Class_ extends Declaration {
     /** @var list<Stmt\ClassMethod> */
     protected array $methods = [];
     /** @var list<Node\AttributeGroup> */
-    protected array $attributeGroups = [];
-
+    protected array $attribute_groups = [];
     /**
      * Creates a class builder.
      *
      * @param string $name Name of the class
      */
-    public function __construct(string $name) {
+    public function __construct(string $name)
+    {
         $this->name = $name;
     }
-
     /**
      * Extends a class.
      *
@@ -42,12 +42,11 @@ class Class_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function extend($class) {
-        $this->extends = BuilderHelpers::normalizeName($class);
-
+    public function extend($class): self
+    {
+        $this->extends = Builder_Helpers::normalize_name($class);
         return $this;
     }
-
     /**
      * Implements one or more interfaces.
      *
@@ -55,47 +54,43 @@ class Class_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function implement(...$interfaces) {
+    public function implement(...$interfaces): self
+    {
         foreach ($interfaces as $interface) {
-            $this->implements[] = BuilderHelpers::normalizeName($interface);
+            $this->implements[] = Builder_Helpers::normalize_name($interface);
         }
-
         return $this;
     }
-
     /**
      * Makes the class abstract.
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeAbstract() {
-        $this->flags = BuilderHelpers::addClassModifier($this->flags, Modifiers::ABSTRACT);
-
+    public function make_abstract(): self
+    {
+        $this->flags = Builder_Helpers::add_class_modifier($this->flags, Modifiers::ABSTRACT);
         return $this;
     }
-
     /**
      * Makes the class final.
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeFinal() {
-        $this->flags = BuilderHelpers::addClassModifier($this->flags, Modifiers::FINAL);
-
+    public function make_final(): self
+    {
+        $this->flags = Builder_Helpers::add_class_modifier($this->flags, Modifiers::FINAL);
         return $this;
     }
-
     /**
      * Makes the class readonly.
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function makeReadonly() {
-        $this->flags = BuilderHelpers::addClassModifier($this->flags, Modifiers::READONLY);
-
+    public function make_readonly(): self
+    {
+        $this->flags = Builder_Helpers::add_class_modifier($this->flags, Modifiers::READONLY);
         return $this;
     }
-
     /**
      * Adds a statement.
      *
@@ -103,24 +98,22 @@ class Class_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addStmt($stmt) {
-        $stmt = BuilderHelpers::normalizeNode($stmt);
-
+    public function add_stmt($stmt)
+    {
+        $stmt = Builder_Helpers::normalize_node($stmt);
         if ($stmt instanceof Stmt\Property) {
             $this->properties[] = $stmt;
-        } elseif ($stmt instanceof Stmt\ClassMethod) {
+        } elseif ($stmt instanceof Stmt\Class_Method) {
             $this->methods[] = $stmt;
-        } elseif ($stmt instanceof Stmt\TraitUse) {
+        } elseif ($stmt instanceof Stmt\Trait_Use) {
             $this->uses[] = $stmt;
-        } elseif ($stmt instanceof Stmt\ClassConst) {
+        } elseif ($stmt instanceof Stmt\Class_Const) {
             $this->constants[] = $stmt;
         } else {
-            throw new \LogicException(sprintf('Unexpected node of type "%s"', $stmt->getType()));
+            throw new \LogicException(sprintf('Unexpected node of type "%s"', $stmt->get_type()));
         }
-
         return $this;
     }
-
     /**
      * Adds an attribute group.
      *
@@ -128,24 +121,18 @@ class Class_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addAttribute($attribute) {
-        $this->attributeGroups[] = BuilderHelpers::normalizeAttribute($attribute);
-
+    public function add_attribute($attribute): self
+    {
+        $this->attribute_groups[] = Builder_Helpers::normalize_attribute($attribute);
         return $this;
     }
-
     /**
      * Returns the built class node.
      *
      * @return Stmt\Class_ The built class node
      */
-    public function getNode(): PhpParser\Node {
-        return new Stmt\Class_($this->name, [
-            'flags' => $this->flags,
-            'extends' => $this->extends,
-            'implements' => $this->implements,
-            'stmts' => array_merge($this->uses, $this->constants, $this->properties, $this->methods),
-            'attrGroups' => $this->attributeGroups,
-        ], $this->attributes);
+    public function get_node(): Php_Parser\Node
+    {
+        return new Stmt\Class_($this->name, ['flags' => $this->flags, 'extends' => $this->extends, 'implements' => $this->implements, 'stmts' => array_merge($this->uses, $this->constants, $this->properties, $this->methods), 'attrGroups' => $this->attribute_groups], $this->attributes);
     }
 }

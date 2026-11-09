@@ -116,7 +116,7 @@ array(
                     name: null
                     value: Expr_Array(
                         items: array(
-                            0: ArrayItem(
+                            0: Array_Item(
                                 key: Scalar_String(
                                     value: foo
                                 )
@@ -126,7 +126,7 @@ array(
                                 byRef: false
                                 unpack: false
                             )
-                            1: ArrayItem(
+                            1: Array_Item(
                                 key: Scalar_String(
                                     value: bar
                                 )
@@ -232,7 +232,7 @@ array(
                     )
                     value: Expr_Array(
                         items: array(
-                            0: ArrayItem(
+                            0: Array_Item(
                                 key: Scalar_String(
                                     value: foo
                                 )
@@ -242,7 +242,7 @@ array(
                                 byRef: false
                                 unpack: false
                             )
-                            1: ArrayItem(
+                            1: Array_Item(
                                 key: Scalar_String(
                                     value: bar
                                 )
@@ -280,7 +280,7 @@ array(
                     )
                     value: Expr_Array(
                         items: array(
-                            0: ArrayItem(
+                            0: Array_Item(
                                 key: Scalar_String(
                                     value: foo
                                 )
@@ -290,7 +290,7 @@ array(
                                 byRef: false
                                 unpack: false
                             )
-                            1: ArrayItem(
+                            1: Array_Item(
                                 key: Scalar_String(
                                     value: bar
                                 )
@@ -347,7 +347,7 @@ array(
                     name: null
                     value: Expr_Array(
                         items: array(
-                            0: ArrayItem(
+                            0: Array_Item(
                                 key: Scalar_String(
                                     value: foo
                                 )
@@ -357,7 +357,7 @@ array(
                                 byRef: false
                                 unpack: false
                             )
-                            1: ArrayItem(
+                            1: Array_Item(
                                 key: Scalar_String(
                                     value: bar
                                 )
@@ -385,7 +385,7 @@ array(
                     name: null
                     value: Expr_Array(
                         items: array(
-                            0: ArrayItem(
+                            0: Array_Item(
                                 key: Scalar_String(
                                     value: object
                                 )
@@ -395,13 +395,13 @@ array(
                                 byRef: false
                                 unpack: false
                             )
-                            1: ArrayItem(
+                            1: Array_Item(
                                 key: Scalar_String(
                                     value: withProperties
                                 )
                                 value: Expr_Array(
                                     items: array(
-                                        0: ArrayItem(
+                                        0: Array_Item(
                                             key: Scalar_String(
                                                 value: foo
                                             )
@@ -411,7 +411,7 @@ array(
                                             byRef: false
                                             unpack: false
                                         )
-                                        1: ArrayItem(
+                                        1: Array_Item(
                                             key: Scalar_String(
                                                 value: bar
                                             )
@@ -440,7 +440,7 @@ array(
                 name: clone
             )
             args: array(
-                0: VariadicPlaceholder(
+                0: Variadic_Placeholder(
                 )
             )
         )

@@ -1,6 +1,8 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Comment;
+declare (strict_types=1);
+namespace Php_Parser\Comment;
 
-class Doc extends \PhpParser\Comment {
+class Doc extends \Php_Parser\Comment
+{
 }

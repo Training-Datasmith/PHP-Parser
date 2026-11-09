@@ -127,7 +127,7 @@ $stmts[0] = new Stmt\Expression(
 <?php
 echo$a;
 -----
-$stmts[0]->exprs[0] = new Expr\ConstFetch(new Node\Name('C'));
+$stmts[0]->exprs[0] = new Expr\Const_Fetch(new Node\Name('C'));
 -----
 <?php
 echo C;

@@ -1,11 +1,12 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Expr\Cast;
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr\Cast;
 
-use PhpParser\Node\Expr\Cast;
-
-class Void_ extends Cast {
-    public function getType(): string {
+use Php_Parser\Node\Expr\Cast;
+class Void_ extends Cast
+{
+    public function get_type(): string {
         return 'Expr_Cast_Void';
     }
 }

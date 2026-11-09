@@ -16,7 +16,7 @@ array(
             name: a
         )
     )
-    1: Stmt_InlineHTML(
+    1: Stmt_Inline_Html(
         value: B
 
     )

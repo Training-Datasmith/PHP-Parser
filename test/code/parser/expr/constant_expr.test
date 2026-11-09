@@ -594,7 +594,7 @@ array(
                 value: Expr_ArrayDimFetch(
                     var: Expr_Array(
                         items: array(
-                            0: ArrayItem(
+                            0: Array_Item(
                                 key: null
                                 value: Scalar_Int(
                                     value: 1
@@ -602,7 +602,7 @@ array(
                                 byRef: false
                                 unpack: false
                             )
-                            1: ArrayItem(
+                            1: Array_Item(
                                 key: null
                                 value: Scalar_Int(
                                     value: 2
@@ -610,7 +610,7 @@ array(
                                 byRef: false
                                 unpack: false
                             )
-                            2: ArrayItem(
+                            2: Array_Item(
                                 key: null
                                 value: Scalar_Int(
                                     value: 3

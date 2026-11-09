@@ -27,7 +27,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: foo
                         )
                         default: null
@@ -36,7 +36,7 @@ array(
                 hooks: array(
                 )
             )
-            1: Stmt_ClassMethod(
+            1: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: 0
@@ -50,7 +50,7 @@ array(
                 stmts: array(
                 )
             )
-            2: Stmt_ClassMethod(
+            2: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: ABSTRACT | STATIC (24)

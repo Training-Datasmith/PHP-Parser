@@ -78,9 +78,9 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Scalar_InterpolatedString(
+        expr: Scalar_Interpolated_String(
             parts: array(
-                0: InterpolatedStringPart(
+                0: Interpolated_StringPart(
                     value: Foo
 
                 )
@@ -91,7 +91,7 @@ array(
         )
     )
     6: Stmt_Expression(
-        expr: Scalar_InterpolatedString(
+        expr: Scalar_Interpolated_String(
             parts: array(
                 0: Expr_Variable(
                     name: var
@@ -101,9 +101,9 @@ array(
     )
     7: Stmt_Echo(
         exprs: array(
-            0: Scalar_InterpolatedString(
+            0: Scalar_Interpolated_String(
                 parts: array(
-                    0: InterpolatedStringPart(
+                    0: Interpolated_StringPart(
                         value: a
 
                     )

@@ -13,7 +13,7 @@ array(
             params: array(
             )
             uses: array(
-                0: ClosureUse(
+                0: Closure_Use(
                     var: Expr_Variable(
                         name: a
                     )

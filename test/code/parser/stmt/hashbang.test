@@ -9,7 +9,7 @@ echo "foobar";
 #!/usr/bin/env php
 -----
 array(
-    0: Stmt_InlineHTML(
+    0: Stmt_Inline_Html(
         value: #!/usr/bin/env php
 
     )
@@ -20,7 +20,7 @@ array(
             )
         )
     )
-    2: Stmt_InlineHTML(
+    2: Stmt_Inline_Html(
         value: #!/usr/bin/env php
     )
 )

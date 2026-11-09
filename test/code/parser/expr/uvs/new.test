@@ -52,7 +52,7 @@ array(
                 class: Name(
                     name: Test
                 )
-                name: VarLikeIdentifier(
+                name: Var_Like_Identifier(
                     name: className
                 )
             )
@@ -66,7 +66,7 @@ array(
                 class: Expr_Variable(
                     name: test
                 )
-                name: VarLikeIdentifier(
+                name: Var_Like_Identifier(
                     name: className
                 )
             )
@@ -90,7 +90,7 @@ array(
                         name: foo
                     )
                 )
-                name: VarLikeIdentifier(
+                name: Var_Like_Identifier(
                     name: className
                 )
             )

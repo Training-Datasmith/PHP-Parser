@@ -7,7 +7,7 @@ const FOO = true;
 #[A]
 const BAR = true;
 -----
-$attrGroup = new Node\AttributeGroup([
+$attrGroup = new Node\Attribute_Group([
     new Node\Attribute(new Node\Name('B'), []),
 ]);
 $stmts[0]->attrGroups[] = $attrGroup;

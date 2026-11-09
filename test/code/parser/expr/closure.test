@@ -67,7 +67,7 @@ array(
                 )
             )
             uses: array(
-                0: ClosureUse(
+                0: Closure_Use(
                     var: Expr_Variable(
                         name: b
                     )
@@ -88,13 +88,13 @@ array(
             params: array(
             )
             uses: array(
-                0: ClosureUse(
+                0: Closure_Use(
                     var: Expr_Variable(
                         name: a
                     )
                     byRef: false
                 )
-                1: ClosureUse(
+                1: Closure_Use(
                     var: Expr_Variable(
                         name: b
                     )
@@ -190,14 +190,14 @@ array(
             params: array(
             )
             uses: array(
-                0: ClosureUse(
+                0: Closure_Use(
                     var: Expr_Variable(
                         name: a
                     )
                     byRef: false
                 )
             )
-            returnType: Name_FullyQualified(
+            returnType: Name_Fully_Qualified(
                 name: Foo\Bar
             )
             stmts: array(

@@ -5,15 +5,15 @@ $meta #
 #semval(%n) $stackPos-(%l-%n)
 #semval(%n,%t) $stackPos-(%l-%n)
 
-namespace PhpParser\Parser;
+namespace Php_Parser\Parser;
 
-use PhpParser\Error;
-use PhpParser\Modifiers;
-use PhpParser\Node;
-use PhpParser\Node\Expr;
-use PhpParser\Node\Name;
-use PhpParser\Node\Scalar;
-use PhpParser\Node\Stmt;
+use Php_Parser\Error;
+use Php_Parser\Modifiers;
+use Php_Parser\Node;
+use Php_Parser\Node\Expr;
+use Php_Parser\Node\Name;
+use Php_Parser\Node\Scalar;
+use Php_Parser\Node\Stmt;
 #include;
 
 /* This is an automatically GENERATED file, which should not be manually edited.
@@ -22,7 +22,7 @@ use PhpParser\Node\Stmt;
  *  * the skeleton file grammar/parser.template
  *  * the preprocessing script grammar/rebuildParsers.php
  */
-class #(-p) extends \PhpParser\ParserAbstract
+class #(-p) extends \Php_Parser\Parser_Abstract
 {
 #tokenval
     public const %s = %n;
@@ -94,7 +94,7 @@ class #(-p) extends \PhpParser\ParserAbstract
     );
 #endif
 
-    protected function initReduceCallbacks(): void {
+    protected function init_reduce_callbacks(): void {
         $this->reduceCallbacks = [
 #reduce
             %n => static function ($self, $stackPos) {

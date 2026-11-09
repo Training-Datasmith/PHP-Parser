@@ -9,7 +9,7 @@ $outerCall = $stmts[1]->expr;
 $innerCall = $outerCall->var;
 $var = $innerCall->var;
 $stmts[1]->expr = $innerCall;
-$stmts[2] = new Stmt\Expression(new Expr\MethodCall($var, $outerCall->name));
+$stmts[2] = new Stmt\Expression(new Expr\Method_Call($var, $outerCall->name));
 -----
 <?php
 $this->foo = new Foo;

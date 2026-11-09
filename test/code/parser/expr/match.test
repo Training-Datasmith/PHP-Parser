@@ -15,7 +15,7 @@ array(
                     value: 1
                 )
                 arms: array(
-                    0: MatchArm(
+                    0: Match_Arm(
                         conds: array(
                             0: Scalar_Int(
                                 value: 0
@@ -25,7 +25,7 @@ array(
                             value: Foo
                         )
                     )
-                    1: MatchArm(
+                    1: Match_Arm(
                         conds: array(
                             0: Scalar_Int(
                                 value: 1
@@ -59,7 +59,7 @@ array(
                     value: 1
                 )
                 arms: array(
-                    0: MatchArm(
+                    0: Match_Arm(
                         conds: array(
                             0: Scalar_Int(
                                 value: 0
@@ -98,7 +98,7 @@ array(
                     name: operator
                 )
                 arms: array(
-                    0: MatchArm(
+                    0: Match_Arm(
                         conds: array(
                             0: Expr_ClassConstFetch(
                                 class: Name(
@@ -142,7 +142,7 @@ array(
                     name: char
                 )
                 arms: array(
-                    0: MatchArm(
+                    0: Match_Arm(
                         conds: array(
                             0: Scalar_Int(
                                 value: 1
@@ -152,7 +152,7 @@ array(
                             value: 1
                         )
                     )
-                    1: MatchArm(
+                    1: Match_Arm(
                         conds: null
                         body: Scalar_String(
                             value: default
@@ -182,7 +182,7 @@ array(
                     value: 1
                 )
                 arms: array(
-                    0: MatchArm(
+                    0: Match_Arm(
                         conds: array(
                             0: Scalar_Int(
                                 value: 0
@@ -195,7 +195,7 @@ array(
                             value: Foo
                         )
                     )
-                    1: MatchArm(
+                    1: Match_Arm(
                         conds: null
                         body: Scalar_String(
                             value: Bar

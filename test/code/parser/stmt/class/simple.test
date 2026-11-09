@@ -67,7 +67,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: a
                         )
                         default: Scalar_String(
@@ -75,7 +75,7 @@ array(
                         )
                     )
                     1: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: c
                         )
                         default: Scalar_String(
@@ -93,7 +93,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: e
                         )
                         default: null
@@ -109,7 +109,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: f
                         )
                         default: null
@@ -118,7 +118,7 @@ array(
                 hooks: array(
                 )
             )
-            4: Stmt_ClassMethod(
+            4: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: PUBLIC (1)
@@ -132,7 +132,7 @@ array(
                 stmts: array(
                 )
             )
-            5: Stmt_ClassMethod(
+            5: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: PUBLIC | STATIC (9)
@@ -160,7 +160,7 @@ array(
                 stmts: array(
                 )
             )
-            6: Stmt_ClassMethod(
+            6: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: PUBLIC | FINAL (33)
@@ -176,7 +176,7 @@ array(
                 stmts: array(
                 )
             )
-            7: Stmt_ClassMethod(
+            7: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: PROTECTED (2)
@@ -190,7 +190,7 @@ array(
                 stmts: array(
                 )
             )
-            8: Stmt_ClassMethod(
+            8: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: PRIVATE (4)

@@ -13,7 +13,7 @@ array(
             name: Foo
         )
         uses: array(
-            0: UseItem(
+            0: Use_Item(
                 type: TYPE_NORMAL (1)
                 name: Name(
                     name: Bar
@@ -31,7 +31,7 @@ array(
             name: Bar
         )
         uses: array(
-            0: UseItem(
+            0: Use_Item(
                 type: TYPE_NORMAL (1)
                 name: Name(
                     name: Foo
@@ -51,7 +51,7 @@ array(
     0: Stmt_Use(
         type: TYPE_NORMAL (1)
         uses: array(
-            0: UseItem(
+            0: Use_Item(
                 type: TYPE_UNKNOWN (0)
                 name: Name(
                     name: Foo
@@ -91,7 +91,7 @@ Syntax error, unexpected T_NAME_FULLY_QUALIFIED, expecting T_STRING or T_FUNCTIO
 array(
     0: Stmt_Expression(
         expr: Expr_ConstFetch(
-            name: Name_FullyQualified(
+            name: Name_Fully_Qualified(
                 name: Bar
             )
         )

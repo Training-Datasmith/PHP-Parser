@@ -1,17 +1,14 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Stmt;
+declare(strict_types=1);
 
-use PhpParser\Node\UseItem;
+namespace Php_Parser\Node\Stmt;
 
-require __DIR__ . '/../UseItem.php';
+require_once __DIR__ . '/../Use_Item.php';
 
 if (false) {
-    /**
-     * For classmap-authoritative support.
-     *
-     * @deprecated use \PhpParser\Node\UseItem instead.
-     */
-    class UseUse extends UseItem {
+    /** @deprecated use \Php_Parser\Node\Use_Item instead. */
+    class UseUse extends \Php_Parser\Node\Use_Item
+    {
     }
 }

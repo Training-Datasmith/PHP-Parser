@@ -18,7 +18,7 @@ array(
                 attrGroups: array(
                 )
                 flags: 0
-                type: NullableType(
+                type: Nullable_Type(
                     type: Name(
                         name: Foo
                     )
@@ -36,7 +36,7 @@ array(
                 attrGroups: array(
                 )
                 flags: 0
-                type: NullableType(
+                type: Nullable_Type(
                     type: Identifier(
                         name: string
                     )
@@ -51,7 +51,7 @@ array(
                 )
             )
         )
-        returnType: NullableType(
+        returnType: Nullable_Type(
             type: Name(
                 name: Baz
             )

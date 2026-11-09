@@ -29,7 +29,7 @@ new #[A] class {};
 #[A] fn()
     => 42;
 -----
-$attrGroup = new Node\AttributeGroup([
+$attrGroup = new Node\Attribute_Group([
     new Node\Attribute(new Node\Name('B'), []),
 ]);
 $stmts[0]->attrGroups[] = $attrGroup;
@@ -102,10 +102,10 @@ function() {};
 fn()
     => 42;
 -----
-$attrGroup = new Node\AttributeGroup([
+$attrGroup = new Node\Attribute_Group([
     new Node\Attribute(new Node\Name('A'), []),
 ]);
-$attrGroup2 = new Node\AttributeGroup([
+$attrGroup2 = new Node\Attribute_Group([
     new Node\Attribute(new Node\Name('B'), []),
 ]);
 $stmts[0]->attrGroups[] = $attrGroup;

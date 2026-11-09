@@ -56,7 +56,7 @@ array(
         implements: array(
         )
         stmts: array(
-            0: Stmt_ClassMethod(
+            0: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: 0

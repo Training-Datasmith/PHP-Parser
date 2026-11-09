@@ -77,7 +77,7 @@ if ($cond) { // Foo
 $stmts[0]->returnType = new Node\Name('Foo');
 $stmts[0]->params[0]->type = new Node\Identifier('int');
 $stmts[0]->params[1]->type = new Node\Identifier('array');
-$stmts[0]->params[1]->default = new Expr\ConstFetch(new Node\Name('null'));
+$stmts[0]->params[1]->default = new Expr\Const_Fetch(new Node\Name('null'));
 $stmts[1]->expr->dim = new Expr\Variable('a');
 $stmts[2]->expr->items[0]->key = new Scalar\String_('X');
 $stmts[3]->expr->returnType = new Node\Name('Bar');
@@ -87,7 +87,7 @@ $stmts[6]->expr->value = new Expr\Variable('v');
 $stmts[7]->num = new Scalar\LNumber(2);
 $stmts[8]->num = new Scalar\LNumber(2);
 $stmts[9]->expr = new Expr\Variable('x');
-$stmts[10]->extends = new Node\Name\FullyQualified('Bar');
+$stmts[10]->extends = new Node\Name\Fully_Qualified('Bar');
 $stmts[10]->stmts[0]->returnType = new Node\Name('Y');
 $stmts[10]->stmts[1]->props[0]->default = new Scalar\DNumber(42.0);
 $stmts[10]->stmts[2]->type = new Node\Identifier('int');

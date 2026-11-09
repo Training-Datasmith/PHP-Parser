@@ -186,8 +186,8 @@ class Foo
     }
 }
 -----
-$stmts[0]->stmts[2] = new Node\Stmt\ClassMethod('getBar');
-$stmts[0]->stmts[3] = new Node\Stmt\ClassMethod('getBaz');
+$stmts[0]->stmts[2] = new Node\Stmt\Class_Method('getBar');
+$stmts[0]->stmts[3] = new Node\Stmt\Class_Method('getBaz');
 -----
 <?php
 class Foo

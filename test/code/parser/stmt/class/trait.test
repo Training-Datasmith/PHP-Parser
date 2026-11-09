@@ -29,7 +29,7 @@ array(
             name: A
         )
         stmts: array(
-            0: Stmt_ClassMethod(
+            0: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: PUBLIC (1)
@@ -72,7 +72,7 @@ array(
                     )
                 )
                 adaptations: array(
-                    0: Stmt_TraitUseAdaptation_Alias(
+                    0: Stmt_Trait_Use_Adaptation_Alias(
                         trait: null
                         method: Identifier(
                             name: a
@@ -82,7 +82,7 @@ array(
                             name: b
                         )
                     )
-                    1: Stmt_TraitUseAdaptation_Alias(
+                    1: Stmt_Trait_Use_Adaptation_Alias(
                         trait: null
                         method: Identifier(
                             name: c
@@ -92,7 +92,7 @@ array(
                             name: d
                         )
                     )
-                    2: Stmt_TraitUseAdaptation_Alias(
+                    2: Stmt_Trait_Use_Adaptation_Alias(
                         trait: null
                         method: Identifier(
                             name: e
@@ -115,7 +115,7 @@ array(
                     )
                 )
                 adaptations: array(
-                    0: Stmt_TraitUseAdaptation_Precedence(
+                    0: Stmt_Trait_Use_Adaptation_Precedence(
                         trait: Name(
                             name: E
                         )
@@ -131,7 +131,7 @@ array(
                             )
                         )
                     )
-                    1: Stmt_TraitUseAdaptation_Alias(
+                    1: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name(
                             name: E
                         )
@@ -143,7 +143,7 @@ array(
                             name: c
                         )
                     )
-                    2: Stmt_TraitUseAdaptation_Alias(
+                    2: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name(
                             name: E
                         )
@@ -155,7 +155,7 @@ array(
                             name: e
                         )
                     )
-                    3: Stmt_TraitUseAdaptation_Alias(
+                    3: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name(
                             name: E
                         )

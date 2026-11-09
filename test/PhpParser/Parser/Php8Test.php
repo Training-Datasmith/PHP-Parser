@@ -1,13 +1,16 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Parser;
+declare(strict_types=1);
 
-use PhpParser\Lexer;
-use PhpParser\ParserTestAbstract;
+namespace Php_Parser\Parser;
 
-class Php8Test extends ParserTestAbstract
+use Php_Parser\Lexer;
+use Php_Parser\Parser_Test_Abstract;
+
+class Php8Test extends Parser_Test_Abstract
 {
-    protected function getParser(Lexer $lexer) {
+    protected function getParser(Lexer $lexer)
+    {
         return new Php8($lexer);
     }
 }

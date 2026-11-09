@@ -41,7 +41,7 @@ array(
             )
             1: Stmt_Catch(
                 types: array(
-                    0: Name_FullyQualified(
+                    0: Name_Fully_Qualified(
                         name: A
                     )
                     1: Name(

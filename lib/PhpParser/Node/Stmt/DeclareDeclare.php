@@ -1,17 +1,14 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Stmt;
+declare(strict_types=1);
 
-use PhpParser\Node\DeclareItem;
+namespace Php_Parser\Node\Stmt;
 
-require __DIR__ . '/../DeclareItem.php';
+require_once __DIR__ . '/../Declare_Item.php';
 
 if (false) {
-    /**
-     * For classmap-authoritative support.
-     *
-     * @deprecated use \PhpParser\Node\DeclareItem instead.
-     */
-    class DeclareDeclare extends DeclareItem {
+    /** @deprecated use \Php_Parser\Node\Declare_Item instead. */
+    class DeclareDeclare extends \Php_Parser\Node\Declare_Item
+    {
     }
 }

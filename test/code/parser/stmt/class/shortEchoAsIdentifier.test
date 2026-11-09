@@ -27,7 +27,7 @@ array(
                     )
                 )
                 adaptations: array(
-                    0: Stmt_TraitUseAdaptation_Alias(
+                    0: Stmt_Trait_Use_Adaptation_Alias(
                         trait: null
                         method: Identifier(
                             name: x
@@ -37,7 +37,7 @@ array(
                             name: y
                         )
                     )
-                    1: Stmt_TraitUseAdaptation_Alias(
+                    1: Stmt_Trait_Use_Adaptation_Alias(
                         trait: null
                         method: Identifier(
                             name: <?=

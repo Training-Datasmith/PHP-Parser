@@ -56,7 +56,7 @@ array(
             )
             1: Stmt_Expression(
                 expr: Expr_FuncCall(
-                    name: Name_FullyQualified(
+                    name: Name_Fully_Qualified(
                         name: fn\use
                     )
                     args: array(

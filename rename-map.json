@@ -1,0 +1,34 @@
+{
+    "namespace": {
+        "PhpParser": "Php_Parser"
+    },
+    "classes": {
+        "BuilderFactory": "Builder_Factory",
+        "BuilderHelpers": "Builder_Helpers",
+        "ConstExprEvaluator": "Const_Expr_Evaluator",
+        "ErrorHandler": "Error_Handler",
+        "JsonDecoder": "Json_Decoder",
+        "NameContext": "Name_Context",
+        "NodeAbstract": "Node_Abstract",
+        "NodeDumper": "Node_Dumper",
+        "NodeFinder": "Node_Finder",
+        "NodeTraverser": "Node_Traverser",
+        "NodeVisitor": "Node_Visitor",
+        "NodeVisitorAbstract": "Node_Visitor_Abstract",
+        "ParserFactory": "Parser_Factory",
+        "ParserAbstract": "Parser_Abstract",
+        "PhpVersion": "Php_Version",
+        "PrettyPrinter": "Pretty_Printer",
+        "PrettyPrinterAbstract": "Pretty_Printer_Abstract"
+    },
+    "methods": {
+        "createForNewestSupportedVersion": "create_for_newest_supported_version",
+        "createForVersion": "create_for_version",
+        "getSubNodeNames": "get_sub_node_names",
+        "getType": "get_type",
+        "getStartLine": "get_start_line",
+        "setAttribute": "set_attribute",
+        "getAttribute": "get_attribute"
+    },
+    "notes": "AST get_type() dump literals (e.g. Stmt_Class, PropertyItem) stay upstream-shaped; PHPUnit, PHP-native APIs, and lexer attribute keys are unchanged."
+}

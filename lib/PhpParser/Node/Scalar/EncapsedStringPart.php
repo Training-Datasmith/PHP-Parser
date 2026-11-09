@@ -1,17 +1,14 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Scalar;
+declare(strict_types=1);
 
-use PhpParser\Node\InterpolatedStringPart;
+namespace Php_Parser\Node\Scalar;
 
-require __DIR__ . '/../InterpolatedStringPart.php';
+require_once __DIR__ . '/../Interpolated_String_Part.php';
 
 if (false) {
-    /**
-     * For classmap-authoritative support.
-     *
-     * @deprecated use \PhpParser\Node\InterpolatedStringPart instead.
-     */
-    class EncapsedStringPart extends InterpolatedStringPart {
+    /** @deprecated use \Php_Parser\Node\Interpolated_String_Part instead. */
+    class EncapsedStringPart extends \Php_Parser\Node\Interpolated_String_Part
+    {
     }
 }

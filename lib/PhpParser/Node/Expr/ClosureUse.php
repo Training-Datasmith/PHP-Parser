@@ -1,15 +1,18 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Expr;
+declare(strict_types=1);
 
-require __DIR__ . '/../ClosureUse.php';
+namespace Php_Parser\Node\Expr;
+
+require_once __DIR__ . '/../Closure_Use.php';
 
 if (false) {
     /**
      * For classmap-authoritative support.
      *
-     * @deprecated use \PhpParser\Node\ClosureUse instead.
+     * @deprecated use \Php_Parser\Node\Closure_Use instead.
      */
-    class ClosureUse extends \PhpParser\Node\ClosureUse {
+    class ClosureUse extends \Php_Parser\Node\Closure_Use
+    {
     }
 }

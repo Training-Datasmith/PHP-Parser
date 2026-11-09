@@ -1,20 +1,19 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Expr;
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-use PhpParser\Node\Expr;
-
-class Include_ extends Expr {
-    public const TYPE_INCLUDE      = 1;
+use Php_Parser\Node\Expr;
+class Include_ extends Expr
+{
+    public const TYPE_INCLUDE = 1;
     public const TYPE_INCLUDE_ONCE = 2;
-    public const TYPE_REQUIRE      = 3;
+    public const TYPE_REQUIRE = 3;
     public const TYPE_REQUIRE_ONCE = 4;
-
     /** @var Expr Expression */
     public Expr $expr;
     /** @var int Type of include */
     public int $type;
-
     /**
      * Constructs an include node.
      *
@@ -22,17 +21,17 @@ class Include_ extends Expr {
      * @param int $type Type of include
      * @param array<string, mixed> $attributes Additional attributes
      */
-    public function __construct(Expr $expr, int $type, array $attributes = []) {
+    public function __construct(Expr $expr, int $type, array $attributes = [])
+    {
         $this->attributes = $attributes;
         $this->expr = $expr;
         $this->type = $type;
     }
-
-    public function getSubNodeNames(): array {
+    public function get_sub_node_names(): array
+    {
         return ['expr', 'type'];
     }
-
-    public function getType(): string {
+    public function get_type(): string {
         return 'Expr_Include';
     }
 }

@@ -81,7 +81,7 @@ array(
         byRef: false
         valueVar: Expr_List(
             items: array(
-                0: ArrayItem(
+                0: Array_Item(
                     key: null
                     value: Expr_Variable(
                         name: a
@@ -89,7 +89,7 @@ array(
                     byRef: false
                     unpack: false
                 )
-                1: ArrayItem(
+                1: Array_Item(
                     key: null
                     value: Expr_Variable(
                         name: b
@@ -112,7 +112,7 @@ array(
         byRef: false
         valueVar: Expr_List(
             items: array(
-                0: ArrayItem(
+                0: Array_Item(
                     key: null
                     value: Expr_Variable(
                         name: b
@@ -121,7 +121,7 @@ array(
                     unpack: false
                 )
                 1: null
-                2: ArrayItem(
+                2: Array_Item(
                     key: null
                     value: Expr_Variable(
                         name: c

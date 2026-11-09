@@ -1,13 +1,16 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Parser;
+declare(strict_types=1);
 
-use PhpParser\Lexer;
-use PhpParser\ParserTestAbstract;
+namespace Php_Parser\Parser;
 
-class Php7Test extends ParserTestAbstract
+use Php_Parser\Lexer;
+use Php_Parser\Parser_Test_Abstract;
+
+class Php7Test extends Parser_Test_Abstract
 {
-    protected function getParser(Lexer $lexer) {
+    protected function getParser(Lexer $lexer)
+    {
         return new Php7($lexer);
     }
 }

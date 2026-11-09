@@ -1,0 +1,4 @@
+commit=50f0d9c9d0e3cff1163c959c50aaaaa4a7115f08
+tests=1887
+assertions=2760
+ok_line=OK (1887 tests, 2760 assertions)

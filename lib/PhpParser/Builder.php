@@ -1,12 +1,14 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser;
+declare (strict_types=1);
+namespace Php_Parser;
 
-interface Builder {
+interface Builder
+{
     /**
      * Returns the built node.
      *
      * @return Node The built node
      */
-    public function getNode(): Node;
+    public function get_node(): Node;
 }

@@ -1,14 +1,14 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Builder;
+declare (strict_types=1);
+namespace Php_Parser\Builder;
 
-use PhpParser;
-use PhpParser\BuilderHelpers;
-
-abstract class Declaration implements PhpParser\Builder {
+use Php_Parser;
+use Php_Parser\Builder_Helpers;
+abstract class Declaration implements Php_Parser\Builder
+{
     /** @var array<string, mixed> */
     protected array $attributes = [];
-
     /**
      * Adds a statement.
      *
@@ -16,8 +16,7 @@ abstract class Declaration implements PhpParser\Builder {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    abstract public function addStmt($stmt);
-
+    abstract public function add_stmt($stmt);
     /**
      * Adds multiple statements.
      *
@@ -25,14 +24,13 @@ abstract class Declaration implements PhpParser\Builder {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addStmts(array $stmts) {
+    public function add_stmts(array $stmts)
+    {
         foreach ($stmts as $stmt) {
-            $this->addStmt($stmt);
+            $this->add_stmt($stmt);
         }
-
         return $this;
     }
-
     /**
      * Sets doc comment for the declaration.
      *
@@ -40,11 +38,9 @@ abstract class Declaration implements PhpParser\Builder {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function setDocComment($docComment) {
-        $this->attributes['comments'] = [
-            BuilderHelpers::normalizeDocComment($docComment)
-        ];
-
+    public function set_doc_comment($doc_comment)
+    {
+        $this->attributes['comments'] = [Builder_Helpers::normalize_doc_comment($doc_comment)];
         return $this;
     }
 }

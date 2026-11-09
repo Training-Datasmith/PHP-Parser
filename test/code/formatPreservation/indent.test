@@ -45,7 +45,7 @@ $x,
 );
 -----
 $call = $stmts[0]->expr;
-$stmts[0]->expr = new Expr\StaticCall(new Node\Name\FullyQualified('Compat'), $call->name, $call->args);
+$stmts[0]->expr = new Expr\Static_Call(new Node\Name\Fully_Qualified('Compat'), $call->name, $call->args);
 -----
 <?php
 \Compat::array_merge([

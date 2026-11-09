@@ -125,9 +125,9 @@ array(
         )
     )
     10: Stmt_Expression(
-        expr: Scalar_InterpolatedString(
+        expr: Scalar_Interpolated_String(
             parts: array(
-                0: InterpolatedStringPart(
+                0: Interpolated_StringPart(
                     value: foo
                     bar
                     rawValue: foo\nbar
@@ -142,7 +142,7 @@ array(
     11: Stmt_Expression(
         expr: Expr_ShellExec(
             parts: array(
-                0: InterpolatedStringPart(
+                0: Interpolated_StringPart(
                     value: foo
                     bar
                     rawValue: foo\nbar
@@ -153,7 +153,7 @@ array(
     12: Stmt_Expression(
         expr: Expr_ShellExec(
             parts: array(
-                0: InterpolatedStringPart(
+                0: Interpolated_StringPart(
                     value: foo
                     bar
                     rawValue: foo\nbar
@@ -212,9 +212,9 @@ array(
         )
     )
     18: Stmt_Expression(
-        expr: Scalar_InterpolatedString(
+        expr: Scalar_Interpolated_String(
             parts: array(
-                0: InterpolatedStringPart(
+                0: Interpolated_StringPart(
                     value: foo
                     bar
                     rawValue: foo\nbar
@@ -222,7 +222,7 @@ array(
                 1: Expr_Variable(
                     name: x
                 )
-                2: InterpolatedStringPart(
+                2: Interpolated_StringPart(
                     value: baz
                     rawValue: baz
                 )
@@ -233,9 +233,9 @@ array(
         )
     )
     19: Stmt_Expression(
-        expr: Scalar_InterpolatedString(
+        expr: Scalar_Interpolated_String(
             parts: array(
-                0: InterpolatedStringPart(
+                0: Interpolated_StringPart(
                     value: foo
                     bar
                     rawValue: foo\nbar
@@ -243,7 +243,7 @@ array(
                 1: Expr_Variable(
                     name: x
                 )
-                2: InterpolatedStringPart(
+                2: Interpolated_StringPart(
                     value: baz
                     rawValue: baz
                 )
@@ -271,7 +271,7 @@ array(
         expr: Expr_Assign(
             var: Expr_List(
                 items: array(
-                    0: ArrayItem(
+                    0: Array_Item(
                         key: null
                         value: Expr_Variable(
                             name: x
@@ -291,7 +291,7 @@ array(
         expr: Expr_Assign(
             var: Expr_List(
                 items: array(
-                    0: ArrayItem(
+                    0: Array_Item(
                         key: null
                         value: Expr_Variable(
                             name: x

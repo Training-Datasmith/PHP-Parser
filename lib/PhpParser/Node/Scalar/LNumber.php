@@ -1,15 +1,14 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Scalar;
+declare(strict_types=1);
 
-require __DIR__ . '/Int_.php';
+namespace Php_Parser\Node\Scalar;
+
+require_once __DIR__ . '/Int_.php';
 
 if (false) {
-    /**
-     * For classmap-authoritative support.
-     *
-     * @deprecated use \PhpParser\Node\Scalar\Int_ instead.
-     */
-    class LNumber extends Int_ {
+    /** @deprecated use \Php_Parser\Node\Scalar\Int_ instead. */
+    class LNumber extends Int_
+    {
     }
 }

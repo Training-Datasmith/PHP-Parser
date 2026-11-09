@@ -1,15 +1,14 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Scalar;
+declare(strict_types=1);
 
-require __DIR__ . '/Float_.php';
+namespace Php_Parser\Node\Scalar;
+
+require_once __DIR__ . '/Float_.php';
 
 if (false) {
-    /**
-     * For classmap-authoritative support.
-     *
-     * @deprecated use \PhpParser\Node\Scalar\Float_ instead.
-     */
-    class DNumber extends Float_ {
+    /** @deprecated use \Php_Parser\Node\Scalar\Float_ instead. */
+    class DNumber extends Float_
+    {
     }
 }

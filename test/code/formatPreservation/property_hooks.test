@@ -8,7 +8,7 @@ class Test {
     }
 }
 -----
-$stmts[0]->stmts[0]->hooks[] = new Node\PropertyHook('set', new Scalar\Int_(123));
+$stmts[0]->stmts[0]->hooks[] = new Node\Property_Hook('set', new Scalar\Int_(123));
 -----
 <?php
 class Test {
@@ -27,7 +27,7 @@ class Test {
     ) {}
 }
 -----
-$stmts[0]->stmts[0]->params[0]->hooks[] = new Node\PropertyHook('set', new Scalar\Int_(123));
+$stmts[0]->stmts[0]->params[0]->hooks[] = new Node\Property_Hook('set', new Scalar\Int_(123));
 -----
 <?php
 class Test {

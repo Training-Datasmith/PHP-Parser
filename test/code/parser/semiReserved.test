@@ -64,7 +64,7 @@ array(
         implements: array(
         )
         stmts: array(
-            0: Stmt_ClassMethod(
+            0: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: 0
@@ -78,7 +78,7 @@ array(
                 stmts: array(
                 )
             )
-            1: Stmt_ClassMethod(
+            1: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: 0
@@ -92,7 +92,7 @@ array(
                 stmts: array(
                 )
             )
-            2: Stmt_ClassMethod(
+            2: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: STATIC (8)
@@ -106,7 +106,7 @@ array(
                 stmts: array(
                 )
             )
-            3: Stmt_ClassMethod(
+            3: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: STATIC (8)
@@ -127,7 +127,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: class
                         )
                         default: null
@@ -143,7 +143,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: private
                         )
                         default: null
@@ -378,7 +378,7 @@ array(
                     )
                 )
                 adaptations: array(
-                    0: Stmt_TraitUseAdaptation_Precedence(
+                    0: Stmt_Trait_Use_Adaptation_Precedence(
                         trait: Name(
                             name: TraitA
                         )
@@ -391,7 +391,7 @@ array(
                             )
                         )
                     )
-                    1: Stmt_TraitUseAdaptation_Alias(
+                    1: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name(
                             name: TraitA
                         )
@@ -403,7 +403,7 @@ array(
                             name: foreach
                         )
                     )
-                    2: Stmt_TraitUseAdaptation_Alias(
+                    2: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name(
                             name: TraitB
                         )
@@ -415,7 +415,7 @@ array(
                             name: public
                         )
                     )
-                    3: Stmt_TraitUseAdaptation_Alias(
+                    3: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name(
                             name: TraitB
                         )
@@ -425,7 +425,7 @@ array(
                         newModifier: PROTECTED (2)
                         newName: null
                     )
-                    4: Stmt_TraitUseAdaptation_Alias(
+                    4: Stmt_Trait_Use_Adaptation_Alias(
                         trait: null
                         method: Identifier(
                             name: exit
@@ -435,8 +435,8 @@ array(
                             name: die
                         )
                     )
-                    5: Stmt_TraitUseAdaptation_Alias(
-                        trait: Name_FullyQualified(
+                    5: Stmt_Trait_Use_Adaptation_Alias(
+                        trait: Name_Fully_Qualified(
                             name: TraitC
                         )
                         method: Identifier(
@@ -447,7 +447,7 @@ array(
                             name: bye
                         )
                     )
-                    6: Stmt_TraitUseAdaptation_Alias(
+                    6: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name_Relative(
                             name: TraitC
                         )
@@ -459,7 +459,7 @@ array(
                             name: byebye
                         )
                     )
-                    7: Stmt_TraitUseAdaptation_Precedence(
+                    7: Stmt_Trait_Use_Adaptation_Precedence(
                         trait: Name(
                             name: TraitA
                         )

@@ -1,15 +1,17 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Expr\Cast;
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr\Cast;
 
-use PhpParser\Node\Expr\Cast;
-
-class String_ extends Cast {
+use Php_Parser\Node\Expr\Cast;
+class String_ extends Cast
+{
     // For use in "kind" attribute
-    public const KIND_STRING = 1; // "string" syntax
-    public const KIND_BINARY = 2; // "binary" syntax
-
-    public function getType(): string {
+    public const KIND_STRING = 1;
+    // "string" syntax
+    public const KIND_BINARY = 2;
+    // "binary" syntax
+    public function get_type(): string {
         return 'Expr_Cast_String';
     }
 }

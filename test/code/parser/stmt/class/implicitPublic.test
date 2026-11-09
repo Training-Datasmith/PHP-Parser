@@ -31,7 +31,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: a
                         )
                         default: null
@@ -47,7 +47,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: b
                         )
                         default: null
@@ -56,7 +56,7 @@ array(
                 hooks: array(
                 )
             )
-            2: Stmt_ClassMethod(
+            2: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: ABSTRACT (16)
@@ -69,7 +69,7 @@ array(
                 returnType: null
                 stmts: null
             )
-            3: Stmt_ClassMethod(
+            3: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: FINAL (32)
@@ -83,7 +83,7 @@ array(
                 stmts: array(
                 )
             )
-            4: Stmt_ClassMethod(
+            4: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: STATIC (8)
@@ -97,7 +97,7 @@ array(
                 stmts: array(
                 )
             )
-            5: Stmt_ClassMethod(
+            5: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: STATIC | FINAL (40)
@@ -111,7 +111,7 @@ array(
                 stmts: array(
                 )
             )
-            6: Stmt_ClassMethod(
+            6: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: 0

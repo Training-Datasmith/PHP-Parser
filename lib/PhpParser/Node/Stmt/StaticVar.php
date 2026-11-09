@@ -1,15 +1,16 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Stmt;
+declare(strict_types=1);
 
-require __DIR__ . '/../StaticVar.php';
+namespace Php_Parser\Node\Stmt;
+
+require_once __DIR__ . '/../Static_Var.php';
 
 if (false) {
     /**
-     * For classmap-authoritative support.
-     *
-     * @deprecated use \PhpParser\Node\StaticVar instead.
+     * @deprecated use \Php_Parser\Node\Static_Var instead.
      */
-    class StaticVar extends \PhpParser\Node\StaticVar {
+    class StaticVar extends \Php_Parser\Node\Static_Var
+    {
     }
 }

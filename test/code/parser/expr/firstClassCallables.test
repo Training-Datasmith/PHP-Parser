@@ -19,7 +19,7 @@ array(
                 name: foo
             )
             args: array(
-                0: VariadicPlaceholder(
+                0: Variadic_Placeholder(
                 )
             )
         )
@@ -33,7 +33,7 @@ array(
                 name: foo
             )
             args: array(
-                0: VariadicPlaceholder(
+                0: Variadic_Placeholder(
                 )
             )
         )
@@ -47,7 +47,7 @@ array(
                 name: foo
             )
             args: array(
-                0: VariadicPlaceholder(
+                0: Variadic_Placeholder(
                 )
             )
         )
@@ -58,7 +58,7 @@ array(
                 name: Foo
             )
             args: array(
-                0: VariadicPlaceholder(
+                0: Variadic_Placeholder(
                 )
             )
         )
@@ -75,7 +75,7 @@ array(
                 name: foo
             )
             args: array(
-                0: VariadicPlaceholder(
+                0: Variadic_Placeholder(
                 )
             )
         )
@@ -89,7 +89,7 @@ array(
                             name: Foo
                         )
                         args: array(
-                            0: VariadicPlaceholder(
+                            0: Variadic_Placeholder(
                             )
                         )
                     )

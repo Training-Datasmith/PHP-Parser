@@ -62,9 +62,9 @@ array(
         )
     )
     4: Stmt_Expression(
-        expr: Scalar_InterpolatedString(
+        expr: Scalar_Interpolated_String(
             parts: array(
-                0: InterpolatedStringPart(
+                0: Interpolated_StringPart(
                     value: Test
                 )
                 1: Expr_Variable(
@@ -77,15 +77,15 @@ array(
         )
     )
     5: Stmt_Expression(
-        expr: Scalar_InterpolatedString(
+        expr: Scalar_Interpolated_String(
             parts: array(
-                0: InterpolatedStringPart(
+                0: Interpolated_StringPart(
                     value: Test
                 )
                 1: Expr_Variable(
                     name: a
                 )
-                2: InterpolatedStringPart(
+                2: Interpolated_StringPart(
                     value:  and
                 )
                 3: Expr_PropertyFetch(
@@ -96,7 +96,7 @@ array(
                         name: c
                     )
                 )
-                4: InterpolatedStringPart(
+                4: Interpolated_StringPart(
                     value:  test
                 )
             )
@@ -108,12 +108,12 @@ array(
         )
     )
     7: Stmt_Expression(
-        expr: Scalar_InterpolatedString(
+        expr: Scalar_Interpolated_String(
             parts: array(
                 0: Expr_Variable(
                     name: x
                 )
-                1: InterpolatedStringPart(
+                1: Interpolated_StringPart(
                     value:
                 )
             )

@@ -1,14 +1,15 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Builder;
+declare (strict_types=1);
+namespace Php_Parser\Builder;
 
-use PhpParser;
-use PhpParser\BuilderHelpers;
-use PhpParser\Node;
-use PhpParser\Node\Name;
-use PhpParser\Node\Stmt;
-
-class Interface_ extends Declaration {
+use Php_Parser;
+use Php_Parser\Builder_Helpers;
+use Php_Parser\Node;
+use Php_Parser\Node\Name;
+use Php_Parser\Node\Stmt;
+class Interface_ extends Declaration
+{
     protected string $name;
     /** @var list<Name> */
     protected array $extends = [];
@@ -17,17 +18,16 @@ class Interface_ extends Declaration {
     /** @var list<Stmt\ClassMethod> */
     protected array $methods = [];
     /** @var list<Node\AttributeGroup> */
-    protected array $attributeGroups = [];
-
+    protected array $attribute_groups = [];
     /**
      * Creates an interface builder.
      *
      * @param string $name Name of the interface
      */
-    public function __construct(string $name) {
+    public function __construct(string $name)
+    {
         $this->name = $name;
     }
-
     /**
      * Extends one or more interfaces.
      *
@@ -35,14 +35,13 @@ class Interface_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function extend(...$interfaces) {
+    public function extend(...$interfaces): self
+    {
         foreach ($interfaces as $interface) {
-            $this->extends[] = BuilderHelpers::normalizeName($interface);
+            $this->extends[] = Builder_Helpers::normalize_name($interface);
         }
-
         return $this;
     }
-
     /**
      * Adds a statement.
      *
@@ -50,22 +49,20 @@ class Interface_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addStmt($stmt) {
-        $stmt = BuilderHelpers::normalizeNode($stmt);
-
-        if ($stmt instanceof Stmt\ClassConst) {
+    public function add_stmt($stmt)
+    {
+        $stmt = Builder_Helpers::normalize_node($stmt);
+        if ($stmt instanceof Stmt\Class_Const) {
             $this->constants[] = $stmt;
-        } elseif ($stmt instanceof Stmt\ClassMethod) {
+        } elseif ($stmt instanceof Stmt\Class_Method) {
             // we erase all statements in the body of an interface method
             $stmt->stmts = null;
             $this->methods[] = $stmt;
         } else {
-            throw new \LogicException(sprintf('Unexpected node of type "%s"', $stmt->getType()));
+            throw new \LogicException(sprintf('Unexpected node of type "%s"', $stmt->get_type()));
         }
-
         return $this;
     }
-
     /**
      * Adds an attribute group.
      *
@@ -73,22 +70,18 @@ class Interface_ extends Declaration {
      *
      * @return $this The builder instance (for fluid interface)
      */
-    public function addAttribute($attribute) {
-        $this->attributeGroups[] = BuilderHelpers::normalizeAttribute($attribute);
-
+    public function add_attribute($attribute): self
+    {
+        $this->attribute_groups[] = Builder_Helpers::normalize_attribute($attribute);
         return $this;
     }
-
     /**
      * Returns the built interface node.
      *
      * @return Stmt\Interface_ The built interface node
      */
-    public function getNode(): PhpParser\Node {
-        return new Stmt\Interface_($this->name, [
-            'extends' => $this->extends,
-            'stmts' => array_merge($this->constants, $this->methods),
-            'attrGroups' => $this->attributeGroups,
-        ], $this->attributes);
+    public function get_node(): Php_Parser\Node
+    {
+        return new Stmt\Interface_($this->name, ['extends' => $this->extends, 'stmts' => array_merge($this->constants, $this->methods), 'attrGroups' => $this->attribute_groups], $this->attributes);
     }
 }

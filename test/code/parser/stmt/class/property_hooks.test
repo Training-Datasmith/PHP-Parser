@@ -39,7 +39,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: prop
                         )
                         default: null
@@ -93,7 +93,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: prop2
                         )
                         default: null
@@ -137,7 +137,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: prop3
                         )
                         default: null
@@ -177,7 +177,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: prop4
                         )
                         default: null
@@ -264,7 +264,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: prop
                         )
                         default: null
@@ -273,7 +273,7 @@ array(
                 hooks: array(
                 )
             )
-            1: Stmt_ClassMethod(
+            1: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: PUBLIC (1)
@@ -332,7 +332,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: prop
                         )
                         default: null
@@ -384,7 +384,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: prop
                         )
                         default: null
@@ -451,7 +451,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: prop
                         )
                         default: null
@@ -552,13 +552,13 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: foo
                         )
                         default: null
                     )
                     1: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: bar
                         )
                         default: null
@@ -618,13 +618,13 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: foo
                         )
                         default: null
                     )
                     1: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: bar
                         )
                         default: null

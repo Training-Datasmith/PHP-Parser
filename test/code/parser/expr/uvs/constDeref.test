@@ -177,7 +177,7 @@ array(
                     name: B
                 )
             )
-            name: VarLikeIdentifier(
+            name: Var_Like_Identifier(
                 name: c
             )
         )

@@ -117,7 +117,7 @@ array(
         implements: array(
         )
         stmts: array(
-            0: Stmt_ClassMethod(
+            0: Stmt_Class_Method(
                 attrGroups: array(
                     0: AttributeGroup(
                         attrs: array(
@@ -185,7 +185,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: prop
                         )
                         default: null

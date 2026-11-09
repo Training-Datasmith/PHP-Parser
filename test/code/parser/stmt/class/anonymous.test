@@ -33,7 +33,7 @@ array(
                 implements: array(
                 )
                 stmts: array(
-                    0: Stmt_ClassMethod(
+                    0: Stmt_Class_Method(
                         attrGroups: array(
                         )
                         flags: PUBLIC (1)
@@ -96,7 +96,7 @@ array(
                         type: null
                         props: array(
                             0: PropertyItem(
-                                name: VarLikeIdentifier(
+                                name: Var_Like_Identifier(
                                     name: foo
                                 )
                                 default: null
@@ -166,7 +166,7 @@ array(
         implements: array(
         )
         stmts: array(
-            0: Stmt_ClassMethod(
+            0: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: PUBLIC (1)

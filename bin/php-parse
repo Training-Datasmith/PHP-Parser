@@ -26,15 +26,15 @@ if (empty($files)) {
     showHelp("Must specify at least one file.");
 }
 
-$parser = (new PhpParser\ParserFactory())->createForVersion($attributes['version']);
-$dumper = new PhpParser\NodeDumper([
+$parser = (new Php_Parser\Parser_Factory())->create_for_version($attributes['version']);
+$dumper = new Php_Parser\Node_Dumper([
     'dumpComments' => true,
     'dumpPositions' => $attributes['with-positions'],
 ]);
-$prettyPrinter = new PhpParser\PrettyPrinter\Standard;
+$prettyPrinter = new Php_Parser\Pretty_Printer\Standard;
 
-$traverser = new PhpParser\NodeTraverser();
-$traverser->addVisitor(new PhpParser\NodeVisitor\NameResolver);
+$traverser = new Php_Parser\Node_Traverser();
+$traverser->add_visitor(new Php_Parser\Node_Visitor\Name_Resolver);
 
 foreach ($files as $file) {
     if ($file === '-') {
@@ -54,9 +54,9 @@ foreach ($files as $file) {
     }
 
     if ($attributes['with-recovery']) {
-        $errorHandler = new PhpParser\ErrorHandler\Collecting;
+        $errorHandler = new Php_Parser\Error_Handler\Collecting();
         $stmts = $parser->parse($code, $errorHandler);
-        foreach ($errorHandler->getErrors() as $error) {
+        foreach ($errorHandler->get_errors() as $error) {
             $message = formatErrorMessage($error, $code, $attributes['with-column-info']);
             fwrite(STDERR, $message . "\n");
         }
@@ -66,7 +66,7 @@ foreach ($files as $file) {
     } else {
         try {
             $stmts = $parser->parse($code);
-        } catch (PhpParser\Error $error) {
+        } catch (Php_Parser\Error $error) {
             $message = formatErrorMessage($error, $code, $attributes['with-column-info']);
             fwrite(STDERR, $message . "\n");
             exit(1);
@@ -79,7 +79,7 @@ foreach ($files as $file) {
             echo $dumper->dump($stmts, $code), "\n";
         } elseif ('pretty-print' === $operation) {
             fwrite(STDERR, "==> Pretty print:\n");
-            echo $prettyPrinter->prettyPrintFile($stmts), "\n";
+            echo $prettyPrinter->pretty_print_file($stmts), "\n";
         } elseif ('json-dump' === $operation) {
             fwrite(STDERR, "==> JSON dump:\n");
             echo json_encode($stmts, JSON_PRETTY_PRINT), "\n";
@@ -93,12 +93,12 @@ foreach ($files as $file) {
     }
 }
 
-function formatErrorMessage(PhpParser\Error $e, $code, $withColumnInfo) {
-    if ($withColumnInfo && $e->hasColumnInfo()) {
-        return $e->getMessageWithColumnInfo($code);
-    } else {
-        return $e->getMessage();
+function formatErrorMessage(Php_Parser\Error $e, $code, $withColumnInfo) {
+    if ($withColumnInfo && $e->has_column_info()) {
+        return $e->get_message_with_column_info($code);
     }
+
+    return $e->getMessage();
 }
 
 function showHelp($error = '') {
@@ -112,11 +112,11 @@ Turn PHP source code into an abstract syntax tree.
 
 Operations is a list of the following options (--dump by default):
 
-    -d, --dump              Dump nodes using NodeDumper
-    -p, --pretty-print      Pretty print file using PrettyPrinter\Standard
+    -d, --dump              Dump nodes using Node_Dumper
+    -p, --pretty-print      Pretty print file using Pretty_Printer\Standard
     -j, --json-dump         Print json_encode() result
         --var-dump          var_dump() nodes (for exact structure)
-    -N, --resolve-names     Resolve names using NodeVisitor\NameResolver
+    -N, --resolve-names     Resolve names using Node_Visitor\Name_Resolver
     -c, --with-column-info  Show column-numbers for errors (if available)
     -P, --with-positions    Show positions in node dumps
     -r, --with-recovery     Use parsing with error recovery
@@ -141,7 +141,7 @@ function parseArgs($args) {
         'with-column-info' => false,
         'with-positions' => false,
         'with-recovery' => false,
-        'version' => PhpParser\PhpVersion::getNewestSupported(),
+        'version' => Php_Parser\Php_Version::get_newest_supported(),
     ];
 
     array_shift($args);
@@ -193,8 +193,8 @@ function parseArgs($args) {
                 break;
             default:
                 if (preg_match('/^--version=(.*)$/', $arg, $matches)) {
-                    $attributes['version'] = PhpParser\PhpVersion::fromString($matches[1]);
-                } elseif ($arg[0] === '-' && \strlen($arg[0]) > 1) {
+                    $attributes['version'] = Php_Parser\Php_Version::from_string($matches[1]);
+                } elseif ($arg[0] === '-' && strlen($arg) > 1) {
                     showHelp("Invalid operation $arg.");
                 } else {
                     $files[] = $arg;

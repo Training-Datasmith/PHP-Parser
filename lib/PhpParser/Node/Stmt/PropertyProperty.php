@@ -1,17 +1,14 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Stmt;
+declare(strict_types=1);
 
-use PhpParser\Node\PropertyItem;
+namespace Php_Parser\Node\Stmt;
 
-require __DIR__ . '/../PropertyItem.php';
+require_once __DIR__ . '/../Property_Item.php';
 
 if (false) {
-    /**
-     * For classmap-authoritative support.
-     *
-     * @deprecated use \PhpParser\Node\PropertyItem instead.
-     */
-    class PropertyProperty extends PropertyItem {
+    /** @deprecated use \Php_Parser\Node\Property_Item instead. */
+    class PropertyProperty extends \Php_Parser\Node\Property_Item
+    {
     }
 }

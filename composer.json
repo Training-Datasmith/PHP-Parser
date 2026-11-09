@@ -12,6 +12,13 @@
             "name": "Nikita Popov"
         }
     ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://raw.githubusercontent.com/Training-Datasmith/composer-index/remote-test-2026-11-09",
+            "canonical": false
+        }
+    ],
     "require": {
         "php": ">=7.4",
         "ext-tokenizer": "*",
@@ -19,7 +26,7 @@
         "ext-ctype": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.0",
+        "phpunit/phpunit": "^9.6.33",
         "ircmaxell/php-yacc": "^0.0.7"
     },
     "extra": {
@@ -29,13 +36,22 @@
     },
     "autoload": {
         "psr-4": {
-            "PhpParser\\": "lib/PhpParser"
+            "Php_Parser\\": "lib/PhpParser"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PhpParser\\": "test/PhpParser/"
+            "Php_Parser\\": "test/PhpParser/"
         }
+    },
+    "scripts": {
+        "check-pins": "php scripts/check-cluster-pins.php",
+        "check-rename": "php scripts/check-rename-complete.php",
+        "test": [
+            "@check-pins",
+            "@check-rename",
+            "phpunit --colors=never --do-not-cache-result --no-coverage"
+        ]
     },
     "bin": [
         "bin/php-parse"

@@ -1,11 +1,12 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Stmt;
+declare (strict_types=1);
+namespace Php_Parser\Node\Stmt;
 
-use PhpParser\Node\Stmt;
-use PhpParser\Node\UseItem;
-
-class Use_ extends Stmt {
+use Php_Parser\Node\Stmt;
+use Php_Parser\Node\Use_Item;
+class Use_ extends Stmt
+{
     /**
      * Unknown type. Both Stmt\Use_ / Stmt\GroupUse and Stmt\UseUse have a $type property, one of them will always be
      * TYPE_UNKNOWN while the other has one of the three other possible types. For normal use statements the type on the
@@ -18,12 +19,10 @@ class Use_ extends Stmt {
     public const TYPE_FUNCTION = 2;
     /** Constant import */
     public const TYPE_CONSTANT = 3;
-
     /** @var self::TYPE_* Type of alias */
     public int $type;
     /** @var UseItem[] Aliases */
     public array $uses;
-
     /**
      * Constructs an alias (use) list node.
      *
@@ -31,17 +30,17 @@ class Use_ extends Stmt {
      * @param Stmt\Use_::TYPE_* $type Type of alias
      * @param array<string, mixed> $attributes Additional attributes
      */
-    public function __construct(array $uses, int $type = self::TYPE_NORMAL, array $attributes = []) {
+    public function __construct(array $uses, int $type = self::TYPE_NORMAL, array $attributes = [])
+    {
         $this->attributes = $attributes;
         $this->type = $type;
         $this->uses = $uses;
     }
-
-    public function getSubNodeNames(): array {
+    public function get_sub_node_names(): array
+    {
         return ['type', 'uses'];
     }
-
-    public function getType(): string {
+    public function get_type(): string {
         return 'Stmt_Use';
     }
 }

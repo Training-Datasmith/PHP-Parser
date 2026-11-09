@@ -30,7 +30,7 @@ array(
                 )
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: a
                         )
                         default: null
@@ -48,7 +48,7 @@ array(
                 )
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: b
                         )
                         default: null
@@ -61,14 +61,14 @@ array(
                 attrGroups: array(
                 )
                 flags: PRIVATE (4)
-                type: NullableType(
+                type: Nullable_Type(
                     type: Identifier(
                         name: float
                     )
                 )
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: c
                         )
                         default: null
@@ -81,14 +81,14 @@ array(
                 attrGroups: array(
                 )
                 flags: PUBLIC | STATIC | READONLY (73)
-                type: NullableType(
+                type: Nullable_Type(
                     type: Identifier(
                         name: int
                     )
                 )
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: d
                         )
                         default: null

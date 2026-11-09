@@ -439,7 +439,7 @@ array(
             0: Stmt_Use(
                 type: TYPE_NORMAL (1)
                 uses: array(
-                    0: UseItem(
+                    0: Use_Item(
                         type: TYPE_UNKNOWN (0)
                         name: Name(
                             name: A
@@ -451,7 +451,7 @@ array(
             1: Stmt_Use(
                 type: TYPE_FUNCTION (2)
                 uses: array(
-                    0: UseItem(
+                    0: Use_Item(
                         type: TYPE_UNKNOWN (0)
                         name: Name(
                             name: a
@@ -466,7 +466,7 @@ array(
                     name: A
                 )
                 uses: array(
-                    0: UseItem(
+                    0: Use_Item(
                         type: TYPE_NORMAL (1)
                         name: Name(
                             name: B
@@ -594,7 +594,7 @@ array(
             name: A
         )
         uses: array(
-            0: UseItem(
+            0: Use_Item(
                 type: TYPE_NORMAL (1)
                 name: Name(
                     name: B
@@ -609,7 +609,7 @@ array(
             name: A
         )
         uses: array(
-            0: UseItem(
+            0: Use_Item(
                 type: TYPE_UNKNOWN (0)
                 name: Name(
                     name: b
@@ -621,7 +621,7 @@ array(
     2: Stmt_Use(
         type: TYPE_NORMAL (1)
         uses: array(
-            0: UseItem(
+            0: Use_Item(
                 type: TYPE_UNKNOWN (0)
                 name: Name(
                     name: A
@@ -674,7 +674,7 @@ array(
                     )
                 )
                 adaptations: array(
-                    0: Stmt_TraitUseAdaptation_Precedence(
+                    0: Stmt_Trait_Use_Adaptation_Precedence(
                         trait: Name(
                             name: A
                         )
@@ -712,7 +712,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: x
                         )
                         default: null
@@ -869,7 +869,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: bar1
                         )
                         default: null
@@ -885,7 +885,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: bar
                         )
                         default: null
@@ -1157,7 +1157,7 @@ array(
         implements: array(
         )
         stmts: array(
-            0: Stmt_ClassMethod(
+            0: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: 0
@@ -1242,7 +1242,7 @@ array(
             )
             expr: Expr_Array(
                 items: array(
-                    0: ArrayItem(
+                    0: Array_Item(
                         key: null
                         value: Expr_PropertyFetch(
                             var: Expr_Variable(
@@ -1255,7 +1255,7 @@ array(
                         byRef: false
                         unpack: false
                     )
-                    1: ArrayItem(
+                    1: Array_Item(
                         key: null
                         value: Expr_MethodCall(
                             var: Expr_Variable(
@@ -1281,7 +1281,7 @@ array(
             )
             expr: Expr_Array(
                 items: array(
-                    0: ArrayItem(
+                    0: Array_Item(
                         key: null
                         value: Expr_Variable(
                             name: value
@@ -1289,7 +1289,7 @@ array(
                         byRef: false
                         unpack: false
                     )
-                    1: ArrayItem(
+                    1: Array_Item(
                         key: null
                         value: Expr_Variable(
                             name: oopsAnotherValue
@@ -1308,7 +1308,7 @@ array(
             )
             expr: Expr_Array(
                 items: array(
-                    0: ArrayItem(
+                    0: Array_Item(
                         key: Scalar_String(
                             value: key
                         )
@@ -1318,7 +1318,7 @@ array(
                         byRef: false
                         unpack: false
                     )
-                    1: ArrayItem(
+                    1: Array_Item(
                         key: null
                         value: Expr_Variable(
                             name: oopsAnotherValue
@@ -1399,7 +1399,7 @@ array(
                 type: null
                 props: array(
                     0: PropertyItem(
-                        name: VarLikeIdentifier(
+                        name: Var_Like_Identifier(
                             name: foo
                         )
                         default: null
@@ -1411,7 +1411,7 @@ array(
                     0: /** @var ?string */
                 )
             )
-            1: Stmt_ClassMethod(
+            1: Stmt_Class_Method(
                 attrGroups: array(
                 )
                 flags: PUBLIC (1)

@@ -6,7 +6,7 @@ Hashbang followed by namespace declaration
 namespace A;
 -----
 array(
-    0: Stmt_InlineHTML(
+    0: Stmt_Inline_Html(
         value: #!/usr/bin/env php
 
     )

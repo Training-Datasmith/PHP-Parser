@@ -113,7 +113,7 @@ array(
     )
     9: Stmt_Expression(
         expr: Expr_FuncCall(
-            name: Name_FullyQualified(
+            name: Name_Fully_Qualified(
                 name: exit
             )
             args: array(
@@ -134,7 +134,7 @@ array(
                 name: exit
             )
             args: array(
-                0: VariadicPlaceholder(
+                0: Variadic_Placeholder(
                 )
             )
         )

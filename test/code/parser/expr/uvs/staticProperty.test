@@ -16,7 +16,7 @@ array(
             class: Name(
                 name: A
             )
-            name: VarLikeIdentifier(
+            name: Var_Like_Identifier(
                 name: b
             )
         )
@@ -26,7 +26,7 @@ array(
             class: Expr_Variable(
                 name: A
             )
-            name: VarLikeIdentifier(
+            name: Var_Like_Identifier(
                 name: b
             )
         )
@@ -36,7 +36,7 @@ array(
             class: Scalar_String(
                 value: A
             )
-            name: VarLikeIdentifier(
+            name: Var_Like_Identifier(
                 name: b
             )
         )
@@ -51,7 +51,7 @@ array(
                     value:
                 )
             )
-            name: VarLikeIdentifier(
+            name: Var_Like_Identifier(
                 name: b
             )
         )
@@ -66,7 +66,7 @@ array(
                     value: 0
                 )
             )
-            name: VarLikeIdentifier(
+            name: Var_Like_Identifier(
                 name: b
             )
         )
@@ -102,11 +102,11 @@ array(
                 class: Name(
                     name: A
                 )
-                name: VarLikeIdentifier(
+                name: Var_Like_Identifier(
                     name: A
                 )
             )
-            name: VarLikeIdentifier(
+            name: Var_Like_Identifier(
                 name: b
             )
         )

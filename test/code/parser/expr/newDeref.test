@@ -88,7 +88,7 @@ array(
                 args: array(
                 )
             )
-            name: VarLikeIdentifier(
+            name: Var_Like_Identifier(
                 name: foo
             )
         )
@@ -229,7 +229,7 @@ array(
                 args: array(
                 )
             )
-            name: VarLikeIdentifier(
+            name: Var_Like_Identifier(
                 name: foo
             )
         )

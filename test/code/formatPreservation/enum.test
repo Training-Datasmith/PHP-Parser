@@ -67,7 +67,7 @@ enum X {
     case B;
 }
 -----
-$stmts[0]->stmts[] = new Node\Stmt\EnumCase('C');
+$stmts[0]->stmts[] = new Node\Stmt\Enum_Case('C');
 -----
 <?php
 enum X {

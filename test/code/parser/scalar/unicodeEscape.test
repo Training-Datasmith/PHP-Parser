@@ -13,9 +13,9 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Scalar_InterpolatedString(
+        expr: Scalar_Interpolated_String(
             parts: array(
-                0: InterpolatedStringPart(
+                0: Interpolated_StringPart(
                     value: Ĕ
                 )
                 1: Expr_Variable(
@@ -27,7 +27,7 @@ array(
     2: Stmt_Expression(
         expr: Expr_ShellExec(
             parts: array(
-                0: InterpolatedStringPart(
+                0: Interpolated_StringPart(
                     value: @@{"\xF0\x9F\x98\x82"}@@
                 )
                 1: Expr_Variable(
@@ -52,9 +52,9 @@ array(
         )
     )
     1: Stmt_Expression(
-        expr: Scalar_InterpolatedString(
+        expr: Scalar_Interpolated_String(
             parts: array(
-                0: InterpolatedStringPart(
+                0: Interpolated_StringPart(
                     value: \u{114}
                 )
                 1: Expr_Variable(
@@ -66,7 +66,7 @@ array(
     2: Stmt_Expression(
         expr: Expr_ShellExec(
             parts: array(
-                0: InterpolatedStringPart(
+                0: Interpolated_StringPart(
                     value: \u{1F602}
                 )
                 1: Expr_Variable(

@@ -160,7 +160,7 @@ array(
                 )
                 default: Expr_Array(
                     items: array(
-                        0: ArrayItem(
+                        0: Array_Item(
                             key: null
                             value: Scalar_String(
                                 value: foo
@@ -185,7 +185,7 @@ array(
                 )
                 default: Expr_Array(
                     items: array(
-                        0: ArrayItem(
+                        0: Array_Item(
                             key: null
                             value: Scalar_String(
                                 value: foo
@@ -193,7 +193,7 @@ array(
                             byRef: false
                             unpack: false
                         )
-                        1: ArrayItem(
+                        1: Array_Item(
                             key: Scalar_String(
                                 value: bar
                             )

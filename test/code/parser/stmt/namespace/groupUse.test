@@ -15,7 +15,7 @@ array(
             name: A
         )
         uses: array(
-            0: UseItem(
+            0: Use_Item(
                 type: TYPE_NORMAL (1)
                 name: Name(
                     name: B
@@ -30,14 +30,14 @@ array(
             name: A
         )
         uses: array(
-            0: UseItem(
+            0: Use_Item(
                 type: TYPE_NORMAL (1)
                 name: Name(
                     name: B\C
                 )
                 alias: null
             )
-            1: UseItem(
+            1: Use_Item(
                 type: TYPE_NORMAL (1)
                 name: Name(
                     name: D
@@ -52,14 +52,14 @@ array(
             name: A\B
         )
         uses: array(
-            0: UseItem(
+            0: Use_Item(
                 type: TYPE_NORMAL (1)
                 name: Name(
                     name: C\D
                 )
                 alias: null
             )
-            1: UseItem(
+            1: Use_Item(
                 type: TYPE_NORMAL (1)
                 name: Name(
                     name: E
@@ -74,14 +74,14 @@ array(
             name: A
         )
         uses: array(
-            0: UseItem(
+            0: Use_Item(
                 type: TYPE_UNKNOWN (0)
                 name: Name(
                     name: b\c
                 )
                 alias: null
             )
-            1: UseItem(
+            1: Use_Item(
                 type: TYPE_UNKNOWN (0)
                 name: Name(
                     name: d
@@ -96,14 +96,14 @@ array(
             name: A
         )
         uses: array(
-            0: UseItem(
+            0: Use_Item(
                 type: TYPE_UNKNOWN (0)
                 name: Name(
                     name: B\C
                 )
                 alias: null
             )
-            1: UseItem(
+            1: Use_Item(
                 type: TYPE_UNKNOWN (0)
                 name: Name(
                     name: D
@@ -118,21 +118,21 @@ array(
             name: A\B
         )
         uses: array(
-            0: UseItem(
+            0: Use_Item(
                 type: TYPE_NORMAL (1)
                 name: Name(
                     name: C\D
                 )
                 alias: null
             )
-            1: UseItem(
+            1: Use_Item(
                 type: TYPE_FUNCTION (2)
                 name: Name(
                     name: b\c
                 )
                 alias: null
             )
-            2: UseItem(
+            2: Use_Item(
                 type: TYPE_CONSTANT (3)
                 name: Name(
                     name: D

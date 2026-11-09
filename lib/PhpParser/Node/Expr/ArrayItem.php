@@ -1,15 +1,18 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Expr;
+declare(strict_types=1);
 
-require __DIR__ . '/../ArrayItem.php';
+namespace Php_Parser\Node\Expr;
+
+require_once __DIR__ . '/../Array_Item.php';
 
 if (false) {
     /**
      * For classmap-authoritative support.
      *
-     * @deprecated use \PhpParser\Node\ArrayItem instead.
+     * @deprecated use \Php_Parser\Node\Array_Item instead.
      */
-    class ArrayItem extends \PhpParser\Node\ArrayItem {
+    class ArrayItem extends \Php_Parser\Node\Array_Item
+    {
     }
 }

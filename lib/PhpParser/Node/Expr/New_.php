@@ -1,18 +1,18 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace PhpParser\Node\Expr;
+declare (strict_types=1);
+namespace Php_Parser\Node\Expr;
 
-use PhpParser\Node;
-use PhpParser\Node\Arg;
-use PhpParser\Node\Expr;
-use PhpParser\Node\VariadicPlaceholder;
-
-class New_ extends CallLike {
+use Php_Parser\Node;
+use Php_Parser\Node\Arg;
+use Php_Parser\Node\Expr;
+use Php_Parser\Node\Variadic_Placeholder;
+class New_ extends Call_Like
+{
     /** @var Node\Name|Expr|Node\Stmt\Class_ Class name */
     public Node $class;
     /** @var array<Arg|VariadicPlaceholder> Arguments */
     public array $args;
-
     /**
      * Constructs a function call node.
      *
@@ -20,21 +20,21 @@ class New_ extends CallLike {
      * @param array<Arg|VariadicPlaceholder> $args Arguments
      * @param array<string, mixed> $attributes Additional attributes
      */
-    public function __construct(Node $class, array $args = [], array $attributes = []) {
+    public function __construct(Node $class, array $args = [], array $attributes = [])
+    {
         $this->attributes = $attributes;
         $this->class = $class;
         $this->args = $args;
     }
-
-    public function getSubNodeNames(): array {
+    public function get_sub_node_names(): array
+    {
         return ['class', 'args'];
     }
-
-    public function getType(): string {
+    public function get_type(): string {
         return 'Expr_New';
     }
-
-    public function getRawArgs(): array {
+    public function get_raw_args(): array
+    {
         return $this->args;
     }
 }

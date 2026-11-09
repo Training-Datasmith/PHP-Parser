@@ -24,7 +24,7 @@ array(
     )
     2: Stmt_Expression(
         expr: Expr_ConstFetch(
-            name: Name_FullyQualified(
+            name: Name_Fully_Qualified(
                 name: A\B
             )
         )

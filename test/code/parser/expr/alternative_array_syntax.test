@@ -76,7 +76,7 @@ array(
                 class: Name(
                     name: A
                 )
-                name: VarLikeIdentifier(
+                name: Var_Like_Identifier(
                     name: b
                 )
             )
@@ -242,7 +242,7 @@ array(
             class: Name(
                 name: A
             )
-            name: VarLikeIdentifier(
+            name: Var_Like_Identifier(
                 name: b
             )
         )

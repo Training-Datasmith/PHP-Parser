@@ -23,9 +23,9 @@ array(
     )
     1: Stmt_Expression(
         expr: Expr_ArrayDimFetch(
-            var: Scalar_InterpolatedString(
+            var: Scalar_Interpolated_String(
                 parts: array(
-                    0: InterpolatedStringPart(
+                    0: Interpolated_StringPart(
                         value: foo
                     )
                     1: Expr_Variable(
@@ -40,9 +40,9 @@ array(
     )
     2: Stmt_Expression(
         expr: Expr_MethodCall(
-            var: Scalar_InterpolatedString(
+            var: Scalar_Interpolated_String(
                 parts: array(
-                    0: InterpolatedStringPart(
+                    0: Interpolated_StringPart(
                         value: foo
                     )
                     1: Expr_Variable(
@@ -91,7 +91,7 @@ array(
             var: Expr_ArrayDimFetch(
                 var: Expr_Array(
                     items: array(
-                        0: ArrayItem(
+                        0: Array_Item(
                             key: null
                             value: Scalar_Int(
                                 value: 0
@@ -99,7 +99,7 @@ array(
                             byRef: false
                             unpack: false
                         )
-                        1: ArrayItem(
+                        1: Array_Item(
                             key: null
                             value: Scalar_Int(
                                 value: 1
