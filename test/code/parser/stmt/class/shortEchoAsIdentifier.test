@@ -32,16 +32,20 @@ array(
                         method: Identifier(
                             name: x
                         )
-                        newModifier: null
-                        newName: null
+                        new_modifier: null
+                        new_name: Identifier(
+                            name: y
+                        )
                     )
                     1: Stmt_Trait_Use_Adaptation_Alias(
                         trait: null
                         method: Identifier(
                             name: <?=
                         )
-                        newModifier: null
-                        newName: null
+                        new_modifier: null
+                        new_name: Identifier(
+                            name: my_echo
+                        )
                     )
                 )
             )

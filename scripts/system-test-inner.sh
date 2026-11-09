@@ -2,6 +2,10 @@
 set -euo pipefail
 
 export COMPOSER_ALLOW_SUPERUSER=1
+# phpunit/php-code-coverage requires nikic/php-parser ^4.19.1 || ^5.1.0. Clean clones use branch
+# dev-remote-test-2026-11-09 without a composer.json branch-alias; COMPOSER_ROOT_VERSION
+# satisfies that constraint via the fork index alias (5.7.0) without editing vendor deps.
+export COMPOSER_ROOT_VERSION=5.7.0
 git config --global --add safe.directory /app 2>/dev/null || true
 
 strip_ansi() {

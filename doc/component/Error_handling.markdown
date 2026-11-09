@@ -39,7 +39,7 @@ To instead collect all encountered errors into an array, while trying to continu
 an instance of `Error_Handler\Collecting` can be passed to the `Parser::parse()` method. A usage example:
 
 ```php
-$parser = (new Php_Parser\Parser_Factory())->createForHostVersion();
+$parser = (new Php_Parser\Parser_Factory())->create_for_host_version();
 $errorHandler = new Php_Parser\Error_Handler\Collecting;
 
 $stmts = $parser->parse($code, $errorHandler);

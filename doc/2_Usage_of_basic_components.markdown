@@ -32,7 +32,7 @@ use Php_Parser\Parser_Factory;
 use Php_Parser\Php_Version;
 
 // Parser for the version you are running on.
-$parser = (new Parser_Factory())->createForHostVersion();
+$parser = (new Parser_Factory())->create_for_host_version();
 
 // Parser for the newest PHP version supported by the PHP-Parser library.
 $parser = (new Parser_Factory())->create_for_newest_supported_version();
@@ -66,7 +66,7 @@ function printLine($msg) {
 printLine('Hello World!!!');
 CODE;
 
-$parser = (new Parser_Factory())->createForHostVersion();
+$parser = (new Parser_Factory())->create_for_host_version();
 
 try {
     $stmts = $parser->parse($code);
@@ -199,20 +199,20 @@ Every node has a (possibly zero) number of subnodes. You can access subnodes by 
 in the above example you would write `$stmts[0]->exprs`. If you wanted to access the name of the function
 call, you would write `$stmts[0]->exprs[1]->name`.
 
-All nodes also define a `getType()` method that returns the node type. The type is the class name
+All nodes also define a `get_type()` method that returns the node type. The type is the class name
 without the `Php_Parser\Node\` prefix and `\` replaced with `_`. It also does not contain a trailing
 `_` for reserved-keyword class names.
 
-It is possible to associate custom metadata with a node using the `setAttribute()` method. This data
-can then be retrieved using `hasAttribute()`, `getAttribute()` and `getAttributes()`.
+It is possible to associate custom metadata with a node using the `set_attribute()` method. This data
+can then be retrieved using `has_attribute()`, `get_attribute()` and `get_attributes()`.
 
 By default, the parser adds the `startLine`, `endLine`, `startTokenPos`, `endTokenPos`,
 `startFilePos`, `endFilePos` and `comments` attributes. `comments` is an array of
 `Php_Parser\Comment[\Doc]` instances.
 
-The pre-defined attributes can also be accessed using `getStartLine()` instead of
-`getAttribute('startLine')`, and so on. The last doc comment from the `comments` attribute can be
-obtained using `getDocComment()`.
+The pre-defined attributes can also be accessed using `get_start_line()` instead of
+`get_attribute('startLine')`, and so on. The last doc comment from the `comments` attribute can be
+obtained using `get_doc_comment()`.
 
 Pretty printer
 --------------
@@ -227,7 +227,7 @@ use Php_Parser\Pretty_Printer;
 
 $code = "<?php echo 'Hi ', hi\\getTarget();";
 
-$parser = (new Parser_Factory())->createForHostVersion();
+$parser = (new Parser_Factory())->create_for_host_version();
 $prettyPrinter = new Pretty_Printer\Standard();
 
 try {
@@ -257,10 +257,10 @@ The above code will output:
 As you can see, the source code was first parsed using `Php_Parser\Parser->parse()`, then changed and then
 again converted to code using `Php_Parser\Pretty_Printer\Standard->pretty_print()`.
 
-The `prettyPrint()` method pretty prints a statements array. It is also possible to pretty print only a
-single expression using `prettyPrintExpr()`.
+The `pretty_print()` method pretty prints a statements array. It is also possible to pretty print only a
+single expression using `pretty_print_expr()`.
 
-The `prettyPrintFile()` method can be used to print an entire file. This will include the opening `<?php` tag
+The `pretty_print_file()` method can be used to print an entire file. This will include the opening `<?php` tag
 and handle inline HTML as the first/last statement more gracefully.
 
 There is also a pretty-printing mode which retains formatting for parts of the AST that have not
@@ -284,7 +284,7 @@ use Php_Parser\Node_Traverser;
 use Php_Parser\Parser_Factory;
 use Php_Parser\Pretty_Printer;
 
-$parser        = (new Parser_Factory())->createForHostVersion();
+$parser        = (new Parser_Factory())->create_for_host_version();
 $traverser     = new Node_Traverser;
 $prettyPrinter = new Pretty_Printer\Standard;
 

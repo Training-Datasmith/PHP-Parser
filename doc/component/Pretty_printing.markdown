@@ -20,12 +20,12 @@ $prettyPrinter = new Php_Parser\Pretty_Printer\Standard;
 $newCode = $prettyPrinter->pretty_print_file($stmts);
 ```
 
-The pretty printer has three basic printing methods: `prettyPrint()`, `prettyPrintFile()` and
-`prettyPrintExpr()`. The one that is most commonly useful is `prettyPrintFile()`, which takes an
+The pretty printer has three basic printing methods: `pretty_print()`, `pretty_print_file()` and
+`pretty_print_expr()`. The one that is most commonly useful is `pretty_print_file()`, which takes an
 array of statements and produces a full PHP file, including opening `<?php`.
 
-`prettyPrint()` also takes a statement array, but produces code which is valid inside an already
-open `<?php` context. Lastly, `prettyPrintExpr()` takes an `Expr` node and prints only a single
+`pretty_print()` also takes a statement array, but produces code which is valid inside an already
+open `<?php` context. Lastly, `pretty_print_expr()` takes an `Expr` node and prints only a single
 expression.
 
 Customizing the formatting
@@ -94,7 +94,7 @@ Use of the formatting-preservation functionality requires some additional prepar
 ```php
 use Php_Parser\{Node_Traverser, NodeVisitor, Parser_Factory, Pretty_Printer};
 
-$parser = (new Parser_Factory())->createForHostVersion();
+$parser = (new Parser_Factory())->create_for_host_version();
 $oldStmts = $parser->parse($code);
 $oldTokens = $parser->getTokens();
 

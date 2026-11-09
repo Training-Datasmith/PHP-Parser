@@ -15,8 +15,8 @@ class Alias extends Node\Stmt\Trait_Use_Adaptation
      *
      * @param null|Node\Name $trait Trait name
      * @param string|Node\Identifier $method Method name
-     * @param null|int $newModifier New modifier
-     * @param null|string|Node\Identifier $newName New name
+     * @param null|int $new_modifier New modifier
+     * @param null|string|Node\Identifier $new_name New name
      * @param array<string, mixed> $attributes Additional attributes
      */
     public function __construct(?Node\Name $trait, $method, ?int $new_modifier, $new_name, array $attributes = [])
@@ -29,7 +29,7 @@ class Alias extends Node\Stmt\Trait_Use_Adaptation
     }
     public function get_sub_node_names(): array
     {
-        return ['trait', 'method', 'newModifier', 'newName'];
+        return ['trait', 'method', 'new_modifier', 'new_name'];
     }
     public function get_type(): string {
         return 'Stmt_Trait_Use_Adaptation_Alias';

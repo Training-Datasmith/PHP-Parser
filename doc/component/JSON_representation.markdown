@@ -18,7 +18,7 @@ function printLine($msg) {
 }
 CODE;
 
-$parser = (new Parser_Factory())->createForHostVersion();
+$parser = (new Parser_Factory())->create_for_host_version();
 
 try {
     $stmts = $parser->parse($code);
@@ -34,7 +34,7 @@ This will result in the following output (which includes attributes):
 ```json
 [
     {
-        "nodeType": "Stmt_Function",
+        "nodeType": "Stmt_Function_",
         "attributes": {
             "startLine": 4,
             "comments": [
@@ -51,7 +51,7 @@ This will result in the following output (which includes attributes):
             ],
             "endLine": 6
         },
-        "byRef": false,
+        "by_ref": false,
         "name": {
             "nodeType": "Identifier",
             "attributes": {
@@ -68,7 +68,7 @@ This will result in the following output (which includes attributes):
                     "endLine": 4
                 },
                 "type": null,
-                "byRef": false,
+                "by_ref": false,
                 "variadic": false,
                 "var": {
                     "nodeType": "Expr_Variable",
@@ -80,13 +80,13 @@ This will result in the following output (which includes attributes):
                 },
                 "default": null,
                 "flags": 0,
-                "attrGroups": []
+                "attr_groups": []
             }
         ],
-        "returnType": null,
+        "return_type": null,
         "stmts": [
             {
-                "nodeType": "Stmt_Echo",
+                "nodeType": "Stmt_Echo_",
                 "attributes": {
                     "startLine": 5,
                     "endLine": 5
@@ -101,7 +101,7 @@ This will result in the following output (which includes attributes):
                         "name": "msg"
                     },
                     {
-                        "nodeType": "Scalar_String",
+                        "nodeType": "Scalar_String_",
                         "attributes": {
                             "startLine": 5,
                             "endLine": 5,
@@ -113,8 +113,8 @@ This will result in the following output (which includes attributes):
                 ]
             }
         ],
-        "attrGroups": [],
-        "namespacedName": null
+        "attr_groups": [],
+        "namespaced_name": null
     }
 ]
 ```

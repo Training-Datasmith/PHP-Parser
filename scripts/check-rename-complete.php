@@ -106,9 +106,18 @@ function is_allowlisted_line(string $line): bool
 /**
  * @param list<string> $failures
  */
+function is_historical_doc(string $relative): bool
+{
+    return (bool) preg_match('#^(?:.*/)?(CHANGELOG\.md|CONTRIBUTING\.md|UPGRADE-.*\.md)$#', $relative);
+}
+
+/**
+ * @param list<string> $failures
+ */
 function scan_for_old_names(string $relative, string $contents, array &$failures): void
 {
     $lines = explode("\n", $contents);
+    $historical = is_historical_doc($relative);
     foreach ($lines as $i => $line) {
         if (is_allowlisted_line($line)) {
             continue;
@@ -142,7 +151,52 @@ function scan_for_old_names(string $relative, string $contents, array &$failures
             '/\bkeyVar\s*:/',
             '/\bvalueVar\s*:/',
             '/\bscalarType\s*:/',
+            '/\bnewModifier\s*:/',
+            '/\bnewName\s*:/',
+            '/["\']byRef["\']/',
+            '/["\']attrGroups["\']/',
+            '/["\']returnType["\']/',
+            '/["\']namespacedName["\']/',
+            '/["\']keyVar["\']/',
+            '/["\']scalarType["\']/',
+            '/["\']newModifier["\']/',
+            '/["\']newName["\']/',
+            '/->returnType\b/',
+            '/->attrGroups\b/',
+            '/->keyVar\b/',
+            '/->byRef\b/',
+            '/->scalarType\b/',
+            '/->newName\b/',
+            '/->newModifier\b/',
+            '/@param\s+[^\s$]+\s+\$newModifier\b/',
+            '/@param\s+[^\s$]+\s+\$newName\b/',
         ];
+
+        if (!$historical) {
+            $patterns = array_merge($patterns, [
+                '/(?<!_)hasAttribute\s*\(/',
+                '/\bgetAttributes\s*\(/',
+                '/\bgetAttribute\s*\(/',
+                '/\bsetAttribute\s*\(/',
+                '/\bgetStartLine\s*\(/',
+                '/\bgetDocComment\s*\(/',
+                '/\bcreateForHostVersion\b/',
+                '/\bcreateForVersion\b/',
+                '/\bcreateForNewestSupportedVersion\b/',
+                '/\bprettyPrintFile\s*\(/',
+                '/\bprettyPrintExpr\s*\(/',
+                '/\bprettyPrint\s*\(/',
+            ]);
+        }
+
+        $patterns = array_merge($patterns, [
+            '/\b->hasAttribute\s*\(/',
+            '/\b->getAttributes\s*\(/',
+            '/\b->getAttribute\s*\(/',
+            '/\b->setAttribute\s*\(/',
+            '/\b->getStartLine\s*\(/',
+            '/\b->getDocComment\s*\(/',
+        ]);
 
         foreach ($patterns as $pattern) {
             if (preg_match($pattern, $line)) {
@@ -206,11 +260,22 @@ if ($failures !== []) {
     exit(1);
 }
 
-$demoFailures = [];
-scan_for_old_names('demo-injection', "namespace PhpParser;\nclass BuilderFactory {}\n", $demoFailures);
-if ($demoFailures === []) {
-    fwrite(STDERR, "check-rename-complete: demo injection of old name did not fail as expected.\n");
-    exit(1);
+$patternDemos = [
+    'demo-namespace' => "namespace PhpParser;\nclass BuilderFactory {}\n",
+    'demo-quoted-byRef' => '{"byRef": false}',
+    'demo-quoted-returnType' => '"returnType": null',
+    'demo-property-access' => '$stmts[0]->returnType = null;',
+    'demo-param-newModifier' => "/**\n * @param int \$newModifier foo\n */\n",
+    'demo-method-hasAttribute' => 'Use hasAttribute() to read metadata.',
+];
+
+foreach ($patternDemos as $label => $sample) {
+    $demoFailures = [];
+    scan_for_old_names($label, $sample, $demoFailures);
+    if ($demoFailures === []) {
+        fwrite(STDERR, "check-rename-complete: pattern demo \"{$label}\" did not fail as expected.\n");
+        exit(1);
+    }
 }
 
 fwrite(STDOUT, "check-rename-complete: no pre-rename repo-owned names remain.\n");

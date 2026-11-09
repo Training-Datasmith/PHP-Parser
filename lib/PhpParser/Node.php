@@ -19,12 +19,12 @@ interface Node
      */
     public function get_sub_node_names(): array;
     /**
-     * Gets line the node started in (alias of getStartLine).
+     * Gets line the node started in (alias of get_start_line()).
      *
      * @return int Start line (or -1 if not available)
      * @phpstan-return -1|positive-int
      *
-     * @deprecated Use getStartLine() instead
+     * @deprecated Use get_start_line() instead
      */
     public function get_line(): int;
     /**

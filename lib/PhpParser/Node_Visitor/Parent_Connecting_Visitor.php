@@ -11,7 +11,7 @@ use Php_Parser\Node_Visitor_Abstract;
  * Visitor that connects a child node to its parent node.
  *
  * With <code>$weakReferences=false</code> on the child node, the parent node can be accessed through
- * <code>$node->getAttribute('parent')</code>.
+ * <code>$node->get_attribute('parent')</code>.
  *
  * With <code>$weakReferences=true</code> the attribute name is "weak_parent" instead.
  */

@@ -398,8 +398,10 @@ array(
                         method: Identifier(
                             name: list
                         )
-                        newModifier: null
-                        newName: null
+                        new_modifier: null
+                        new_name: Identifier(
+                            name: foreach
+                        )
                     )
                     2: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name(
@@ -408,8 +410,10 @@ array(
                         method: Identifier(
                             name: throw
                         )
-                        newModifier: null
-                        newName: null
+                        new_modifier: PROTECTED (2)
+                        new_name: Identifier(
+                            name: public
+                        )
                     )
                     3: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name(
@@ -418,16 +422,18 @@ array(
                         method: Identifier(
                             name: self
                         )
-                        newModifier: null
-                        newName: null
+                        new_modifier: PROTECTED (2)
+                        new_name: null
                     )
                     4: Stmt_Trait_Use_Adaptation_Alias(
                         trait: null
                         method: Identifier(
                             name: exit
                         )
-                        newModifier: null
-                        newName: null
+                        new_modifier: null
+                        new_name: Identifier(
+                            name: die
+                        )
                     )
                     5: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name_Fully_Qualified(
@@ -436,8 +442,10 @@ array(
                         method: Identifier(
                             name: exit
                         )
-                        newModifier: null
-                        newName: null
+                        new_modifier: null
+                        new_name: Identifier(
+                            name: bye
+                        )
                     )
                     6: Stmt_Trait_Use_Adaptation_Alias(
                         trait: Name_Relative(
@@ -446,8 +454,10 @@ array(
                         method: Identifier(
                             name: exit
                         )
-                        newModifier: null
-                        newName: null
+                        new_modifier: null
+                        new_name: Identifier(
+                            name: byebye
+                        )
                     )
                     7: Stmt_Trait_Use_Adaptation_Precedence(
                         trait: Name(

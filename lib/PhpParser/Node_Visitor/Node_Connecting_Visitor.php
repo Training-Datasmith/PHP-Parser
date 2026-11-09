@@ -10,9 +10,9 @@ use Php_Parser\Node_Visitor_Abstract;
  * as well as its sibling nodes.
  *
  * With <code>$weakReferences=false</code> on the child node, the parent node can be accessed through
- * <code>$node->getAttribute('parent')</code>, the previous
- * node can be accessed through <code>$node->getAttribute('previous')</code>,
- * and the next node can be accessed through <code>$node->getAttribute('next')</code>.
+ * <code>$node->get_attribute('parent')</code>, the previous
+ * node can be accessed through <code>$node->get_attribute('previous')</code>,
+ * and the next node can be accessed through <code>$node->get_attribute('next')</code>.
  *
  * With <code>$weakReferences=true</code> attribute names are prefixed by "weak_", e.g. "weak_parent".
  */

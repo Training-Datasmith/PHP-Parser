@@ -89,7 +89,7 @@ information based on the token position:
 ```php
 /** @param Php_Parser\Token[] $tokens */
 function isDeclaredUsingVar(array $tokens, Php_Parser\Node\Stmt\Property $prop) {
-    $i = $prop->getStartTokenPos();
+    $i = $prop->get_start_token_pos();
     return $tokens[$i]->id === T_VAR;
 }
 ```
@@ -104,21 +104,21 @@ class MyNodeVisitor extends Php_Parser\Node_Visitor_Abstract {
         $this->tokens = $tokens;
     }
 
-    public function leaveNode(Php_Parser\Node $node) {
+    public function leave_node(Php_Parser\Node $node) {
         if ($node instanceof Php_Parser\Node\Stmt\Property) {
             var_dump(isDeclaredUsingVar($this->tokens, $node));
         }
     }
 }
 
-$parser = (new Php_Parser\Parser_Factory())->createForHostVersion($lexerOptions);
+$parser = (new Php_Parser\Parser_Factory())->create_for_host_version();
 
 $visitor = new MyNodeVisitor();
 $traverser = new Php_Parser\Node_Traverser($visitor);
 
 try {
     $stmts = $parser->parse($code);
-    $visitor->setTokens($parser->getTokens());
+    $visitor->setTokens($parser->get_tokens());
     $stmts = $traverser->traverse($stmts);
 } catch (Php_Parser\Error $e) {
     echo 'Parse Error: ', $e->getMessage();

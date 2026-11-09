@@ -47,49 +47,38 @@ $stmts[6]->expr->attr_groups[] = $attrGroup;
 <?php
 #[A]
 #[B]
-class X
-{
+class X {
     #[A]
     #[B]
-    public function m(
-        #[A]
-        #[B]
-        &$p
-    )
-    {
-    }
+    public function m(#[A] #[B] & $p) {}
+
     #[A]
     #[B]
-    public $prop;
+    public
+        $prop;
+
     #[A]
     #[B]
-    const X = 42;
+    const
+        X = 42;
 }
 
 #[A]
 #[B]
-trait X
-{
-}
+trait X {}
 
 #[A]
 #[B]
-interface X
-{
-}
+interface X {}
 
 #[A]
 #[B]
-function f()
-{
-}
+function f() {}
 
-new #[A] #[B] class
-{
-};
-#[A] #[B] function () {
-};
-#[A] #[B] fn() => 42;
+new #[A] #[B] class {};
+#[A] #[B] function() {};
+#[A] #[B] fn()
+    => 42;
 -----
 <?php
 class X {
@@ -135,40 +124,33 @@ $stmts[6]->expr->attr_groups[] = $attrGroup;
 <?php
 #[A]
 #[B]
-class X
-{
+class X {
     #[A]
     #[B]
-    public function m()
-    {
-    }
+    public function m() {}
+
     #[A]
-    public $prop;
+    public
+        $prop;
+
     #[A]
-    const X = 42;
+    const
+        X = 42;
 }
 
 #[A]
-trait X
-{
-}
+trait X {}
 
 #[A]
-interface X
-{
-}
+interface X {}
 
 #[A]
-function f()
-{
-}
+function f() {}
 
-new #[A] class
-{
-};
-#[A] function () {
-};
-#[A] fn() => 42;
+new #[A] class {};
+#[A] function() {};
+#[A] fn()
+    => 42;
 -----
 <?php
 

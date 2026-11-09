@@ -1221,7 +1221,7 @@ abstract class Pretty_Printer_Abstract implements Pretty_Printer
         $strip_double_arrow = ['right' => \T_DOUBLE_ARROW];
         $strip_colon = ['left' => ':'];
         $strip_equals = ['left' => '='];
-        $this->removal_map = ['Expr_ArrayDimFetch->dim' => $strip_both, 'Array_Item->key' => $strip_double_arrow, 'Expr_ArrowFunction->returnType' => $strip_colon, 'Expr_Closure->returnType' => $strip_colon, 'Expr_Exit->expr' => $strip_both, 'Expr_Ternary->if' => $strip_both, 'Expr_Yield->key' => $strip_double_arrow, 'Expr_Yield->value' => $strip_both, 'Param->type' => $strip_right, 'Param->default' => $strip_equals, 'Stmt_Break->num' => $strip_both, 'Stmt_Catch->var' => $strip_left, 'Stmt_ClassConst->type' => $strip_right, 'Stmt_Class_Method->returnType' => $strip_colon, 'Stmt_Class->extends' => ['left' => \T_EXTENDS], 'Stmt_Enum->scalarType' => $strip_colon, 'Stmt_EnumCase->expr' => $strip_equals, 'Expr_PrintableNewAnonClass->extends' => ['left' => \T_EXTENDS], 'Stmt_Continue->num' => $strip_both, 'Stmt_Foreach->keyVar' => $strip_double_arrow, 'Stmt_Function->returnType' => $strip_colon, 'Stmt_If->else' => $strip_left, 'Stmt_Namespace->name' => $strip_left, 'Stmt_Property->type' => $strip_right, 'PropertyItem->default' => $strip_equals, 'Stmt_Return->expr' => $strip_both, 'Stmt_StaticVar->default' => $strip_equals, 'Stmt_Trait_Use_Adaptation_Alias->newName' => $strip_left, 'Stmt_TryCatch->finally' => $strip_left];
+        $this->removal_map = ['Expr_ArrayDimFetch->dim' => $strip_both, 'Array_Item->key' => $strip_double_arrow, 'Expr_ArrowFunction->return_type' => $strip_colon, 'Expr_Closure->return_type' => $strip_colon, 'Expr_Exit->expr' => $strip_both, 'Expr_Ternary->if' => $strip_both, 'Expr_Yield->key' => $strip_double_arrow, 'Expr_Yield->value' => $strip_both, 'Param->type' => $strip_right, 'Param->default' => $strip_equals, 'Stmt_Break->num' => $strip_both, 'Stmt_Catch->var' => $strip_left, 'Stmt_ClassConst->type' => $strip_right, 'Stmt_Class_Method->return_type' => $strip_colon, 'Stmt_Class->extends' => ['left' => \T_EXTENDS], 'Stmt_Enum->scalar_type' => $strip_colon, 'Stmt_EnumCase->expr' => $strip_equals, 'Expr_PrintableNewAnonClass->extends' => ['left' => \T_EXTENDS], 'Stmt_Continue->num' => $strip_both, 'Stmt_Foreach->key_var' => $strip_double_arrow, 'Stmt_Function->return_type' => $strip_colon, 'Stmt_If->else' => $strip_left, 'Stmt_Namespace->name' => $strip_left, 'Stmt_Property->type' => $strip_right, 'PropertyItem->default' => $strip_equals, 'Stmt_Return->expr' => $strip_both, 'Stmt_StaticVar->default' => $strip_equals, 'Stmt_Trait_Use_Adaptation_Alias->new_name' => $strip_left, 'Stmt_TryCatch->finally' => $strip_left];
     }
     protected function initialize_insertion_map(): void
     {
@@ -1233,8 +1233,8 @@ abstract class Pretty_Printer_Abstract implements Pretty_Printer
         $this->insertion_map = [
             'Expr_ArrayDimFetch->dim' => ['[', false, null, null],
             'Array_Item->key' => [null, false, null, ' => '],
-            'Expr_ArrowFunction->returnType' => [')', false, ': ', null],
-            'Expr_Closure->returnType' => [')', false, ': ', null],
+            'Expr_ArrowFunction->return_type' => [')', false, ': ', null],
+            'Expr_Closure->return_type' => [')', false, ': ', null],
             'Expr_Ternary->if' => ['?', false, ' ', ' '],
             'Expr_Yield->key' => [\T_YIELD, false, null, ' => '],
             'Expr_Yield->value' => [\T_YIELD, false, ' ', null],
@@ -1242,22 +1242,22 @@ abstract class Pretty_Printer_Abstract implements Pretty_Printer
             'Param->default' => [null, false, ' = ', null],
             'Stmt_Break->num' => [\T_BREAK, false, ' ', null],
             'Stmt_Catch->var' => [null, false, ' ', null],
-            'Stmt_Class_Method->returnType' => [')', false, ': ', null],
+            'Stmt_Class_Method->return_type' => [')', false, ': ', null],
             'Stmt_ClassConst->type' => [\T_CONST, false, ' ', null],
             'Stmt_Class->extends' => [null, false, ' extends ', null],
-            'Stmt_Enum->scalarType' => [null, false, ' : ', null],
+            'Stmt_Enum->scalar_type' => [null, false, ' : ', null],
             'Stmt_EnumCase->expr' => [null, false, ' = ', null],
             'Expr_PrintableNewAnonClass->extends' => [null, false, ' extends ', null],
             'Stmt_Continue->num' => [\T_CONTINUE, false, ' ', null],
-            'Stmt_Foreach->keyVar' => [\T_AS, false, null, ' => '],
-            'Stmt_Function->returnType' => [')', false, ': ', null],
+            'Stmt_Foreach->key_var' => [\T_AS, false, null, ' => '],
+            'Stmt_Function->return_type' => [')', false, ': ', null],
             'Stmt_If->else' => [null, false, ' ', null],
             'Stmt_Namespace->name' => [\T_NAMESPACE, false, ' ', null],
             'Stmt_Property->type' => [\T_VARIABLE, true, null, ' '],
             'PropertyItem->default' => [null, false, ' = ', null],
             'Stmt_Return->expr' => [\T_RETURN, false, ' ', null],
             'Stmt_StaticVar->default' => [null, false, ' = ', null],
-            //'Stmt_Trait_Use_Adaptation_Alias->newName' => [T_AS, false, ' ', null], // TODO
+            //'Stmt_Trait_Use_Adaptation_Alias->new_name' => [T_AS, false, ' ', null], // TODO
             'Stmt_TryCatch->finally' => [null, false, ' ', null],
         ];
     }
@@ -1335,20 +1335,20 @@ abstract class Pretty_Printer_Abstract implements Pretty_Printer
             Stmt\Namespace_::class . '->stmts' => "\n",
             Stmt\Block::class . '->stmts' => "\n",
             // Attribute groups
-            Stmt\Class_::class . '->attrGroups' => "\n",
-            Stmt\Enum_::class . '->attrGroups' => "\n",
-            Stmt\Enum_Case::class . '->attrGroups' => "\n",
-            Stmt\Interface_::class . '->attrGroups' => "\n",
-            Stmt\Trait_::class . '->attrGroups' => "\n",
-            Stmt\Function_::class . '->attrGroups' => "\n",
-            Stmt\Class_Method::class . '->attrGroups' => "\n",
-            Stmt\Class_Const::class . '->attrGroups' => "\n",
-            Stmt\Property::class . '->attrGroups' => "\n",
-            Printable_New_Anon_Class_Node::class . '->attrGroups' => ' ',
-            Expr\Closure::class . '->attrGroups' => ' ',
-            Expr\Arrow_Function::class . '->attrGroups' => ' ',
-            Param::class . '->attrGroups' => ' ',
-            Property_Hook::class . '->attrGroups' => ' ',
+            Stmt\Class_::class . '->attr_groups' => "\n",
+            Stmt\Enum_::class . '->attr_groups' => "\n",
+            Stmt\Enum_Case::class . '->attr_groups' => "\n",
+            Stmt\Interface_::class . '->attr_groups' => "\n",
+            Stmt\Trait_::class . '->attr_groups' => "\n",
+            Stmt\Function_::class . '->attr_groups' => "\n",
+            Stmt\Class_Method::class . '->attr_groups' => "\n",
+            Stmt\Class_Const::class . '->attr_groups' => "\n",
+            Stmt\Property::class . '->attr_groups' => "\n",
+            Printable_New_Anon_Class_Node::class . '->attr_groups' => ' ',
+            Expr\Closure::class . '->attr_groups' => ' ',
+            Expr\Arrow_Function::class . '->attr_groups' => ' ',
+            Param::class . '->attr_groups' => ' ',
+            Property_Hook::class . '->attr_groups' => ' ',
             Stmt\Switch_::class . '->cases' => "\n",
             Stmt\Trait_Use::class . '->adaptations' => "\n",
             Stmt\Try_Catch::class . '->stmts' => "\n",
@@ -1367,7 +1367,7 @@ abstract class Pretty_Printer_Abstract implements Pretty_Printer
         }
         // TODO Insertion into empty statement lists.
         // [$find, $extraLeft, $extraRight]
-        $this->empty_list_insertion_map = [Expr\Arrow_Function::class . '->params' => ['(', '', ''], Expr\Closure::class . '->uses' => [')', ' use (', ')'], Expr\Closure::class . '->params' => ['(', '', ''], Expr\Func_Call::class . '->args' => ['(', '', ''], Expr\Method_Call::class . '->args' => ['(', '', ''], Expr\Nullsafe_Method_Call::class . '->args' => ['(', '', ''], Expr\New_::class . '->args' => ['(', '', ''], Printable_New_Anon_Class_Node::class . '->args' => ['(', '', ''], Printable_New_Anon_Class_Node::class . '->implements' => [null, ' implements ', ''], Expr\Static_Call::class . '->args' => ['(', '', ''], Stmt\Class_::class . '->implements' => [null, ' implements ', ''], Stmt\Enum_::class . '->implements' => [null, ' implements ', ''], Stmt\Class_Method::class . '->params' => ['(', '', ''], Stmt\Interface_::class . '->extends' => [null, ' extends ', ''], Stmt\Function_::class . '->params' => ['(', '', ''], Stmt\Interface_::class . '->attrGroups' => [null, '', "\n"], Stmt\Class_::class . '->attrGroups' => [null, '', "\n"], Stmt\Class_Const::class . '->attrGroups' => [null, '', "\n"], Stmt\Class_Method::class . '->attrGroups' => [null, '', "\n"], Stmt\Function_::class . '->attrGroups' => [null, '', "\n"], Stmt\Property::class . '->attrGroups' => [null, '', "\n"], Stmt\Trait_::class . '->attrGroups' => [null, '', "\n"], Expr\Arrow_Function::class . '->attrGroups' => [null, '', ' '], Expr\Closure::class . '->attrGroups' => [null, '', ' '], Stmt\Const_::class . '->attrGroups' => [null, '', "\n"], Printable_New_Anon_Class_Node::class . '->attrGroups' => [\T_NEW, ' ', '']];
+        $this->empty_list_insertion_map = [Expr\Arrow_Function::class . '->params' => ['(', '', ''], Expr\Closure::class . '->uses' => [')', ' use (', ')'], Expr\Closure::class . '->params' => ['(', '', ''], Expr\Func_Call::class . '->args' => ['(', '', ''], Expr\Method_Call::class . '->args' => ['(', '', ''], Expr\Nullsafe_Method_Call::class . '->args' => ['(', '', ''], Expr\New_::class . '->args' => ['(', '', ''], Printable_New_Anon_Class_Node::class . '->args' => ['(', '', ''], Printable_New_Anon_Class_Node::class . '->implements' => [null, ' implements ', ''], Expr\Static_Call::class . '->args' => ['(', '', ''], Stmt\Class_::class . '->implements' => [null, ' implements ', ''], Stmt\Enum_::class . '->implements' => [null, ' implements ', ''], Stmt\Class_Method::class . '->params' => ['(', '', ''], Stmt\Interface_::class . '->extends' => [null, ' extends ', ''], Stmt\Function_::class . '->params' => ['(', '', ''], Stmt\Interface_::class . '->attr_groups' => [null, '', "\n"], Stmt\Class_::class . '->attr_groups' => [null, '', "\n"], Stmt\Class_Const::class . '->attr_groups' => [null, '', "\n"], Stmt\Class_Method::class . '->attr_groups' => [null, '', "\n"], Stmt\Function_::class . '->attr_groups' => [null, '', "\n"], Stmt\Property::class . '->attr_groups' => [null, '', "\n"], Stmt\Trait_::class . '->attr_groups' => [null, '', "\n"], Expr\Arrow_Function::class . '->attr_groups' => [null, '', ' '], Expr\Closure::class . '->attr_groups' => [null, '', ' '], Stmt\Const_::class . '->attr_groups' => [null, '', "\n"], Printable_New_Anon_Class_Node::class . '->attr_groups' => [\T_NEW, ' ', '']];
     }
     protected function initialize_modifier_change_map(): void
     {

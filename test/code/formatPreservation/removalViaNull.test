@@ -122,14 +122,15 @@ function foo(Bar $foo, $bar)
 {
 }
 
-function () {
-};
+function
+()
+{};
 
 class Foo
 {
-    public function foo()
-    {
-    }
+    public
+    function
+    foo() {}
     public
       $prop
     ;
@@ -139,7 +140,6 @@ class Foo
         x
         as
         public
-        y
         ;
     }
     const X

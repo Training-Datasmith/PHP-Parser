@@ -18,7 +18,7 @@ $code = '...';
 
 $traverser = new Node_Traverser(new ParentConnectingVisitor);
 
-$parser = (new Parser_Factory())->createForHostVersion();
+$parser = (new Parser_Factory())->create_for_host_version();
 $ast    = $parser->parse($code);
 $ast    = $traverser->traverse($ast);
 ```
@@ -40,7 +40,7 @@ $code = '...';
 
 $traverser = new Node_Traverser(new NodeConnectingVisitor);
 
-$parser = (new Parser_Factory())->createForHostVersion();
+$parser = (new Parser_Factory())->create_for_host_version();
 $ast    = $parser->parse($code);
 $ast    = $traverser->traverse($ast);
 ```

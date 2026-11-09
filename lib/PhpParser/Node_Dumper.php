@@ -82,7 +82,7 @@ class Node_Dumper
                 $this->res .= "{$this->nl}    " . $key . ': ';
                 $value = $node->get_sub_node($key);
                 if (\is_int($value)) {
-                    if ('flags' === $key || 'newModifier' === $key) {
+                    if ('flags' === $key || 'new_modifier' === $key) {
                         $this->res .= $this->dump_flags($value);
                         continue;
                     }

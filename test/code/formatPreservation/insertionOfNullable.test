@@ -110,8 +110,9 @@ $foo[$a];
     'X' => & $value
 ];
 
-function (): Bar {
-};
+function
+(): Bar
+{};
 
 $x
 ? $z
@@ -127,9 +128,9 @@ return $x;
 
 class X extends \Bar
 {
-    public function y(): Y
-    {
-    }
+    public
+    function y(): Y
+    {}
     private
         $x = 42.0
     ;
